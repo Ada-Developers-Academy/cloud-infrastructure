@@ -1,0 +1,13 @@
+---
+Standards:
+  -
+    Title: <Add Tile Name>
+    Description: <Add Tile description>
+    UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 788eb07b-e0a1-4e65-b28b-6d0dd774f7a0
+        Path: <Add path to lesson>
