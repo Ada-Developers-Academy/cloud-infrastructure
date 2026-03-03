@@ -28,6 +28,8 @@
 
 #### When to choose block storage
 
+Warning/note/heads up to not confuse durable block storage with ephemeral instance storage
+
 ## File Storage
 
 ### Data Representation
