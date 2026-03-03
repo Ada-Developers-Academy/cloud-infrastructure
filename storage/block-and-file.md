@@ -13,20 +13,22 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| Solid State Drive |  | SSD |  |
-| Hard Disk Drive |  | HDD |  |
+| Solid State Drive | A flash memory based hard drive. | SSD | We needed the performance speed that a solid state drive can provide. |
+| Hard Disk Drive | A magnetic spinning disk based hard drive. | HDD | This feature uses hard disk drives for storage since we have a lot of data and it doesn't need the highest access speeds. |
 
 ### Data Representation
 
-### Common Options
+### Considerations & Use Cases
+
+When to choose block storage
+
+### Common Block Storage Options
 
 #### Solid State Drives (SSD)
 
 #### Hard Disk Drives (HDD)
 
-### Considerations & Use Cases
-
-#### When to choose block storage
+#### Choosing between SSD & HDD
 
 Warning/note/heads up to not confuse durable block storage with ephemeral instance storage
 
@@ -34,8 +36,8 @@ Warning/note/heads up to not confuse durable block storage with ephemeral instan
 
 ### Data Representation
 
-### Common Options
-
 ### Considerations & Use Cases
+
+### Common Options
 
 ## Check for Understanding
