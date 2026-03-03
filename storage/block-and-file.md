@@ -1,4 +1,4 @@
-# Block, File, and Instance Storage
+# Block & File Storage
 
 ## Learning Goals
 
