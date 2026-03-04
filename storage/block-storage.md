@@ -2,9 +2,9 @@
 
 ## Learning Goals
 
-- Describe at a high level how block storage and file storage works.
-- Describe considerations to keep in mind when choosing block or file storage.
-- Describe common use cases for block and file storage.
+- Describe at a high level how block storage works.
+- Describe considerations to keep in mind when choosing block storage.
+- Describe common use cases for block storage.
 - Describe tradeoffs for block storage regarding Solid State Drives (SSD) and Hard Disk Drives (HDD).
 
 ## Vocabulary and Synonyms
