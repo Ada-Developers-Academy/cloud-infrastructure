@@ -53,7 +53,7 @@ Other common use cases include:
 
 ## Comparing Block Storage Options
 
-We have some options to choose from within cloud block storage, but before we can compare those, we need to have an understanding of the metrics we use to compare the hard drives that back block storage technology.  
+We have some options to choose from within cloud block storage, but before we can compare those, we need a shared understanding of the metrics we use to compare the hard drives that back block storage technology.  
 
 ### Throughput & IOPS
 
@@ -85,6 +85,7 @@ For enterprise applications, SSDs are typically chosen for databases, real-time 
 In the cloud, this distinction appears in different volume types: 
 - SSD-backed options are marketed for transactional or latency-sensitive systems 
 - HDD-backed options target big data processing or bulk storage needs. 
+
 Organizations frequently combine both, using SSDs for “hot” data that must be accessed quickly and HDDs for “cold” data that is stored cheaply over long periods. The decision ultimately balances performance requirements, budget constraints, and expected access patterns within the broader architecture.
 
 We should use a solid state drive (SSD) when we: 
@@ -120,7 +121,9 @@ While block storage offers fast performance, easy data modification, and flexibl
 
 Imagine that we are building a robust search service that prioritizes effectively finding matching items over instant response times. 
 
-Please select whether the following statement is True or False: "Based on the strengths and limits of block storage, block storage is the best choice for this feature."
+Please select whether the following statement is True or False: 
+
+"Based on the strengths and limits of block storage, block storage is the best choice for this feature."
 
 ##### !end-question
 ##### !options
@@ -148,8 +151,6 @@ Block storage prioritizes fast access, and does not allow for flexible or very d
 * id: 5dc2f923-abc4-48e8-aa9d-7f17e5d49256
 * title: Block Storage
 ##### !question
-
-Based on "x" needs, would SSD or HDD block storage be a better fit for the task?
 
 Imagine that we are building service that needs to stream large amounts of analytics data to process over time so we can better understand our customer's patterns and make data driven business decisions. 
 
