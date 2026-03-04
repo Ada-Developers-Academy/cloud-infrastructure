@@ -18,7 +18,7 @@ At its core, **computer networking** is the practice of connecting computing dev
 ![Mobile phone connected to a database and API through a backend API gateway.](assets/networking-computer-networking.png)  
 *Fig. Mobile apps get most of their capabilities from networked resources.*
 
-Without a robust network, these components can't share information. Networking allows us to ensure that a frontend hosted in one location can securely fetch data from a private database in another. By mastering these connections, we can build systems that are both functional and secure, while remaining efficient enough to handle high volumes of traffic.
+Without a robust network, these components can't share information. Networking allows us to ensure that a frontend hosted in one location can securely fetch data from a private database in another. By understanding these connections, we can build systems that are both functional and secure, while remaining efficient enough to handle high volumes of traffic.
 
 ## Addresses Ensure Data Reaches the Correct Destination
 
