@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Storage
-    Description: "What is cloud storage?, Block & File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
+    Description: "What is cloud storage?, Block Storage, File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
     UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
     SuccessCriteria:
       - success criteria
@@ -14,7 +14,11 @@ Standards:
       -
         Type: Lesson
         UID: 8da3844f-e20c-4856-9548-f842608c5f76
-        Path: /storage/block-and-file.md
+        Path: /storage/block-storage.md
+      -
+        Type: Lesson
+        UID: 3f95b513-2836-4077-be5d-ba791a937dc0
+        Path: /storage/file-storage.md
       -
         Type: Lesson
         UID: fb2a1545-3818-483a-9da8-459f498fc062
