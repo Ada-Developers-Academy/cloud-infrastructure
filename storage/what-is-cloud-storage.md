@@ -17,6 +17,14 @@ Storage decisions affect reliability, speed, security, and long-term cost, so we
 
 Understanding storage tradeoffs enables engineers to design scalable, resilient, and cost-efficient systems that grow with the product.
 
+## Vocabulary and Synonyms
+
+| Vocab | Definition | Synonyms | How to Use in a Sentence |
+| --------- | --------- | -------- | --------- |
+| Persistent Storage | Data storage that retains information after a device loses power, restarts, or shuts down | Non-volatile memory | We need persistent storage to host our databases so that we don't lose customer information. |
+| Ephemeral Storage | Temporary, high-speed, local storage directly attached to a machine or virtual machine. | Volatile memory | We can use the ephemeral storage to cache data that invalidates quickly. |
+| Metadata | Data that defines, describes, or explains other data. For example, in a relational database, metadata includes all the information that defines the database's schema. |  | Some data storage types allow flexible formatting or complex metadata, while others keep minimal or very rigid formats of metadata. |
+
 ## Types of Storage
 
 We will talk about 3 common types of storage through this topic: 
