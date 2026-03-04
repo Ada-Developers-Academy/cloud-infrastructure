@@ -1,4 +1,4 @@
-# Block & File Storage
+# Block Storage
 
 ## Learning Goals
 
@@ -16,9 +16,7 @@
 | Throughput | A measurement of bits or bytes per second that can be processed by a storage device. | | Streaming videos requires high throughput because they are large, sequential data transfers. |
 | IOPS | The number of read/write operations per second that a storage device can perform. | | Databases require high IOPS to quickly handle many read/write transactions. |
 
-## Block Storage
-
-### Data Representation
+## Data Representation
 
 Block storage maintains data in fixed-size blocks. Blocks can range in size, typically from a few kilobytes to several megabytes. Many cloud providers allow us to predetermine the block size during the configuration process. In cloud environments, block storage volumes can be attached, detached, resized, and snapshotted independently of a compute instance, allowing applications to scale while keeping their data durable and consistent.
 
@@ -26,28 +24,23 @@ Unlike the traditional file systems we're used to on most personal machines, blo
 
 Block storage can provide efficient access when we have large volumes of data because it allows direct access to individual data blocks. We can read or write data to specific blocks without having to retrieve or modify the entire dataset. 
 
-### Considerations & Use Cases
+## Considerations & Use Cases
 
 Now that we know a little about how block storage works, let's talk about its strengths and limitations, and when we would use cloud block storage.
 
-#### Strengths & Limits
+### Strengths & Limits
 
-**Fast Performance**
-Block storage provides multiple paths to data and uses limited metadata, this reduces the amount of data transferred and allows for efficient data retrieval. 
+**Fast Performance**: Block storage provides multiple paths to data and uses limited metadata, this reduces the amount of data transferred and allows for efficient data retrieval. 
 
-**Modifying Data**
-It's easy to modify just the piece of data or file we need. We only need to modify the specific block or blocks affected when changing a file in block storage.
+**Modifying Data**: It's easy to modify just the piece of data or file we need. We only need to modify the specific block or blocks affected when changing a file in block storage.
 
-**Scaling**
-Block storage is easy to scale upward, but may eventually reach I/O limits or reach the maximum volume sizes available. Block storage offers scalability by adding more storage volumes or expanding existing volumes. We can add new blocks as needed as capacity needs grow without impacting performance, but scalability depends on the cloud provider's block storage system's ability to handle increased I/O demands and capacity requirements.
+**Scaling**: Block storage is easy to scale upward, but may eventually reach I/O limits or reach the maximum volume sizes available. Block storage offers scalability by adding more storage volumes or expanding existing volumes. We can add new blocks as needed as capacity needs grow without impacting performance, but scalability depends on the cloud provider's block storage system's ability to handle increased I/O demands and capacity requirements.
 
-**Cost**
-Block storage tends to be more expensive, especially since we are billed for our total provisioned capacity, even if we don’t end up using the full storage. 
+**Cost**: Block storage tends to be more expensive, especially since we are billed for our total provisioned capacity, even if we don’t end up using the full storage. 
 
-**Metadata**
-Block storage allows very limited use of metadata, we can only include basic file attributes as part of their architecture to maintain high efficiency. This limited metadata structure means block storage does not natively support rich search, tagging, or flexible organization of unstructured data, making it less ideal for massive archives or content-heavy systems where cost and metadata flexibility matter more than raw performance.
+**Metadata**: Block storage allows very limited use of metadata, we can only include basic file attributes as part of their architecture to maintain high efficiency. This limited metadata structure means block storage does not natively support rich search, tagging, or flexible organization of unstructured data, making it less ideal for massive archives or content-heavy systems where cost and metadata flexibility matter more than raw performance.
 
-#### When to choose block storage 
+### When to choose block storage 
 
 Block storage is a good fit for application-critical workloads that require low latency and frequent changes. Any service that requires fast access to data can work well with block storage. For example, a financial services company running a high-transaction trading database in the cloud would benefit from the low latency and high IOPS characteristics of block storage. When performance and control outweigh cost and metadata flexibility concerns, block storage is the appropriate choice.
 
@@ -58,11 +51,11 @@ Other common use cases include:
 - caching
 - backend storage for virtual machines
 
-### Comparing Block Storage Options
+## Comparing Block Storage Options
 
 We have some options to choose from within cloud block storage, but before we can compare those, we need to have an understanding of the metrics we use to compare the hard drives that back block storage technology.  
 
-#### Throughput & IOPS
+### Throughput & IOPS
 
 For hard drives, IOPS measures how many small read/write actions can happen per second. Throughput measures how much total data can be transferred per second. In an ideal world, we'd have both high IOPS and throughput, but restrictions on the physical architecture and costs of hard drives means we often need to make tradeoffs to balance our storage costs with the requirements of a product.
 
@@ -72,7 +65,7 @@ One way to visualize IOPS vs throughput is to think about a coffee shop. IOPS is
 
 In hard drives, high IOPS matters when handling lots of small, random requests, like database queries. High throughput matters when transferring large files in steady streams, like video files.
 
-#### Comparing SSDs vs HDDs
+### Comparing SSDs vs HDDs
 
 When it comes to hard drives and storage, whether we're working in the cloud or building our own PC, we generally have two types of hard drive to choose from: Solid State Drives (SSDs) or Hard Disk Drives (HDDs). Cloud providers will typically give us the choice between SSD backed block storage and HDD backed block storage. Let's look at some key differences between them and talk about when we would choose one over the other.
 
@@ -80,7 +73,7 @@ Solid State Drives (SSDs) and Hard Disk Drives (HDDs) differ primarily in how th
 
 HDDs rely on spinning magnetic platters and mechanical read/write heads, which limits their IOPS and increases latency due to physical movement. In terms of throughput, HDDs can still perform well for large, sequential data transfers, especially in streaming workloads, but SSDs generally outperform them across most performance metrics. The performance gap becomes especially noticeable in transactional systems, where rapid response time and consistent latency are critical.
 
-#### Choosing between SSD & HDD
+### Choosing between SSD & HDD
 
 Cost and minimum requirements for an application's IOPS & throughput are the main influencers in the decision between SSDs and HDDs. 
 
@@ -106,17 +99,7 @@ A hard disk drive (HDD) is a better choice if we are:
 
 Different providers will likely have different types of SSD/HDD available within these categories. The choice between hard drive subcategories will be made around which option best fits an application’s particular needs for IOPS, throughput, and cost. 
 
-## File Storage
-
-### Data Representation
-
-### Considerations & Use Cases
-
-### Common Options
-
 ## Summary
-
-### Block Storage
 
 Block storage is a cloud storage model that organizes data into fixed-size blocks, allowing direct access to individual pieces of data without retrieving an entire file. This design enables high performance, low latency, and efficient modification of specific data blocks, making it well suited for transactional and application-critical workloads such as databases, virtual machines, containers, and caching systems. 
 
@@ -126,7 +109,73 @@ Cloud providers typically offer block storage backed by either solid state drive
 
 While block storage offers fast performance, easy data modification, and flexible scaling through volume expansion, it can be more expensive because billing is based on provisioned capacity. 
 
-
-
-
 ## Check for Understanding
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: ffdcfe66-7cc8-4a64-bf83-35d2a2d32fc6
+* title: Block Storage
+##### !question
+
+Imagine that we are building a robust search service that prioritizes effectively finding matching items over instant response times. 
+
+Please select whether the following statement is True or False: "Based on the strengths and limits of block storage, block storage is the best choice for this feature."
+
+##### !end-question
+##### !options
+
+* True
+* False
+
+##### !end-options
+##### !answer
+
+* False
+
+##### !end-answer
+##### !explanation
+
+Block storage prioritizes fast access, and does not allow for flexible or very descriptive metadata that enables features like rich searches.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 5dc2f923-abc4-48e8-aa9d-7f17e5d49256
+* title: Block Storage
+##### !question
+
+Based on "x" needs, would SSD or HDD block storage be a better fit for the task?
+
+Imagine that we are building service that needs to stream large amounts of analytics data to process over time so we can better understand our customer's patterns and make data driven business decisions. 
+
+Based on the strengths and limits of SSDs and HDDs, please choose which would be the best fit for this scenario.
+
+##### !end-question
+##### !options
+
+* SSD
+* HDD
+
+##### !end-options
+##### !answer
+
+* HDD
+
+##### !end-answer
+##### !explanation
+
+The key points in the prompt are: 
+- we're streaming large amounts of data  
+- the data will be processed over time, not instantly
+- the service is for ongoing business decisions, not customer facing or mission-critical application systems
+
+All of these lend themselves to lower cost HDDs to back our block storage since the fast performance of SSDs is not critical to this task.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
