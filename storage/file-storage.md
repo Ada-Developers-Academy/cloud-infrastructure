@@ -30,7 +30,7 @@ Cloud providers have "fully managed" file storage solutions. Here, "fully manage
 
 **Concurrent Shared Access**: We mentioned earlier that organizations can define access policies for folders and files. This allows a single company with many teams to share the same file system since boundaries can be set up for team and organizational group's folders and files. File storage is also designed for multiple compute instances, systems, or users to access the same files at the same time, making it well suited for collaborative environments.
 
-**Scaling**: Cloud file storage can rapidly scale in volume, which is great if you have rapidly growing or unpredictably growing data needs. There are limits to data access speed due to file storage's hierarchical nature, we cannot add more resources to file access faster.  
+**Scaling**: Cloud file storage can rapidly scale in volume, which is great if you have rapidly growing or unpredictably growing data needs. There are limits to data access speed due to file storage's hierarchical nature, we cannot add more resources to access files faster.  
 
 **Cost**: Current cloud providers offer plans based on active storage, so you only pay for space that is used. Cloud file storage can be cheap initially, but monthly fees can accumulate into significant expenses over time. Many cloud vendors also charge "egress fees", which are fees levied when data leaves one of their data regions or leaves their network, which can make it costly to switch cloud providers or to a self hosted solution.
 
