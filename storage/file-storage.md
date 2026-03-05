@@ -14,9 +14,10 @@ File storage is a hierarchical data storage architecture that uses files and fol
 
 <hierarchical folder system example image>
 
-Each file includes metadata such as name, size, timestamps, and permissions. In addition to the file-level permissions, file storage supports access control lists (ACLs), which together enables organizations to control access across multiple users or systems.
+Each file includes metadata such as name, size, timestamps, and permissions. In addition to the file-level permissions, file storage typically supports other access control tools provided by cloud vendors which enables organizations to control access across multiple users or systems.
 
 File storage is limited in speed compared to other storage strategies due to its hierarchical architecture. Needing to follow a sequential path to find a resources takes more time compared to ID and lookup table based retrieval like we saw with block storage. 
+- We can think about this difference in retrieval like the difference between searching for an item in a list vs a dictionary. Searching a list takes longer since we have to go sequentially through the list, similar to following a path to a file in file storage. When we look something up in a dictionary, a hashing algorithm can rapidly return the data, similar to how  block storage uses a unique address in a lookup table for fast access.  
 
 ## Cloud vs Traditional Hosting
 
@@ -24,7 +25,7 @@ When we host our own file storage, we are responsible for purchasing, maintainin
 
 Cloud providers have "fully managed" file storage solutions. Here, "fully managed" means that both the hardware and software, including ongoing maintenance, are handled by the cloud provider. No replacing hardware yourself when it fails, no worring about if the latest security patch was applied. This makes it lower cost to get started with a cloud file storage service, but you pay more for the storage itself.    
 
-### Cloud Storage Strengths & Limits
+### Strengths & Limits
 
 **Ease of Integration**: Most operating systems are built to understand standard file-level protocols, which means that operating systems and applications can interact with cloud file storage without needing new APIs or custom integrations. 
 
