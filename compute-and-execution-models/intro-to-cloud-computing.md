@@ -1,6 +1,7 @@
 # Introduction to Cloud Computing
 
 ## Learning Goals
+
 - Understand how the paradigm shift from on-premises to cloud computing deployment model came to be
 
 ### A Brief History of Cloud Computing
