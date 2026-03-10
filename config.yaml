@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Compute & Execution Models - How Code Runs in the Cloud
-    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction"
+    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load"
     UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
     SuccessCriteria:
       - success criteria
@@ -15,3 +15,7 @@ Standards:
         Type: Lesson
         UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
         Path: /compute-and-execution-models/the-compute-spectrum.md
+      -
+        Type: Lesson
+        UID: fbbacab6-45da-4dfe-9b90-1fe210b17997
+        Path: /compute-and-execution-models/scaling-models.md

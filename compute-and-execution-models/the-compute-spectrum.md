@@ -174,7 +174,7 @@ A developer is building a background job that only runs for five minutes once pe
 ##### !end-options
 
 ##### !answer
-* Serverless computing resources are automatically and dynamically scaled to zero when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
+* Serverless computing resources are automatically scaled to zero when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
 ##### !end-answer
 
 #### !explanation 
