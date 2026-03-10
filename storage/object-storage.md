@@ -29,9 +29,9 @@ Object storage stores and manages data as discrete units called objects. Each ob
 The metadata is additional information about the object that makes it easier for us to search and retrieve it. For object storage, metadata can include attributes like the unique identifier, the object's name, size, creation date, and custom tags that we define.
 - This is a key difference from block storage where very little metadata is allowed to ensure high performance speeds.
 
-To start out with object storage, we need to create at least one bucket. A bucket is the highest level in object storage, and we generally need to choose a region or availability zone for the bucket to be deployed in at the time of creation. All of our individual objects are stored within a specific bucket of our choosing in object storage, and we can have many buckets if neccessary for organization. 
+To start out with object storage, we need to create at least one bucket. A bucket is the highest level in object storage, and we generally need to choose a region or availability zone for the bucket to be deployed in at the time of creation. All of our individual objects are stored within a specific bucket of our choosing in object storage, and we can have many buckets if necessary for organization. 
 
-A crucial difference from file systems that we may be more familiar with, is that object storage systems use a flat namespace. The objects all sit at the same level in a bucket, there is no hierachical path to an object like in a file-based system. Instead, an object’s unique ID or key provides the address for the object within the storage system. 
+A crucial difference from file systems that we may be more familiar with, is that object storage systems use a flat namespace. The objects all sit at the same level in a bucket, there is no hierarchical path to an object like in a file-based system. Instead, an object’s unique ID or key provides the address for the object within the storage system. 
 - Generally, a hashing algorithm is used to generate an ID from the object's content. Similar to hash tables, this ensures that any objects with the same content will have the same identifier.
 
 Object storage normally uses a distributed storage environment, with object data spread across multiple different storage nodes or servers. This, combined with the flat memory structure, means that object storage is much easier to scale horizontally than other types of storage. Data is already organized within a single, global storage pool distributed across multiple hardware devices and geographical locations, so we can easily add and manage new data. 
@@ -69,7 +69,7 @@ Cloud providers have several tiers of cold storage, based on access speeds and m
 
 ### Other Offerings
 
-In addition to the hot and cold storage classes common among cloud providers, vendors may have specialized storage classes. We touch on 2 of the more commone specialized storage classes below.
+In addition to the hot and cold storage classes common among cloud providers, vendors may have specialized storage classes. We touch on 2 of the more common specialized storage classes below.
 
 **Variable/"Intelligent"/"Smart" Tiering**
 
@@ -77,7 +77,7 @@ Multiple vendors have a storage class that automatically moves data between one 
 
 **Single Zone Storage**
 
-Cloud vendors typically also support access tiers that are restricted to a single availability zone within a region. The data in these access tiers can be more fragile since we do not have built in redundancy across avilability zones, but the tradeoff is generally very high access speeds, which can be important to applications requireing very low latency.
+Cloud vendors typically also support access tiers that are restricted to a single availability zone within a region. The data in these access tiers can be more fragile since we do not have built in redundancy across availability zones, but the tradeoff is generally very high access speeds, which can be important to applications requiring very low latency.
 
 ## Lifecycle Policies
 
@@ -111,15 +111,15 @@ Object storage systems prioritize quantity of storage over availability. There�
 
 ### Versatility & Searchability
 
-We can store pretty much anything in object storage, it's incredibly versatile, being able to hold compute images, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictional analytics and infrastructure decisions,machine learning, and custom AI applications, and object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
+We can store pretty much anything in object storage, it's incredibly versatile, being able to hold compute images, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictional analytics and infrastructure decisions, machine learning, and custom AI applications, and object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
 
 Object storage provides more advanced search capabilities, allowing us to search for an object based on its metadata, contents, and other attributes. As we mentioned earlier, object storage metadata can hold large amounts of information about an object including its name, content type, creation date, size, and other custom fields that can help you locate data.
 
-## Costs
+### Costs
 
 Object storage is consumption-based, affordable storage on-demand. We only pay for the storage we use and it can scale as needed, helping to reduce costs to store all our data.
 
-Due to minimum storage time for cold tiers and data access fees, we need to be aware of our data's access patterns. Our role as developers is to choose initial storage tiers and create lifecycle policies that support our application's needs for data retrieval while minimizing uneccessary costs.
+Due to minimum storage time for cold tiers and data access fees, we need to be aware of our data's access patterns. Our role as developers is to choose initial storage tiers and create lifecycle policies that support our application's needs for data retrieval while minimizing unecessary costs.
 
 ### Accessing Data
 
@@ -136,14 +136,12 @@ We want to choose object storage when we:
 - Need versioning tools to quickly roll back to prior versions
 - Need rich metadata capabilities
 
-Object storage is great for large amounts of unstructured data, especially when durability, scalability, and complex metadata management are relevant needs for the application or organization. Main contrubutors to this are object storage's:
+Object storage is great for large amounts of unstructured data, especially when durability, scalability, and complex metadata management are relevant needs for the application or organization. Main contributors to this are object storage's:
 - Massive horizontal scalability.
 - Rich metadata allowing for complex searching, making it easy to categorize, index, and find data without a separate database.
-- Flat memory model, ideal for handling large volumes of unstructured data, such as social media posts, videos, and sensor data, which can be difficult to store heirarchically.
+- Flat memory model, ideal for handling large volumes of unstructured data, such as social media posts, videos, and sensor data, which can be difficult to store hierarchically.
 
-Due to the flexibility of file formats allowed and scalability, object storage is also commonly used for media storage and delivery for applications like social media sites.
-
-Object storage is also great for hosting static websites efficiently, and holding onto infrastructure artifacts like compute images and data backups that can be used with other cloud tools to help automate our infrastructure and disaster recovery.
+Due to the flexibility of file formats allowed and scalability, object storage is also commonly used for media storage and delivery for applications like social media sites. Object storage is also great for hosting static websites efficiently, and holding onto infrastructure artifacts like compute images and data backups that can be used with other cloud tools to help automate our infrastructure and disaster recovery.
 
 ## Summary
 
@@ -163,6 +161,101 @@ Object storage systems also support features such as versioning, geographic redu
 
 ## Check for Understanding
 
-out of the following list, select all options that are use cases for archival storage
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: e5988f71-8b8c-423a-b712-3b8be85c8125
+* title: Object Storage
+##### !question
 
-Given a description of needs, choose the lifecycle policy that is best fit
+A social media platform stores profile pictures that are accessed millions of times per day. 
+
+Please select the storage class that is most appropriate for this data.
+
+##### !end-question
+##### !options
+
+* Hot storage
+* Cool storage
+* Cold storage
+* Archive storage
+
+##### !end-options
+##### !answer
+
+* Hot storage
+
+##### !end-answer
+##### !explanation
+
+Hot or "standard" storage is designed for frequently accessed data requiring fast retrieval.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 84d5a5c7-b058-4717-8605-07b575fbe10f
+* title: Object Storage
+##### !question
+
+An e-commerce company wants to automatically move sales records older than 1 year into cheaper storage. 
+
+What is the best tool to accomplish this? Please select one of the options below.
+
+##### !end-question
+##### !options
+
+* Bucket access control lists
+* Object versioning
+* Data lifecycle policies
+* Single zone storage tiers
+
+##### !end-options
+##### !answer
+
+* Data lifecycle policies
+
+##### !end-answer
+##### !explanation
+
+Lifecycle policies automate the movement of data between storage tiers based on rules the organization defines.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: ca298aa3-9aa9-444e-b948-cb59aae0188d
+* title: Object Storage
+##### !question
+
+Which of the following is a tradeoff when moving data to colder storage tiers?
+
+Please select the option that is true.
+
+##### !end-question
+##### !options
+
+* Data becomes permanently inaccessible after the minimum retention period
+* Retrieval times increase and access fees may apply
+* Storage cost per GB increases significantly
+* Versioning and metadata features are disabled
+
+##### !end-options
+##### !answer
+
+* Retrieval times increase and access fees may apply
+
+##### !end-answer
+##### !explanation
+
+Cold storage lowers the per-GB cost of storage but comes with longer retrieval times and potential fees for early or frequent access.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
