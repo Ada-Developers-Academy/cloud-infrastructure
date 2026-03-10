@@ -31,7 +31,7 @@ The metadata is additional information about the object that makes it easier for
 
 To start out with object storage, we need to create at least one bucket. A bucket is the highest level in object storage, and we generally need to choose a region or availability zone for the bucket to be deployed in at the time of creation. All of our individual objects are stored within a specific bucket of our choosing in object storage, and we can have many buckets if neccessary for organization. 
 
-A crucial differences from file systems that we may be more familiar with, is that object storage systems use a flat namespace. The objects all sit at the same level in a bucket, there is no hierachical path to an object like in a file-based system. Instead, an object’s unique ID or key provides the address for the object within the storage system. 
+A crucial difference from file systems that we may be more familiar with, is that object storage systems use a flat namespace. The objects all sit at the same level in a bucket, there is no hierachical path to an object like in a file-based system. Instead, an object’s unique ID or key provides the address for the object within the storage system. 
 - Generally, a hashing algorithm is used to generate an ID from the object's content. Similar to hash tables, this ensures that any objects with the same content will have the same identifier.
 
 Object storage normally uses a distributed storage environment, with object data spread across multiple different storage nodes or servers. This, combined with the flat memory structure, means that object storage is much easier to scale horizontally than other types of storage. Data is already organized within a single, global storage pool distributed across multiple hardware devices and geographical locations, so we can easily add and manage new data. 
@@ -123,30 +123,43 @@ Due to minimum storage time for cold tiers and data access fees, we need to be a
 
 ### Accessing Data
 
-There are no folders or directions in object storage, making it easy to retrieve data by ID, as you don’t need to have the exact location. However, unlike file based systems, accessing data in object cloud storage with existing applications requires new code, the use of APIs, and direct knowledge of naming semantics. Additionally, we typically can’t modify an object after it’s created; we usually have to recreate the object and upload it if we need to make a change. 
+There are no folders or directions in object storage, making it easy to retrieve data by ID, as you don’t need to have the exact location. However, unlike file based systems, accessing data in object cloud storage with existing applications requires new code, the use of RESTful APIs, and direct knowledge of naming semantics. Additionally, we typically can’t modify an object after it’s created; we usually have to recreate the object and upload it if we need to make a change. 
 
 ## When to Choose Object Storage
 
-Object storage is best used for large amounts of unstructured data. This is especially true when durability, unlimited storage, scalability, and complex metadata management are relevant factors for overall performance.
+We want to choose object storage when we:
+- Need nearly unlimited horizontal scaling
+- Need to archive data at reasonable cost 
+- Need to prioritize volume of data over access speeds
+- Need high durability for our data
+- Need a large variety of types of data to be colocated
+- Need versioning tools to quickly roll back to prior versions
+- Need rich metadata capabilities
 
-This flat memory model makes it ideal for handling large volumes of unstructured data, such as social media content, videos, or sensor data, which is often difficult to store in a hierarchical way. 
+Object storage is great for large amounts of unstructured data, especially when durability, scalability, and complex metadata management are relevant needs for the application or organization. Main contrubutors to this are object storage's:
+- Massive horizontal scalability.
+- Rich metadata allowing for complex searching, making it easy to categorize, index, and find data without a separate database.
+- Flat memory model, ideal for handling large volumes of unstructured data, such as social media posts, videos, and sensor data, which can be difficult to store heirarchically.
 
-Key reasons why it is ideal for unstructured data include:
+Due to the flexibility of file formats allowed and scalability, object storage is also commonly used for media storage and delivery for applications like social media sites.
 
-Massive Scalability: It scales horizontally to exabytes by adding new nodes, removing the limitations of traditional file or block storage.
-Rich Metadata & Searchability: Each object includes, or can be tagged with, custom metadata, making it easy to categorize, index, and find data without a separate database.
-Flat Address Space: Because there are no folders or complex hierarchies, data can be stored, retrieved, and managed more easily, regardless of volume.
-Cost-Effectiveness: It often runs on standard, commodity hardware, providing a lower-cost option for storing vast amounts of data.
-High Durability & Resiliency: Data is automatically replicated across multiple devices and geographic locations, ensuring high availability and protection against data loss.
-Simple Data Access: Data is accessed via standard HTTP-based APIs (RESTful APIs), making it easy to integrate with web, mobile, and cloud applications
-
-### Use Cases
-
-Common object storage use cases include cloud-native applications, Internet of Things (IoT), big data, rich media storage and delivery, and backups and archiving.
+Object storage is also great for hosting static websites efficiently, and holding onto infrastructure artifacts like compute images and data backups that can be used with other cloud tools to help automate our infrastructure and disaster recovery.
 
 ## Summary
 
-A key takeaway for storage classes is that as the cost per GB of storage lowers, the cost to access data and time to retrieve data rises. 
+Cloud object storage manages data as independent objects stored inside containers called buckets. Each object contains the data itself, a unique identifier, and metadata that can include custom information. Object storage uses a flat namespace where objects are accessed by their unique key rather than through hierarchical paths. Data is typically distributed across many storage nodes, which enables extreme horizontal scalability. 
+
+Object storage services provide multiple storage classes designed for different data access patterns. 
+- Hot storage classes offer fast retrieval and are used for frequently accessed data, but they cost more per gigabyte. 
+- Cold storage classes are designed for infrequently accessed or archival data and offer much lower storage costs. Cold tiers often require minimum storage durations and may charge additional fees for retrieving data. 
+ 
+In general, storage costs depend on factors such as total storage volume, number of retrieval requests, access speed requirements, and data transfer activity. A key takeaway for storage classes is that as the cost per GB of storage lowers, the cost to access data and time to retrieve data rises.
+
+Data lifecycle policies allow teams to create automated rules for how objects are managed, moved between storage tiers, and deleted. This allows organizations to control costs without manually managing large datasets. For instance, a company might store active application data in a hot tier and create a lifecycle policy that automatically transitions older files into colder archival tiers after several months.
+
+Object storage also provides high durability, and security controls like bucket access policies and access control lists. However, it typically has higher latency and lower throughput than block storage. Write operations are also slower, making it less suitable for transactional workloads. Because objects must typically be replaced rather than modified directly, object storage is not ideal for applications requiring frequent small updates.
+
+Object storage systems also support features such as versioning, geographic redundancy, and metadata-based search. These capabilities make it especially useful for storing large volumes of unstructured data and supporting analytics, machine learning, static websites & media delivery, and backup systems. 
 
 ## Check for Understanding
 
