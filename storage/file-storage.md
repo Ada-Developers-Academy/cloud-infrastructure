@@ -73,7 +73,7 @@ Some companies may need to move legacy on-premises applications to the cloud wit
 
 File storage is a hierarchical architecture that organizes data into files and folders, where each file is identified by its name, extension, and path. Retrieving data from file storage is slower than ID-based approaches like block storage since it requires navigating a sequential path through the folder hierarchy.
 
-Organizations can either self-host their file storage or use a fully managed cloud solution. Self-hosting requires significant upfront hardware investment and ongoing IT labor, but offers full control and lower recurring costs at scale. This makes it well suited for organizations with strict data sovereignty laws, high security requirements, or large static datasets with frequent retrieval needs. Cloud providers handle all hardware and software management for cloud flie storage solutions, lowering the barrier to entry, but ongoing storage fees and egress charges can accumulate into significant expenses over time.
+Organizations can either self-host their file storage or use a fully managed cloud solution. Self-hosting requires significant upfront hardware investment and ongoing IT labor, but offers full control and lower recurring costs at scale. This makes it well suited for organizations with strict data sovereignty laws, high security requirements, or large static datasets with frequent retrieval needs. Cloud providers handle all hardware and software management for cloud file storage solutions, lowering the barrier to entry, but ongoing storage fees and egress charges can accumulate into significant expenses over time.
 
 Cloud file storage offers several advantages around:
 - ease of integration via standard file protocols
