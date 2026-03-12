@@ -119,7 +119,7 @@ The following table compares how these tradeoffs manifest across the three model
 | Speed to Market | Slower: Requires time to configure the environment. | Faster: Quick deployment of full applications. | Fastest: Instant deployment of individual features. |
 | Cost Model | Pay for the instance, even if idle. | Pay for the platform capacity. | Pay only for the milliseconds the code runs. |
 
-### Summary
+## Summary
 
 The spectrum of computing resources represents the evolution of how software is delivered in the cloud. Understanding the balance between control and abstraction is a fundamental skill for the modern software engineer. Below is a brief summary of the different models we covered in this lesson:
 
@@ -168,17 +168,17 @@ A developer is building a background job that only runs for five minutes once pe
 
 ##### !options
 * Serverless functions are always cheaper per minute than virtual machines.
-* Serverless computing resources are automatically scaled to zero when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
+* Serverless computing resources are automatically shut down when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
 * Serverless eliminates the need for any networking or storage costs.
 * Providers offer Serverless functions for free if they run for less than ten minutes.
 ##### !end-options
 
 ##### !answer
-* Serverless computing resources are automatically scaled to zero when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
+* Serverless computing resources are automatically shut down when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
 ##### !end-answer
 
 #### !explanation 
-Serverless is the only model that "scales to zero." This prevents the developer from paying for idle time when the job isn't running.
+Serverless is the only model that shuts down resources that are not being used. This prevents the developer from paying for idle time when the job isn't running.
 #### !end-explanation 
 ### !end-challenge
 

@@ -120,7 +120,7 @@ Cloud elasticity relates to how organizations can quickly increase or decrease t
 
 Ultimately, capacity planning and cloud elasticity are complementary strategies that both work to optimize cost and performance, with elasticity automating short-term adjustments while capacity planning manages long-term, structural resource needs. 
 
-### Summary
+## Summary
 
 Modern cloud scalability is the ability of a system to adapt to fluctuating workloads by either scaling up by increasing the power of a single resource or scaling out by adding more resources. To manage this growth, teams employ scaling strategies ranging from manual intervention to automated auto-scaling and event-driven models that each offer a different balance of operational control and cost-efficiency. While cloud elasticity allows systems to dynamically shrink or expand to match real-time demand, organizations must also conduct capacity planning to establish a baseline that mitigates the warm-up times and cold start latencies inherent in different service models. Ultimately, a successful scaling design ensures that an application remains performant and reliable during traffic spikes while remaining cost-effective during periods of low activity.
 
@@ -178,7 +178,7 @@ Vertical scaling is limited by hardware and often requires downtime to resize th
 #### !end-explanation 
 ### !end-challenge
 
-<!-- Question # -->
+<!-- Question # 3 -->
 ### !challenge
 * type: multiple-choice
 * id: 895024da-3f67-4a58-bd1b-276687a029b0
