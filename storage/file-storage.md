@@ -12,8 +12,6 @@ If we have interacted with files on a computer before, we have used a type file 
 
 File storage is a hierarchical data storage architecture that uses files and folders to organize data. Data is saved in files and then organized in folders, these folders are then arranged within other folders, sometimes called directories or subdirectories. A file uses its name, the file extension type, and the specific path to the data’s location as unique identifiers, and we access files by their paths through the heirarchy of folders using standard file-level protocols. 
 
-<hierarchical folder system example image>
-
 Each file includes metadata such as name, size, timestamps, and permissions. In addition to the file-level permissions, file storage typically supports other access control tools provided by cloud vendors which enables organizations to control access across multiple users or systems.
 
 File storage is limited in speed compared to other storage strategies due to its hierarchical architecture. Needing to follow a sequential path to find a resources takes more time compared to ID and lookup table based retrieval like we saw with block storage. 
