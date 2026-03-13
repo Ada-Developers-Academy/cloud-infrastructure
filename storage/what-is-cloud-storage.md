@@ -55,7 +55,8 @@ Object storage is designed to store data as discrete objects rather than as bloc
 * title: Cloud Storage
 ##### !question
 
-We have an application where users can upload one or more profile images. 
+We have an application where users can upload one or more profile images.
+ 
 Select the storage option below that is best fit for storing large amounts of images.
 
 ##### !end-question
@@ -87,6 +88,7 @@ Object storage is ideal for storing unstructured data like images that may need 
 ##### !question
 
 We want to host a SQL database on a cloud compute instance. 
+
 Select the storage type that best fits our needs from the options below.
 
 ##### !end-question

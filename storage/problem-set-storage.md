@@ -112,7 +112,7 @@ Object storage is designed for large volumes of unstructured data like media fil
 
 A company is migrating an on-premises application to the cloud. The application was built to read and write files using standard operating system file paths and expects a mounted drive it can browse like a local directory. The application has not been modified and the team does not have the resources to refactor it. 
 
-Select the storage option and explanation that is the best fit for the scenario.
+Select the storage option and explanation that best fits the scenario.
 
 ##### !end-question
 ##### !options

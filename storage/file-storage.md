@@ -87,7 +87,7 @@ Cloud file storage offers several advantages around:
 * title: File Storage
 ##### !question
 
-Which of the options below is a reason that file storage is  generally slower to retrieve data than block storage?
+Which of the options below is a reason that file storage is generally slower to retrieve data than block storage?
 
 ##### !end-question
 ##### !options

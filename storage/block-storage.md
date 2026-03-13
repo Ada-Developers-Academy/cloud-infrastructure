@@ -121,7 +121,7 @@ While block storage offers fast performance, easy data modification, and flexibl
 
 Imagine that we are building a robust search service that prioritizes effectively finding matching items over instant response times. 
 
-Please select whether the following statement is True or False: 
+Select whether the following statement is True or False: 
 
 "Based on the strengths and limits of block storage, block storage is the best choice for this feature."
 
@@ -154,7 +154,7 @@ Block storage prioritizes fast access, and does not allow for flexible or very d
 
 Imagine that we are building service that needs to stream large amounts of analytics data to process over time so we can better understand our customer's patterns and make data driven business decisions. 
 
-Based on the strengths and limits of SSDs and HDDs, please choose which would be the best fit for this scenario.
+Based on the strengths and limits of SSDs and HDDs, select the option which best fits this scenario.
 
 ##### !end-question
 ##### !options

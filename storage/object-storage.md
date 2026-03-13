@@ -170,7 +170,7 @@ Object storage systems also support features such as versioning, geographic redu
 
 A social media platform stores profile pictures that are accessed millions of times per day. 
 
-Please select the storage class that is most appropriate for this data.
+Select the storage class that is most appropriate for this data.
 
 ##### !end-question
 ##### !options
@@ -201,9 +201,9 @@ Hot or "standard" storage is designed for frequently accessed data requiring fas
 * title: Object Storage
 ##### !question
 
-An e-commerce company wants to automatically move sales records older than 1 year into cheaper storage. 
+An e-commerce company wants to automatically move sales records older than 1 year into cheaper storage. What is the best tool to accomplish this? 
 
-What is the best tool to accomplish this? Please select one of the options below.
+Select one of the options below.
 
 ##### !end-question
 ##### !options
@@ -236,7 +236,7 @@ Lifecycle policies automate the movement of data between storage tiers based on 
 
 Which of the following is a tradeoff when moving data to colder storage tiers?
 
-Please select the option that is true.
+Select the option that is true.
 
 ##### !end-question
 ##### !options
