@@ -128,6 +128,94 @@ Cloud providers offer a range of tools to support backup and disaster recovery a
 
 ## Check for Understanding
 
-Given a set of needs, would snapshotting be acceptable or is a stronger replication strategy required?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 0a86ca50-3ee1-4db4-8b16-4c19ea5e9879
+* title: Backup & Disaster Recovery
+##### !question
 
-Given "x" feature, which resources would we need to include in a backup plan to ensure we don't lose significant time or data in a disaster event?
+Which of the following options best describes the difference between a snapshot and a replica?
+
+##### !end-question
+##### !options
+
+* A snapshot is stored in block storage while a replica is stored in object storage
+* A snapshot is a point-in-time copy of a volume taken at a specific moment, while a replica is a continuously synchronized duplicate maintained in a separate location
+* A snapshot supports automated failover while a replica must be manually restored
+* A snapshot is used for warm recovery while a replica is used for cold recovery
+
+##### !end-options
+##### !answer
+
+* A snapshot is a point-in-time copy of a volume taken at a specific moment, while a replica is a continuously synchronized duplicate maintained in a separate location
+
+##### !end-answer
+##### !explanation
+
+A snapshot captures the state of a volume at a specific moment and does not update automatically, while a replica continuously synchronizes with the source to stay current.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: f0952981-6656-414b-9e63-deb45a8fb423
+* title: Backup & Disaster Recovery
+##### !question
+
+A startup runs a non-critical internal reporting tool that is only used during business hours. The team is small and has a limited infrastructure budget. Losing up to 24 hours of report data in a disaster event is acceptable. From the options below, choose which disaster recovery approach best fits this scenario?
+
+##### !end-question
+##### !options
+
+* Hot recovery with continuous replication across two regions
+* Warm recovery with a partially running standby environment in a separate availability zone
+* Cold recovery using scheduled daily snapshots stored in object storage
+
+##### !end-options
+##### !answer
+
+* Cold recovery using scheduled daily snapshots stored in object storage
+
+##### !end-answer
+##### !explanation
+
+A non-critical tool with an acceptable 24-hour RPO and limited budget is well suited to cold recovery using inexpensive scheduled snapshots, with no need for standby infrastructure.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: b716d170-266f-4277-916e-fb20c5d06fb5
+* title: Backup & Disaster Recovery
+##### !question
+
+A company uses a centralized cloud backup service to manage snapshots of their databases and compute instances across multiple regions. During a disaster, they discover the service did not automatically restore their applications in the secondary region. Which of the following options is the most likely explanation?
+
+##### !end-question
+##### !options
+
+* The centralized backup service failed to replicate data across regions
+* Centralized backup services manage the creation and storage of backups but do not typically automate service restoration or failover
+* The company should have used cold recovery instead of relying on a backup service
+* Snapshots cannot be used to restore compute instances, only storage volumes
+
+##### !end-options
+##### !answer
+
+* Centralized backup services manage the creation and storage of backups but do not typically automate service restoration or failover
+
+##### !end-answer
+##### !explanation
+
+Centralized backup services automate snapshot creation and cross-region storage, but restoring services and orchestrating failover typically requires additional automation or a fully managed disaster recovery service.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
