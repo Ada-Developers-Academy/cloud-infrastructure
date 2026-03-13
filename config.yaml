@@ -26,8 +26,4 @@ Standards:
       -
         Type: Lesson
         UID: 29af588e-23f4-477b-b212-fc219b4e87a5
-        Path: /networking/problem-set-networking-basics.md
-      -
-        Type: Lesson
-        UID: ff586120-5d05-4a45-9da7-bb01cd73010d
-        Path: /networking/problem-set-securing-cloud-networks.md
+        Path: /networking/problem-set-networking.md
