@@ -83,7 +83,16 @@ Greater deployments of small devices (internet of things, or IoT) and the contin
 
 ### Ports, Identifying Services
 
-Closely related to IP addresses are **ports**. While an IP address gets you to the right "building" (the device), a port gets you to the right "apartment" (the specific service running on that device). A single device can run multiple services, each listening on a different port. For example, web traffic typically goes to **Port 80** (HTTP) or **Port 443** (HTTPS), while a PostgreSQL database might listen on **Port 5432**.
+Closely related to IP addresses are **ports**. While an IP address gets you to the right "building" (the device), a port gets you to the right "apartment" (the specific service running on that device). A single device can run multiple services, each listening on a different port.
+
+Many services have default ports that they commonly use. Some are internet standards, while others are just conventions that have become widely adopted.
+
+Service | Default Port | Description
+--- | --- | ---
+HTTP (Hypertext Transfer Protocol) | 80 | Unencrypted web traffic
+HTTPS (HTTP Secure) | 443 | Encrypted web traffic
+SSH (Secure Shell) | 22 | Secure remote management
+PostgreSQL (Database) | 5432 | Database communication
 
 Ports are 16 bits long, which means there are 65,536 possible ports (numbered 0 to 65535). The first 1024 ports (0-1023) are known as "well-known ports" and are reserved for common services. Ports 1024-49151 are registered ports that can be used by applications, and ports 49152-65535 are dynamic or private ports that can be used for temporary purposes.
 
