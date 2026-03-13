@@ -16,9 +16,9 @@
 
 ## What is disaster recovery
 
-Backup and disaster recovery are strategies organizations use to protect data and restore operations in the event of data loss, corruption, or system failure. We're familiar with tools like GitHub that let us back up our programming project data somewhere remote in case our machine crashes or otherwise experiences disaster. When planning to launch an application or service, part of that strategy should include considering the data and resource needs, and creating a plan for how to backup and restore those required resources in case of hardware failure, service outages, or cyberattacks. Most organizations do this through documented backup and disaster recovery plans. 
+Backup and disaster recovery are strategies organizations use to protect data and restore operations in the event of data loss, corruption, or system failure. We're familiar with tools like GitHub that let us back up our programming project data somewhere remote in case our machine crashes or otherwise experiences disaster. When planning to launch an application or service, part of that strategy should include considering the data and infrastructure resource needs, and creating a plan for how to backup and restore those required resources in case of hardware failure, service outages, or cyberattacks. Most organizations do this through documented backup and disaster recovery plans. 
 
-Backups are fundamental to being able to create a disaster recovery plan. A backup is a copy of data taken at a specific point in time and stored separately from the original, allowing an organization to restore data to a known good state if something goes wrong. Disaster recovery plans go a step further than backups, by defining the full plan and set of resources needed to restore an entire system or application to working order after a catastrophic event.
+Backups are fundamental to being able to create a disaster recovery plan. A backup is a copy of data taken at a specific point in time and stored separately from the original, allowing an organization to restore data to a known good state if something goes wrong. Disaster recovery plans go a step further than backups, by defining the set of all resources neccessary to restore an entire system or application to working order after a catastrophic event as well as a full plan for when those backups will be created and how the services will be restored.
 
 A key part of defining a backup and disaster recovery plan is understanding what the Service Level Agreement (SLA) is for the application or service. Many applications have gurantees to users about certain features or uptime that must be maintained to avoid penalties or damage to product operations or the brand's reputation. The most common metrics that help define our disaster recovery plans are our Recovery Time Objective (RTO) and Recovery Point Objective (RPO), since these define the maximum acceptable downtime for a service, and the maximum acceptable amount of data lost. 
 
@@ -33,28 +33,58 @@ We'll dive more into the kinds of resources we need to consider and have on stan
 
 ### Cold Disaster Recovery
 
+A cold recovery pattern is the most basic and least expensive approach, where backup infrastructure exists but is not running until a disaster occurs. When a failure happens, the team must manually provision and configure resources from scratch using stored snapshots, backups, and infrastructure templates before the application can be restored. 
+
+Key features include:
+- Lowest cost, as no standby infrastructure is running or being paid for
+- Can require the most manual intervention to restore services
+- Longest recovery time, often measured in hours or days
+- Best suited for non-critical applications where extended downtime is acceptable
+
 ### Warm Disaster Recovery
+
+A warm recovery pattern maintains a partially running standby environment that is kept in sync with the primary environment but is not actively serving traffic. When a disaster occurs, the standby environment is scaled up and traffic is redirected to it, reducing the time needed to restore service compared to a cold approach. 
+
+Key features include:
+- Moderate cost, as some standby infrastructure is running at reduced capacity
+- Requires some manual intervention or automation to scale up and redirect traffic
+- Moderate recovery time, typically measured in minutes to hours
+- Best suited for applications where some downtime is tolerable but extended outages are unacceptable
 
 ### Hot Disaster Recovery
 
+A hot recovery pattern maintains a fully running duplicate environment that mirrors the primary environment in real time and can immediately take over traffic if the primary environment fails. This approach is often referred to as an active-active or active-passive configuration depending on whether both environments are serving traffic simultaneously. 
+
+Key features include:
+- Highest cost, as a full duplicate environment is running at all times
+- Minimal to no manual intervention required, as failover is typically automated
+- Near-zero recovery time, as failover can happen automatically in seconds
+- Best suited for mission-critical applications where any downtime results in significant financial or reputational harm
 
 Next, we'll talk about the tools cloud vendors provide to enable backups and disaster recovery plans! 
 
 ## Backup & Recovery Tools
 
+There are two core parts to disaster recovery plans:
+1. Backing up our data and infrastructure
+2. Restoring our data and services
+
+We won't cover restoring data and services in depth in this curriculum, but it's important to know that there are tools that help automate the backup and restoration process.
+
 ### Backups & Snapshots
 
-easy to schedule & set lifecycle policies for
-each resource needs to be individually managed, including compute resources and environment confugurations
-- includes both backing up the data and restoring from backups during a disaster
+Most cloud resources allow you to create a backup, or snapshot of their data at a specific point in time. This is true of compute images as well as storage volumes. Backups are great since they are easy to schedule and if we keep them in object storage, it's also easy to set lifecycle and/or versioning policies to control what access tier they live in and how long we keep them to help control costs.  
 
-AWS Backup is like the recipe book. If something goes wrong, you can refer to the recipe book to recreate the pizza. Understand AWS Backup as a centralized service for automating and managing backups across AWS services. Recognize the importance of automated backup policies and their role in simplifying data protection. Know that data is secure with AWS Backup. And be aware of AWS Backup's capabilities in terms of cross‑region backup, supporting compliance and disaster recovery strategies. 
+When we are not using managed tools for disaster recovery, each resource needs to be individually backed up and managed, including data, compute resources, and environment configurations. As part of this, we need to schedule our data backups frequently enough to ensure we do not lose more data than our agreed RPO allows. If we want to enable warm or hot recovery, we also need to create our own automations for failing over to an suspended or active environment, relaunching services and restoring data. Otherwise we must manually set everything back up ourselves, which typically takes time, aligning with cold recovery patterns.
+
+The major cloud vendors like AWS, Google, and Azure have the ability to create backup images built into their storage and compute resources, but they also have other layers of disaster recovery tools. Many cloud vendors have a centralized "backup service" that allows us to identify our resources across the vendor's services to be backed up, and set policies to manage when those resources are snapshotted, where they are stored, and how long they are kept. These tools are important because they automate the backup process, not just within a single availability zone or region, but cross region as well, helping ensure data and application resources do not get lost. 
 
 ### Disaster Recovery Services 
 
 continuously updates replica in one or more regions
 
-Cloud providers support these strategies through tools like volume snapshots, cross-region replication, and object versioning, which together allow teams to recover individual files, entire storage volumes, or whole application environments depending on the severity of the incident. 
+These services are built ontop of the tools we have already talked about like volume snapshots, cross-region replication, and object versioning, which allows teams to recover individual files, entire storage volumes, or whole application environments depending on the severity of an incident. 
+
 - A strong backup and disaster recovery plan identifies all stateful resources an application depends on, defines how frequently they are backed up, and establishes clear recovery time objectives so that teams know exactly what steps to take and how quickly they can restore service when disaster strikes.
 
 
@@ -71,7 +101,7 @@ Within a cloud storage service, there are typically a few offerings aimed at mov
 ### Solution Tradeoffs
 
 As with many cloud provider offerings, deciding how to manage a backup and disaster recovery plan depends on: 
-- what are the application's needs for restoration (does down time need stay under seconds, or is it tolerant of minutes or hours?)
+- what the application's needs for restoration are (Our RTO/RPO)
 - how much we are able or willing to manage ourselves 
 - how much we can spend on a solution (our budget)
 
@@ -80,6 +110,13 @@ All of the automation that a vendor-managed recovery service provides can be don
 - For many startups or companies low on human resources for infrastructure, a fully managed disaster recovery tool can be cost effective.
 
 ## Summary
+
+The core tension between cold, warm, and hot disaster recovery patterns is cost versus recovery speed. 
+- Cold recovery minimizes infrastructure costs but accepts the risk of long downtime, making it inappropriate for applications with aggressive RTOs or RPOs. 
+- Warm recovery strikes a middle ground, keeping costs manageable while significantly reducing recovery time compared to cold, but still requires some lead time to fully restore service. 
+- Hot recovery eliminates nearly all downtime and meets the most demanding RTOs and RPOs, but requires the organization to continuously pay for and maintain a full duplicate environment regardless of whether it is ever needed. 
+
+Organizations must weigh the cost of each recovery pattern against the potential cost of downtime for a given application, as the right choice depends heavily on how critical the application is and how much data loss or service interruption the business can tolerate.
 
 Creating snapshots as backups (generally across regions and accounts), that can be restored vs keeping an up to date replica that can be quickly promoted in case of disaster in one or more regions
 - May have individual tools and/or a centralized service for backing up across cloud offerings
