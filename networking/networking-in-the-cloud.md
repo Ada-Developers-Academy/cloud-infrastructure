@@ -1,6 +1,6 @@
 # Networking in the Cloud
 
-## Goals
+## Learning Goals
 
 By the end of this lesson, you will be able to:
 

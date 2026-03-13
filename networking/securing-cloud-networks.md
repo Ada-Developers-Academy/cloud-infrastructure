@@ -1,6 +1,6 @@
 # Securing Cloud Networks
 
-## Goals
+## Learning Goals
 
 * Differentiate between **Stateful** and **Stateless** firewalls.
 * Identify the specific roles of **Security Groups** and **Network Access Control Lists (NACLs)**.

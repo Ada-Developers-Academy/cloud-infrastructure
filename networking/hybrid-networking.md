@@ -1,6 +1,6 @@
 # Hybrid Networking
 
-## Goals
+## Learning Goals
 
 * Explain the role of hybrid networking in connecting on-premises infrastructure to cloud environments.
 * Describe how Virtual Private Networks (VPNs) create secure tunnels using various authentication methods.
