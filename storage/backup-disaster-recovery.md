@@ -166,7 +166,9 @@ A snapshot captures the state of a volume at a specific moment and does not upda
 * title: Backup & Disaster Recovery
 ##### !question
 
-A startup runs a non-critical internal reporting tool that is only used during business hours. The team is small and has a limited infrastructure budget. Losing up to 24 hours of report data in a disaster event is acceptable. From the options below, choose which disaster recovery approach best fits this scenario?
+A startup runs a non-critical internal reporting tool that is only used during business hours. The team is small and has a limited infrastructure budget. Losing up to 24 hours of report data in a disaster event is acceptable. 
+
+Select which disaster recovery approach best fits this scenario.
 
 ##### !end-question
 ##### !options
@@ -196,7 +198,9 @@ A non-critical tool with an acceptable 24-hour RPO and limited budget is well su
 * title: Backup & Disaster Recovery
 ##### !question
 
-A company uses a centralized cloud backup service to manage snapshots of their databases and compute instances across multiple regions. During a disaster, they discover the service did not automatically restore their applications in the secondary region. Which of the following options is the most likely explanation?
+A company uses a centralized cloud backup service to manage snapshots of their databases and compute instances across multiple regions. During a disaster, they discover the service did not automatically restore their applications in the secondary region. 
+
+Select the option below that is the most likely explanation.
 
 ##### !end-question
 ##### !options
