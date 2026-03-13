@@ -1,13 +1,29 @@
 ---
 Standards:
   -
-    Title: <Add Tile Name>
-    Description: <Add Tile description>
-    UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
+    Title: Compute & Execution Models - How Code Runs in the Cloud
+    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute"
+    UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Lesson
-        UID: 788eb07b-e0a1-4e65-b28b-6d0dd774f7a0
-        Path: <Add path to lesson>
+        UID: 5a1bfc16-d91c-4e28-bf85-d481239904f1
+        Path: /compute-and-execution-models/intro-to-cloud-computing.md
+      -
+        Type: Lesson
+        UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
+        Path: /compute-and-execution-models/the-compute-spectrum.md
+      -
+        Type: Lesson
+        UID: fbbacab6-45da-4dfe-9b90-1fe210b17997
+        Path: /compute-and-execution-models/scaling-models.md
+      -
+        Type: Lesson
+        UID: ee1b1594-684b-4fb7-b8f3-1ba46b895b89
+        Path: /compute-and-execution-models/long-running-vs-ephemeral-compute.md
+      -
+        Type: Lesson
+        UID: 513d717c-a8aa-4994-b693-86485355a1a7
+        Path: /compute-and-execution-models/failure-modes-tradeoffs.md
