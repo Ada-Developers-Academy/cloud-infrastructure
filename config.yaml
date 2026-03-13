@@ -23,3 +23,7 @@ Standards:
         Type: Lesson
         UID: ee1b1594-684b-4fb7-b8f3-1ba46b895b89
         Path: /compute-and-execution-models/long-running-vs-ephemeral-compute.md
+      -
+        Type: Lesson
+        UID: 513d717c-a8aa-4994-b693-86485355a1a7
+        Path: /compute-and-execution-models/failure-modes-tradeoffs.md

@@ -195,7 +195,6 @@ A developer uses serverless computing for an image-processing task. A user compl
 * Under-provisioning
 ##### !end-options
 
-
 ##### !answer
 * Cold start
 ##### !end-answer

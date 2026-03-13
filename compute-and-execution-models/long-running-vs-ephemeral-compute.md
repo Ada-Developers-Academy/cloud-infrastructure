@@ -101,7 +101,7 @@ We are building a service that processes user-uploaded PDFs to extract text. Weâ
 ##### !end-answer
 
 #### !explanation 
-Since ephemeral computing is stateless, any data stored in RAM, global variables, or local disks vanishes the moment the function finishes its task or when the environment is destroyed. To ensure the progress status persists and can be read by other parts of our system, we must externalize that state to a persistent, shared location like a database.#### !end-explanation 
+Since ephemeral computing is stateless, any data stored in RAM, global variables, or local disks vanishes the moment the function finishes its task or when the environment is destroyed. To ensure the progress status persists and can be read by other parts of our system, we must externalize that state to a persistent, shared location like a database.
 #### !end-explanation 
 ### !end-challenge
 
@@ -147,7 +147,6 @@ We are designing a real-time collaborative code editor (similar to VS Code Live 
 * Scheduled jobs (cron jobs)
 * Short-lived background workers
 ##### !end-options
-
 
 ##### !answer
 * Long-running services (IaaS or PaaS instances)
