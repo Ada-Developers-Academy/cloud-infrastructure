@@ -75,33 +75,33 @@ We won't cover restoring data and services in depth in this curriculum, but it's
 
 Most cloud resources allow you to create a backup, or snapshot of their data at a specific point in time. This is true of compute images as well as storage volumes. Backups are great since they are easy to schedule and if we keep them in object storage, it's also easy to set lifecycle and/or versioning policies to control what access tier they live in and how long we keep them to help control costs.  
 
-When we are not using managed tools for disaster recovery, each resource needs to be individually backed up and managed, including data, compute resources, and environment configurations. As part of this, we need to schedule our data backups frequently enough to ensure we do not lose more data than our agreed RPO allows. If we want to enable warm or hot recovery, we also need to create our own automations for failing over to an suspended or active environment, relaunching services and restoring data. Otherwise we must manually set everything back up ourselves, which typically takes time, aligning with cold recovery patterns.
+When we are not using managed tools for disaster recovery, each resource for an application needs to be individually backed up and managed, including data, compute resources, and environment configurations. As part of this, we need to schedule our data backups frequently enough to ensure we do not lose more data than our agreed RPO allows. If we want to enable warm or hot recovery, we also need to create our own automations for failing over to an suspended or active environment, relaunching services and restoring data. Otherwise we must manually set everything back up ourselves, which typically takes time, aligning with cold recovery patterns.
 
-The major cloud vendors like AWS, Google, and Azure have the ability to create backup images built into their storage and compute resources, but they also have other layers of disaster recovery tools. Many cloud vendors have a centralized "backup service" that allows us to identify our resources across the vendor's services to be backed up, and set policies to manage when those resources are snapshotted, where they are stored, and how long they are kept. These tools are important because they automate the backup process, not just within a single availability zone or region, but cross region as well, helping ensure data and application resources do not get lost. 
+To help ease the pain point of disaster recovery management, the major cloud vendors like AWS, Google, and Azure also have other layers of disaster recovery tools. Many cloud vendors have a centralized "backup service" that allows us to identify our resources across the vendor's services to be backed up, and set policies to manage when those resources are snapshotted, where they are stored, and how long they are kept. These tools are important because they automate the backup process, not just within a single availability zone or region, but cross region as well, helping ensure data and application resources do not get lost. 
+- Something important to note, is that a centralized backup service only handles creating and managing backups, it does not typically cover service restoration, or keeping resources or applications in other regions idle and ready for failover. This means we would still need to do some of our own automation to enable warm or hot disaster recovery patterns.
 
 ### Disaster Recovery Services 
 
-continuously updates replica in one or more regions
+Moving beyond backup images and backup services are fully managed disaster recovery services. These services are built ontop of the tools we have already talked about like volume snapshots, cross-region replication, and object versioning, which allows teams to recover individual files, entire storage volumes, or whole application environments depending on the severity of an incident. 
 
-These services are built ontop of the tools we have already talked about like volume snapshots, cross-region replication, and object versioning, which allows teams to recover individual files, entire storage volumes, or whole application environments depending on the severity of an incident. 
+Fully managed cloud disaster recovery services simplify the process of protecting applications by automating the continuous replication of servers, storage volumes, and application data without requiring teams to manually build and maintain standby infrastructure. These services typically run lightweight agents on source servers that continuously stream data changes to the cloud, keeping a up to date copy of the environment ready to be launched at a moment's notice. 
 
-- A strong backup and disaster recovery plan identifies all stateful resources an application depends on, defines how frequently they are backed up, and establishes clear recovery time objectives so that teams know exactly what steps to take and how quickly they can restore service when disaster strikes.
+When a disaster occurs, teams can trigger a failover that spins up fully functional replicas of their servers and storage in the cloud within minutes, dramatically reducing recovery time compared to traditional backup and restore approaches. Most managed disaster recovery services include testing tools that allow teams to run non-disruptive failover drills, verifying that recovery procedures work as expected without impacting the live production environment. 
 
-
-Elastic Disaster Recovery is like the backup generator for our pizza kitchen. If there's a power outage, it ensures the pizza making continues. Elastic Disaster Recovery allows you to maintain business continuity without disruptions. 
+By abstracting away the complexity of replication, failover orchestration, and infrastructure provisioning, these services allow organizations to achieve aggressive RTO and RPO targets without requiring deep cloud expertise or dedicating significant engineering resources to maintaining a disaster recovery program.
 
 ### On-Premise to Cloud 
 
-For organizations with hybrid architectures where some resources may live in self-hosted data centers, most cloud providers have storage transfer services. These storage transfer services are made exactly for moving large volumes of data from an outside system into a cloud provider's storage ecosystem. This allows organizations to continue taking advantage of the resources they already own, while making their system more resilient. By backing up resources to the cloud, even if their own data center goes down completely, operations may be restored through data backed up in the cloud.
+For organizations with hybrid architectures where some resources may live in self-hosted data centers, most cloud providers have storage transfer services. These storage transfer services are made exactly for moving large volumes of data from an outside system into or out of a cloud provider's storage ecosystem. This allows organizations to continue taking advantage of the resources they already own, while making their system more resilient. By backing up resources to the cloud, even if their own data center goes down completely, operations may be restored through data backed up in the cloud.
 
 There is also a use case for processing data: imagine that there is a company that has a lot of storage in their own data center, but limited compute power. These storage transfer tools enable teams to move data to the cloud for analysis and processing on cloud compute resources, then bring back the processed information or insights to their own servers for storage or further operations.
 
-Within a cloud storage service, there are typically a few offerings aimed at moving different kinds of storage. A single storage transfer service is likely to have options specific to block storage, file storage, and even in-person transfer (where large storage vloumes are delivered to the customer to fill, then physically sent back to the cloud vendor for upload) for massive amounts or sensistive data that would be costly or otherwise not allowed to be sent across networks. 
+Within a storage transfer service, there are typically a few offerings aimed at moving different kinds of storage. A single storage transfer service is likely to have options specific to block storage, file storage, and even in-person transfer (where large storage vloumes are delivered to the customer to fill, then physically sent back to the cloud vendor for upload) for massive amounts of data or sensitive data that would be costly or otherwise not allowed to be sent across networks. 
 
 ### Solution Tradeoffs
 
 As with many cloud provider offerings, deciding how to manage a backup and disaster recovery plan depends on: 
-- what the application's needs for restoration are (Our RTO/RPO)
+- what the application's needs for restoration are (our RTO/RPO)
 - how much we are able or willing to manage ourselves 
 - how much we can spend on a solution (our budget)
 
@@ -111,6 +111,8 @@ All of the automation that a vendor-managed recovery service provides can be don
 
 ## Summary
 
+Backup and disaster recovery planning is a critical part of launching and maintaining any cloud application or service. A backup is a point-in-time copy of data stored separately from the original, while a full disaster recovery plan defines all the resources and procedures needed to restore an entire system after a catastrophic event. Two key metrics shape these plans: the Recovery Time Objective (RTO), which defines the maximum acceptable downtime, and the Recovery Point Objective (RPO), which defines the maximum acceptable amount of data loss. Together, these metrics determine how much an organization needs to invest in its recovery infrastructure.
+
 The core tension between cold, warm, and hot disaster recovery patterns is cost versus recovery speed. 
 - Cold recovery minimizes infrastructure costs but accepts the risk of long downtime, making it inappropriate for applications with aggressive RTOs or RPOs. 
 - Warm recovery strikes a middle ground, keeping costs manageable while significantly reducing recovery time compared to cold, but still requires some lead time to fully restore service. 
@@ -118,11 +120,11 @@ The core tension between cold, warm, and hot disaster recovery patterns is cost 
 
 Organizations must weigh the cost of each recovery pattern against the potential cost of downtime for a given application, as the right choice depends heavily on how critical the application is and how much data loss or service interruption the business can tolerate.
 
-Creating snapshots as backups (generally across regions and accounts), that can be restored vs keeping an up to date replica that can be quickly promoted in case of disaster in one or more regions
-- May have individual tools and/or a centralized service for backing up across cloud offerings
-- snapshots: data loss may happen in disaster if last snapshot scheduled was not right before disaster.
-- replicas: very little data loss, but more cost overhead of data use 
-Certain applications may be tolerant of some data loss (losing some likes on a post) while others are mission critical (records of orders yet to be fulfilled)
+Cloud providers offer a range of tools to support backup and disaster recovery at different levels of complexity and automation. 
+- Basic snapshots and scheduled backups allow teams to manually manage point-in-time copies of their data and infrastructure resources. 
+- Centralized backup services automate the scheduling and cross-region storage of those snapshots across multiple cloud resources, though they typically stop short of automating service restoration. 
+- Fully managed disaster recovery services go the furthest by continuously replicating environments and enabling automated failover, allowing organizations to meet aggressive RTO and RPO targets without deep infrastructure expertise. 
+- For organizations with on-premises infrastructure, cloud storage transfer services provide a path to back up self-hosted data to the cloud, adding resilience even for hybrid environments.
 
 ## Check for Understanding
 
