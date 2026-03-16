@@ -111,7 +111,7 @@ Object storage systems prioritize quantity of storage over availability. Thereâ€
 
 ### Versatility & Searchability
 
-We can store pretty much anything in object storage, it's incredibly versatile, being able to hold compute images, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictional analytics and infrastructure decisions, machine learning, and custom AI applications, and object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
+We can store pretty much anything in object storage. It's incredibly versatile, being able to hold compute images, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictive analytics and infrastructure decisions, machine learning, and custom AI applications. Object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
 
 Object storage provides more advanced search capabilities, allowing us to search for an object based on its metadata, contents, and other attributes. As we mentioned earlier, object storage metadata can hold large amounts of information about an object including its name, content type, creation date, size, and other custom fields that can help you locate data.
 
@@ -119,7 +119,7 @@ Object storage provides more advanced search capabilities, allowing us to search
 
 Object storage is consumption-based, affordable storage on-demand. We only pay for the storage we use and it can scale as needed, helping to reduce costs to store all our data.
 
-Due to minimum storage time for cold tiers and data access fees, we need to be aware of our data's access patterns. Our role as developers is to choose initial storage tiers and create lifecycle policies that support our application's needs for data retrieval while minimizing unecessary costs.
+Due to minimum storage time for cold tiers and data access fees, we need to be aware of our data's access patterns. Our role as developers is to choose initial storage tiers and create lifecycle policies that support our application's needs for data retrieval while minimizing unnecessary costs.
 
 ### Accessing Data
 

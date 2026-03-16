@@ -1,6 +1,6 @@
 # File Storage
 
-If we have interacted with files on a computer before, we have used a type file storage! Since we have some familiarity with accessing folders and files, we'll briefly cover how file storage represents data before diving into the big topic of when we might use cloud file storage. 
+If we have interacted with files on a computer before, we have used a type of file storage! Since we have some familiarity with accessing folders and files, we'll briefly cover how file storage represents data before diving into the big topic of when we might use cloud file storage. 
 
 ## Learning Goals
 
@@ -10,7 +10,7 @@ If we have interacted with files on a computer before, we have used a type file 
 
 ## Data Representation
 
-File storage is a hierarchical data storage architecture that uses files and folders to organize data. Data is saved in files and then organized in folders, these folders are then arranged within other folders, sometimes called directories or subdirectories. A file uses its name, the file extension type, and the specific path to the data’s location as unique identifiers, and we access files by their paths through the heirarchy of folders using standard file-level protocols. 
+File storage is a hierarchical data storage architecture that uses files and folders to organize data. Data is saved in files and then organized in folders, these folders are then arranged within other folders, sometimes called directories or subdirectories. A file uses its name, the file extension type, and the specific path to the data’s location as unique identifiers, and we access files by their paths through the hierarchy of folders using standard file-level protocols. 
 
 Each file includes metadata such as name, size, timestamps, and permissions. In addition to the file-level permissions, file storage typically supports other access control tools provided by cloud vendors which enables organizations to control access across multiple users or systems.
 
@@ -21,7 +21,7 @@ File storage is limited in speed compared to other storage strategies due to its
 
 When we host our own file storage, we are responsible for purchasing, maintaining, and replacing the hardware, as well as installing, managing, and patching the software that runs the file system. We're also responsible for creating any plans to back up and restore data in case of hardware or software failure (more on this in a later lesson!). But, we have full control over everything within that system, and once we have purchased the initial hardware the recurring costs are mostly electrical and maintenance. 
 
-Cloud providers have "fully managed" file storage solutions. Here, "fully managed" means that both the hardware and software, including ongoing maintenance, are handled by the cloud provider. No replacing hardware yourself when it fails, no worring about if the latest security patch was applied. This makes it lower cost to get started with a cloud file storage service, but you pay more for the storage itself.    
+Cloud providers have "fully managed" file storage solutions. Here, "fully managed" means that both the hardware and software, including ongoing maintenance, are handled by the cloud provider. No replacing hardware yourself when it fails, no worrying about if the latest security patch was applied. This makes it lower cost to get started with a cloud file storage service, but you pay more for the storage itself.    
 
 ### Strengths & Limits
 
@@ -29,7 +29,7 @@ Cloud providers have "fully managed" file storage solutions. Here, "fully manage
 
 **Concurrent Shared Access**: We mentioned earlier that organizations can define access policies for folders and files. This allows a single company with many teams to share the same file system since boundaries can be set up for team and organizational group's folders and files. File storage is also designed for multiple compute instances, systems, or users to access the same files at the same time, making it well suited for collaborative environments.
 
-**Scaling**: Cloud file storage can rapidly scale in volume, which is great if you have rapidly growing or unpredictably growing data needs. There are limits to data access speed due to file storage's hierarchical nature, we cannot add more resources to access files faster.  
+**Scaling**: Cloud file storage can rapidly scale in volume, which is great if you have rapidly or unpredictably growing data needs. There are limits to data access speed due to file storage's hierarchical nature. We cannot just add more resources to access files faster.  
 
 **Cost**: Current cloud providers offer plans based on active storage, so you only pay for space that is used. Cloud file storage can be cheap initially, but monthly fees can accumulate into significant expenses over time. Many cloud vendors also charge "egress fees", which are fees levied when data leaves one of their data regions or leaves their network, which can make it costly to switch cloud providers or to a self hosted solution.
 
@@ -65,7 +65,7 @@ Some applications or features may need to provide a single source of truth for m
 
 **Legacy Application Migration**
 
-Some companies may need to move legacy on-premises applications to the cloud without rewriting their code to use cloud-native APIs. An example could be a financial firm moving a decades-old accounting application that requires standard file protocols to function to a cloud provider.
+Some companies may need to move legacy on-premises applications to the cloud without rewriting their code to use cloud-native APIs. An example could be a financial firm moving a decades-old accounting application to a cloud provider, even though its implementation requires standard file protocols to function.
 
 ## Summary
 

@@ -75,7 +75,7 @@ HDDs rely on spinning magnetic platters and mechanical read/write heads, which l
 
 ### Choosing between SSD & HDD
 
-Cost and minimum requirements for an application's IOPS & throughput are the main influencers in the decision between SSDs and HDDs. 
+Cost and minimum requirements for an application's IOPS & throughput are the main influences on the decision between SSDs and HDDs. 
 
 HDDs typically offer a lower cost per gigabyte, making them attractive for storing large volumes of data where performance is not the primary concern. SSDs, while more expensive per gigabyte, often provide more predictable performance over time because they lack mechanical components. However, SSDs do have write endurance limits due to the finite number of write cycles in flash memory, though enterprise-grade SSDs are engineered to handle substantial workloads. 
 - In cloud environments, these tradeoffs are abstracted into storage tiers, where SSD-backed volumes are priced higher but optimized for high IOPS, while HDD-backed volumes are more cost-effective for throughput-oriented or infrequently accessed data.
