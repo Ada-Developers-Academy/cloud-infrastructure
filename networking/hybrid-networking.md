@@ -13,7 +13,7 @@ Up to this point, we've focused on building isolated environments within a singl
 
 **Hybrid networking** is the practice of connecting these on-prem resources to our cloud environments, allowing them to communicate as if they were part of the same network.
 
-Hybrid networking makes can enable a variety of possible scenarios, such as:
+Hybrid networking can enable a variety of possible scenarios, such as:
 
 * **Database Migration:** We might keep our sensitive data on-prem while our web servers run in the cloud, requiring a constant, secure link between them.
 * **Disaster Recovery:** We can use the cloud as a backup site. If our physical building loses power, our cloud resources can take over.
