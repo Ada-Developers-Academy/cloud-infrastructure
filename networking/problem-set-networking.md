@@ -267,7 +267,7 @@ A public subnet with an Internet Gateway would expose our resources to the inter
 
 ##### !question
 
-When data travels from our office to the cloud, it moves through the **OSI Model**. Place these layers in the correct order from the **Physical hardware** up to the **Application software**:
+When data travels from our office to the cloud, it moves through the **OSI Model**. Place these layers in the correct order starting with the layer closest to the hardware at the top, and ending with the layer closest to the user at the bottom.
 
 ##### !end-question
 

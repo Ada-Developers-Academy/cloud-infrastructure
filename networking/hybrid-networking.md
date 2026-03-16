@@ -52,7 +52,7 @@ When a VPN connection is initiated:
 
 VPNs are cost-effective and easy to set up, but they rely on the public internet for connectivity, which can be (relatively) unpredictable. The routed nature of internet traffic means that our data might take a longer path than expected, and the shared nature of the medium can lead to congestion and variable latency. For many applications, this is perfectly fine. But for high-demand systems that require consistent performance, we might need to look beyond VPNs.
 
-**Dedicated Connections** can provide consistent speed with high security. Instead of a virtual tunnel, we work with telecommunications providers to lay a physical fiber-optic cable between our data center and the cloud provider. This removes the public internet from the equation, providing low latency and massive bandwidth.
+**Dedicated Connections** can provide consistent speed with high security. Instead of a virtual tunnel, we work with telecommunications providers to lay a physical fiber-optic cable between our data center and the cloud provider. This removes the public internet from the equation, providing low latency and massive bandwidth. However, this option is significantly more expensive, takes much longer to set up than a VPN, and can lead to vendor lock-in since the physical connection will be tied to a specific cloud provider. As a result, this is typically reserved for large enterprises with critical workloads that justify the cost and lock-in risks.
 
 | Concept | AWS | Azure | GCP | OCI |
 | --- | --- | --- | --- | --- |

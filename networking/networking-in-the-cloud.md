@@ -12,7 +12,7 @@ By the end of this lesson, you will be able to:
 
 ## Cloud-scale Applications require Cloud-scale Networking
 
-The architecture of the projects  we've built so far have been relatively simple. We had a frontend server that managed the user experience, a backend API that handled business logic, and a database that stored our data. Since they were relatively small scale applications in terms of traffic and expected response times, it didn't really matter where each part was hosted. Often our decisions were driven more by convenience than by best practices, with the capabilities of free tiers being more of a constraint than the needs of our applications. 
+The architecture of the projects we've built throughout the curriculum have been relatively simple. We had a frontend server that managed the user experience, a backend API that handled business logic, and a database that stored our data. Since they were relatively small scale applications in terms of traffic and expected response times, it didn't really matter where each part was hosted. Often our decisions were driven more by convenience than by best practices, with the capabilities of free tiers being more of a constraint than the needs of our applications. 
 
 However, as we move toward deploying professional applications, the "where" of our applications becomes just as critical as "what" and "how" they accomplish their business goals. We may intentionally spread our frontend, backend, and database across different regions of the world to ensure low latency for users. We may need to connect our application to third-party services that are only accessible from certain locations. We may also need to design our network in a way that protects sensitive data from unauthorized access while still allowing legitimate users to interact with it seamlessly.
 
@@ -76,9 +76,9 @@ Essentially, different IP address ranges belonged to different "classes" of netw
 
 When it became clear that the original IPv4 addressing scheme would become exhausted, sub-ranges of the Class A, B, and C address spaces were reserved for private use. This is why we have three different private IP address ranges today, even though the concept of classes is no longer used in modern networking.
 
-IPv4 is still faced with the problem of address exhaustion, so we still see the use of these historically defined ranges in private networks, but the fixed notion of a "Class A" or "Class B" network is no longer relevant. For a period of time, the concept of **netmasks** was used to identify how many bits of an IP address were used for the network portion versus the host portion. In modern networking, however, we use **CIDR notation** to achieve the same goal.
+IPv4 is still faced with the problem of address exhaustion, so we still see the use of these historically defined ranges in private networks, but the fixed notion of a "Class A" or "Class B" network is no longer relevant. For a period of time, the concept of **netmasks** was used to identify how many bits of an IP address were used for the network portion versus the host portion. In modern networking, as we'll see in the next section, we use **CIDR notation** to achieve the same goal.
 
-Feel free to expand the following section for a brief look at netmasks, but it's not necessary for understanding modern cloud networking.
+Feel free to expand the following content for a brief look at netmasks, but it's not necessary for understanding modern cloud networking.
 
 <br>
 
@@ -118,12 +118,12 @@ A CIDR block looks like this: `10.0.0.0/16`.
 * The first part (`10.0.0.0`) is the starting IP address.
 * The second part (`/16`) is the **Subnet Mask**, which tells us how many bits are "locked" for the network ID.
 
-A smaller number after the slash means a larger network. For example, a `/16` provides 65,536 addresses (ideal for a whole VPC), while a `/24` provides 256 addresses (perfect for a specific subnet).
+A smaller number after the slash means a larger network. For example, a `/16` provides 65,536 addresses, while a `/24` provides 256 addresses. The appropriate CIDR block depends on the size of the network you need and how you want to organize your resources. Tens of thousands of addresses are typically more than enough for an entire VPC, while a few hundred addresses are usually sufficient for a subnet.
+
+In order to determine whether two addresses are part of the same network, we need to know the CIDR block that defines the network. We can then compare the network portion of the addresses (the bits defined by the CIDR block) to see if they match. If they do, then the addresses are part of the same network and can communicate directly with each other. If they don't match, then the addresses are part of different networks and would need to communicate through a router or gateway to reach each other.
 
 ![3 addresses evaluated under different CIDR blocks. The subnet 10.0.0.1/16 is defined, with an example host address of 10.0.0.1. The first 16 bits (10.0) are the network, and the second 16 are the host (0.1). The subnet 10.0.0.1/24 is defined, with an example host address of 10.0.0.1. The first 24 bits (10.0.0) are the network, and the next 8 are the host (1). A third address 10.0.1.1 is presented, with no information about the network or host.](assets/networking-cidr.png)  
 *Fig. Address c) would be part of the same network as address a), but not address b) even though the addresses look the same in isolation.*
-
-In order to determine whether two addresses are part of the same network, we need to know the CIDR block that defines the network. We can then compare the network portion of the addresses (the bits defined by the CIDR block) to see if they match. If they do, then the addresses are part of the same network and can communicate directly with each other. If they don't match, then the addresses are part of different networks and would need to communicate through a router or gateway to reach each other.
 
 In the diagram above, address a) `10.0.0.1` is part of the network defined by `10.0.0.0/16`, because the first 16 bits (10.0) match the network portion of the CIDR block. In a different organization, the same address could instead be considered part of the network defined by `10.0.0.0/24`, because the first 24 bits (10.0.0) also match the network portion of that CIDR block. This situation is shown as address b). Address c) `10.0.1.1` would be part of the network as shown for address a) because the first 16 bits (10.0) match, but it would not be part of the network as shown for address b) because the first 24 bits (10.0.1) do not match the network portion of that CIDR block.
 
