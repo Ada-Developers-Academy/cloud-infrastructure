@@ -27,3 +27,7 @@ Standards:
         Type: Lesson
         UID: 513d717c-a8aa-4994-b693-86485355a1a7
         Path: /compute-and-execution-models/failure-modes-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 034ab8c9-687c-4093-b19b-411e99a2dd08
+        Path: /compute-and-execution-models/choosing-the-right-model.md

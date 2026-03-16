@@ -173,6 +173,6 @@ You are launching a new internal tool that will only be used by employees for 15
 ##### !end-answer
 
 #### !explanation 
-For"spiky workloads with long periods of zero activity, FaaS is the most economical choice. While FaaS has a higher unit price due to cloud bursting, it is outweighed by the savings gained from not paying for a VM that would sit idle for 99% of the week.
+For spiky workloads with long periods of zero activity, FaaS is the most economical choice. While FaaS has a higher unit price due to cloud bursting, it is outweighed by the savings gained from not paying for a VM that would sit idle for 99% of the week.
 #### !end-explanation 
 ### !end-challenge
