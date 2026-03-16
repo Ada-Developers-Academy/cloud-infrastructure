@@ -31,3 +31,7 @@ Standards:
         Type: Lesson
         UID: 034ab8c9-687c-4093-b19b-411e99a2dd08
         Path: /compute-and-execution-models/choosing-the-right-model.md
+      -
+        Type: Lesson
+        UID: 3f5cfa81-b23d-469d-8eef-172989fbc989
+        Path: /compute-and-execution-models/problem-set.md
