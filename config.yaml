@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Compute & Execution Models - How Code Runs in the Cloud
-    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute"
+    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
     UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
     SuccessCriteria:
       - success criteria
