@@ -110,7 +110,7 @@ Object storage systems prioritize quantity of storage over availability. Thereâ€
 
 ### Versatility & Searchability
 
-We can store pretty much anything in object storage. It's incredibly versatile, being able to hold backup images of compute resources that we can use to restore servers, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictive analytics and infrastructure decisions, machine learning, and custom AI applications. Object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
+We can store pretty much anything in object storage. It's incredibly versatile, being able to hold backup images of compute resources that we can use to restore servers, videos, data backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictive analytics and infrastructure decisions, machine learning, and custom AI applications. Object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
 
 Object storage provides more advanced search capabilities, allowing us to search for an object based on its metadata, contents, and other attributes. As we mentioned earlier, object storage metadata can hold large amounts of information about an object including its name, content type, creation date, size, and other custom fields that can help you locate data.
 
