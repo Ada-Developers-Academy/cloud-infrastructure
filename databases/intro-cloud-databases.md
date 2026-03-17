@@ -12,8 +12,10 @@ To deploy enterprise applications, we need to create, connect to, and manage var
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-
-Key terms: fully managed, self-hosted, relational database, non-relational database
+| Fully Managed Database | A cloud-based database solution provided by a cloud service provider, where the underlying infrastructure, including virtual machines, storage, and database software, is entirely managed by the service provider. | -------- | "We used a fully managed database solution during our start-up phase since we didn't have a lot of dedicated team members to manage security updates and other maintenance." |
+| Self-Hosted Database | A database management system that is installed, configured, and maintained by an organization. A self-managed database may be hosted on-premises or on cloud infrastructure. | -------- | "The company chose a self-hosted database so they could enforce strict data sovereignty requirements and keep all records within their own data center." |
+| Relational Database | A database that organizes data into structured tables with predefined schemas, using rows and columns. Enforces relationships between tables through foreign keys and are typically queried using SQL. | -------- | "The e-commerce platform used a relational database to link its customers, orders, and products tables, making it easy to generate complex sales reports with JOIN queries." |
+| Non-relational Database | A category of databases rather than a specific type. A database that stores data in flexible formats such as documents, key-value pairs, graphs, or wide columns. Designed for scalability, speed, and handling unstructured or rapidly changing data. | NoSQL Database | "A non-relational database was chosen for the product catalog because each item had a different set of attributes that didn't fit neatly into a fixed table structure." |
 
 ## What is a cloud database
 
