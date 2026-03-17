@@ -1,13 +1,25 @@
 ---
 Standards:
   -
-    Title: <Add Tile Name>
-    Description: <Add Tile description>
-    UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
+    Title: Databases
+    Description: "Intro to Cloud Databases, Database Types & Tradeoffs, Scaling Databases, Problem Set: Cloud Databases"
+    UID: b0ae93e8-dd23-4ba2-9df7-f8b2120140ca
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Lesson
-        UID: 788eb07b-e0a1-4e65-b28b-6d0dd774f7a0
-        Path: <Add path to lesson>
+        UID: 0c0cef89-cc6d-4f27-b932-7b0d82caee12
+        Path: /databases/intro-cloud-databases.md
+      -
+        Type: Lesson
+        UID: e116cef8-1912-4ab8-adef-28680e9c9f96
+        Path: /databases/types-and-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 65c2b616-ad2a-42ab-a9d0-1b6cc92be9fa
+        Path: /databases/scaling.md
+      -
+        Type: Lesson
+        UID: 6b458a53-2d43-4f08-998f-d64d1d42c5a1
+        Path: /databases/problem-set-databases.md
