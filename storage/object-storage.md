@@ -32,7 +32,6 @@ The metadata is additional information about the object that makes it easier for
 To start out with object storage, we need to create at least one bucket. A bucket is the highest level in object storage, and we generally need to choose a region or availability zone for the bucket to be deployed in at the time of creation. All of our individual objects are stored within a specific bucket of our choosing in object storage, and we can have many buckets if necessary for organization. 
 
 A crucial difference from file systems that we may be more familiar with, is that object storage systems use a flat namespace. The objects all sit at the same level in a bucket, there is no hierarchical path to an object like in a file-based system. Instead, an objectâ€™s unique ID or key provides the address for the object within the storage system. 
-- Generally, a hashing algorithm is used to generate an ID from the object's content. Similar to hash tables, this ensures that any objects with the same content will have the same identifier.
 
 Object storage normally uses a distributed storage environment, with object data spread across multiple different storage nodes or servers. This, combined with the flat memory structure, means that object storage is much easier to scale horizontally than other types of storage. Data is already organized within a single, global storage pool distributed across multiple hardware devices and geographical locations, so we can easily add and manage new data. 
 
@@ -111,7 +110,7 @@ Object storage systems prioritize quantity of storage over availability. Thereâ€
 
 ### Versatility & Searchability
 
-We can store pretty much anything in object storage. It's incredibly versatile, being able to hold compute images, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictive analytics and infrastructure decisions, machine learning, and custom AI applications. Object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
+We can store pretty much anything in object storage. It's incredibly versatile, being able to hold backup images of compute resources that we can use to restore servers, videos, hard drive backups and more. Larger companies are more frequently relying on analyzing large volumes of data for predictive analytics and infrastructure decisions, machine learning, and custom AI applications. Object storage is well suited for these applications by making it easy to store and manage large volumes of unstructured data.
 
 Object storage provides more advanced search capabilities, allowing us to search for an object based on its metadata, contents, and other attributes. As we mentioned earlier, object storage metadata can hold large amounts of information about an object including its name, content type, creation date, size, and other custom fields that can help you locate data.
 

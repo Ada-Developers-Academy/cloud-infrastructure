@@ -87,7 +87,7 @@ Object storage is ideal for storing unstructured data like images that may need 
 * title: Cloud Storage
 ##### !question
 
-We want to host a SQL database on a cloud compute instance. 
+We want to host a relational database on a cloud compute instance, which requires low-latency storage. 
 
 Select the storage type that best fits our needs from the options below.
 
@@ -106,7 +106,7 @@ Select the storage type that best fits our needs from the options below.
 ##### !end-answer
 ##### !explanation
 
-A SQL database requires fast disk access as well as space to hold the tables of data, so block storage is ideal in this case.
+A relational database requires fast disk access as well as space to hold the tables of data, so block storage is ideal in this case.
 
 ##### !end-explanation
 ### !end-challenge

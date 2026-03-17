@@ -38,16 +38,16 @@ Cloud providers have "fully managed" file storage solutions. Here, "fully manage
 As we can see, there is tradeoff between hosting your own file storage and using a fully managed file storage solution. Hosting your own solution requires a high upfront cost and ongoing labor by IT staff on backups, security patching, and troubleshooting, which can outweigh the cost of cloud subscriptions for small and medium-sized teams. While initial investment is high, after the initial setup, recurring costs are mostly electrical and maintenance, allowing for lower costs when working at massive scale.
 
 Self-hosted file storage is best for companies with: 
-- Need for total control over data: This often comes up for industries that need know exactly where their data physically lives for meeting data sovereignty laws (laws that require data to remain within specific national or regional borders).
-- High security requirements: for companies that desire or require no third-party access, eliminating the risk of a cloud provider or government agency accessing data through "backdoor" legal requests or terms of service changes.
-- High data portability needs or massive datasets that stay relatively static: If we have constantly moving data or a large amount of data that is not changing frequently, but we need to retrieve it constantly we will pay significant costs in data egress fees from cloud providers. 
+- **Need for total control over data**: This often comes up for industries that need know exactly where their data physically lives for meeting data sovereignty laws (laws that require data to remain within specific national or regional borders).
+- **High security requirements**: for companies that desire or require no third-party access, eliminating the risk of a cloud provider or government agency accessing data through "backdoor" legal requests or terms of service changes.
+- **High data portability needs or massive datasets that stay relatively static**: If we have constantly moving data or a large amount of data that is not changing frequently, but we need to retrieve it constantly we will pay significant costs in data egress fees from cloud providers. 
 
 A fully managed solution gives a low upfront cost but higher ongoing cost for storage used, including extra fees if large amounts of data need to regularly move into and back out of the storage system. Cloud solutions remove the need to worry about hardware failure and maintenance, allowing for a focus on business productivity rather than infrastructure management.
 
 Cloud file storage solutions are best for companies with: 
-- Unpredictable growth: If storage needs grow fast or unpredictably, cloud file storage provides necessary flexibility without massive capital expenditure.
-- Limited in-house IT staff: If IT staff time limited or expensive, cloud file storage is typically cheaper because it eliminates hours of system maintenance.
-- A need for rapid deployment: It takes much less time to deploy a cloud file storage solution than to provision and set up a data center for file storage.
+- **Unpredictable growth**: If storage needs grow fast or unpredictably, cloud file storage provides necessary flexibility without massive capital expenditure.
+- **Limited in-house IT staff**: If IT staff time limited or expensive, cloud file storage is typically cheaper because it eliminates hours of system maintenance.
+- **A need for rapid deployment**: It takes much less time to deploy a cloud file storage solution than to provision and set up a data center for file storage.
 
 For most startups and small businesses, the labor savings of the cloud outweigh the cost of file storage. For established companies with large data needs, a hybrid approach that uses on-premise for active, large data and cloud solutions for archiving and collaboration often provides the best balance.
 
