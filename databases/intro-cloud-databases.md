@@ -144,7 +144,7 @@ Fully managed database services typically include built-in multi-availability zo
 * title: Intro to Cloud Databases
 ##### !question
 
-Which of the following scenarios is a good case for choosing a self-hosted database over a fully managed cloud database service?
+Which of the following scenarios are good cases for choosing a self-hosted database over a fully managed cloud database service?
 
 ##### !end-question
 ##### !options
