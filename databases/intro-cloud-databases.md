@@ -157,10 +157,10 @@ Which of the following scenarios is a good case for choosing a self-hosted datab
 ##### !end-options
 ##### !answer
 
-* The organization has compliance requirements mandating a specific database engine version that the managed service does not support.
+* The organization requires a specific database engine configuration that the managed service does not support.
 * The organization has stong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
 
-##### !end-options
+##### !end-answer
 ##### !explanation
 
 Self-hosted databases allow fine-grained control the cloud vendors cannot always provide. Managed services abstract away the hardware layer and impose some limits on configuration access. 
