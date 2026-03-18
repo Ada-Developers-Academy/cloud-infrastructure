@@ -25,7 +25,7 @@ When we have local hardware and cloud resources that need to work together, we c
 
 When two networks are colocated, they can connect through a simple physical cable. But what happens when our office is in Seattle and our cloud resources are in a data center in Oregon? That would be a long cable! Instead, we use the public internet to connect these two locations. However, the internet is a shared medium, and we need to ensure that our data remains private and secure as it travels across it.
 
-**Virtual Private Network (VPN)** create encrypted "tunnels" that we can use to securely connect two networks, even if they are on opposite sides of the world. Between the two networks, the data still travels over the public internet, but it is wrapped in an encryption layer that makes it unreadable to anyone else. So between the two network endpoints, it's like there's a private network cable that only our data can use. but it's not a physical cable, instead, it's a virtual one created by software. Hence the name "Virtual Private Network."
+**Virtual Private Network (VPN)** create encrypted "tunnels" that we can use to securely connect two networks, even if they are on opposite sides of the world. Between the two networks, the data still travels over the public internet, but it is wrapped in an encryption layer that makes it unreadable to anyone else. So between the two network endpoints, it's like there's a private network cable that only our data can use. But it's not a physical cable, instead, it's a virtual one created by software. Hence the name "Virtual Private Network."
 
 To build this connection, we rely on specific **VPN Infrastructure**:
 

@@ -26,7 +26,7 @@ For any two devices to communicate, they must have a way to identify one another
 
 ### MAC Address (Media Access Control)
 
-This is a unique hardware identifier built into a device's network interface card at the factory. It functions like a serial number specific to the physical hardware. and is primarily used to identify a device on a network of locally connected devices (like your home Wi-Fi).
+This is a unique hardware identifier built into a device's network interface card at the factory. It functions like a serial number specific to the physical hardware, and is primarily used to identify a device on a network of locally connected devices (like your home Wi-Fi).
 
 A collection of locally connected devices is called a **Local Area Network (LAN)**. Within a LAN, devices use MAC addresses to communicate directly with each other. When a device wants to send data to another device on the same LAN, it uses the destination's MAC address to ensure the data reaches the correct hardware.
 
