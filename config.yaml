@@ -31,3 +31,30 @@ Standards:
         Type: Lesson
         UID: 389c594a-a796-469e-8cd4-980ce4b00760
         Path: /storage/problem-set-storage.md
+  -
+    Title: Networking
+    Description: "Networking Basics, Networking in the Cloud, Securing Cloud Networks, Hybrid Networking, Problem Set: Networking"
+    UID: b45b570c-3a20-4117-b550-398b6a0d537f
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: e57a44dc-c202-4bb8-87e7-d83e09473f85
+        Path: /networking/networking-basics.md
+      -
+        Type: Lesson
+        UID: 56f40c31-889e-40ad-ade4-b53dfc19b889
+        Path: /networking/networking-in-the-cloud.md
+      -
+        Type: Lesson
+        UID: 1f389f0e-ac55-43c7-95ca-3c0f6b51c1ca
+        Path: /networking/securing-cloud-networks.md
+      -
+        Type: Lesson
+        UID: 6f659b71-f3c5-4a10-8307-3bf2d153f7bb
+        Path: /networking/hybrid-networking.md
+      -
+        Type: Lesson
+        UID: 29af588e-23f4-477b-b212-fc219b4e87a5
+        Path: /networking/problem-set-networking.md
