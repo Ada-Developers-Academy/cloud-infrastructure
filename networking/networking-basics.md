@@ -65,7 +65,7 @@ The first stable version of the Internet Protocol, known as **IPv4**, was develo
 
 Similar to how MAC addresses are often written in a more human-friendly format, IPv4 addresses are commonly written in **dotted decimal notation**. This means that the 32 bits are divided into four groups of 8 bits (called octets), and each group is converted to its decimal representation. For example, the binary IP address `11000000 10101000 00000000 00000001` would be written as `192.168.0.1` in dotted decimal notation.
 
-Note that this is smaller than the address space for MAC addresses, which was 48 bits. Though for any vendor, there were only 16 million unique MAC addresses. With 32 bits, there were about 4.3 billion unique IPv4 addresses. This seemed like more than enough at the time, but as the internet grew, we quickly ran out of unique IPv4 addresses to assign to individual devices! This problem is termed the **IPv4 address exhaustion problem**.
+Note that this is smaller than the address space for MAC addresses, which was 48 bits. Though for any vendor, there were only 16 million unique MAC addresses (due to the OUI being only 24 of the 48 bits). With 32 bits, there were about 4.3 billion unique IPv4 addresses. This seemed like more than enough at the time, but as the internet grew, we quickly ran out of unique IPv4 addresses to assign to individual devices! This problem is termed the **IPv4 address exhaustion problem**.
 
 One way this problem has been mitigated is through the use of **Network Address Translation (NAT)**, which allows multiple devices on a local network to share a single public IPv4 address when accessing the internet. However, this is more of a workaround than a true solution.
 

@@ -193,7 +193,7 @@ c|
 
 - The Load Balancer receiving user traffic should be placed in a Public Subnet, as it needs to be accessible from the internet.
 - The PostgreSQL Database and Backend API processing business logic should be placed in a Private Subnet to protect them from direct exposure to the internet, enhancing security.
-- The Internet Gateway is not a resource that is placed in a subnet. it is a component that allows communication between the VPC and the internet.
+- The Internet Gateway is not a resource that is placed in a subnet. It is a component that allows communication between the VPC and the internet.
 
 ##### !end-explanation
 
