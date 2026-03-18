@@ -14,8 +14,6 @@ To deploy enterprise applications, we need to create, connect to, and manage var
 | --------- | --------- | -------- | --------- |
 | Fully Managed Database | A cloud-based database solution provided by a cloud service provider, where the underlying infrastructure, including virtual machines, storage, and database software, is entirely managed by the service provider. | -------- | "We used a fully managed database solution during our start-up phase since we didn't have a lot of dedicated team members to manage security updates and other maintenance." |
 | Self-Hosted Database | A database management system that is installed, configured, and maintained by an organization. A self-managed database may be hosted on-premises or on cloud infrastructure. | -------- | "The company chose a self-hosted database so they could enforce strict data sovereignty requirements and keep all records within their own data center." |
-| Relational Database | A database that organizes data into structured tables with predefined schemas, using rows and columns, and enforces relationships between tables through foreign keys. | -------- | "The e-commerce platform used a relational database to link its customers, orders, and products tables, making it easy to generate complex sales reports with JOIN queries." |
-| Non-relational Database | A category of databases rather than a specific type. A database that stores data in flexible formats such as documents, key-value pairs, graphs, or wide columns. | NoSQL Database | "A non-relational database was chosen for the product catalog because each item had a different set of attributes that didn't fit neatly into a fixed table structure." |
 
 ## What is a cloud database
 
@@ -57,32 +55,20 @@ Where self-hosting truly shines is fine grain control over our system. Depending
 - teams running highly customized database configurations
 - workloads that need the absolute maximum IOPS that only direct SSD block storage configurations can provide
 
-Managed services, by design, abstract away the hardware layer and impose some limits on configuration access. 
-
-## Types of databases 
-
-### Relational
-
-Short description of common features and strengths, since folks have seen this before, we can refer them to review older lessons that cover SQL in depth.
-
-A database that organizes data into structured tables with predefined schemas, using rows and columns. Enforces relationships between tables through foreign keys and are typically queried using SQL.
-
-Short description of common features and strengths, since folks have seen this before, we can refer them to review older lessons that cover SQL in depth.
-
-### Non-relational
-
-A category of databases rather than a specific type. 
-A database that stores data in flexible formats such as documents, key-value pairs, graphs, or wide columns. Designed for scalability, speed, and handling unstructured or rapidly changing data. 
-
-They are optimized specifically for applications that require large data volume, low latency, and flexible data models, which is achieved by relaxing some of the data normalization and consistency restrictions of other databases.
-
-
-Also often called "No-SQL"
-Short description of common features and strengths, will go more in depth on kinds of NoSQL databases later in this topic
+Managed services, by design, abstract away the hardware layer and impose some limits on database configuration access. 
 
 ## Summary
 
-Treating a managed cloud service as a "set it and forget it" solution is a common and often costly mistake in production systems.
+Cloud databases run on cloud infrastructure and are accessed over the internet. Unlike traditional on-premises databases, cloud databases can scale up or down on demand, eliminating the need to purchase and configure additional hardware. Organizations can also design hybrid systems that combine on-premises and cloud databases depending on their data sensitivity and existing infrastructure.
+
+When deploying a database in the cloud we can choose to use a fully managed service or self-host a database on virtual machines our team controls. With a fully managed service, routine tasks like backups, patching, security updates, and failover are automated by the provider. With a self-hosted database, our team owns all of those responsibilities.
+
+Managed services cost more per GB of storage but those can be offset by the significant engineer time that would otherwise be spent on tasks like maintenance and incident response. When we use a fully managed database service, our team is still responsible for schema design, query optimization, and scaling decisions. Treating a managed cloud service as a "set it and forget it" solution is a common and often costly mistake in production systems.
+
+Self-hosted databases offer the greatest control, making them a strong fit for teams with:
+- strict compliance needs
+- highly customized configurations
+- specialized performance requirements 
 
 ## Check for Understanding
 

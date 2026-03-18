@@ -10,6 +10,20 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
+| Relational Database | A database that organizes data into structured tables with predefined schemas, using rows and columns, and enforces relationships between tables through foreign keys. | -------- | "The e-commerce platform used a relational database to link its customers, orders, and products tables, making it easy to generate complex sales reports with JOIN queries." |
+| Non-relational Database | A category of databases rather than a specific type. A database that stores data in flexible formats such as documents, key-value pairs, graphs, or wide columns. | NoSQL Database | "A non-relational database was chosen for the product catalog because each item had a different set of attributes that didn't fit neatly into a fixed table structure." |
+
+## Types of Databases 
+
+Whether hosted locally or in the cloud, databases are typically divided into two categories: relational, and non-relational. We will talk about how cloud hosting affects both types, but since SQL databases are covered in the core curriculum as an example of relational databases, we will spend less time covering their data representation through the lessons in this topic. Feel free to revisit the SQL lessons for a refresher if desired!
+
+### Relational
+
+Relational databases store data in tables made up of rows and columns, with defined schemas that enforce data structure and relationships between tables. Their core strengths are strong consistency, transactional guarantees, and the ability to perform complex queries using JOIN operations across related tables. They excel in use cases where data integrity matters most, like financial systems, order management, and user account data.
+
+### Non-relational
+
+Non-relational databases are a category of databases rather than a specific type. Often called NoSQL databases, these store data using flexible, schema-less data models instead of rigid tables and rows. The structure of data is enforced by the application rather than the database itself. Unlike relational databases, they are optimized for high throughput and low latency by avoiding expensive JOIN operations and relaxing some consistency constraints. There are many types, some common ones being: key-value, document, graph, and in-memory, and each of these are built for particular data shapes and access patterns. We will go more in depth on these listed NoSQL databases shortly!
 
 ## Relational Databases in the Cloud 
 
