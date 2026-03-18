@@ -1,6 +1,37 @@
 ---
 Standards:
   -
+    Title: Storage
+    Description: "What is cloud storage?, Block Storage, File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
+    UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
+        Path: /storage/what-is-cloud-storage.md
+      -
+        Type: Lesson
+        UID: 8da3844f-e20c-4856-9548-f842608c5f76
+        Path: /storage/block-storage.md
+      -
+        Type: Lesson
+        UID: 3f95b513-2836-4077-be5d-ba791a937dc0
+        Path: /storage/file-storage.md
+      -
+        Type: Lesson
+        UID: fb2a1545-3818-483a-9da8-459f498fc062
+        Path: /storage/object-storage.md
+      -
+        Type: Lesson
+        UID: 231724dd-281c-4af7-9ce0-039c06dd0d63
+        Path: /storage/backup-disaster-recovery.md
+      -
+        Type: Lesson
+        UID: 389c594a-a796-469e-8cd4-980ce4b00760
+        Path: /storage/problem-set-storage.md
+  -
     Title: Networking
     Description: "Networking Basics, Networking in the Cloud, Securing Cloud Networks, Hybrid Networking, Problem Set: Networking"
     UID: b45b570c-3a20-4117-b550-398b6a0d537f
