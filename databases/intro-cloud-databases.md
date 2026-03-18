@@ -1,8 +1,8 @@
 # Intro to Cloud Databases
 
-Let's start by taking a moment to think about a website you visit frequently. Outside of files like images, what other content is there? We're likely to see a variety of content: ads with text, products with reviews, posts with comments or likes. We can see that there is a lot of data we need to power applications that isn’t necessarily best stored as an object or file using the cloud storage options we've seen before.
+Let's start by taking a moment to think about a website you visit frequently. Outside of files like images, what other content is there? We're likely to see a variety of content: ads with text, products with reviews, posts with comments or likes. We can see that there is a lot of data we need to power applications, much of which isn’t necessarily best stored as an object or file using the cloud storage options we've seen before.
 
-To deploy enterprise applications, we need to create, connect to, and manage various kinds of databases. Throughout this topic we’ll dive into the differences in responsibility between fully managed vs self hosted databases, describe commonly available types of databases offered by cloud providers, and discuss their performance and scaling tradeoffs. Along the way we’ll discuss how we can keep data consistent, especially in a multi-region system, and talk about use cases for several kinds of databases.
+To handle the data that powers enterprise applications, we need to create, connect to, and manage various kinds of databases. Throughout this topic we’ll dive into the differences in responsibility between fully managed vs self hosted databases, describe commonly available types of databases offered by cloud providers, and discuss their performance and scaling tradeoffs. Along the way we’ll discuss how we can keep data consistent, especially in a multi-region system, and talk about use cases for several kinds of databases.
 
 ## Learning Goals
 
@@ -17,9 +17,9 @@ To deploy enterprise applications, we need to create, connect to, and manage var
 
 ## What is a cloud database
 
-During Unit 2 of the core curriculum we install PostgreSQL and run it on our local machines to develop against. This is an on-premises database! We installed a database on hardware under our control and we are responsible for all aspects of keeping it up and running. In contrast, a cloud database is a database that runs on cloud infrastructure and is accessed over the internet. This means they can be reached from anywhere with an internet connection. 
+During Unit 2 of the core curriculum we install PostgreSQL and run it on our local machines to develop against. This is an on-premises database! We installed a database on hardware under our control and we are responsible for all aspects of keeping it up and running. In contrast, a cloud database is a database that runs on cloud infrastructure, and can be accessed from anywhere with an internet connection.
 
-Before cloud infrastructure existed, companies had to purchase servers, allocate physical space, and employ staff to keep systems running. Scaling up a traditional database also required buying and configuring additional hardware, which is both costly and time-consuming. However, cloud databases can typically scale up or down on demand with just a few clicks or even automatically based on workload. 
+Before cloud infrastructure existed, companies had to purchase servers, allocate physical space, and employ staff to keep systems running. Scaling up a traditional database also requires buying and configuring additional hardware, which is both costly and time-consuming. However, cloud databases can scale up or down on demand, or even automatically based on workload. 
 
 When it comes to cloud databases, we have a lot of choice! The variety of offerings from cloud vendors enables us to self-host databases using cloud compute and storage resources we've seen eariler, or to tap into fully managed database services that handle the day to day maintenance for us. 
 - Depending on what infrastructure our organization already has or our application's needs, we could even design a hybrid on-premises & cloud system! One example could be that we keep sensitive data in the datacenter that we already own to best use our existing resources, and we store less critical or sensitive data in a cloud database.
@@ -27,7 +27,7 @@ When it comes to cloud databases, we have a lot of choice! The variety of offeri
 ## Fully-Managed vs Self-Hosted
 
 When we deploy databases in the cloud, we face a foundational choice: use a fully managed database service provided by the cloud vendor, or self-host a database on virtual machines we control. 
-- A **fully managed database** means the cloud provider takes ownership of the underlying infrastructure (the virtual machines, storage, networking, and database software) and handles the operational heavy lifting on our behalf. 
+- A **fully managed database** means the cloud provider takes ownership of the underlying infrastructure (the virtual machines, storage, networking, and database software) and handles the ongoing operational maintenance on our behalf. 
 - A **self-hosted database**, by contrast, means our team installs, configures, and maintains the database software on cloud compute resources, giving us full control but also full responsibility.
 
 ### Responsibility Tradeoffs
@@ -44,9 +44,11 @@ An important note is that "fully managed" does not mean there is no engineering 
 
 Key deciding factors between self-hosting and fully managed services are often costs and our required level of control over the database.
 
-We pay for the data we use with managed services, and the cost per GB of storage is higher for managed services than for raw cloud storage volumes. However, when we self-host a database on cloud infrastructure, we pay for the full amount of whichever cloud storage volume tier we are using, whether or not our database is using the full space. 
+With a managed service you pay for the time the database instance runs, as well as for data. Most services provide at least 2 options:
+- **On Demand Instances** - may be billed at different increments, down to the second, typically with required minimum run times.
+- **Reserved Instances** - lowers the cost per hour of storage time, but requires instances to be reserved for months to years, which can lock applications into vendors.
 
-Managed services carry a higher per GB cost because we are paying a premium for the operational automation and vendor expertise embedded in the service. There are many cases where the benefits of a fully managed service can offset the longer term costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning, which can be substantial. 
+Managed services typically carry higher cost for compute time and storage than cloud compute or storage resources that we manage ourselves because we are paying a premium for the operational automation and vendor expertise embedded in the service. There are many cases where the benefits of a fully managed service can offset the longer term costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning, which can be substantial. 
 - Self-hosted databases can be cheaper, particularly if a team already has strong database administration expertise. 
 - Particularly for smaller teams and startups, the staffing and operational costs of self-hosting a database can outweigh the benefits.
 
