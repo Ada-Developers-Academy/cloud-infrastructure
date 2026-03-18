@@ -74,3 +74,99 @@ Self-hosted databases offer the greatest control, making them a strong fit for t
 
 Which of the following is the user responsible for when using a self-hosted database?
 Which of the following is a user responsible for when using a fully managed database?
+
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: c97f446a-49dd-4c3d-93bf-c023a1bda9b1
+* title: Intro to Cloud Databases
+##### !question
+
+A startup team deploys a self-hosted database on a cloud virtual machine. Several months later, a security vulnerability is discovered in the database engine. Which team is responsible for applying the patch?
+
+##### !end-question
+##### !options
+
+* The cloud provider, because the database runs on their infrastructure.
+* The startup's engineering team, because they own and manage the database software.
+* No action is needed because cloud infrastructure is inherently secured.
+
+##### !end-options
+##### !answer
+
+* The startup's engineering team, because they own and manage the database software.
+
+##### !end-answer
+##### !explanation
+
+With a self-hosted database, the engineering team owns all operational responsibilities, including applying security patches and staying current on vulnerability disclosures. The cloud provider manages the underlying physical infrastructure, but the database software installed on the virtual machine is entirely the team's responsibility. 
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: cloud-db-high-availability
+* title: 1651a69a-24d5-4c46-b30f-0fdfb691b589
+##### !question
+
+An engineering team is evaluating whether to use a fully managed database service or self-host a database on virtual machines. Their top priority is automatic failover to a standby instance if the primary database goes down. Which option best supports this requirement with the least operational overhead?
+
+##### !end-question
+##### !options
+
+* Self-hosted, because the team has full control over failover configuration.
+* Fully managed, because built-in multi-AZ deployment and failover are handled by the provider.
+* Self-hosted, because cloud virtual machines automatically restart failed processes.
+* Fully managed, but the team must still manually trigger failover when the primary goes down.
+
+##### !end-options
+##### !answer
+
+* Fully managed, because built-in multi-AZ deployment and failover are handled by the provider.
+
+##### !end-answer
+##### !explanation
+
+Fully managed database services typically include built-in multi-availability zone (multi-AZ) deployment and make it easy to maintain a standby replica and initiate automatic failover. A self-hosted setup requires the engineering team to design, configure, and test all replication and failover logic manually.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: checkbox
+* id: cb961347-90f7-4e5d-a1b0-a144061ef954
+* title: Intro to Cloud Databases
+##### !question
+
+Which of the following scenarios is a good case for choosing a self-hosted database over a fully managed cloud database service?
+
+##### !end-question
+##### !options
+
+* The team wants to avoid writing backup and restore scripts.
+* The organization requires a specific database engine configuration that the managed service does not support.
+* The organization has stong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
+* The organization wants to reduce the time engineers spend on database maintenance.
+
+##### !end-options
+##### !answer
+
+* The organization has compliance requirements mandating a specific database engine version that the managed service does not support.
+* The organization has stong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
+
+##### !end-options
+##### !explanation
+
+Self-hosted databases allow fine-grained control the cloud vendors cannot always provide. Managed services abstract away the hardware layer and impose some limits on configuration access. 
+
+If an organization has the IT resources to host set up and maintain their own database and already has underutilised cloud storage that they could use without further costs, it would cost them less to self-host than to pay for additional storage through the managed database service.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->

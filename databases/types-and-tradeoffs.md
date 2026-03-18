@@ -25,6 +25,10 @@ Relational databases store data in tables made up of rows and columns, with defi
 
 Non-relational databases are a category of databases rather than a specific type. Often called NoSQL databases, these store data using flexible, schema-less data models instead of rigid tables and rows. The structure of data is enforced by the application rather than the database itself. Unlike relational databases, they are optimized for high throughput and low latency by avoiding expensive JOIN operations and relaxing some consistency constraints. There are many types, some common ones being: key-value, document, graph, and in-memory, and each of these are built for particular data shapes and access patterns. We will go more in depth on these listed NoSQL databases shortly!
 
+###  Key Differences & Tradeoffs
+
+Describe key differences between relational and non-relational databases
+
 ## Relational Databases in the Cloud 
 
 Describe common cloud patterns for relational databases
@@ -76,11 +80,6 @@ Can mention that there are other types made for more specific purposes like time
 **Use Cases**
 
 
-
-
-## Sql vs No-SQL: Key Differences & Tradeoffs
-
-Describe key differences between relational and non-relational databases
 
 ## Summary
 
