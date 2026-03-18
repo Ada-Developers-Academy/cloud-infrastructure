@@ -28,30 +28,36 @@ When it comes to cloud databases, we have a lot of choice! The variety of offeri
 
 ## Fully-Managed vs Self-Hosted
 
-When organizations deploy databases in the cloud, they face a foundational choice: use a fully managed database service provided by the cloud vendor, or self-host a database on virtual machines they control. 
+When we deploy databases in the cloud, we face a foundational choice: use a fully managed database service provided by the cloud vendor, or self-host a database on virtual machines we control. 
 - A **fully managed database** means the cloud provider takes ownership of the underlying infrastructure (the virtual machines, storage, networking, and database software) and handles the operational heavy lifting on our behalf. 
 - A **self-hosted database**, by contrast, means our team installs, configures, and maintains the database software on cloud compute resources, giving us full control but also full responsibility.
 
-### Responsibilities Across Models
+### Responsibility Tradeoffs
 
-The distinction in day-to-day responsibilities between these two models is significant. With a managed service, the provider automates routine tasks such as daily backups, OS patching, minor version upgrades, and point-in-time recovery. Engineers using a managed service do not need to manually schedule backup jobs, test restore procedures from scratch, or worry about whether the latest security patch has been applied to the database engine. With a self-hosted database on a virtual machine, your team owns every one of these tasks.
+There are significant differences in day-to-day responsibilities between fully managed and self-hosted databases. In a managed service, the provider automates routine tasks such as daily backups, OS patching, and version upgrades, as well as backup and restoration tasks. Engineers using a managed service don't need to manually schedule backup jobs, create and test restore procedures, or worry about whether the latest security patch has been applied to the database engine. With a self-hosted database on a virtual machine, our team owns all of these tasks.
 
-High availability is another area where the two models diverge sharply. A managed service typically offers built-in multi-availability zone (multi-AZ) deployment, where a standby replica is automatically maintained and failover happens with minimal disruption if the primary instance goes down. A self-hosted setup requires your team to design, configure, and test that replication and failover logic manually. This includes setting up load balancing (which we'll talk more about when we cover networking), replication strategies, and automated recovery scripts. If a disk fails and backups were misconfigured, the data loss is permanent and entirely the organization's responsibility.
+Similar to cloud storage services, high availability is baked into fully managed cloud database services. A managed database service typically offers built-in multi-availability zone (multi-AZ) deployment, and the ability to maintain a standby replica and initiate failover in case the primary instance goes down. A self-hosted setup requires our team to design, configure, and test that replication and failover logic manually. This includes setting up load balancing (which we'll talk more about when we cover networking), replication strategies, and automated recovery scripts.
 
-Security responsibilities follow the same pattern: managed databases handle encryption at rest using provider key management systems and automatically apply security patches, whereas self-hosted teams must manually configure database-level encryption, manage firewall rules, and stay current on vulnerability disclosures themselves.
+Security responsibilities follow the same pattern: managed databases handle encryption at rest using vendor-provided key management systems and automatically apply security patches, whereas self-hosted teams must manually configure database-level encryption, manage firewall rules, and stay current on vulnerability disclosures.
+
+An important note is that "fully managed" does not mean there is no engineering responsibility. The managed service handles the infrastructure layer, but the application and data layer remain firmly in our hands. We remain responsible for schema design, query optimization, and making scaling decisions. A schema that does not fit the data well on a managed database can still perform badly, and unoptimized queries can drive up costs.  
 
 ### Cost & Control Tradeoffs
 
-The cost and control tradeoffs between the two models are worth examining carefully, as these are often key decison drivers between fully managed and self-hosted solution. 
+Key deciding factors between self-hosting and fully managed services are often costs and our required level of control over the database.
 
-Managed services carry a higher cost because we are paying a premium for the operational automation and vendor expertise embedded in the service. There are many cases where the benefits of a fully managed service can offset the "hidden" costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning, which together can be substantial. 
-- Self-hosted databases can be cheaper, particularly if your team already has strong database administration expertise. 
-- For smaller teams and startups, the long-term total costs of self-hosting a database frequently outweighs the benefits once staffing and operational overhead are factored in.
+We pay for the data we use with managed services, and the cost per GB of storage is higher for managed services than for raw cloud storage volumes. However, when we self-host a database on cloud infrastructure, we pay for the full amount of whichever cloud storage volume tier we are using, whether or not our database is using the full space. 
 
-Where self-hosting genuinely shines is fine grain control over our system. A self-hosted database allows us to choose any operating system, any database engine version, and any configuration that might not be available through a managed offering. This matters for organizations with security & compliance requirements such as: demanding specific software versions, teams running highly customized database configurations, or workloads that need the absolute maximum IOPS that only direct SSD block storage configurations can provide. 
-- Managed services, by design, abstract away that layer and impose some limits on configuration access. For example, we typically cannot SSH into the underlying host of a managed database.
+Managed services carry a higher per GB cost because we are paying a premium for the operational automation and vendor expertise embedded in the service. There are many cases where the benefits of a fully managed service can offset the longer term costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning, which can be substantial. 
+- Self-hosted databases can be cheaper, particularly if a team already has strong database administration expertise. 
+- Particularly for smaller teams and startups, the staffing and operational costs of self-hosting a database can outweigh the benefits.
 
-One of the most important things to take away is that "fully managed" does not mean zero engineering responsibility. When using a fully managed database, engineers remain responsible for schema design, query optimization, and making scaling decisions. A schema that does not fit the data well on a managed database will still perform badly, and unoptimized queries will still drive up costs. The managed service handles the infrastructure layer, but the application and data layer remain firmly in the hands of the development team. Treating a managed cloud service as a "set it and forget it" solution is a common and often costly mistake in production systems.
+Where self-hosting truly shines is fine grain control over our system. Depending on our exact needs, a managed service may simply not have our required configuration available. A self-hosted database allows us to choose any operating system, any database engine version, and any configuration. This matters for organizations with security & compliance requirements such as: 
+- demanding specific software versions
+- teams running highly customized database configurations
+- workloads that need the absolute maximum IOPS that only direct SSD block storage configurations can provide
+
+Managed services, by design, abstract away the hardware layer and impose some limits on configuration access. 
 
 ## Types of databases 
 
@@ -76,7 +82,7 @@ Short description of common features and strengths, will go more in depth on kin
 
 ## Summary
 
-
+Treating a managed cloud service as a "set it and forget it" solution is a common and often costly mistake in production systems.
 
 ## Check for Understanding
 
