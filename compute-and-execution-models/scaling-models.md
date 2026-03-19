@@ -45,42 +45,42 @@ After reviewing how a system can grow, let's look at who or what initiates that 
 Manual scaling, the most basic approach, is the process of manually adjusting the resources (such as CPU, memory, or storage) allocated to an application or the number of instances to handle changing loads, like customer traffic. With manual scaling, engineers or administrators assess the system's resource requirements based on projected traffic or workload and manually increase or decrease capacity by provisioning more or removing excess instances and resources.
 
 - Advantages:
-    - Cost Certainty: The developer knows exactly how many instances are running and exactly what the bill will be at the end of the month.
-    - Simplicity: Does not require the developer to configure complex scaling policies, thresholds, or health checks.
-    - Predictability: There are no "surprises" where an automated system scales up unnecessarily due to a bug or a temporary traffic blip. 
+    - **Cost Certainty**: The developer knows exactly how many instances are running and exactly what the bill will be at the end of the month.
+    - **Simplicity**: Does not require the developer to configure complex scaling policies, thresholds, or health checks.
+    - **Predictability**: There are no "surprises" where an automated system scales up unnecessarily due to a bug or a temporary traffic blip. 
 
 - Disadvantages:
-    - Slow Response: By the time a human notices a traffic spike and logs in to add resources, the application may have already crashed for many users.
-    - Operational Fatigue: Requires constant monitoring. If a spike happens at 3:00 AM, the system stays overwhelmed until an engineer wakes up.
-    - Wasteful: Developers often over-provision (leave extra servers running "just in case"), which can lead to higher costs for idle resources.
+    - **Slow Response**: By the time a human notices a traffic spike and logs in to add resources, the application may have already crashed for many users.
+    - **Operational Fatigue**: Requires constant monitoring. If a spike happens at 3:00 AM, the system stays overwhelmed until an engineer wakes up.
+    - **Wasteful**: Developers often over-provision (leave extra servers running "just in case"), which can lead to higher costs for idle resources.
 
 #### Auto-Scaling
 
 Auto-scaling uses a set of predefined rules or triggers to adjust resources automatically. The cloud provider platform constantly monitors specific metrics (such as average CPU utilization or memory usage) and responds accordingly by increasing or decreasing instances or resources. This strategy is useful for ensuring optimal performance and cost-efficiency without manual intervention, particularly for unpredictable or fluctuating workloads.
 
 - Advantages:
-    - Hands-off Reliability: The system handles the daily fluctuations in traffic (such as more users during the day, fewer users at night) without any human intervention.
-    - Automatic Fault Tolerance: The system detects unhealthy instances and replaces them automatically, maintaining the desired capacity without manual intervention.
-    - Optimized Costs: The system "scales in" (removes instances) during low-traffic periods, which ensures the team only pays for what is actually needed.
+    - **Hands-off Reliability**: The system handles the daily fluctuations in traffic (such as more users during the day, fewer users at night) without any human intervention.
+    - **Automatic Fault Tolerance**: The system detects unhealthy instances and replaces them automatically, maintaining the desired capacity without manual intervention.
+    - **Optimized Costs**: The system "scales in" (removes instances) during low-traffic periods, which ensures the team only pays for what is actually needed.
 
 - Disadvantages:
-    - Complexity: Requires careful tuning. If the thresholds are too sensitive, the system might scale up and down constantly (a problem known as "thrashing").
-    - Lag Time: Metrics are often trailing indicators. By the time the average CPU hits 80%, the system might already be struggling, and it still takes time to boot new instances.
-    - Configuration Overhead: Auto-scaling policies require initial research to understand what settings need to be configured. Developers must define health checks and grace periods to ensure the system doesn't keep unhealthy instances in rotation.
+    - **Complexity**: Requires careful tuning. If the thresholds are too sensitive, the system might scale up and down constantly (a problem known as "thrashing").
+    - **Lag Tim**e**: Metrics are often trailing indicators. By the time the average CPU hits 80%, the system might already be struggling, and it still takes time to boot new instances.
+    - **Configuration Overhead**: Auto-scaling policies require initial research to understand what settings need to be configured. Developers must define health checks and grace periods to ensure the system doesn't keep unhealthy instances in rotation.
 
 #### Event-Driven Scaling
 
-Event-driven scaling is another automated method for adjusting cloud resources. Instead of scaling based on changes in metrics related to resource usage, scaling occurs based on events like database updates, API calls, or file uploads. This strategy can offer a fast response to sudden bursts of traffic and allows the system to scale down to dormancy when no event are occurring, which further reduces cloud related costs. 
+Event-driven scaling is another automated method for adjusting cloud resources. Instead of scaling based on changes in metrics related to resource usage, scaling occurs based on events like database updates, API calls, or file uploads. This strategy can offer a fast response to sudden bursts of traffic and allows the system to scale down to dormancy when no events are occurring, which further reduces cloud related costs. 
 
 - Advantages:
-    - True Elasticity: This is the most responsive model because it scales nearly instantly in direct proportion to the number of incoming events.
-    - Maximum Cost Savings: As the event rate decreases, the system terminates idle instances to reduce costs, which could mean that the team does not pay incur any costs when the application is not being used.
-    - Reduced Scope: The developer is not responsible for managing the underlying fleet of instances, load balancers, or patching schedules.
+    - **True Elasticity**: This is the most responsive model because it scales nearly instantly in direct proportion to the number of incoming events.
+    - **Maximum Cost Savings**: As the event rate decreases, the system terminates idle instances to reduce costs, which could mean that the team does not pay incur any costs when the application is not being used.
+    - **Reduced Scope**: The developer is not responsible for managing the underlying fleet of instances, load balancers, or patching schedules.
 
 - Disadvantages:
-    - Cold Starts: If the code hasn't run in a while, the very first user might experience a delay while the cloud provider initializes the environment.
-    - Resource Limits: Event-driven functions usually have stricter, hard-coded resource limits.
-    - Loss of Control: The developer cannot easily tweak the underlying system if the application requires a specialized environment.
+    - **Cold Starts**: If the code hasn't run in a while, the very first user might experience a delay while the cloud provider initializes the environment.
+    - **Resource Limits**: Event-driven functions usually have stricter, hard-coded resource limits.
+    - **Loss of Control**: The developer cannot easily tweak the underlying system if the application requires a specialized environment.
 
 ### Warm-up Time: Why Scaling Isn't Instant
 
@@ -112,13 +112,17 @@ If you would like to learn more about cold starts and scaling in the cloud, foll
 
 ### Capacity Planning and Elasticity
 
-In the final part of this lesson, we will look at the strategic side of scaling. How does a developer decide how many total resources their system needs to handle traffic? In modern cloud architecture, the goal is to balance the stability of a fixed plan with the flexibility of an automated system. Developers must navigate the space between having enough resources to stay reliable and also keep cloud costs manageable. Teams do so with capacity planning and designing systems that can leverage the characteristics of cloud elasticity. 
+Now that we've looked at how systems scale and what triggers that scaling, we need to zoom out and ask a strategic question: how does a developer decide how many resources their system needs in the first place? The answer involves two complementary ideas: capacity planning and cloud elasticity. Rather than being separate concerns, they work together as two layers of the same strategy.
 
-Capacity planning is the strategic process of determining what the baseline load of an application is. Instead of guessing, developers look at historical data to identify the minimum amount of infrastructure required to keep the system running smoothly under normal conditions. By maintaining a set amount of resources that are always on, developers can ensure that the most critical parts of the application are never subject to latency from cold starts. If there are too many resources deployed, then idle resources running increase cloud spending. If the plan is too conservative, a sudden surge in users will overwhelm the system, which could lead to slow response times, higher error rates, or total system failure. 
+**Capacity planning** is the process of determining your application's baseline, which is the minimum amount of infrastructure needed to keep the system running smoothly under normal, everyday conditions. Developers arrive at this baseline by analyzing historical data: what does traffic look like on a typical Tuesday at 2 PM? How much CPU and memory does the application consume under that load? This baseline matters because it determines how many resources should always be on, regardless of any scaling events. Keep that floor too high and you're paying for idle servers. Keep it too low and any sudden surge, before auto-scaling has time to respond, will overwhelm the system and cause slow response times, higher error rates, or total failure.
 
-Cloud elasticity relates to how organizations can quickly increase or decrease their resources dynamically in response to rapid or unexpected fluctuations in load without causing disruptions to their users. This might sound similar to scalability, but scalability is planned, persistent, and relates to longer-term growth. In elastic systems, the infrastructure expands and contracts automatically as a response to real-time changes in demand.
+**Cloud elasticity** is everything that happens above that baseline. It's the system's ability to expand and contract dynamically in response to real-time demand. The scaling strategies we've already covered (like auto-scaling based on CPU thresholds or event-driven scaling triggered by API calls) are elasticity mechanisms. Auto-scaling rules that add instances when traffic rises and remove them when it falls are elastic behavior.
 
-Ultimately, capacity planning and cloud elasticity are complementary strategies that both work to optimize cost and performance, with elasticity automating short-term adjustments while capacity planning manages long-term, structural resource needs. 
+The distinction comes down to two different questions:
+- Capacity planning answers: "What's the minimum I need running at all times to stay reliable?"
+- Elasticity answers: "How does my system handle everything beyond that minimum, automatically and in real time?"
+
+A well-designed system uses capacity planning to set a stable, cost-justified floor, and relies on elastic scaling strategies to handle real-time fluctuations. Together, they let a team build a system that is reliable under pressure and cost-efficient during quiet periods.
 
 ## Summary
 
@@ -137,14 +141,14 @@ A video streaming service sees a massive spike in traffic every Friday night at 
 ##### !end-question
 
 ##### !options
-* Event-driven scaling, because it reacts to each user request.
-* Manual or scheduled scaling, because the spike is predictable and avoids warm-up delays.
-* Vertical scaling, because it's easier to add RAM to one server than to boot ten.
-* Scaling down idle resources, because it saves the most money during the week.
+a| Event-driven scaling, because it reacts to each user request.
+b| Manual or scheduled scaling, because the spike is predictable and avoids warm-up delays.
+c| Vertical scaling, because it's easier to add RAM to one server than to boot ten.
+d| Scaling down idle resources, because it saves the most money during the week.
 ##### !end-options
 
 ##### !answer
-* Manual or scheduled scaling, because the spike is predictable and avoids warm-up delays.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -163,14 +167,14 @@ An application currently runs on a single, very large virtual machine that devel
 ##### !end-question
 
 ##### !options
-* Scaling Out is always cheaper than Scaling Up.
-* Vertical scaling usually requires a restart (downtime) and has a hardware "ceiling."
-* Horizontal scaling is the only way to use Serverless functions.
-* Vertical scaling is impossible in a cloud environment.
+a| Scaling Out is always cheaper than Scaling Up.
+b| Vertical scaling usually requires a restart (downtime) and has a hardware "ceiling."
+c| Horizontal scaling is the only way to use Serverless functions.
+d| Vertical scaling is impossible in a cloud environment.
 ##### !end-options
 
 ##### !answer
-* Vertical scaling usually requires a restart (downtime) and has a hardware "ceiling."
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -189,14 +193,14 @@ A developer uses serverless computing for an image-processing task. A user compl
 ##### !end-question
 
 ##### !options
-* Provisioning lag
-* Horizontal bottleneck
-* Cold start
-* Under-provisioning
+a| Provisioning lag
+b| Horizontal bottleneck
+c| Cold start
+d| Under-provisioning
 ##### !end-options
 
 ##### !answer
-* Cold start
+c|
 ##### !end-answer
 
 #### !explanation 

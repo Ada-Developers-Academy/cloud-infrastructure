@@ -13,14 +13,14 @@ A startup is launching a new API. They need full control over the operating syst
 ##### !end-question
 
 ##### !options
-* FaaS (Function as a Service)
-* PaaS (Platform as a Service)
-* IaaS (Infrastructure as a Service)
-* SaaS (Software as a Service)
+a| FaaS (Function as a Service)
+b| PaaS (Platform as a Service)
+c| IaaS (Infrastructure as a Service)
+d| SaaS (Software as a Service)
 ##### !end-options
 
 ##### !answer
-* IaaS (Infrastructure as a Service)
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -39,14 +39,14 @@ A retail website prepares for Black Friday by provisioning additional compute ca
 ##### !end-question
 
 ##### !options
-* Horizontal Auto-scaling
-* Manual Scaling
-* Scale-to-Zero
-* Vertical Auto-scaling
+a| Horizontal Auto-scaling
+b| Manual Scaling
+c| Scale-to-Zero
+d| Vertical Auto-scaling
 ##### !end-options
 
 ##### !answer
-* Manual Scaling
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -65,14 +65,14 @@ Which statement best describes the tradeoff between IaaS and serverless computin
 ##### !end-question
 
 ##### !options
-* IaaS offers higher developer velocity, while serverless offers more granular hardware control.
-* IaaS requires less operational overhead, while serverless requires manual OS patching.
-* IaaS provides maximum control over the environment, while serverless minimizes management burden at the expense of environmental flexibility.
-* There is no tradeoff, both models require the same amount of infrastructure management.
+a| IaaS offers higher developer velocity, while serverless offers more granular hardware control.
+b| IaaS requires less operational overhead, while serverless requires manual OS patching.
+c| IaaS provides maximum control over the environment, while serverless minimizes management burden at the expense of environmental flexibility.
+d| There is no tradeoff, both models require the same amount of infrastructure management.
 ##### !end-options
 
 ##### !answer
-* IaaS provides maximum control over the environment, while serverless minimizes management burden at the expense of environmental flexibility.
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -89,18 +89,18 @@ The selection matrix shows that as you move from IaaS to serverless, you gain sp
 ##### !question
 An e-commerce site runs continuously on provisioned virtual machines. The team manually increases capacity during peak seasons (see diagram below). Which compute and scaling model combination is being used?
 
-![Diagram showing the number of provisioned instances month over month](assets/num-provisioned-instances.png)
+![A line plot showing a steady baseline of 20 provisioned instances over the course of a year. The number of instances is manually increased to 40 during the summer holiday season, 45 during the back-to-school season, and nearly 80 during the winter holiday season.](assets/num-provisioned-instances.png)
 ##### !end-question
 
 ##### !options
-* IaaS with Manual Scaling
-* PaaS with Auto-scaling
-* FaaS with Consumption-based Scaling
-* IaaS with Scale-to-Zero
+a| IaaS with Manual Scaling
+b| PaaS with Auto-scaling
+c| FaaS with Consumption-based Scaling
+d| IaaS with Scale-to-Zero
 ##### !end-options
 
 ##### !answer
-* IaaS with Manual Scaling
+a|
 ##### !end-answer
 
 #### !explanation 
@@ -119,14 +119,14 @@ A small internal tool originally ran as a long-running VM service with steady tr
 ##### !end-question
 
 ##### !options
-* To gain more control over the Linux kernel version.
-* To reduce costs by switching to a consumption-based model (FaaS) that scales to zero during idle periods.
-* To increase the operational tax required to maintain the tool.
-* Because long-running VMs are the most efficient way to handle unpredictable, spiky traffic.
+a| To gain more control over the Linux kernel version.
+b| To reduce costs by switching to a consumption-based model (FaaS) that scales to zero during idle periods.
+c| To increase the operational tax required to maintain the tool.
+d| Because long-running VMs are the most efficient way to handle unpredictable, spiky traffic.
 ##### !end-options
 
 ##### !answer
-* To reduce costs by switching to a consumption-based model (FaaS) that scales to zero during idle periods.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -136,7 +136,7 @@ When traffic becomes intermittent or spiky, a provisioned VM is inefficient beca
 
 ## Case Study Review
 
-Read this [case study](https://www.qovery.com/blog/how-doordash-migrated-from-heroku-to-aws) about how DoorDash migrated from Heroku to AWS. DoorDash is a major food delivery platform that started its journey on a Platform as a Service (PaaS) called Heroku before migrating to Infrastructure as a Service (IaaS) using Amazon Web Services (AWS) and Docker. As you read, look for the tipping points that required them to change their compute model.
+Read this [case study](https://drive.google.com/file/d/14DnfLot6k2JniP6yXA78mTHhZJeFa3Dj/view?usp=sharing) about how DoorDash migrated from Heroku to AWS ([source](https://www.qovery.com/blog/how-doordash-migrated-from-heroku-to-aws)). DoorDash is a major food delivery platform that started its journey on a Platform as a Service (PaaS) called Heroku before migrating to Infrastructure as a Service (IaaS) using Amazon Web Services (AWS) and Docker. As you read, look for the tipping points that required them to change their compute model.
 
 Using the information from this case study and what we covered in this lesson, answer the following questions.
 
@@ -151,14 +151,14 @@ In the early days of DoorDash, the team chose Heroku (a PaaS) even though it was
 ##### !end-question
 
 ##### !options
-* Because Heroku is always cheaper than AWS, regardless of team size or scale.
-* Because it allowed the small team to delegate the operational overhead (OS patching, scaling) to the provider and focus entirely on building product features.
-* Because Heroku is the only compute model that supports the Ruby on Rails language.
-* Because PaaS models provide more granular hardware control than IaaS models.
+a| Because Heroku is always cheaper than AWS, regardless of team size or scale.
+b| Because it allowed the small team to delegate the operational overhead (OS patching, scaling) to the provider and focus entirely on building product features.
+c| Because Heroku is the only compute model that supports the Ruby on Rails language.
+d| Because PaaS models provide more granular hardware control than IaaS models.
 ##### !end-options
 
 ##### !answer
-* Because it allowed the small team to delegate the operational overhead (OS patching, scaling) to the provider and focus entirely on building product features.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -177,14 +177,14 @@ As DoorDash grew, they hit a point where the PaaS model could no longer meet the
 ##### !end-question
 
 ##### !options
-* The need for scale-to-zero capabilities.
-* The requirement to only use standard, pre-installed language runtimes.
-* The need for custom kernel tuning, specific filesystem access, or lower-level networking control not exposed by the PaaS provider.
-* The desire to pay more for managed services to reduce engineering effort.
+a| The need for scale-to-zero capabilities.
+b| The requirement to only use standard, pre-installed language runtimes.
+c| The need for custom kernel tuning, specific filesystem access, or lower-level networking control not exposed by the PaaS provider.
+d| The desire to pay more for managed services to reduce engineering effort.
 ##### !end-options
 
 ##### !answer
-* The need for custom kernel tuning, specific filesystem access, or lower-level networking control not exposed by the PaaS provider.
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -199,18 +199,18 @@ High-abstraction models like PaaS/FaaS limit your access to the underlying OS. W
 * title: Case Study Review
 
 ##### !question
-While the case study focuses on their move to IaaS (EC2) for their core app, modern DoorDash uses a Multi-Model Architecture. Why wouldn't DoorDash move their entire, high-traffic core ordering system into a FaaS (Serverless) model like AWS Lambda?
+While the case study focuses on their move to IaaS (EC2) for their core app, modern DoorDash uses a multi-model architecture. Why wouldn't DoorDash move their entire, high-traffic core ordering system into a FaaS (Serverless) model like AWS Lambda?
 ##### !end-question
 
 ##### !options
-* Because FaaS does not support modern programming languages.
-* Because the high, constant volume of orders would be significantly more expensive on a pay-per-request FaaS model compared to provisioned IaaS servers.
-* Because FaaS allows for too much control over the underlying operating system.
-* Because FaaS models do not allow for any scaling in production.
+a| Because FaaS does not support modern programming languages.
+b| Because the high, constant volume of orders would be significantly more expensive on a pay-per-request FaaS model compared to provisioned IaaS servers.
+c| Because FaaS allows for too much control over the underlying operating system.
+d| Because FaaS models do not allow for any scaling in production.
 ##### !end-options
 
 ##### !answer
-* Because the high, constant volume of orders would be significantly more expensive on a pay-per-request FaaS model compared to provisioned IaaS servers.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -220,29 +220,29 @@ For steady traffic that never drops to zero, provisioned billing (IaaS/PaaS) is 
 
 ## Design Challenge
 
-You are a founding engineer at a new startup building a real-time traffic alert application. The MVP for this application gas 3 features:
+You are a founding engineer at a new startup building a real-time traffic alert application. The MVP for this application has 3 features:
 - Feature A: An API that receives intermittent traffic from 10 users per hour sending location data.
 - Feature B: A heavy data-processing engine that runs for 4 hours every night to calculate traffic trends.
 - Feature C: A legacy mapping tool that only runs on a specific, older version of Ubuntu Linux.
 
 <!-- Feature A -->
 ### !challenge
-* type: multiple-choice
+* type: checkbox
 * id: d5f5a4be-706d-487a-a008-803029e366bf
 * title: Design Challenge
 
 ##### !question
-Select the best compute model for feature A.
+Select the best compute model for Feature A: An API that receives intermittent traffic from 10 users per hour sending location data.
 ##### !end-question
 
 ##### !options
-* IaaS
-* PaaS
-* FaaS
+a| IaaS
+b| PaaS
+c| FaaS
 ##### !end-options
 
 ##### !answer
-* FaaS
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -257,18 +257,18 @@ Since traffic is low and intermittent (10 users/hour), FaaS is the most cost-eff
 * title: Design Challenge
 
 ##### !question
-Select the best compute model for feature B.
+Select the best compute model for Feature B: A heavy data-processing engine that runs for 4 hours every night to calculate traffic trends.
 ##### !end-question
 
 ##### !options
-* IaaS
-* PaaS
-* FaaS
+a| IaaS
+b| PaaS
+c| FaaS
 ##### !end-options
 
 ##### !answer
-* IaaS
-* PaaS
+a|
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -283,17 +283,17 @@ The 4-hour execution duration exceeds the strict provider timeouts typical of Fa
 * title: Design Challenge
 
 ##### !question
-Select the best compute model for feature C.
+Select the best compute model for Feature C: A legacy mapping tool that only runs on a specific, older version of Ubuntu Linux.
 ##### !end-question
 
 ##### !options
-* IaaS
-* PaaS
-* FaaS
+a| IaaS
+b| PaaS
+c| FaaS
 ##### !end-options
 
 ##### !answer
-* IaaS
+a|
 ##### !end-answer
 
 #### !explanation 

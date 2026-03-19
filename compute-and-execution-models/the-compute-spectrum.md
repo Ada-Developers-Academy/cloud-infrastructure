@@ -12,7 +12,16 @@
 
 When developers run code locally, the program executes directly on their personal computer. The developer controls the environment, which can include the operating system, installed software, networking configuration, and available hardware.
 
-In cloud computing, the code runs somewhere else. Instead of executing on a local machine, it runs on remote computers owned and managed by a cloud provider, such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP). These remote systems provide the infrastructure required for applications to run in production environments. From the developer’s perspective, the cloud allows them to define how their application should run, while the cloud platform handles the provisioning and management of the underlying resources.
+In cloud computing, the code runs somewhere else. Instead of executing on a local machine, it runs on remote computers owned and managed by a cloud provider. The following table lists some of the most common cloud providers and platforms.
+	
+Provider | Cloud Platform
+--- | ---
+Amazon | Amazon Web Services (AWS)
+Google | Google Cloud Platform (GCP)
+Microsoft | Microsoft Azure
+Oracle | Oracle Cloud Infrastructure (OCI)
+
+The remote systems managed by cloud providers supply the infrastructure required for applications to run in production environments. From the developer’s perspective, the cloud allows them to define how their application should run, while the cloud platform handles the provisioning and management of the underlying resources.
 
 This approach solves several practical problems that arise in real-world systems:
 - Applications may receive unpredictable traffic.
@@ -40,13 +49,13 @@ In the early days of the web, if you wanted to run an application, you had to bu
 
 [Virtualization](https://en.wikipedia.org/wiki/Virtualization) is a technology that uses software to create virtual representations of physical IT resources like servers, storage, and networks. We call these virtual representations virtual machines. 
 
-Through a technology called a [hypervisor](https://en.wikipedia.org/wiki/Hypervisor), a cloud provider can take one powerful physical server and partition it into smaller, isolated "virtual machines" (VMs). VMs are a software-based emulations of a physical computer. 
+Through a technology called a [hypervisor](https://en.wikipedia.org/wiki/Hypervisor), a cloud provider can take one powerful physical server and partition it into smaller, isolated "virtual machines" (VMs). VMs are software-based emulations of a physical computer. 
 
 We won't go into more detail about how virtualization and hypervisors work in this curriculum, but if you are interested in learning more, we invite you to explore your curiosity!
 
 ### !end-callout
 
-In industry terms, when you actually go to a cloud provider's dashboard and "turn on" a virtual machine, it is called an "instance". An instance is a single, running copy of a VM and when you "spin up an instance" you are essentially turning on computer that lives in the cloud. IaaS gives you the most control among the cloud service models, which means you will need to appropriately configure the internals of your instances based on what your application. The following are examples of resources that can be configured:
+In industry terms, when you actually go to a cloud provider's dashboard and "turn on" a virtual machine, it is called an "instance". An instance is a single, running copy of a VM and when you "spin up an instance" you are essentially turning on a computer that lives in the cloud. IaaS gives you the most control among the cloud service models, which means you will need to appropriately configure the internals of your instances based on your application needs. The following are examples of resources that can be configured:
 - Central processing unit (CPU)
 - Computer memory (RAM)
 - Computer data storage
@@ -61,11 +70,13 @@ IaaS offers three types of cloud storage:
 - File storage: Think of file storage like the hierarchical system we are all used to on our personal computers that have folders inside folders. In the cloud, this usually refers to network-attached storage (NAS), which is a file system that can be accessed by multiple instances at the same time. An example of when file storage would be the most appropriate kind of storage would be if you have multiple web servers that all need to access the same set of configuration files or user-uploaded documents.
 - Object storage: Object Storage is a flat system where every file (an "object") is stored with its data and a unique identifier. Imagine object storage like a giant bucket where you throw a file in, and the cloud gives you a unique link to get it back. It is ideal for storing, backing up and managing high volumes of static unstructured data reliably and efficiently. It is the most common type of cloud storage. 
 
+We will look at each in more detail in the [Storage](../storage/what-is-cloud-storage.md) lesson.
+
 #### Networking
 
 IaaS infrastructure from third-party providers also includes networking resources like routers, switches, firewalls and load balancers. Networking is what allows you to define who is allowed into your system, how your data travels within it, and how your application reaches the rest of the world.
 
-Cloud instances are like isolated islands that cannot talk to each other or the outside world. Networking provides the "virtual wires" and "security fences" required to turn a collection of individual computers into a functioning system. You use these resources to create a private, protected space for your application where your database can safely chat with your web server without being exposed to the open internet. Networking resources also provides an entry point for users using traffic-management tools to ensure that when thousands of people visit a site at once, they are directed to a healthy server so the system doesn't get overwhelmed. 
+Cloud instances are like isolated islands that cannot talk to each other or the outside world. Networking provides the "virtual wires" and "security fences" required to turn a collection of individual computers into a functioning system. You use these resources to create a private, protected space for your application where your database can safely chat with your web server without being exposed to the open internet. When resources are connected in a network, we can define entry points for users using traffic-management tools to ensure that when thousands of people visit a site at once, they are directed to a healthy server so the system doesn't get overwhelmed.
 
 We will learn more about networking in the cloud in subsequent lessons. 
 
@@ -81,7 +92,7 @@ Additionally, PaaS environments often include managed services like pre-configur
 
 ### Function as a Service: Serverless Compute
 
-Serverless computing, or Function as a Service (FaaS) is an execution where cloud providers manage, provision, and scale infrastructure. This means that developers run code without managing any cloud instances. It is event-driven, designed to be very scalable and customers are only charged for resources consumed during execution, not idle time. The name is a big of a misnomer because servers do still exist, but they are entirely invisible to the developer from a cloud provider's platform. This model moves further up the spectrum of abstraction, in comparison to IaaS and PaaS, and means that a developer's responsibilities related to managing an application are even further reduced.
+Serverless computing, or Function as a Service (FaaS) is an execution where cloud providers manage, provision, and scale infrastructure. This means that developers run code without managing any cloud instances. It is event-driven, designed to be very scalable and customers are only charged for resources consumed during execution, not idle time. The name is a bit of a misnomer because servers do still exist, but they are entirely invisible to the developer from a cloud provider's platform. This model moves further up the spectrum of abstraction, in comparison to IaaS and PaaS, and means that a developer's responsibilities related to managing an application are even further reduced.
 
 Unlike a traditional application that is "always on" and waiting for a request, a serverless application is event-driven. The developer must think in terms of triggers:
 - An HTTP request to an API.
@@ -107,7 +118,7 @@ The following table illustrates where these boundaries typically fall across the
 
 ### Tradeoffs Between Compute Models: Control versus Operational Burden
 
-The choice of a compute model dictates where a will spend their time. This is often visualized as a spectrum: on one end is maximum control and on the other is maximum abstraction. When a team chooses a compute model that enables them to to control much of the computing resources available, they gain the ability to customize the environment to exact specifications. However, this control comes with a higher operational burden, which means that the developer might be spending time on tasks that do not directly add value to the end user.
+The choice of a compute model dictates where a developer will spend their time. This is often visualized as a spectrum: on one end is maximum control and on the other is maximum abstraction. When a team chooses a compute model that enables them to to control much of the computing resources available, they gain the ability to customize the environment to exact specifications. However, this control comes with a higher operational burden, which means that the developer might be spending time on tasks that do not directly add value to the end user.
 
 Conversely, when a team chooses a compute model with higher levels of abstraction, they trade away low-level control in exchange for speed and simplicity. The cloud provider handles the "heavy lifting" which allows developers to focus entirely on the application code. 
 
@@ -115,9 +126,10 @@ The following table compares how these tradeoffs manifest across the three model
 | Feature | IaaS (High Control) | PaaS (Somewhere In the Middle) | FaaS (High Abstraction) |
 | --------- | --------- | -------- | --------- |
 | Customization | Full control over the OS and hardware specs. | Limited to supported runtimes and configurations. | Restricted to specific functions and provider constraints. |
-| Maintenance | Higher: Developer manages updates, security, and scaling. | Moderate: Provider manages the OS,  developer manages the app. to supported runtimes and configurations. | Lower: Provider manages everything except the code. |
+| Maintenance | Higher: Developer manages updates, security, and scaling. | Moderate: Provider manages the OS. Developer manages the application. | Lower: Provider manages everything except the code. |
 | Speed to Market | Slower: Requires time to configure the environment. | Faster: Quick deployment of full applications. | Fastest: Instant deployment of individual features. |
 | Cost Model | Pay for the instance, even if idle. | Pay for the platform capacity. | Pay only for the milliseconds the code runs. |
+| Platform Lock-in | Lower: The same instance configuration could be done in any other provider, or even self-hosted. | Lower: The same platform services are often available from other providers. | Moderate: Similar features are often available elsewhere, but there is likely to be no direct migration path. |
 
 ## Summary
 
@@ -141,14 +153,15 @@ A security vulnerability is discovered in the underlying Linux kernel of a produ
 ##### !end-question
 
 ##### !options
-* Serverless (FaaS)
-* Managed Platforms (PaaS)
-* Infrastructure as a Service (IaaS)
-* None. The cloud provider always patches the operating system.
+a| Serverless (FaaS)
+b| Managed Platforms (PaaS)
+c| Infrastructure as a Service (IaaS)
+d| None. The cloud provider always patches the operating system.
+	
 ##### !end-options
 
 ##### !answer
-* Infrastructure as a Service (IaaS)
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -167,14 +180,14 @@ A developer is building a background job that only runs for five minutes once pe
 ##### !end-question
 
 ##### !options
-* Serverless functions are always cheaper per minute than virtual machines.
-* Serverless computing resources are automatically shut down when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
-* Serverless eliminates the need for any networking or storage costs.
-* Providers offer Serverless functions for free if they run for less than ten minutes.
+a| Serverless functions are always cheaper per minute than virtual machines.
+b| Serverless computing resources are automatically shut down when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
+c| Serverless eliminates the need for any networking or storage costs.
+d| Providers offer Serverless functions for free if they run for less than ten minutes.
 ##### !end-options
 
 ##### !answer
-* Serverless computing resources are automatically shut down when they are not in use. This means they would only be charged for the five minutes of execution rather than a 24-hour server rental.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -193,14 +206,14 @@ When a developer moves "up" the spectrum from control to abstraction (from IaaS 
 ##### !end-question
 
 ##### !options
-* Operational burden increases while control over the environment increases.
-* Operational burden decreases while control over the environment decreases.
-* Scalability decreases as the level of abstraction increases.
-* The developer becomes responsible for more layers of the technology stack.
+a| Operational burden increases while control over the environment increases.
+b| Operational burden decreases while control over the environment decreases.
+c| Scalability decreases as the level of abstraction increases.
+d| The developer becomes responsible for more layers of the technology stack.
 ##### !end-options
 
 ##### !answer
-* Operational burden decreases while control over the environment decreases.
+b|
 ##### !end-answer
 
 #### !explanation 

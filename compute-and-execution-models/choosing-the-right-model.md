@@ -57,9 +57,9 @@ There are other ways to go about approaching this decision too. How this exact d
 
 ### Multi-Model Architecture Integration
 
-In production environments, it is rare for an entire system to utilize a single compute model. As systems grow in complexity, engineers decompose applications into smaller, specialized services that may each require a different level of abstraction. Using a multi-model integration allows a team to optimize for cost, performance, and control simultaneously.
+In production environments, it is rare for an entire system to utilize a single compute model. As systems grow in complexity, engineers decompose applications into smaller, specialized services that may each require a different level of abstraction. Using a multi-model integration strategy allows a team to optimize for cost, performance, and control simultaneously.
 
-Consider an e-commerce platform. The core API and checkout service might run on using PaaS. This provides a balance of steady-state performance and automated scaling without requiring the team to manage the underlying OS. However, the image processing service (which only runs when a vendor uploads a new product photo) is a perfect fit for FaaS. By using FaaS here, the company only pays for the few seconds it takes to resize an image, rather than paying for a server to sit idle for most of the day.
+Consider an e-commerce platform. The core API and checkout service might run using PaaS. This provides a balance of steady-state performance and automated scaling without requiring the team to manage the underlying OS. However, the image processing service (which only runs when a vendor uploads a new product photo) is a perfect fit for FaaS. By using FaaS here, the company only pays for the few seconds it takes to resize an image, rather than paying for a server to sit idle for most of the day.
 
 Simultaneously, the platform might rely on a legacy inventory database that has specific hardware requirements. Since this a requirement that PaaS and FaaS cannot satisfy, the database is hosted using IaaS. By mixing these models, the engineering team uses lower-abstraction infrastructure only where the technical requirements demand it.
 
@@ -68,12 +68,12 @@ The challenge of using multiple models for a system is managing the communicatio
 ## Summary
 
 Choosing a compute model is one of the most consequential decisions a team makes, as it dictates the long-term operational burden, cost, and scalability of a system. Rather than relying on personal preference or industry trends, professional developers use an objective framework to evaluate infrastructure through the lens of these key considerations:
-- Technical Requirements: Identifying constraints such as OS-level dependencies or specialized hardware, that may disqualify high-abstraction models.
-- Workload Characteristics: Matching the compute model to the frequency and duration of traffic to ensure the system scales efficiently.
-- Operational Capacity: Accounting for the cost of operating different models in the cloud and prioritizing developer velocity by delegating some responsibilities to the cloud provider whenever possible.
--Cost Efficiency: Balancing direct cloud expenditures against the total cost of ownership (TCO), including the cost of software developer efforts to maintain the infrastructure.
+- **Technical Requirements**: Identifying constraints such as OS-level dependencies or specialized hardware, that may disqualify high-abstraction models.
+- **Workload Characteristics**: Matching the compute model to the frequency and duration of traffic to ensure the system scales efficiently.
+- **Operational Capacity**: Accounting for the cost of operating different models in the cloud and prioritizing developer velocity by delegating some responsibilities to the cloud provider whenever possible.
+- **Cost Efficiency**: Balancing direct cloud expenditures against the total cost of ownership (TCO), including the cost of software developer efforts to maintain the infrastructure.
 
-In modern production environments, this often results in a multi-model architecture, where different components of a system (such as APIs, background workers, and legacy databases) could be hosted on different compute tiers to optimize for performance and cost. Mastering this decision-making process allows an engineer to build systems that are not only functional but are also sustainable and scalable in a professional environment.
+In modern production environments, this often results in a multi-model architecture, where different components of a system (such as APIs, background workers, and legacy databases) could be hosted on different compute tiers to optimize for performance and cost. Applying this decision-making process allows an engineer to build systems that are not only functional but are also sustainable and scalable in a professional environment.
 
 ## Check for Understanding
 
@@ -88,14 +88,14 @@ A startup launches a new API using the FaaS model to save money while traffic is
 ##### !end-question
 
 ##### !options
-*  The team failed to account for cold starts.
-* The workload shifted from intermittent to to a most steady flow making consumption-based billing less efficient than provisioned billing.
-* FaaS models have strict execution timeouts that increase costs over time.
-* The team is paying an operational tax that only applies to FaaS.
+a| The team failed to account for cold starts.
+b| The workload shifted from intermittent to to a most steady flow making consumption-based billing less efficient than provisioned billing.
+c| FaaS models have strict execution timeouts that increase costs over time.
+d| The team is paying an operational tax that only applies to FaaS.
 ##### !end-options
 
 ##### !answer
-* The workload shifted from intermittent to to a most steady flow making consumption-based billing less efficient than provisioned billing.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -114,17 +114,14 @@ A financial services team is building an application that requires a custom, pro
 ##### !end-question
 
 ##### !options
-* FaaS, because it offers the highest developer velocity for security features.
-
-* PaaS, because the provider handles the runtime and security patches.
-
-* IaaS, because it provides the OS-level access required to install kernel-level dependencies.
-
-* Using multiple models, using FaaS for the library and PaaS for the database.
+a|FaaS, because it offers the highest developer velocity for security features.
+b| PaaS, because the provider handles the runtime and security patches.
+c| IaaS, because it provides the OS-level access required to install kernel-level dependencies.
+d| Using multiple models, using FaaS for the library and PaaS for the database.
 ##### !end-options
 
 ##### !answer
-* IaaS, because it provides the OS-level access required to install kernel-level dependencies.
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -143,14 +140,14 @@ A small team of three full-stack developers needs to ship a standard Node.js CRU
 ##### !end-question
 
 ##### !options
-* Using IaaS, so they have full control of the VMs to fix any bugs that arise in the OS.
-* Using PaaS, to delegate OS patching and runtime maintenance of their instances to the provider, allowing the team to focus on application code.
-* Using multiple models for the integration of five different FaaS functions to maximize granularity.
-* Building a custom container orchestration system on top of raw IaaS instances.
+a| Using IaaS, so they have full control of the VMs to fix any bugs that arise in the OS.
+b| Using PaaS, to delegate OS patching and runtime maintenance of their instances to the provider, allowing the team to focus on application code.
+c| Using multiple models for the integration of five different FaaS functions to maximize granularity.
+d| Building a custom container orchestration system on top of raw IaaS instances.
 ##### !end-options
 
 ##### !answer
-* Using PaaS, to delegate OS patching and runtime maintenance of their instances to the provider, allowing the team to focus on application code.
+b|
 ##### !end-answer
 
 #### !explanation 

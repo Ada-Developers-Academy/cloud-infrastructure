@@ -10,12 +10,25 @@
 
 In traditional computing, software was often tightly coupled with a specific piece of hardware. If you turned the computer off, the software stopped working. In the cloud, the code has been decoupled from the physical machine, which allows developers to determine exactly how long a piece of code should stay active.
 
-To understand the differences in lifespans, cloud engineers often use the ["Pets vs. Cattle"](https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/) analogy, first coined by Randy Bias. Traditionally, servers were like pets. You gave them names (e.g., "Production-DB-01"), you nurtured them, and if they crashed, you worked hard to nurse them back to health. In the cloud, we treat servers like cattle in a herd. They are identified by numbers, and if one becomes unhealthy, you don't fix it because you can replace it with a new one. This shift in mindset is what makes modern cloud scaling possible.
+To understand the differences in lifespans, cloud engineers often use the ["Pets vs. Cattle"](https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/) analogy, first coined by Randy Bias. Traditionally, servers were like pets. They were given names (e.g., "Production-DB-01"), you nurtured them, and if they crashed, you worked hard to nurse them back to health. In the cloud, servers are treated more like members of a herd. They are identified by numbers, and if one becomes unhealthy, the standard practice is to replace it rather than repair it. This shift in mindset is what makes modern cloud scaling possible.
+
+### !callout-info
+
+## Industry Analogies and Their Limitations
+
+This analogy is widely used in the industry and useful for building intuition, but it has attracted criticism for its dehumanizing framing, particularly in discussions about how the "cattle" mindset can bleed into how organizations think about workers, not just VMs. It's worth being aware of that critique as you encounter the analogy in the wild.
+
+### !end-callout
 
 We can visualize the lifespan of code as a continuum. On one end, we have code that can live for years, and on the other end, we have code that can live for less than a second. The diagram below explains this continuum with a couple of examples.
 
 ![Diagram showing the continuum of the lifespan of code](assets/code-lifespan.png)
-*Fig. The lifespan of code can be visualized as a continuum with one end being long-lasting processes and the other being very short-lived processes. [(Full size image)](assets/code-lifespan.png)*
+*Fig. The lifespan of code can be visualized as a continuum with one end being long-lasting processes and the other being very short-lived processes.*
+
+| Long-Running Services| Background Workers and Scheduled Jobs | Ephemeral Compute |
+| --- | --- | --- |
+| These are processes that start up and stay in a "listening" state. We can think of them like a physical storefront with the "Open" sign turned on 24/7. The process occupies memory (RAM) and stays attached to a network port, waiting for a user to connect. | These processes have a clear beginning and end. They aren't meant to live forever. They are meant to finish a specific job and then retire. The system provisions resources, the code performs a task, and once the task is complete, the process shuts down.| Also known as serverless (FaaS), this code is "dormant" until a specific event triggers it. The resources needed to execute the code are spun up, they handle a single request or event, and then immediately disappear.
+Example: A database engine (PostgreSQL) or a web server (Nginx)|Example: Generating a monthly report or processing a batch of credit card transactions at the end of the day.|Example: A function that runs only when a user clicks "Upload Profile Picture" to resize the image. |
 
 Why does this lifespan matter? As a developer, choosing where our code falls on this continuum changes how we write it. If our code lives for a long time, we can rely on its internal memory. If our code is ephemeral, we must assume it will forget everything the moment it finishes executing. Therefore, when we move from long-running to ephemeral compute, we aren't just changing how long our code runs, but we are also changing how the code "thinks." We will dive deeper into each of these 3 lifespans we just introduced below. 
 
@@ -25,13 +38,13 @@ While the cloud has made ephemeral compute popular, long-running services are st
 
 Long-running services are defined by their persistence. Since the process does not terminate after a single task, it maintains a consistent presence in the system’s memory and network. This means that a person or a cloud provider's system is responsible for the health of the process and if the service crashes, it must be manually or automatically restarted. In the Infrastructure as a Service (IaaS) and Platform as a Service (PaaS) models, long-running instances are the default. However, constant availability can incur greater cloud computing costs since the instances running processes, services, or applications are always on. 
 
-Workload characteristics, like a need for stability and consistent performance, would help determine if the use of instances in long-running environment are necessary or not. These needs should be balanced with cost-saving strategies and operational efficiency to keep cloud spending within an organization's budget.
+Workload characteristics, like a need for stability and consistent performance, would help determine if the use of instances in long-running environments are necessary or not. These needs should be balanced with cost-saving strategies and operational efficiency to keep cloud spending within an organization's budget.
 
 #### Background Workers and Scheduled Jobs
 
 If a long-running service is like a power plant that is always on, background workers are like the maintenance crew that clocks in, performs a specific list of tasks, and clocks out. In a typical web application, we don't want our main API to get bogged down by heavy lifting. If a user uploads a high-resolution profile picture, the API shouldn't make the user wait while it resizes the image into a different format. Instead, the API hands that task off to a background worker. These workers run independently of the main user request.
 
-We also encounter tasks that don't need to respond to a specific user action but instead need to happen at a regular interval. These scheduled jobs are cron jobs. While a standard background worker might wait for a specific user action to trigger it, these jobs are tied strictly to the clock. We might configure a task to execute every night at 2:00 in the morning after peak traffic has subsided to perform essential tasks like generating daily financial reports. In this model, we aren't paying for idle resources to keep the financial reporting code active all day. Instead, the process has a very clear lifespan: it initializes at the scheduled time, performs its task, and shuts down immediately after. 
+We also encounter tasks that don't need to respond to a specific user action but instead need to happen at a regular interval. These scheduled jobs are often referred to as cron jobs, so called for the service, `cron`, that has traditionally run scheduled jobs in UNIX-based operating systems. While a standard background worker might wait for a specific user action to trigger it, these jobs are tied strictly to the clock. We might configure a task to execute every night at 2:00 in the morning after peak traffic has subsided to perform essential tasks like generating daily financial reports. In this model, we aren't paying for idle resources to keep the financial reporting code active all day. Instead, the process has a very clear lifespan: it initializes at the scheduled time, performs its task, and shuts down immediately after. 
 
 These processes aren't "always on" like servers that are always waiting for a network request, but they often run on the same long-lived infrastructure. As developers, we care about this distinction because it changes how we measure success. For our web APIs, we monitor "uptime". For background workers and scheduled jobs, we monitor "completion." 
 
@@ -45,7 +58,7 @@ When an event occurs, perhaps a user uploads a file to a storage bucket or an ex
 
 The shift to ephemeral computing forces us to change how we think about data and memory. In a stateful environment, like a long-running service, we can store a variable and trust that it will still be there when the next request arrives. The process remembers its state. However, with ephemeral computing, our code is stateless because the environment is wiped clean the moment a task is finished executing. Our code effectively has "short-term memory loss."
 
-To succeed in this environment, we have to change how we write our logic. When we write code for ephemeral compute, we treat every execution as if it is the very first time the code has ever run. Instead of relying on stored data, we need to design our code take simply take an input, perform a calculation on it, and return the output. If data is required for a process to execute then that data should be passed through by function parameters or event payloads. Serverless compute tasks can also integrate with other services or databases to externalize state.
+To succeed in this environment, we have to change how we write our logic. When we write code for ephemeral compute, we treat every execution as if it is the very first time the code has ever run. Instead of relying on stored data, we need to design our code to simply take an input, perform a calculation on it, and return the output. If data is required for a process to execute then that data should be passed through by function parameters or event payloads. Serverless compute tasks can also integrate with other services or databases to externalize state.
 
 To illustrate how we might bridge this gap in practice, here are a couple of examples of how we might structure our logic when the data we need isn’t included in the initial event:
 - When an event payload contains a unique identifier, like `userId`, we could utilize database lookups. Instead of passing an entire user profile through a network request. which would be bulky and potentially insecure, we write our function to take that ID and query a persistent database like PostgreSQL or MongoDB. This allows the function to remember information about the user (like the user's preference or subscription status) by pulling that data from our externalized state.
@@ -86,18 +99,18 @@ By understanding this continuum, we can stop treating the cloud like a simple re
 * title: Long Running & Ephemeral Compute
 
 ##### !question
-We are building a service that processes user-uploaded PDFs to extract text. We’ve decided to use an ephemeral function with serverless computing to handle the extraction because the traffic is bursty and can happen at irregular intervals. Where should we store the information related to progress status (e.g., "Extraction is 50% complete") so that a user cans see it on their dashboard? 
+We are building a service that processes user-uploaded PDFs to extract text. We’ve decided to use an ephemeral function with serverless compute to handle the extraction because the traffic is bursty and can happen at irregular intervals. Where should we store the information related to progress status (e.g., "Extraction is 50% complete") so that a user cans see it on their dashboard? 
 ##### !end-question
 
 ##### !options
-* In a global variable inside the function code.
-* In a local temporary folder on the function's execution environment.
-* In an external database or cache.
-* In the function's internal RAM.
+a| In a global variable inside the function code.
+b| In a local temporary folder on the function's execution environment.
+c| In an external database or cache.
+d| In the function's internal RAM.
 ##### !end-options
 
 ##### !answer
-* In an external database or cache.
+c|
 ##### !end-answer
 
 #### !explanation 
@@ -116,14 +129,14 @@ We have an ephemeral function that sends a "Welcome Email" to new users. We noti
 ##### !end-question
 
 ##### !options
-* Increase the timeout of the function so it has more time to finish.
-* Before sending the email, check a database to see if a "WelcomeEmailSent" flag exists for that specific userId.
-* Disable automatic retries in the cloud provider's settings.
-* Use a faster email API to reduce the chance of a timeout.
+a| Increase the timeout of the function so it has more time to finish.
+b| Before sending the email, check a database to see if a "WelcomeEmailSent" flag exists for that specific userId.
+c| Disable automatic retries in the cloud provider's settings.
+d| Use a faster email API to reduce the chance of a timeout.
 ##### !end-options
 
 ##### !answer
-* Before sending the email, check a database to see if a "WelcomeEmailSent" flag exists for that specific userId.
+b|
 ##### !end-answer
 
 #### !explanation 
@@ -142,14 +155,14 @@ We are designing a real-time collaborative code editor (similar to VS Code Live 
 ##### !end-question
 
 ##### !options
-* Ephemeral compute (serverless functions)
-* Long-running services (IaaS or PaaS instances)
-* Scheduled jobs (cron jobs)
-* Short-lived background workers
+a| Ephemeral compute (serverless functions)
+b| Long-running services (IaaS or PaaS instances)
+c| Scheduled jobs (cron jobs)
+d| Short-lived background workers
 ##### !end-options
 
 ##### !answer
-* Long-running services (IaaS or PaaS instances)
+b|
 ##### !end-answer
 
 #### !explanation 
