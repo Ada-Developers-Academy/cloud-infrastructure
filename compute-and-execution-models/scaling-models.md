@@ -87,16 +87,16 @@ Event-driven scaling is another automated method for adjusting cloud resources. 
 In an ideal world, scaling would be instantaneous. However, in production environments, there is a delay between the moment a scaling rule is triggered and the moment that the new resources are actually ready to handle user traffic. This gap is known as warm-up time which is when systems, applications, or services are gradually brought online to ensure stability, optimize performance, and allow resources to adjust to new workloads. If the warm-up time is not factored into a chosen scaling policy then a team could end up incurring additional, unnecessary costs and poor performance. 
 
 When a scaling event occurs, the cloud provider must perform several steps before an instance is "healthy", such as:
-1. Provisioning: Allocating the physical hardware into different virtual machines.
-2. Booting: Loading the operating system.
-3. Initialization: Running startup scripts, installing security patches, or pulling a Docker container image, etc.
-4. Application Startup: Starting the actual code.
+1. **Provisioning**: Allocating the physical hardware into different virtual machines.
+2. **Booting**: Loading the operating system.
+3. **Initialization**: Running startup scripts, installing security patches, or pulling a Docker container image, etc.
+4. **Application Startup**: Starting the actual code.
 
 The different cloud service models we looked at earlier (IaaS, PaaS, and FaaS) each have different factors that impact how long the warm-up sequence takes.
 
-- IaaS: Scaling with the IaaS model can have the longest warm-up times because it involves provisioning raw infrastructure including OS installation, network configuration, and middleware setup.
-- PaaS: Scaling with the PaaS model can be much faster because instances are already on and configured. Since the underlying OS is already running, the system only needs to start the application's specific environment.
-- FaaS: Scaling with the FaaS model is typically the fastest, often ready in milliseconds to a few seconds, because it leverages an existing pool of resources. Similar to PaaS, since the cloud provider manages all underlying infrastructure, there's no wait time for operating systems to boot or software to configure.
+- **IaaS**: Scaling with the IaaS model can have the longest warm-up times because it involves provisioning raw infrastructure including OS installation, network configuration, and middleware setup.
+- **PaaS**: Scaling with the PaaS model can be much faster because instances are already on and configured. Since the underlying OS is already running, the system only needs to start the application's specific environment.
+- **FaaS**: Scaling with the FaaS model is typically the fastest, often ready in milliseconds to a few seconds, because it leverages an existing pool of resources. Similar to PaaS, since the cloud provider manages all underlying infrastructure, there's no wait time for operating systems to boot or software to configure.
 
 ### !callout-info
 
