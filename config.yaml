@@ -1,6 +1,41 @@
 ---
 Standards:
   -
+    Title: Compute & Execution Models - How Code Runs in the Cloud
+    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
+    UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 5a1bfc16-d91c-4e28-bf85-d481239904f1
+        Path: /compute-and-execution-models/intro-to-cloud-computing.md
+      -
+        Type: Lesson
+        UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
+        Path: /compute-and-execution-models/the-compute-spectrum.md
+      -
+        Type: Lesson
+        UID: fbbacab6-45da-4dfe-9b90-1fe210b17997
+        Path: /compute-and-execution-models/scaling-models.md
+      -
+        Type: Lesson
+        UID: ee1b1594-684b-4fb7-b8f3-1ba46b895b89
+        Path: /compute-and-execution-models/long-running-vs-ephemeral-compute.md
+      -
+        Type: Lesson
+        UID: 513d717c-a8aa-4994-b693-86485355a1a7
+        Path: /compute-and-execution-models/failure-modes-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 034ab8c9-687c-4093-b19b-411e99a2dd08
+        Path: /compute-and-execution-models/choosing-the-right-model.md
+      -
+        Type: Lesson
+        UID: 3f5cfa81-b23d-469d-8eef-172989fbc989
+        Path: /compute-and-execution-models/problem-set.md
+  -
     Title: Storage
     Description: "What is cloud storage?, Block Storage, File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
     UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
