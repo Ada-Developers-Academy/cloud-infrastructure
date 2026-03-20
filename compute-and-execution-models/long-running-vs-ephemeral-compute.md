@@ -22,7 +22,7 @@ This analogy is widely used in the industry and useful for building intuition, b
 
 We can visualize the lifespan of code as a continuum. On one end, we have code that can live for years, and on the other end, we have code that can live for less than a second. The diagram below explains this continuum with a couple of examples.
 
-![Diagram showing the continuum of the lifespan of code](assets/code-lifespan.png)
+![The relative code lifespans for several types of compute models. Longer lasting processes like long-running services are on the left, while short-lived processes like ephemeral compute are on the right. Background workers and scheduled jobs fall somewhere in the middle of the continuum.](assets/code-lifespan.png)
 *Fig. The lifespan of code can be visualized as a continuum with one end being long-lasting processes and the other being very short-lived processes.*
 
 | Long-Running Services| Background Workers and Scheduled Jobs | Ephemeral Compute |

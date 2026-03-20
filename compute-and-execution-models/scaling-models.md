@@ -65,7 +65,7 @@ Auto-scaling uses a set of predefined rules or triggers to adjust resources auto
 
 - Disadvantages:
     - **Complexity**: Requires careful tuning. If the thresholds are too sensitive, the system might scale up and down constantly (a problem known as "thrashing").
-    - **Lag Tim**e**: Metrics are often trailing indicators. By the time the average CPU hits 80%, the system might already be struggling, and it still takes time to boot new instances.
+    - **Lag Time**: Metrics are often trailing indicators. By the time the average CPU hits 80%, the system might already be struggling, and it still takes time to boot new instances.
     - **Configuration Overhead**: Auto-scaling policies require initial research to understand what settings need to be configured. Developers must define health checks and grace periods to ensure the system doesn't keep unhealthy instances in rotation.
 
 #### Event-Driven Scaling

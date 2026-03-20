@@ -41,9 +41,9 @@ Standards:
     UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
     SuccessCriteria:
       - success criteria
-    ContentFiles:  
+    ContentFiles:
       -
-        Type: Lesson      
+        Type: Lesson
         UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
         Path: /storage/what-is-cloud-storage.md
       -

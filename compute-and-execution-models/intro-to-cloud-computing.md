@@ -6,7 +6,7 @@
 
 ### A Brief History of Cloud Computing
 
-Cloud computing is now a ubiquitous term in software engineering. With the shift of infrastructure ownership from on-premises machines to remote machines (managed by companies like Amazon, Google, or Microsoft, or Oracle), the responsibility and ownership of deployment have shifted as well. The lines between code and operations have blurred, and since most modern applications now run in "the Cloud", software engineers need to have some familiarity with it and its capabilities. 
+Cloud computing is now a ubiquitous term in software engineering. With the shift of infrastructure ownership from on-premises machines to remote machines (managed by companies like Amazon, Google, Microsoft, or Oracle), the responsibility and ownership of deployment have shifted as well. The lines between code and operations have blurred, and since most modern applications now run in "the Cloud", software engineers need to have some familiarity with it and its capabilities. 
 
 Before diving into the different kinds of cloud computing models and execution models, we will briefly review the the history of cloud computing. Read through the following resources to get a better understanding of how cloud computing came to be.
 
@@ -17,7 +17,7 @@ https://drive.google.com/file/d/13ymCEoua-ZNSTpeyhbUNmc2W_62V8Oky/view?usp=shari
 
 ### Optional External Reading List
 - [The Simple Guide To The History Of The Cloud](https://drive.google.com/file/d/1jpmmiRweSP-BVcSwiPCQst0yec7qyEEO/view?usp=sharing) (~16 minutes)
-- [Cloud Revolution: Tracing the Origins and Rise of Cloud Computing](https://drive.google.com/file/d/1my-vofFIxOCCHiFU5D94Mi48D_V8hWAU/view?usp=sharing) (~32 minutes)
+- [Cloud Revolution: Tracing the Origins and Rise of Cloud Computing](https://drive.google.com/file/d/1LMIDpGmBGMxJt_FbZq57hNTVEimE36xA/view?usp=sharing) (~32 minutes)
 - [History of Cloud Computing](https://drive.google.com/file/d/1Wlep4TaC_lFWFqR780m2oF0eNDgXSGCl/view?usp=sharing) (~4 min)
 
 <br />
