@@ -44,7 +44,7 @@ Standards:
     ContentFiles:
       -
         Type: Lesson
-                UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
+        UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
         Path: /storage/what-is-cloud-storage.md
       -
         Type: Lesson
@@ -70,6 +70,11 @@ Standards:
     Title: Databases
     Description: "Intro to Cloud Databases, Database Types & Tradeoffs, Scaling Databases, Problem Set: Cloud Databases"
     UID: b0ae93e8-dd23-4ba2-9df7-f8b2120140ca
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson    
         UID: 0c0cef89-cc6d-4f27-b932-7b0d82caee12
         Path: /databases/intro-cloud-databases.md
       -
