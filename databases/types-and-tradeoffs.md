@@ -118,7 +118,7 @@ As we saw in the previous lesson, whatever kind of database we choose, we can se
 
 If we're using a managed service, major cloud providers offer multiple relational database engines to choose from such as MySQL, PostgreSQL, and SQL Server. Some cloud vendors also offer proprietary relational engines built for high-performance and heavy workloads, meant for demanding production systems. 
 
-Similarly for non-relational databases, cloud vendors often provide at least a couple common flavors for each database type, and may have specific proprietary non-relational database offerings built for high throughput systems. The exact engines, limits, and feature sets will vary by cloud provider.
+Similarly for non-relational databases, cloud vendors often provide at least a couple options for each database type, and may have specific proprietary non-relational database offerings built for high throughput systems. The exact engines, limits, and feature sets will vary by cloud provider.
 
 ## Summary
 
