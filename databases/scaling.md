@@ -11,7 +11,7 @@
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
 
-Key terms: Vertical scaling, horizontal scaling, read replica
+Key terms: replication, sharding
 
 ## What does it mean to Scale a Database? 
 
@@ -33,14 +33,14 @@ In both cases, this can work to alleviate pressure for a time, but there are har
 
 **Strengths**
 
-- Easy to apply & avoids complexity: No code changes, no rethinking how our data is organized. Vertical scaling keeps things simple by adding resources to the existing infrastructure, no extra data orchestration is required.
-- Helps most with writes: If our database is getting overwhelmed by incoming writes, adding more database servers (horizontal scaling) doesn't directly help, since all writes typically go to one primary server. Upgrading that server is the right move.
+- *Avoids complexity*: No code changes, no rethinking how our data is organized. Vertical scaling keeps things simple by adding resources to the existing infrastructure, no extra data orchestration is required.
+- *Helps most with writes*: Without horizontal scaling strategies that introduce complexity (we'll talk more about these shortly!) all write operations typically go to one primary server. If our database is getting overwhelmed by incoming writes, adding more database servers (horizontal scaling) doesn't directly help, since . Upgrading the server that handles writes is the right move.
 
 **Limitations**
 
-- Scaling limits: Cloud providers only offer database instances up to a certain size. Once we hit the largest available option, we've exhausted vertical scaling as a solution.
-- Cost vs performance: Larger instance tiers cost significantly more, and we don't always get proportionally better performance for the price.
-- Hard to scale back down: Maybe we need more resources during a holiday surge twice a year, and don't need maximum vertical capacity the rest of the year.  Downsizing a production database requires careful planning and usually some downtime. Teams often stay on oversized instances longer than needed to avoid the hassle, which adds ongoing costs.
+- *Scaling limits*: Cloud providers only offer database instances up to a certain size. Once we hit the largest available option, we've exhausted vertical scaling as a solution.
+- *Cost vs performance*: Larger instance tiers cost significantly more, and we don't always get proportionally better performance for the price.
+- *Hard to scale back down*: Maybe we need more resources during a holiday surge twice a year, and don't need maximum vertical capacity the rest of the year.  Downsizing a production database requires careful planning and usually some downtime. Teams often stay on oversized instances longer than needed to avoid the hassle, which adds ongoing costs.
 
 ### Self-Hosted vs. Managed Considerations
 
@@ -52,20 +52,54 @@ With a self-hosted database on a cloud VM, vertical scaling means resizing the V
 
 The upside of self-hosting is that we have full control over how the database engine is configured for the new hardware. Managed services don't always expose settings like how much memory the database is allowed to use, or how it handles disk I/O. But in exchange, we own every step of the process and everything that can go wrong with it.
 
-### Horizontal Scaling
+## Horizontal Scaling
 
-What is horizontal scaling
-methods of horizontal scaling
+When we first encountered horizontal scaling in compute, we touched on it at a high level: horizontal scaling is a set of strategies for *scaling out* across multiple nodes or instances rather than scaling up a single instance. 
 
-## Scaling Self-Hosted vs Fully Managed Databases
+In our restaurant example, vertical scaling involved increasing our existing kitchen size, and we faced the limit that there is a ceiling to how much we can build in one location. Horizontal scaling for our restaurant might look like opening a new location, which comes with some new logistics to consider and infrastructure to build around deliveries and staffing for multiple locations. However, once that new system is set up, we can open new restaurants and get them running quickly if we start to see service degrade at the existing locations due to high customer load.
 
-### Self-Hosted 
+Just as a restaurant faces some logistical challenges in the example above, horizontal scaling for databases presents new challenges compared to vertical scaling. A database holds state, and that state has to be correct. When we add database nodes, we immediately face questions like: if a user writes data to one node, can another node read it immediately? Which node accepts writes? What happens if two nodes temporarily disagree about the value of a record? We will not go in-depth on how data conflicts are resolved (feel free to follow your curiosity!) but we will cover the main horizontal scaling strategies that engineers use to answer these questions while distributing load across nodes.
+
+There are two strategies that we'll discuss, *replication* which is aimed at increasing read speed and accessibility, and *sharding* which can help increase write throughput.
+
+## Horizontal Scaling Methods
+
+### Improving Reads: Replication
+
+In most production applications, reads vastly outnumber writes. For example, in e-commerce situations, users browse products far more than they place orders. A read replica is a synchronized copy of the primary database that handles read-only queries. Writes still go to the primary instance, which then propagates changes to replicas asynchronously.
+
+The catch is that "asynchronously" is doing a lot of work in that sentence. Because replicas are updated shortly after writes happen rather than at the exact same moment, a user might write data and immediately query a replica that hasn't yet received the update. For many use cases, like viewing a social feed or browsing a product catalog, this slight staleness is completely acceptable. For other applications, like checking an account balance or confirming that an order was placed, stale information is unacceptable. Understanding which queries can be routed to replicas vs. which must always hit the primary is an application design decision, not just an infrastructure one.
+
+Read replicas are horizontal scaling in a targeted form: we're not distributing all database access, we're only distributing the read load that makes up the majority of database traffic. If a single database instance is struggling under read pressure, adding read replicas is often the first scaling lever teams reach for.
+
+**Multi-Region Replication: Scale for Geography**
+
+Beyond throughput, "scale" can also mean serving users in multiple geographic regions with low latency. Multi-region replication extends the replica concept globally: database nodes are deployed in different regions, and users are routed to the nearest one. Some configurations limit all writes to a single primary region; others support multi-primary writes with conflict resolution logic. This pattern improves both availability (a regional outage doesn't take down the system) and read latency for globally distributed users. 
+
+### Improving Writes: Sharding
+
+### Strengths & Limitations
+
+**Strengths**
+
+- Read throughput can scale nearly linearly by adding read replicas
+- Write throughput and dataset size can grow beyond single-node limits via sharding
+- Multiple nodes eliminate single points of failure — a node failure doesn't bring down the system
+- Global replication reduces latency for geographically distributed users
+
+**Limitations**
+
+- Sharding adds significant operational and application complexity
+- Asynchronous replication means replicas may serve briefly stale data
+- Poor shard key design causes hot partitions that undermine scaling
+- Cross-shard queries require application-layer coordination and are slower
+- Resharding a live system is expensive and risky
+
+### Self-Hosted vs. Managed Considerations
 
 
-
-### Fully-Managed
-
-
+differences in responsibility during horizontal scaling for self hosted vs managed databases
+comparison of which types of databases are ideal vs struggle with horizontal scaling and why
 
 ## Choosing a Scaling Strategy
 
