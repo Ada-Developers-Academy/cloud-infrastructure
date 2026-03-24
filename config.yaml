@@ -95,7 +95,7 @@ Standards:
         Path: /networking/problem-set-networking.md
   -
     Title: Event Driven Architecture & Distributed Systems
-    Description: "Lesson titles"
+    Description: "The Need for Event-Driven Architecture & Distributed Systems, Distributed Systems, Event-Driven Architecture, Problem Set: Event-Driven Architecture & Distributed Systems"
     UID: 6c88b727-373f-4838-895d-6ad2a26a882f
     SuccessCriteria:
       - success criteria
