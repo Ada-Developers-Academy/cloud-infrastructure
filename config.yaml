@@ -112,3 +112,7 @@ Standards:
         Type: Lesson
         UID: 23cae71f-4e0b-4563-824c-0478f258d499
         Path: /event-driven-architecture/event-driven-architecture.md
+      -
+        Type: Lesson
+        UID: ffbc26e0-f75e-409b-b999-10cc44c8b824
+        Path: /event-driven-architecture/problem-set-eda.md
