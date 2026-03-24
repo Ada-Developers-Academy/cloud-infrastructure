@@ -32,14 +32,24 @@ In a monolithic, centralized system, all logic lives in one place. If we need mo
 
 By building systems in the cloud, we can immediately gain the benefits of using distributed resources that the cloud provider has built up over many years, without having to manage that underlying infrastructure ourselves. While we must still design our applications to take advantage of these distributed resources, the cloud gives us a powerful foundation to build on.
 
-The core strengths of distributed systems include:
+There are three core strengths of distributed systems: scalability, reliability, and durability.
 
-* **Scalability:** Since nodes are independent, we can add or remove them based on demand. If our application sees a spike in traffic on a holiday, we can spin up fifty new nodes to handle the load and shut them down afterward to save costs. Designing nodes to be independent and stateless allows us to scale horizontally without worrying about complex interdependencies. State, the information a system needs to function, must be minimized or shared in a way that doesn't create bottlenecks. We can further decouple node services by designing them to communicate through well-defined interfaces, allowing each to evolve and scale independently.
-* **Reliability:** In a distributed system, the failure of one node does not mean the failure of the system. If one server in a data center loses power, our network of other nodes can pick up the slack, keeping the application online. Systems that can continue to operate in the face of failures are called **fault-tolerant**. This is a critical feature for any service that needs to be available 24/7.
-* **Durability:** By replicating data across multiple nodes, we ensure that information isn't lost. If a disk drive fails on one node, the data exists in several other locations, ready to be recovered.
+### Scalability
+
+Since nodes are independent, we can add or remove them based on demand. If our application sees a spike in traffic on a holiday, we can spin up fifty new nodes to handle the load and shut them down afterward to save costs.
+
+Designing nodes to be independent and stateless allows us to scale horizontally without worrying about complex interdependencies. State, the information a system needs to function, must be minimized or shared in a way that doesn't create bottlenecks. Further, we can decouple node services by designing them to communicate through well-defined interfaces, allowing each to evolve and scale independently.
+
+### Reliability
+
+In a distributed system, the failure of one node does not mean the failure of the system. If one server in a data center loses power, our network of other nodes can pick up the slack, keeping the application online. Systems that can continue to operate in the face of failures are called **fault-tolerant**. This is a critical feature for any service that needs to be available 24/7.
 
 ![A "Reliability" scenario. One node in a four-node cluster is marked with a red 'X' to signify failure. Arrows show user traffic being automatically rerouted away from the failed node toward the three remaining healthy nodes.](assets/eda-reliability.png)  
 *Fig. Reliable services are built on distributed systems that can automatically reroute traffic and recover from failures without user disruption.*
+
+### Durability
+
+By replicating data across multiple nodes, we ensure that information isn't lost. If a disk drive fails on one node, the data exists in several other locations, ready to be recovered.
 
 For example, when we store a file in a cloud storage bucket, that file isn't just sitting on one hard drive. It is being distributed and replicated across multiple physical locations. This is why cloud services can promise "eleven nines" of durability—the math only works because the system is distributed.
 
