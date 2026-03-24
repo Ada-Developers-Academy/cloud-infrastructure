@@ -72,7 +72,10 @@ A "bottleneck" occurs when one service in a tightly coupled system becomes overw
 
 <br>
 
-While a security feature (option a) is important and may even be the source of some performance issues if misconfigured, it does not describe a bottleneck. A specialized tool for speeding up network requests (option c) is unrelated to the concept of a bottleneck. Distributing data across cloud providers (option d) is a strategy for redundancy and scalability, but it does not directly address the issue of bottlenecks in tightly coupled systems.
+The following options do not describe a bottleneck:
+- While security features may be the source of some performance issues if misconfigured, it does not describe a bottleneck.
+- A specialized tool for speeding up network requests is unrelated to the concept of a bottleneck.
+- Distributing data across cloud providers is a strategy for redundancy and scalability, but it does not directly address the issue of bottlenecks in tightly coupled systems.
 
 ##### !end-explanation
 
@@ -113,11 +116,15 @@ d|
 
 ##### !explanation
 
-Synchronous communication can lead to significant disadvantages during high-traffic events because it requires the sender to wait for a response from the receiver. If the receiver is busy or overwhelmed, this can lead to timeouts and a poor user experience (option a). Additionally, in a tightly coupled system, all connected services must scale at the same time to maintain performance, which is often impractical during sudden spikes in traffic (option b) since it takes time for knowledge of the spike to propagate and for resources to be allocated. Finally, if one service slows down, it can create a "domino effect" where all subsequent services that depend on it also slow down, further degrading the user experience (option d).
+The following are reasons why synchronous communication can be a disadvantage during high-traffic events:
+- If the receiver is busy or overwhelmed, this can lead to timeouts and a poor user experience.
+- In a tightly coupled system, all connected services must scale at the same time to maintain performance, which is often impractical during sudden spikes in traffic since it takes time for knowledge of the spike to propagate and for resources to be allocated.
+- If one service slows down, it can create a "domino effect" where all subsequent services that depend on it also slow down, further degrading the user experience (option d).
 
 <br>
 
-Option c is incorrect because synchronous communication does not inherently make a system more secure.
+The following is not a reason why synchronous communication can be a disadvantage:
+- Additional security would not be a disadvantage, but synchronous communication does not inherently make a system more secure.
 
 ##### !end-explanation
 
@@ -156,11 +163,14 @@ c|
 
 ##### !explanation
 
-The primary benefit of "decoupling" services through Event-Driven Architecture is that it allows services to operate and scale independently without needing immediate responses from others (option c). This means that if one service is overwhelmed or fails, it does not necessarily bring down the entire system, as other services can continue to function and process events at their own pace.
+The primary benefit of "decoupling" services through Event-Driven Architecture is that it allows services to operate and scale independently without needing immediate responses from others. This means that if one service is overwhelmed or fails, it does not necessarily bring down the entire system, as other services can continue to function and process events at their own pace.
 
 <br>
 
-Option a is incorrect because decoupling does not require services to be written in the same programming language. Option b is incorrect because decoupling does not ensure simultaneous updates across services. Option d is incorrect because decoupling does not inherently reduce the number of servers needed. In fact, it may require more servers to handle the increased complexity of a distributed system, but it provides greater resilience and scalability. The way we prioritize design requirements can change depending on the expected traffic and user experience goals of the application.
+The following are not benefits of decoupling services through Event-Driven Architecture:
+- Decoupling does not require services to be written in the same programming language.
+- Decoupling does not ensure simultaneous updates across services.
+- Decoupling does not inherently reduce the number of servers needed. In fact, it may require more servers to handle the increased complexity of a distributed system, but it provides greater resilience and scalability. The way we prioritize design requirements can change depending on the expected traffic and user experience goals of the application.
 
 ##### !end-explanation
 
