@@ -1,6 +1,6 @@
 # Intro to Cloud Databases
 
-Let's start by taking a moment to think about a website you visit frequently. Outside of files like images, what other content is there? We're likely to see a variety of content: ads with text, products with reviews, posts with comments or likes. We can see that there is a lot of data we need to power applications, much of which isn’t necessarily best stored as an object or file using the cloud storage options we've seen before.
+Let's start by taking a moment to think about a website you visit frequently. Outside of files like images, what other text or media is there? We're likely to see a variety of content: ads with text, products with reviews, posts with comments or likes. We can see that there is a lot of data we need to power applications, much of which isn’t necessarily best stored as an object or file using the cloud storage options we've seen before.
 
 To handle the data that powers enterprise applications, we need to create, connect to, and manage various kinds of databases. Throughout this topic we’ll dive into the differences in responsibility between fully managed vs self hosted databases, describe commonly available types of databases offered by cloud providers, and discuss their performance and scaling tradeoffs. Along the way we’ll discuss how we can keep data consistent, especially in a multi-region system, and talk about use cases for several kinds of databases.
 
@@ -12,8 +12,8 @@ To handle the data that powers enterprise applications, we need to create, conne
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| Fully Managed Database | A cloud-based database solution provided by a cloud service provider, where the underlying infrastructure, including virtual machines, storage, and database software, is entirely managed by the service provider. | -------- | "We used a fully managed database solution during our start-up phase since we didn't have a lot of dedicated team members to manage security updates and other maintenance." |
-| Self-Hosted Database | A database management system that is installed, configured, and maintained by an organization. A self-managed database may be hosted on-premises or on cloud infrastructure. | -------- | "The company chose a self-hosted database so they could enforce strict data sovereignty requirements and keep all records within their own data center." |
+| Fully Managed Database | A cloud-based database solution provided by a cloud service provider, where the underlying infrastructure, including virtual machines, storage, and database software, is entirely managed by the service provider. |  | "We used a fully managed database solution during our start-up phase since we didn't have a lot of dedicated team members to manage security updates and other maintenance." |
+| Self-Hosted Database | A database management system that is installed, configured, and maintained by an organization. A self-managed database may be hosted on-premises or on cloud infrastructure. |  | "The company chose a self-hosted database so they could enforce strict data sovereignty requirements and keep all records within their own data center." |
 
 ## What is a cloud database
 
@@ -111,8 +111,8 @@ With a self-hosted database, the engineering team owns all operational responsib
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: cloud-db-high-availability
-* title: 1651a69a-24d5-4c46-b30f-0fdfb691b589
+* id: 1651a69a-24d5-4c46-b30f-0fdfb691b589
+* title: Intro to Cloud Databases
 ##### !question
 
 An engineering team is evaluating whether to use a fully managed database service or self-host a database on virtual machines. Their top priority is automatic failover to a standby instance if the primary database goes down. Which option best supports this requirement with the least operational overhead?

@@ -102,11 +102,11 @@ Given their constraints, in-memory databases are best for small amounts of data 
 | **Data Duplication** | Minimized through normalization | Common; data is often duplicated to optimize reads |
 | **Best For** | Structured data with complex relationships and strict correctness requirements | Large scale, flexible, or high-performance workloads where the data model varies |
 
-### Database Comparison by Type
+### Database Strengths & Drawbacks Comparison by Type
 
 | Database Type | Key Strengths | Key Drawbacks | Common Use Cases |
 |---|---|---|---|
-| Relational (SQL) | Enforced schema; strong consistency & transactions; powerful querying with JOINs; well-understood and widely supported | Horizontal scaling is complex; rigid schema makes evolving data structures costly; JOIN-heavy queries slow down at massive scale | Financial transactions, order management, user accounts, any domain requiring strict data integrity |
+| Relational *(SQL)* | Enforced schema; strong consistency & transactions; powerful querying with JOINs; well-understood and widely supported | Horizontal scaling is complex; rigid schema makes evolving data structures costly; JOIN-heavy queries slow down at massive scale | Financial transactions, order management, user accounts, any domain requiring strict data integrity |
 | Key-Value *(Non-Relational)* | Extremely fast reads/writes; scales horizontally with ease; simple operational model | No support for complex queries; must know the key to retrieve data; relationships must be managed in application code | Session management, shopping carts, caching, gaming leaderboards, IoT device state |
 | Document *(Non-Relational)* | Flexible schema accommodates evolving data shapes; related data can be embedded in one record reducing reads; scales horizontally well | No schema enforcement risks data inconsistency; complex cross-document queries are slow; data duplication is common | User profiles, content management systems, product catalogs, real-time big data |
 | Graph *(Non-Relational)* | Relationships are first-class and stored natively; traversing deeply connected data is fast and constant cost per hop | Not suited for bulk aggregations or tabular reporting; harder to scale horizontally | Fraud detection, recommendation engines, social networks, knowledge graphs |
@@ -130,7 +130,7 @@ Non-relational (NoSQL) databases are not a single type but a family of database 
 - graph databases make traversing complex relationships fast
 - in-memory databases offer the fastest possible read and write speeds by serving data from RAM
 
-No single database type is universally better than another — the right choice depends entirely on our workload! 
+No single database type is universally better than another. The right choice depends entirely on our workload! 
 - Relational databases are ideal for structured data with complex relationships and strict correctness requirements, but can struggle to scale horizontally. 
 - Non-relational databases are typically designed with horizontal scaling in mind, making them better suited for large-scale or high-performance workloads, though each comes with its own tradeoffs around query flexibility, consistency, cost, and operational complexity. 
 

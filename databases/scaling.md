@@ -9,7 +9,7 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| Replication | The process of copying and synchronizing data across multiple database nodes or regions to improve availability, fault tolerance, and read performance. | Clone, Data mirroring, database copying | "We added read replicas in each region so that users in Europe and Asia don't have to wait for data to travel all the way from our primary database in the US." |
+| Replication | The process of copying and synchronizing data across multiple database nodes or regions to improve availability, fault tolerance, and read performance. | Cloning, Data mirroring, database copying | "We added read replicas in each region so that users in Europe and Asia don't have to wait for data to travel all the way from our primary database in the US." |
 | Sharding | A horizontal scaling strategy that partitions a large database into smaller, more manageable pieces called shards, each of which holds a subset of the total data and is distributed across separate servers or nodes. | Partitioning, horizontal partitioning | "After our user base grew to tens of millions, we implemented sharding so that no single database server was responsible for storing and serving all of the data." |
 
 ## What does it mean to Scale a Database? 
