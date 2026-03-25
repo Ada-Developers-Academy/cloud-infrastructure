@@ -4,24 +4,23 @@
 
 - Describe the differences between vertical and horizontal scaling as it relates to databases, including limits for common types of databases.
 - Describe patterns like read replicas and full replication that can be used to keep data available and consistent in a multi-region architecture
-- Generally describe strong vs eventual consistency models in distributed databases 
 
 ## Vocabulary and Synonyms
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-
-Key terms: replication, sharding
+| Replication | The process of copying and synchronizing data across multiple database nodes or regions to improve availability, fault tolerance, and read performance. | Clone, Data mirroring, database copying | "We added read replicas in each region so that users in Europe and Asia don't have to wait for data to travel all the way from our primary database in the US." |
+| Sharding | A horizontal scaling strategy that partitions a large database into smaller, more manageable pieces called shards, each of which holds a subset of the total data and is distributed across separate servers or nodes. | Partitioning, horizontal partitioning | "After our user base grew to tens of millions, we implemented sharding so that no single database server was responsible for storing and serving all of the data." |
 
 ## What does it mean to Scale a Database? 
 
-Scaling databases is how we ensure that as our data and customer base grows, our database remains accessible and performant. We've talked about scaling resources, as well as vertical & horizontal scaling in other contexts, and databases follow similar patterns. 
+Scaling databases is how we ensure that as our data and customer base grows, our database remains accessible and performant. We've talked about scaling resources, as well as the terms vertical & horizontal scaling in other contexts, and databases follow similar patterns. 
 
 We can think of the issue of scaling a database like a busy restaurant. Most of the day, service is pretty quick, we have plenty of servers and cooks for the number of occupied tables. As the dinner rush approaches and the restaurant gets full, service slows down: we have a fixed number of cook tops in the kitchen and food can only cook so quickly. If the restaurant gets busy enough, customers may face long wait times or be turned away since there are no open tables. 
 
-Databases face a similar issue: if our service gets too busy for the network resources we've provided, we aren't able to serve each request in a timely manner, and connections time out or are refused. Another possible issue is that, as our data grows, we run out of physical storage we've provisioned for the database and can't store new information.   
+Databases face a similar issue: if our service gets too busy for the resources we've provided, we aren't able to serve each request in a timely manner, and connections time out or are refused. Another possible issue is that, as our data grows, we run out of physical storage we've provisioned for the database and can't store new information.   
 
-In both cases, the result is poor performance that impacts our customers' experience or prevents them from accessing our service entirely. Let's explore how we can alleviate these issues with scaling strategies.
+In both cases, the result is poor performance that impacts our customers' experience or prevents them from accessing our service entirely. Let's explore how we can alleviate these issues with scaling strategies!
 
 ## Vertical Scaling
 
@@ -34,7 +33,7 @@ In both cases, this can work to alleviate pressure for a time, but there are har
 **Strengths**
 
 - *Avoids complexity*: No code changes, no rethinking how our data is organized. Vertical scaling keeps things simple by adding resources to the existing infrastructure, no extra data orchestration is required.
-- *Helps most with writes*: Without horizontal scaling strategies that introduce complexity (we'll talk more about these shortly!) all write operations typically go to one primary server. If our database is getting overwhelmed by incoming writes, adding more database servers (horizontal scaling) doesn't directly help, since . Upgrading the server that handles writes is the right move.
+- *Helps most with writes*: Without horizontal scaling strategies that introduce complexity (we'll talk more about these shortly!) all write operations typically go to one primary server. If our database is getting overwhelmed by incoming writes, and we're not in a place to add layers of coordination to the system, upgrading the server that handles writes is the right move.
 
 **Limitations**
 
@@ -46,11 +45,11 @@ Vertical scaling is universally applicable to all database types, but it isn't a
 
 | Database Type | Vertical Scaling Fit | Why | Key Constraint |
 |---|---|---|---|
-| Relational | ✅ Strong | A single node handles all reads, writes, and JOINs; adding CPU and RAM directly improves query throughput and concurrency without architectural changes | All workloads still flow through one node; hardware has a ceiling, and scaling up requires downtime or a brief failover on most managed services |
-| Document | ✅ Strong | A larger instance improves throughput for reads and writes without requiring changes to how documents are distributed | Same hardware ceiling as relational; vertical scaling alone won't sustain truly large-scale workloads |
-| Key-Value | ⚠️ Moderate | Works and is straightforward to apply, but key-value databases are purpose-built for horizontal scaling; teams rarely reach for vertical scaling first | Hardware ceiling is hit sooner relative to need since these workloads tend to be very high volume |
-| In-Memory | ⚠️ Moderate | Adding RAM directly increases the dataset size the database can hold, which is the primary constraint for in-memory databases | RAM is expensive and has a per-instance ceiling; vertical scaling is the main lever but cost escalates quickly |
-| Graph | ⚠️ Moderate | More CPU and RAM improves traversal performance and allows larger graphs to be held in memory | Relationship traversal complexity grows with graph size regardless of instance size; vertical scaling buys time but doesn't solve deep scalability challenges |
+| Relational | Strong | A single node handles all reads, writes, and JOINs; adding CPU and RAM directly improves query throughput and concurrency without architectural changes | All workloads still flow through one node; hardware has a ceiling, and scaling up requires downtime or a brief failover on most managed services |
+| Document | Strong | A larger instance improves throughput for reads and writes without requiring changes to how documents are distributed | Same hardware ceiling as relational; vertical scaling alone won't sustain truly large-scale workloads |
+| Key-Value | Moderate | Works and is straightforward to apply, but key-value databases are purpose-built for horizontal scaling; teams rarely reach for vertical scaling first | Hardware ceiling is hit sooner relative to need since these workloads tend to be very high volume |
+| In-Memory | Moderate | Adding RAM directly increases the dataset size the database can hold, which is the primary constraint for in-memory databases | RAM is expensive and has a per-instance ceiling; vertical scaling is the main lever but cost escalates quickly |
+| Graph | Moderate | More CPU and RAM improves traversal performance and allows larger graphs to be held in memory | Relationship traversal complexity grows with graph size regardless of instance size; vertical scaling buys time but doesn't solve deep scalability challenges |
 
 ### Self-Hosted vs. Managed Considerations
 
@@ -70,7 +69,7 @@ In our restaurant example, vertical scaling involved increasing our existing kit
 
 Just as a restaurant faces some logistical challenges in the example above, horizontal scaling for databases presents new challenges compared to vertical scaling. A database holds state, and that state has to be correct. When we add database nodes, we immediately face questions like: if a user writes data to one node, can another node read it immediately? Which node accepts writes? What happens if two nodes temporarily disagree about the value of a record? We will not go in-depth on how data conflicts are resolved (feel free to follow your curiosity!) but we will cover the main horizontal scaling strategies that engineers use to answer these questions while distributing load across nodes.
 
-There are two strategies that we'll discuss, *replication* which is aimed at increasing read speed and accessibility, and *sharding* which can help increase write throughput.
+There are two strategies that we'll discuss, *replication* which is generally aimed at increasing read speed and accessibility, and *sharding* which can help increase write throughput.
 
 ## Horizontal Scaling Methods
 
@@ -90,7 +89,7 @@ Beyond throughput, scaling can also mean serving users in multiple geographic re
 
 Read replicas help with read throughput but don't address write throughput or dataset size, since all writes still go through one primary node. When a system has outgrown what a single node can handle for writes, the answer is **sharding**: partitioning the data itself across multiple independent database instances, called shards.
 
-In a sharded system, each shard owns a defined slice of the data. A simple example: an e-commerce platform might shard its orders table by customer region, so orders from North American customers live on one shard and orders from European customers live on another. Each shard handles reads and writes for its own slice independently. The scaling benefit can be immense, we've now distributed both reads and writes across nodes. But sharding introduces complexity that touches our entire stack. 
+In a sharded system, each shard owns a defined slice of the data. A short example: an e-commerce platform might shard its orders table by customer region, so orders from North American customers live on one shard and orders from European customers live on another. Each shard handles reads and writes for its own slice independently. The scaling benefit can be immense, we've now distributed both reads and writes across nodes. However, we also need to be aware of how sharding introduces complexity that touches our entire stack. 
 
 In order to shard a database we need to decide on a **shard key**, sometimes called a **partition key**, which is the attribute we use to decide which shard a record belongs to. This choice has significant performance consequences. A well-chosen shard key distributes data and traffic evenly. When data and traffic are not evenly distrubuted, it creates a "hot shard" where one node handles most of the traffic while others sit mostly idle, defeating the purpose of sharding. 
 
@@ -140,14 +139,14 @@ We also need to consider other kinds of complexity like cross-shard queries. Any
 
 - Read throughput can scale nearly linearly by adding read replicas
 - Write throughput and dataset size can grow beyond single-node limits via sharding
-- Multiple nodes eliminate single points of failure — a node failure doesn't bring down the system
+- Multiple nodes eliminate single points of failure (one node failure doesn't bring down the system)
 - Global replication reduces latency for geographically distributed users
 
 **Limitations**
 
 - Sharding adds significant operational and application complexity
 - Asynchronous replication means replicas may serve briefly stale data
-- Poor shard key design causes hot partitions that undermine scaling
+- Poor shard key design can cause hot partitions that undermine scaling
 - Cross-shard queries require application-layer coordination and are slower
 - Resharding a live system is expensive and risky
 
@@ -155,15 +154,15 @@ Horizontal scaling is harder to apply to some types of databases than others. Th
 
 | Database Type | Horizontal Scaling Fit | Why | Key Constraint |
 |---|---|---|---|
-| Key-Value | ✅ Strong | Records are isolated with no relationships to other nodes; keys distribute cleanly across shards; many managed services shard automatically | Simple access model limits query flexibility |
-| Document | ✅ Strong | Documents are self-contained; no JOIN operations means queries don't need to coordinate across shards | Partition key design still matters; complex cross-document queries remain slow |
-| In-Memory | ⚠️ Moderate | Can distribute across nodes for throughput and availability | RAM cost caps dataset size regardless of node count; scaling adds throughput and redundancy, not storage capacity |
-| Graph | ❌ Difficult | Relationship traversals frequently cross shard boundaries, paying a network cost each time; harder as the graph grows more interconnected | Better suited for analytical workloads than web-scale traffic |
-| Relational | ⚠️ Moderate | Read replicas scale read-heavy workloads well | Sharding breaks or complicates JOIN operations; cross-shard joins must be reassembled in application code |
+| Key-Value | Strong | Records are isolated with no relationships to other nodes; keys distribute cleanly across shards; many managed services shard automatically | Simple access model limits query flexibility |
+| Document | Strong | Documents are self-contained; no JOIN operations means queries don't need to coordinate across shards | Partition key design still matters; complex cross-document queries remain slow |
+| In-Memory | Moderate | Can distribute across nodes for throughput and availability | RAM cost caps dataset size regardless of node count; scaling adds throughput and redundancy, not storage capacity |
+| Graph | Difficult | Relationship traversals frequently cross shard boundaries, paying a network cost each time; harder as the graph grows more interconnected | Better suited for analytical workloads than web-scale traffic |
+| Relational | Moderate | Read replicas scale read-heavy workloads well | Sharding breaks or complicates JOIN operations; cross-shard joins must be reassembled in application code |
 
 ### Self-Hosted vs. Managed Considerations
 
-Think back to the managed vs. self-hosted distinction from a previous lesson. Horizontal scaling is one of the places where that difference is most visible.
+Think back to the managed vs. self-hosted database distinctions we talked about previously. Horizontal scaling is one of the places where those differences are most visible.
 
 If we're self-hosting a database on virtual machines:
 - Setting up read replicas means we provision additional VM instances, install and configure the database engine on each one, configure the replication link from the primary to each replica, verify replication is working, and update our application's connection logic to route reads to replicas and writes to the primary. 
@@ -171,9 +170,7 @@ If we're self-hosting a database on virtual machines:
 
 If we're using a managed cloud database service, the provider handles the infrastructure mechanics: spinning up replica nodes, managing the replication pipeline, and surfacing replication lag metrics. For some managed non-relational databases, sharding is essentially automatic: we configure a partition key and the service distributes data across nodes without our team managing individual shard instances.
 
-What doesn't change regardless of managed or self-hosted, is our team is still responsible for the design decisions that determine whether horizontal scaling actually works. A managed service that automatically shards our data can't save us from a partition key that sends 80% of our traffic to one shard, and an application that ignores read replicas and routes everything to the primary will perform as if we had no replicas at all.
-
-## Choosing a Scaling Strategy
+What doesn't change regardless of managed or self-hosted, is our team is still responsible for the design decisions that determine whether horizontal scaling works as intended. A managed service that automatically shards our data can't save us from a partition key that sends 80% of our traffic to one shard, and an application that ignores read replicas and routes everything to the primary will perform as if we had no replicas at all.
 
 ## Choosing a Scaling Strategy
 
