@@ -104,3 +104,11 @@ Standards:
         Type: Lesson
         UID: 11e16268-ffe2-4e8c-ab95-0d4a199b7ef3
         Path: /identity-access-management/intro-identity-access-management.md
+      -
+        Type: Lesson
+        UID: b4360db3-b5c8-4271-83fb-079ea11d0e86
+        Path: /identity-access-management/secret-management.md
+      -
+        Type: Lesson
+        UID: 95e0313b-3c5c-486d-8270-ee98fbf6e78f
+        Path: /identity-access-management/intro-to-encryption.md

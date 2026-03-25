@@ -3,6 +3,7 @@
 ## Learning Goals
 
 - Explain the relationship between identity, authentication, and authorization.
+- Define what a trust boundary is.
 - Identify the core components of an IAM system.
 - Apply the principle of least privilege when reasoning about how permissions should be scoped for users, services, and roles in a real-world system.
 - Understand common authentication and authorization mechanisms.
@@ -20,16 +21,32 @@ Identity management governs three fundamental questions in any system:
 In traditional on-premises infrastructure, network boundaries provided a layer of implicit protection. If you were on the internal network there was a degree of trust that was often assumed. Cloud environments fundamentally change this model. Resources are exposed over the public internet, infrastructure is dynamic and ephemeral, and the boundary between "inside" and "outside" a system is far less well-defined. In this context, identity becomes the primary security boundary. Cloud platforms provision and deprovision resources rapidly, teams and services are often distributed, and a single misconfigured permission can expose sensitive data or critical infrastructure at scale. This is not just a theoretical risk. some of the most significant cloud security incidents in recent years have been caused not by sophisticated attacks, but by misconfigured access policies.
 
 Poor identity management has well-documented consequences:
-- Unauthorized access: Weak or poorly scoped credentials allow actors to access resources they should not be able to reach.
-- Privilege escalation: An attacker who gains access to a low-privilege account can exploit overly permissive policies to escalate their access to more sensitive systems.
-- Lack of auditability: Without structured identity management, it becomes difficult or impossible to determine who accessed a resource, when, and why. This is critical for both incident response and compliance requirements.
-- Credential exposure: Hardcoded or improperly stored credentials (API keys, passwords, tokens) are a persistent and common vulnerability in software systems.
+- **Unauthorized access**: Weak or poorly scoped credentials allow actors to access resources they should not be able to reach.
+- **Privilege escalation**: An attacker who gains access to a low-privilege account can exploit overly permissive policies to escalate their access to more sensitive systems.
+- **Lack of auditability**: Without structured identity management, it becomes difficult or impossible to determine who accessed a resource, when, and why. This is critical for both incident response and compliance requirements.
+- **Credential exposure**: Hardcoded or improperly stored credentials (API keys, passwords, tokens) are a persistent and common vulnerability in software systems.
 
 Identity management is what gives a system the ability to answer these questions reliably, consistently, and at scale.
 
-### IAM Fundamentals
+### Trust Boundaries
 
-Identity and access management (IAM) is the framework of policies, processes, and technologies used to manage digital identities and control access to resources within a system. IAM defines who or what can access a system, under what conditions, and with what level of permission. Before diving into the components and mechanisms of IAM systems, it is important to establish precise definitions for three terms that are often used interchangeably but represent distinct concepts: identity, authentication, and authorization. Conflating these concepts is a common source of confusion.
+A **trust boundary** is the point in a system where the level of trust changes. On one side of a trust boundary, requests and data are treated as trusted. On the other side, they are treated as untrusted and must be verified before being acted upon. Every time data or a request crosses a trust boundary, the system must make a decision about whether to trust it, and on what basis.
+
+Trust boundaries exist at many levels in a software system. The boundary between a public-facing API and an internal service is a trust boundary. The boundary between two microservices that belong to different teams is a trust boundary. The boundary between a user's browser and a web server is a trust boundary. Even within a single system, different components may operate at different trust levels.
+
+Identifying trust boundaries is a foundational step in designing a secure system. If a system does not have a clear model of where its trust boundaries are, it cannot reliably enforce authentication and authorization at the right points. This leads to one of the most common classes of security vulnerabilities: implicitly trusting a request or a piece of data because of where it came from, rather than verifying it explicitly.
+
+#### Trust Boundaries in Cloud Environments
+
+In traditional on-premises infrastructure, the network perimeter often served as the primary trust boundary. Traffic inside the network was implicitly trusted, and traffic from outside was treated with caution. This model has significant limitations even in on-premises environments, but it becomes untenable in cloud environments where there is no well-defined perimeter.
+
+In cloud environments, resources communicate across public and private networks, services are deployed and torn down dynamically, and the same infrastructure may serve multiple tenants. In this context, the network boundary alone cannot serve as a reliable trust boundary. A request that arrives from inside the same virtual network is not necessarily trustworthy. A service that was legitimate yesterday may have been compromised today. This is why identity becomes the primary trust boundary in cloud environments. Rather than trusting a request because of where it originates, a well-designed cloud system requires every request to be authenticated and authorized regardless of its origin. This principle is sometimes referred to as a **zero trust security** model: the assumption is that no request should be trusted by default, regardless of whether it originates inside or outside the system's network boundaries. Every request must be verified.
+
+Identity and access management (IAM) is the mechanism through which trust boundaries are enforced in software systems. IAM defines which principals are trusted, under what conditions, and with what level of access. When a request crosses a trust boundary, the IAM system is what determines whether that request should be permitted to proceed. The concepts that follow in this lesson, including authentication, authorization, and the principle of least privilege, are all mechanisms for enforcing decisions at trust boundaries. Understanding that these mechanisms exist to protect trust boundaries gives them a purpose that goes beyond their individual definitions.
+
+### Identity and Access Management (IAM) Fundamentals
+
+IAM is the framework of policies, processes, and technologies used to manage digital identities and control access to resources within a system. IAM defines who or what can access a system, under what conditions, and with what level of permission. Before diving into the components and mechanisms of IAM systems, it is important to establish precise definitions for three terms that are often used interchangeably but represent distinct concepts: identity, authentication, and authorization. Conflating these concepts is a common source of confusion.
 
 #### Identity
 
