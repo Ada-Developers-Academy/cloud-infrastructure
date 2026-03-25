@@ -81,6 +81,8 @@ The catch is that "asynchronously" is doing a lot of work in that sentence. Beca
 
 Read replicas are horizontal scaling in a targeted form: we're not distributing all database access, we're only distributing the read load that makes up the majority of database traffic. If a single database instance is struggling under read pressure, adding read replicas is often the first scaling lever teams reach for.
 
+Replication also helps our system be more fault tolerant, since many systems allow us to configure a replica to be promoted to the primary node. This means that we can enjoy the benefits of increased read throughput, and if a disaster occurs and our primary node goes down, we can promote a replica to the primary and failover with significantly reduced down time and possible data loss.
+
 **Multi-Region Replication: Scaling for Geography**
 
 Beyond throughput, scaling can also mean serving users in multiple geographic regions with low latency. Multi-region replication extends the replica concept globally: database nodes are deployed in different regions, and users are routed to the nearest one. Some configurations limit all writes to a single primary region; others support multi-primary writes with conflict resolution logic. This pattern improves availability, since a regional outage doesn't take down the whole system, and reduces read latency for globally distributed users. 
@@ -178,23 +180,87 @@ When a database starts showing signs of strain such as slower queries, higher la
 
 Vertical scaling is usually the simpler first move: it requires no changes to how the application connects to the database or how data is structured. For a relational database powering an e-commerce order management system, resizing the instance to add more RAM and CPU is far less disruptive than introducing replicas or sharding. It's a strong fit when traffic is growing predictably and the team wants to avoid added operational overhead. However, once the largest available instance size is no longer sufficient, or when a single node becomes a fault tolerance risk, vertical scaling stops being a viable long-term solution on its own.
 
-Horizontal scaling becomes the right choice when workloads outgrow what a single instance can handle, or when availability and geographic distribution matter. A social platform experiencing rapid user growth might add read replicas to handle the surge in feed and profile lookups without overloading the primary database. A global SaaS application serving users across multiple continents might deploy read replicas in each region to reduce latency for users far from the primary instance. For write-heavy workloads that have hit vertical limits, like an IoT platform ingesting sensor data from millions of devices, sharding data across multiple nodes may be necessary. Non-relational databases are often the better fit here, since most are built with horizontal scaling as a core capability rather than an afterthought.
+Horizontal scaling becomes the right choice when workloads outgrow what a single instance can handle, or when availability and geographic distribution matter. A social platform experiencing rapid user growth might add read replicas to handle the surge in feed and profile lookups without overloading the primary database. A global SaaS application serving users across multiple continents might deploy read replicas in each region to reduce latency for users far from the primary instance. For write-heavy workloads that have hit vertical limits, like an IoT platform ingesting sensor data from millions of devices, sharding data across multiple nodes may be necessary. Non-relational databases are often the better fit here, since most are built with horizontal scaling as a core capability.
 
-In practice, most mature production systems use both strategies at different points in their lifecycle or for different parts of their architecture. A startup might vertically scale a relational database through its early growth phase, then layer in read replicas as read traffic increases, and later evaluate sharding only if write throughput becomes a bottleneck. Within a single application, the relational database handling financial transactions might be scaled vertically while a key-value store managing session data scales horizontally across many nodes. The choice is rarely permanent; scaling decisions should be revisited as traffic patterns, data volume, and cost constraints evolve.
+In practice, most mature production systems use both strategies at different points in their lifecycle or for different parts of their architecture. A startup might vertically scale a relational database through its early growth phase, then layer in read replicas as read traffic increases, and later evaluate sharding only if write throughput becomes a bottleneck. Within a single application, a relational database handling financial transactions might be scaled vertically while a key-value store managing session data scales horizontally across many nodes. The choice is rarely permanent; scaling decisions should be revisited as traffic patterns, data volume, and cost constraints evolve.
 
 | | Vertical Scaling | Horizontal Scaling | Using Both |
 |---|---|---|---|
 | **Choose when** | Growth is steady and predictable; architecture simplicity is a priority | Workload has outgrown a single instance; availability or geographic distribution is needed | Different parts of the system have different needs; workload has evolved past vertical limits |
-| **Common examples** | Resizing an RDS instance for an order management system during steady growth | Adding read replicas for a high-traffic social feed; sharding a key-value store for IoT data ingestion | Vertically scaled relational DB for transactions + horizontally scaled in-memory store for sessions |
+| **Common examples** | Resizing an relational database instance for an order management system during steady growth | Adding read replicas for a high-traffic social feed; sharding a key-value store for IoT data ingestion | Vertically scaled relational DB for transactions + horizontally scaled in-memory store for sessions |
 | **Key strengths** | No application architecture changes; operationally simple | No hard ceiling on scale; improves fault tolerance and availability | Lets each database layer be optimized independently for its workload |
 | **Key limitations** | Hardware ceiling; single node is still a fault risk | Adds complexity around partitioning, routing, and consistency | Requires careful architecture planning to avoid inconsistency between layers |
 | **Watch out for** | Treating the largest instance as a permanent solution | Poor partition key design causing uneven load across nodes | Over-engineering early; adding complexity before it's needed |
 
 ## Summary
 
+Databases face the same fundamental pressure as any production system: they have to keep up as traffic grows and data accumulates. Vertical scaling addresses this by adding more resources to the existing instance: more RAM, more CPU, more storage. Vertical scaling is comparatively simpler than horizontal scaling, as it requires no changes to how our application or data is structured. Every database type can benefit from vertical scaling, but it's not a long-term solution on its own. Hardware has a ceiling, larger tiers cost disproportionately more, and a single node is still a single point of failure regardless of how powerful it becomes.
 
+Horizontal scaling strategies distribute load across multiple nodes to push past the limits we see in vertical scaling. Replication, particularly read replicas, targets the most common bottleneck in production systems: read-heavy traffic. By routing reads to synchronized copies of the primary database, you can dramatically increase throughput, reduce latency for geographically distributed users, and improve fault tolerance by enabling failover to a replica if the primary node fails. Sharding goes further by partitioning the data itself across independent nodes, unlocking write scaling and larger dataset sizes, but at the cost of significant operational and application complexity. 
+
+When scaling vertically, managed database services handle the instance resize automatically and with minimal interruption, while self-hosted databases require the team to plan for downtime, manage the transition to a larger VM, and manually verify the database is healthy afterward. For horizontal scaling, managed services handle the infrastructure mechanics of spinning up replicas, managing replication pipelines, and in some cases automatically sharding data based on a partition key (work that falls entirely on a team when self-hosting). Regardless of whether a database is managed or self-hosted, the team remains responsible for the design decisions that determine whether scaling works as intended like partition key design, and routing database queries to read replicas when applicable.
+
+The right strategy, be it vertical, horizontal, or a combination of both, depends on our workload, our database type, and where the actual bottlenecks are. Understanding these tradeoffs is what lets us scale intentionally rather than reactively.
 
 ## Check for Understanding
 
-Which of the following is a common limit of vertical scaling?
-Which of the following is a concern for horizontally scaling a database?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: Scaling Databases
+* title: Scaling Databases
+##### !question
+
+A small e-commerce startup is experiencing slower query performance as their order database grows. Their traffic is steady and predictable, and they want to avoid making changes to their application code or data structure. Which scaling approach is the best fit, and why?
+
+##### !end-question
+##### !options
+
+* Shard the database by order region to distribute writes across multiple nodes
+* Add read replicas within a single region to reduce load on the primary database instance
+* Resize the existing database instance to add more CPU and RAM
+* Deploy the database to multiple regions to reduce global latency
+
+##### !end-options
+##### !answer
+
+* Resize the existing database instance to add more CPU and RAM
+
+##### !end-answer
+##### !explanation
+
+Vertical scaling (resizing the existing instance) is the right first move here. Traffic is steady and predictable, the team wants simplicity, and no application or schema changes are required. Read replicas only help with read throughput, not overall query performance under a mixed workload. Sharding and multi-region deployment both introduce significant complexity that isn't warranted at this stage.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: Scaling Databases
+* title: Scaling Databases
+##### !question
+
+A social media platform's primary database is becoming overwhelmed. Analytics show that 90% of database queries are reads (loading user profiles, browsing posts), while only 10% are writes (creating posts, updating profiles). Which horizontal scaling strategy most directly addresses this bottleneck?
+
+##### !options
+
+* Shard the database by username to distribute write traffic across multiple nodes
+* Add read replicas to distribute read traffic away from the primary instance
+* Vertically scale the primary instance to handle more concurrent connections
+* Deploy a separate in-memory database to replace the primary database entirely
+
+##### !end-options
+##### !answer
+
+* Add read replicas to distribute read traffic away from the primary instance
+
+##### !end-answer
+##### !explanation
+
+Read replicas are built for this scenario. When reads vastly outnumber writes, routing read queries to replicas reduces pressure on the primary instance without requiring architectural changes to how data is written. Sharding addresses write throughput and dataset size, not a read-heavy bottleneck. Vertical scaling is a valid option but has a ceiling and doesn't distribute load. Replacing the primary database with an in-memory store introduces significant tradeoffs and is not a targeted solution to a read throughput problem.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
