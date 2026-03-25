@@ -207,7 +207,7 @@ The right strategy, be it vertical, horizontal, or a combination of both, depend
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: Scaling Databases
+* id: 2808cd73-af71-41b9-88fe-548a081eab2d
 * title: Scaling Databases
 ##### !question
 
@@ -238,12 +238,13 @@ Vertical scaling (resizing the existing instance) is the right first move here. 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: Scaling Databases
+* id: bed819e8-e5bd-4a90-8d02-d9464f8b806b
 * title: Scaling Databases
 ##### !question
 
 A social media platform's primary database is becoming overwhelmed. Analytics show that 90% of database queries are reads (loading user profiles, browsing posts), while only 10% are writes (creating posts, updating profiles). Which horizontal scaling strategy most directly addresses this bottleneck?
 
+##### !end-question
 ##### !options
 
 * Shard the database by username to distribute write traffic across multiple nodes
