@@ -59,10 +59,10 @@ Why are we putting in the effort to make GreenThumb distributed? Select **all** 
 
 ##### !options
 
-a| **Fault Tolerance:** If one node (machine) fails, the others can continue to serve our customers.
+a| **Reliability:** If one node (machine) fails, the others can continue to serve our customers.
 b| **Simplicity:** It is much simpler to write and debug code for a distributed system than for a single-machine application.
 c| **Scalability:** We can add more nodes independently as our workload increases, such as during a holiday sale.
-d| **Reliability:** We can replicate data across multiple machines so it remains available even during a local outage.
+d| **Durability:** We can replicate data across multiple machines so it remains available and protected from loss even during a local outage.
 
 ##### !end-options
 

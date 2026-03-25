@@ -10,14 +10,16 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --- | --- | --- | --- |
+| **Single Point of Failure** | A component in a system that, if it fails, will stop the entire system from working. | SPOF, Critical Failure Point | In a monolithic architecture, the **single point of failure** is the main server; if it goes down, the whole application becomes unavailable. |
 | **Node** | An individual, independent computer or program within a larger network. | Instance, Host, Unit | We can add a new **node** to the cluster to help process the increasing number of incoming requests. |
-| **Decoupling** | The process of separating system components so they can operate and change independently. | Isolation, Unbinding | By **decoupling** the payment service from the inventory service, we ensure a bug in one doesn't crash the other. |
 | **Fault Tolerance** | The ability of a system to continue operating properly in the event of the failure of one or more components. | Resilience, Redundancy | Our architecture features high **fault tolerance** because the workload automatically shifts if a server goes down. |
 | **State** | The stored information or status of a system at a specific point in time. | Condition, Data snapshot | In a distributed system, we must decide how to share the application's **state** across multiple independent nodes. |
+| **Stateless** | A design principle where each node does not retain any information about previous interactions. | Ephemeral, Non-persistent | By designing our services to be **stateless**, we can easily scale them horizontally without worrying about data consistency. |
+| **Message Queue** | A communication method where messages are stored in a queue until they can be processed by the receiving node. | Task Queue, Event Queue | We use a **message queue** to decouple our services, allowing them to communicate asynchronously and improve scalability. |
 
 ## Shifting from One to Many with Distributed Systems
 
-When we first begin our journey in web development, we often build **centralized systems**. In this model, a single application handles every task—from processing logins to managing a database. While this is simple to build and deploy, it creates a "single point of failure." If that one application encounters an error or runs out of memory, the entire system goes dark for our users.
+When we first begin our journey in web development, we often build **monolithic centralized systems**. In this model, a single application handles every task—from processing logins to managing a database. While this is simple to build and deploy, it creates a "single point of failure." If that one application encounters an error or runs out of memory, the entire system goes dark for our users.
 
 To build systems that can support millions of users across the globe, we move toward **distributed systems**. A distributed system is a collection of independent programs or computers (which we call **nodes**) that work together to achieve a common goal. To our users, the system feels like a single, seamless application, but behind the scenes, it is a coordinated effort between many moving parts.
 
@@ -26,7 +28,7 @@ To build systems that can support millions of users across the globe, we move to
 In a monolithic, centralized system, all logic lives in one place. If we need more power, we have to "scale vertically" by buying a bigger, more expensive server. In a distributed system, we "scale horizontally" by adding more nodes. Because these nodes are independent, they communicate over a network. This introduces new challenges—like network latency—but it provides the flexibility we need to build modern, global software.
 
 ![A side-by-side comparison diagram. The left side shows a "Centralized System" with a single large server handling all aspects of the system, represented by a big server icon. The right side shows a "Distributed System" with a cluster of many smaller, interconnected boxes, or nodes, all working together.](assets/eda-monolith-v-distributed.png)  
-*Fig. Centralized versus Distributed Architecture. The centralized system can scale vertically by replacing the server with a bigger one, but it remains a single point of failure. The varied colors in the distributed system indicate different system functions handled by that color of nodes. The distributed system can scale horizontally by adding more nodes, tailored to the area of functionality that needs to scale, and if one node fails, the others can continue to operate without interruption.*
+*Fig. Monolithic Centralized versus Distributed Architecture. The centralized system can scale vertically by replacing the server with a bigger one, but it remains a single point of failure. The varied colors in the distributed system indicate different system functions handled by that color of nodes. The distributed system can scale horizontally by adding more nodes, tailored to the area of functionality that needs to scale, and if one node fails, the others can continue to operate without interruption.*
 
 ## Leveraging the Strengths of Distributed Systems
 
@@ -65,7 +67,7 @@ This terminology helps us understand the level of reliability and durability we 
 
 ## Operating at the Infrastructure and Service Levels
 
-When we work in the cloud, we encounter distributed systems at two distinct layers. Understanding these layers helps us visualize how our code interacts with the physical world.
+When we work in the cloud, we encounter distributed systems at two distinct levels of abstraction. Understanding these levels helps us manage our applications effectively and take full advantage of the cloud's capabilities.
 
 ### The Infrastructure Level
 
@@ -167,7 +169,7 @@ The core strengths of a distributed system include:
 
 <br>
 
-Increased single-node complexity is instead a characteristic of centralized systems, where all logic and data are handled by one server, which can lead to bottlenecks and single points of failure.
+Increased single-node complexity is, instead, a characteristic of centralized systems, where all logic and data are handled by one server, which can lead to bottlenecks and single points of failure.
 
 ##### !end-explanation
 
@@ -214,7 +216,7 @@ A cloud database or messaging service would be examples of the Service Level.
 
 <br>
 
-We did not discuss the idea of a User Level or Application Level in this material, so those options are not applicable here.
+Application and User Levels of cloud infrastructure were not discussed in this module, but they would involve the software and applications we build on top of the cloud services. Application-level distributed systems would include things like microservices communicating with each other, while user-level distributed systems would involve how end-users interact with the application.
 
 ##### !end-explanation
 

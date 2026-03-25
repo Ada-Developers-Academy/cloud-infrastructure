@@ -11,6 +11,7 @@
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --- | --- | --- | --- |
 | **Event** | A significant change in state or an update within a system. | Message, Signal, Trigger | When a customer clicks "buy," the system produces an **event** to start the shipping process. |
+| **Topic** | A category or channel to which events are published and subscribers can listen. | Channel, Subject, Stream | The "user-activity" **topic** receives events related to user interactions on the website. |
 | **Payload** | The actual data carried within an event or message. | Body, Data, Content | The event's **payload** contained the user’s ID and the timestamp of the login. |
 
 ## Shifting Focus from Requests to Events
@@ -19,21 +20,23 @@ In our journey through full-stack development, we often rely on the **Request-Re
 
 To build secure, efficient, and resilient systems, we often move toward **Event-Driven Architecture (EDA)**. In this model, systems communicate by capturing and reacting to "events" as they happen.
 
-Events are like announcements that something has occurred. For example, when a user uploads a photo, instead of the upload service waiting for the thumbnail service to finish processing before responding to the user, it simply announces, "A new photo has been uploaded!" and moves on. The thumbnail service can then react to that event whenever it's ready.
+Events are like announcements that something has occurred. For example, consider a photo upload service which uses a thumbnail service to generate thumbnails for use in a gallery view. In a Request-Response model, the upload service would need to wait for the thumbnail service to finish processing before it can respond to the user. This creates a bottleneck, as the upload service is "blocked" until it receives a response from the thumbnail service. In contrast, in an Event-Driven Architecture, the upload service can simply announce that a new photo has been uploaded and then move on to its next task. The thumbnail service can react to that event whenever it's ready.
+
+We'll consider this example in more detail a little later in this lesson, but the key point here is that the upload service doesn't need to wait for the thumbnail service to finish before it can respond to the user. It doesn't even need to know that the thumbnail service exists!
 
 Shifting to an event-driven approach allows our services to work **asynchronously**. Instead of a service calling another service and waiting for a result, it simply announces that something happened and moves on to its next task. This shift is vital for building distributed systems that can handle millions of users without crashing if one small part of the system lags.
 
 ### Events in the Browser, Events in the Cloud
 
-In the browser, we are familiar with events like "click," "hover," or "submit." These events trigger JavaScript functions that update the user interface. We don't write code that sits there waiting for a click; instead, we set up listeners that react when the event occurs. This is the essence of event-driven programming.
+In the browser, we are familiar with events like "click," "hover," or "submit." These events trigger JavaScript functions that update the user interface. We don't write code that sits there waiting for a click; instead, we set up listeners that react when the event occurs. The event source doesn't need to know the identities of the listeners. It just needs a way to announce that something happened, and the listeners will react accordingly. This is the essence of event-driven programming, though we'll see that it will be advantageous to push this separation even further in the cloud!
 
-We've also seen asynchronous patterns in the browser, especially when making Web API calls. While promises and `async`/`await` may seem unrelated to the other browser events, they are part of the same philosophy: we don't want to block the user interface while waiting for a response. Promises effectively allow us to say, "When this API call finishes, then do this." This is  the same concept behind registering code to run _when_ a button is clicked. In either case, we are reacting to an event (a click, or the arrival of an API response) rather than waiting for it to happen.
+We've also seen asynchronous patterns in the browser, especially when making Web API calls. While promises and `async`/`await` may seem unrelated to the other browser events, they are essentially part of the same philosophy: we don't want to block the user interface while waiting for a response. Promises effectively allow us to say, "When this API call finishes, then do this." This is  the same concept behind registering code to run _when_ a button is clicked. In either case, we are reacting to an event (a click, or the arrival of an API response) rather than waiting for it to happen.
 
 In the cloud, we have similar concepts but on a much larger scale. Events can represent anything from a user action (like uploading a file) to a system change (like a server going down). By designing our cloud applications to react to these events, we can create systems that are more flexible and resilient. For example, if a server goes down, instead of the entire application crashing, other services can react to that event and reroute traffic or spin up new resources to handle the load.
 
 ### The Benefits of Event-Driven Implementation
 
-By adopting EDA, we gain several technical advantages that make our applications more robust.
+By adopting EDA, we gain a number of technical advantages that make our applications more robust.
 
 | Benefit | How Implementation Provides It |
 | --- | --- |
@@ -46,12 +49,17 @@ By adopting EDA, we gain several technical advantages that make our applications
 
 ## Communicating Through the Pub/Sub Model
 
-Event Driven Architecture is a high-level strategy. It doesn't specifically say how we should structure our systems to enable it. How do sources of events communicate with the services that react to those events? How do consumers know when an event has occurred? How do we ensure that events are delivered reliably and in a timely manner? These are all questions that EDA raises, and they don't have one-size-fits-all answers. However, there are common patterns that have emerged to help us implement EDA effectively. One of the most popular is the Publish/Subscribe model.
+Event Driven Architecture is a high-level strategy. It doesn't specifically say how we should structure our systems to enable it.
+- How do sources of events communicate with the services that react to those events?
+- How do consumers know when an event has occurred?
+- How do we ensure that events are delivered reliably and in a timely manner?
+
+These are all questions that EDA raises, and they don't have one-size-fits-all answers. However, there are common patterns that have emerged to help us implement EDA effectively. One of the most popular is the Publish/Subscribe model.
 
 **Publish/Subscribe (Pub/Sub)** is one of the most common patterns we use to implement EDA. In this model, we move away from direct "Point-A to Point-B" communication, such as we see with registering for a click event in the browser. Instead, we use an intermediary to manage the flow of information. A system producing an event doesn't need to know who is listening; it just announces that something happened. A system listening for an event don't need to know who produced the event; they just react when they receive it.
 
 ![A flow diagram showing a 'Publisher' service sending an arrow labeled 'Event' to a central box labeled 'Event Channel'. From the 'Event Channel', multiple 'Event' arrows point outward to various 'Subscriber' services.](assets/eda-event-channel.png)  
-*Fig. The flow of an event from a single producer through a central broker to multiple interested consumers.*
+*Fig. The flow of an event from a single publisher through a central event channel to multiple interested subscribers.*
 
 There are three primary roles in this system:
 1.  **Publishers:** The services that generate events. They don't know who will receive the event; they just "publish" it to a specific topic. Publishers are also called "producers" because they produce events that other services will consume.
@@ -62,7 +70,7 @@ There are three primary roles in this system:
 
 ## Here Comes the (Event) Bus!
 
-Many computer systems are organized around the concept of a "bus," which is a communication system that transfers data between components. A bus can take many different forms, but the core idea is that it provides a shared pathway for information to flow.
+Many computer systems are organized around the concept of a "bus," which is a communication system that transfers data between components. A bus can take many different forms, but the core idea is that it provides a shared pathway through which information can flow.
 
 Within a computer, a bus might be a physical set of wires that connects the CPU to memory and other peripherals. In software, a bus can be an architectural pattern that allows different parts of an application to communicate without being directly connected. This is often referred to as an "event bus" or "message bus."
 
@@ -70,18 +78,18 @@ In the context of EDA, the "event bus" is the central channel through which even
 
 ### !end-callout
 
-In real-world cloud environments, there are many events that occur, which we can have other services listen for and respond to. Consider a hypothetical system that allows users to upload photos.
+In real-world cloud environments, there are many events that occur, which we can have other services listen for and respond to. Let's return to the hypothetical photo upload system mentioned earlier.
 
-In our photo upload service, when a user uploads a photo, we will automatically generate a thumbnail version of that photo for use when the photo needs to be displayed as part of a user interface, such as when browsing a photo collection. We also want to analyze the photo for inappropriate content. Both of these tasks can be handled by separate services that react to the same event.
+In our photo upload service, when a user uploads a photo, we will automatically generate a thumbnail version of that photo for use when the photo needs to be displayed as part of a user interface, such as a gallery view. We additionally want to analyze the photo for inappropriate content. Both of these tasks can be handled by separate services that react to the same event.
 
 Using a Pub/Sub model, the upload service can publish an event like "A new photo has been uploaded!" to the event channel. The thumbnail service can subscribe to that event and start processing the photo to create a thumbnail whenever it receives the event. At the same time, a moderation service can also subscribe to the same event and start analyzing the photo for inappropriate content. Both services are working independently but reacting to the same event. Because they are decoupled, if the thumbnail service is slow or experiences an error, it won't affect the moderation service, and vice versa. And notice that the upload service doesn't need to know anything about the thumbnail or moderation services. It just announces that a new photo has been uploaded and moves on, allowing the other services to react to that event as needed.
 
 ![A flow diagram showing a "Photo Upload" event being published to an event channel, which then routes that event to both a "Thumbnail Service" and a "Moderation Service". The Photo Service initially stores the photo in a storage bucket, then publishes the event. The Thumbnail Service reacts to the event by creating a thumbnail and storing it in a separate bucket. The Moderation Service reacts to the same event by analyzing the photo for inappropriate content. If the Moderation Service flags the photo as inappropriate, it publishes a new event that the Thumbnail Service reacts to by deleting the thumbnail it created. A "Notification Service" is also shown subscribing to all events to alert the user about the status of their upload.](assets/eda-photo-upload.png)  
 *Fig. The simple act of uploading a photo can trigger a series of complex actions. Events related to the initial upload (in orange) are published to the event channel, which then routes those events to the thumbnail service and the moderation service. Both services react to the same event but operate independently. If the moderation service decides to flag the photo as inappropriate, it can publish a new event (in pink) that the thumbnail service can react to by deleting the thumbnail it created. All events can be observed by a notification service that alerts the user about the status of their upload, such as "Your photo is being processed" or "Your photo has been flagged for review."*
 
-Notice that the initial photo upload service acts only as a publisher. It doesn't need to know anything about the thumbnail or moderation services. The moderation service acts as both a subscriber (to the initial upload event) and a publisher (if it needs to flag the photo as inappropriate). The thumbnail service is only a subscriber, reacting to events but never producing them. Likewise, the notification service is only a subscriber, reacting to all events to keep the user informed about the status of their upload.
+Notice that the initial photo upload service acts only as a publisher. It doesn't need to know anything about the thumbnail or moderation services. The moderation service acts as both a subscriber (to the initial upload event) and a publisher (if it needs to flag the photo as inappropriate). The thumbnail service is only a subscriber, reacting to events but never producing them. In a more detailed diagram, it could send events about the completion of processing the thumbnail. The notification service is also only a subscriber in this diagram, reacting to all events to keep the user informed about the status of their upload.
 
-This illustrates how services can have different roles in an event-driven system, and how they can be decoupled from each other while still working together to achieve a common goal.
+This illustrates how services can have different roles in an event-driven system at different times, and how they can be decoupled from each other while still working together to achieve a common goal.
 
 ## Pub/Sub Model Tuning
 
@@ -99,7 +107,7 @@ Some event channels guarantee that messages are delivered in the order they were
 
 ### Delivery Guarantees
 
-Some event channels guarantee that every message is delivered at least once. This means that if a message fails to be delivered, the system will retry until it succeeds. This is important for applications where losing a message could lead to data loss or inconsistent state. For example, in a financial application, we want to ensure that every transaction event is processed, _even if it means processing some events multiple times_. Other event channels might allow for occasional message loss in exchange for higher performance. This can be acceptable for applications where the occasional loss of an event does not have significant consequences, such as in a real-time analytics dashboard where missing a few data points might not impact the overall insights.
+Some event channels guarantee that every message is delivered at least once. This means that if a message fails to be delivered, the system will retry until it succeeds. This is important for applications where losing a message could lead to data loss or inconsistent state. For example, in a financial application, we want to ensure that every transaction event is processed, _even if it means processing some events multiple times_. Note the importance of idempotency in service logic in this situation! Other event channels might allow for occasional message loss in exchange for higher performance. This can be acceptable for applications where the occasional loss of an event does not have significant consequences, such as in a real-time analytics dashboard where missing a few data points might not impact the overall insights.
 
 ### Message Filtering
 
@@ -117,7 +125,7 @@ Some event channels retain messages for a certain period of time, allowing subsc
 
 In some Pub/Sub systems, the event channel pushes messages to subscribers as soon as they are published. This can lead to lower latency, as subscribers receive events immediately. However, it can also lead to issues if a subscriber is overwhelmed with too many events at once. In other systems, subscribers pull messages from the event channel at their own pace. This allows subscribers to control the flow of events and can help prevent overload, but it might introduce additional latency as subscribers check for new messages.
 
-### Events vs. Topics
+### Topics
 
 In some Pub/Sub systems, events are published to specific topics, and subscribers subscribe to those topics to receive relevant events. This allows for a more organized flow of information, as subscribers can choose to only receive events that are relevant to their interests. For example, in a news application, there might be separate topics for sports, politics, and entertainment, allowing users to subscribe only to the topics they care about. In other systems, there might not be a concept of topics, and all events are published to a single channel that subscribers listen to. This can be simpler to implement but might lead to subscribers receiving a lot of irrelevant information.
 
@@ -129,7 +137,7 @@ The key is that the Pub/Sub model provides a flexible framework for implementing
 
 ## Summary
 
-We have explored how Event-Driven Architecture allows us to build distributed systems that are more flexible than traditional request-response models. By using asynchronous communication, we decouple our services so they can fail or scale without bringing down the entire application. The Pub/Sub model provides the mechanical framework for this, using Publishers, Event Channels, and Subscribers to route information efficiently. As we move deeper into cloud architecture, these patterns will be our primary tools for ensuring our systems remain responsive and reliable.
+We have explored how Event-Driven Architecture allows us to build distributed systems that are more flexible than traditional Request-Response models. By using asynchronous communication, we decouple our services so they can fail or scale without bringing down the entire application. The Pub/Sub model provides the mechanical framework for this, using Publishers, Event Channels, and Subscribers to route information efficiently. As we move deeper into cloud architecture, these patterns will be our primary tools for ensuring our systems remain responsive and reliable.
 
 ## Check for Understanding
 
@@ -238,7 +246,7 @@ c|
 
 ##### !explanation
 
-The Request-Response model is typically synchronous, meaning that the sender waits for a response before continuing. In contrast, Event-Driven Architecture is typically asynchronous, allowing the sender to continue its work without waiting. Additionally, in a Request-Response model, the sender often needs to know which specific service will handle the request, while EDA allows for more decoupling between services, as they communicate through events rather than direct calls.
+The Request-Response model is typically synchronous, meaning that the sender waits for a response before continuing. In contrast, Event-Driven Architecture is typically asynchronous, allowing the sender to continue its work without waiting. Additionally, in a Request-Response model, the sender often needs to know which specific service will handle the request, while EDA allows for more decoupling between services, as they communicate through an event channel rather than direct calls.
 
 <br>
 

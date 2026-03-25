@@ -10,14 +10,14 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | :--- | :--- | :--- | :--- |
-| **Synchronous** | A communication style where the sender waits for a response before moving on. | Real-time, blocking, request-response. | We use a synchronous call when we need an immediate confirmation from the database before showing a "Success" page. |
-| **Asynchronous** | A communication style where the sender moves to the next task without waiting for a response. | Non-blocking, background processing. | By making the email notification asynchronous, our checkout process doesn't slow down while waiting for the mail server. |
-| **Tight Coupling** | A state where system components are highly dependent on one another's internal logic or availability. | Interdependent, intertwined. | Because our payment and inventory services are tightly coupled, the whole site goes down if the inventory database crashes. |
-| **Scalability** | The ability of a system to handle increased load by adding resources. | Elasticity, growth capacity. | We improved our scalability by breaking our monolithic app into smaller, independent services. |
+| **Synchronous** | A communication style where the sender waits for a response before moving on. | Real-time, blocking, request-response. | We use a **synchronous** call when we need an immediate confirmation from the database before showing a "Success" page. |
+| **Asynchronous** | A communication style where the sender moves to the next task without waiting for a response. | Non-blocking, background processing. | By making the email notification **asynchronous**, our checkout process doesn't slow down while waiting for the mail server. |
+| **Tight Coupling** | A state where system components are highly dependent on one another's internal logic or availability. | Interdependent, intertwined. | Because our payment and inventory services are **tightly coupled**, the whole site goes down if the inventory database crashes. |
+| **Decoupling** | The process of separating system components so they can operate and change independently. | Isolation, Unbinding | By **decoupling** the payment service from the inventory service, we ensure a bug in one doesn't crash the other. |
 
 ## The Challenge of Scaling with Dependencies
 
-When we first start building full-stack applications, we often create "monoliths"—single, unified units where the frontend, backend, and database are all tightly connected. In this environment, communication is typically **synchronous**. For example, when a user clicks "Buy," the web server calls the payment service, waits for a "Success" message, then calls the shipping service, and finally tells the user the order is complete. This works beautifully when traffic is low and every part of the system is healthy.
+When we first start building full-stack applications, we often create "monoliths"—single, unified units where the frontend, backend, and database are all tightly connected. In this environment, communication is typically **synchronous**. For example, when a user clicks "Buy," the web server calls the payment service, waits for a "Success" message, then calls the shipping service, and finally tells the user the order is complete. This works well enough when traffic is low and every part of the system is healthy.
 
 However, as our applications grow, this tight coupling creates significant friction. If we experience a sudden spike in traffic—like an e-commerce site on Black Friday—every single dependency in that chain must be able to scale at the exact same speed. If the shipping service slows down under the weight of thousands of requests, it creates a "bottleneck" that forces the payment service to wait. The user's browser itself is also waiting for a response, which can lead to timeouts and a poor user experience.
 
@@ -74,8 +74,8 @@ A "bottleneck" occurs when one service in a tightly coupled system becomes overw
 
 The following options do not describe a bottleneck:
 - While security features may be the source of some performance issues if misconfigured, it does not describe a bottleneck.
-- A specialized tool for speeding up network requests is unrelated to the concept of a bottleneck.
-- Distributing data across cloud providers is a strategy for redundancy and scalability, but it does not directly address the issue of bottlenecks in tightly coupled systems.
+- A bottleneck situation tends to degrade performance. It is not a specialized tool for increasing the speed of network requests.
+- Distributing data across cloud providers is a strategy for redundancy and scalability, which can help avoid bottlenecks. It is not a bottleneck itself.
 
 ##### !end-explanation
 
@@ -119,7 +119,7 @@ d|
 The following are reasons why synchronous communication can be a disadvantage during high-traffic events:
 - If the receiver is busy or overwhelmed, this can lead to timeouts and a poor user experience.
 - In a tightly coupled system, all connected services must scale at the same time to maintain performance, which is often impractical during sudden spikes in traffic since it takes time for knowledge of the spike to propagate and for resources to be allocated.
-- If one service slows down, it can create a "domino effect" where all subsequent services that depend on it also slow down, further degrading the user experience (option d).
+- If one service slows down, it can create a "domino effect" where all subsequent services that depend on it also slow down, further degrading the user experience.
 
 <br>
 
@@ -168,9 +168,9 @@ The primary benefit of "decoupling" services through Event-Driven Architecture i
 <br>
 
 The following are not benefits of decoupling services through Event-Driven Architecture:
-- Decoupling does not require services to be written in the same programming language.
-- Decoupling does not ensure simultaneous updates across services.
-- Decoupling does not inherently reduce the number of servers needed. In fact, it may require more servers to handle the increased complexity of a distributed system, but it provides greater resilience and scalability. The way we prioritize design requirements can change depending on the expected traffic and user experience goals of the application.
+- Decoupling is not related to whether services are written in the same programming language.
+- Decoupling does not ensure simultaneous updates across services. To the contrary, it can introduce delays in communication, which is a trade-off for increased resilience.
+- Decoupling does not inherently reduce the number of servers needed. In fact, it may require more servers to handle the increased complexity of a distributed system. But it generally does so with gains in resilience and scalability. The way we prioritize design requirements can change depending on the expected traffic and user experience goals of the application.
 
 ##### !end-explanation
 
