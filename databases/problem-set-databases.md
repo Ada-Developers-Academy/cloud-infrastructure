@@ -6,14 +6,102 @@ Complete all questions below.
 
 ## Practice
 
-Which of the following is a reason to use a self-hosted database over a fully managed database?
-Which of the following is handled by the cloud provider when using a fully managed database?
-Which of the following is not a benefit of relational databases?
-Which of the following is common use case for a(n) X database?
-can have questions for each or several of the NoSQL types covered
-Given x requirements, what style of database would fit the feature best?
-Given x requirements would vertical or horizontal scaling best fit the needs?
-Which of the following is a limitation of read replicas?
+<!-- Self-Hosted vs Managed Database questions -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: b5b8d02b-2026-445f-8d7e-e6e4736e2132
+* title: Problem Set: Cloud Databases
+##### !question
+
+A hospital IT team is using a fully managed cloud database service to store patient appointment records. One morning, a critical security vulnerability is disclosed for the database engine version they are running. Which of the following best describes how the team should respond?
+
+##### !end-question
+##### !options
+
+* The team must immediately download and apply the patch manually to the database server
+* The team should spin up a new self-hosted instance with the patched version and migrate their data
+* The cloud provider will handle patching the database engine; the team should monitor for confirmation and verify application behavior after the update
+* The team must open a support ticket and wait for the provider to grant them SSH access so they can apply the patch themselves
+
+##### !end-options
+##### !answer
+
+* The cloud provider will handle patching the database engine; the team should monitor for confirmation and verify application behavior after the update
+
+##### !end-answer
+##### !explanation
+
+With a fully managed database service, the cloud provider is responsible for applying security patches and engine updates, the team does not need to manually access or patch the underlying server. The team's responsibility is to monitor that the update completed successfully and verify that their application continues to behave as expected afterward. Direct server access via SSH is typically not available on managed services, and migrating to a self-hosted instance would be unnecessary and likely costly here.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 155843a9-c4f3-4ca5-9e8c-b6f7da6e786f
+* title: Problem Set: Cloud Databases
+##### !question
+
+A media streaming company self-hosts their database on cloud virtual machines. Their lead database administrator leaves the company, and no other team member has experience managing the database infrastructure. Three months later, the database crashes due to a storage volume filling up. The team has no runbook for recovery and is unsure whether any recent backups exist. Which characteristic of self-hosted databases most directly contributed to this situation?
+
+##### !end-question
+##### !options
+
+* Self-hosted databases do not support storage auto-scaling under any circumstances
+* Self-hosted databases on cloud VMs cannot be monitored with standard alerting tools
+* The team bears full responsibility for operational tasks like storage management, backup configuration, and recovery procedures
+* Self-hosted databases require a dedicated on-call team available 24/7 to remain compliant with cloud provider terms
+
+##### !end-options
+##### !answer
+
+* The team bears full responsibility for operational tasks like storage management, backup configuration, and recovery procedures
+
+##### !end-answer
+##### !explanation
+
+With a self-hosted database, every operational responsibility, including monitoring storage capacity, configuring and testing backups, documenting recovery procedures, belongs to the team. There is no provider safety net. When the person who held that knowledge left, the operational risk went unaddressed. Self-hosted databases can be monitored with standard tools and can support storage scaling, but both require the team to configure them.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 966e227a-d531-4d78-a215-a4645c38a7b9
+* title: Problem Set: Cloud Databases
+##### !question
+
+A three-person engineering team at an early-stage startup is evaluating their database options. A self-hosted database on a cloud VM would cost roughly 30% less per GB of storage than a comparable managed service. A senior engineer argues the team should choose the managed service despite the higher storage cost. Which of the following best supports the senior engineer's position?
+
+##### !end-question
+##### !options
+
+* Managed services always outperform self-hosted databases regardless of workload size
+* The storage cost difference will shrink as the startup's data volume grows, making managed services cheaper at scale
+* For a small team, the time required to handle patching, incident response, and backup management on a self-hosted database could exceed the cost savings from cheaper storage
+* Managed services provide dedicated database administrators as part of the service fee, eliminating the need for any internal database expertise
+
+##### !end-options
+##### !answer
+
+* For a small team, the time required to handle patching, incident response, and backup management on a self-hosted database could exceed the cost savings from cheaper storage
+
+##### !end-answer
+##### !explanation
+
+The higher per-GB cost of a managed service reflects the operational automation and vendor expertise built into the service. For a small team, the engineering hours required to patch, monitor, back up, and respond to incidents on a self-hosted database can significantly outweigh the storage cost savings. Managed services do not provide dedicated Database Admins, the team is still responsible for schema design, query optimization, and scaling decisions. Performance and cost at scale depend on workload and design, not only the hosting model.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- Database Type questions -->
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -107,3 +195,67 @@ Most non-relational databases are architected for horizontal scaling — distrib
 ##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
+
+<!-- Scaling questions -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: b989fa77-c055-4189-a509-3c9693494053
+* title: Problem Set: Cloud Databases
+##### !question
+
+An engineering team has been vertically scaling their managed relational database for two years. They have just upgraded to the largest instance tier their cloud provider offers. Query latency is starting to climb again as traffic continues to grow. What is the most accurate description of their situation?
+
+##### !end-question
+##### !options
+
+* They should delete old records to free up capacity on the current instance
+* They have reached the ceiling of vertical scaling and must now consider horizontal scaling strategies
+* They should switch to a NoSQL database since relational databases cannot be horizontally scaled
+* They should move to a self-hosted database on a virtual machine to access larger hardware
+
+##### !end-options
+##### !answer
+
+* They have reached the ceiling of vertical scaling and must now consider horizontal scaling strategies
+
+##### !end-answer
+##### !explanation
+
+Vertical scaling has a hard ceiling: once the largest available instance tier is in use, there is nowhere left to scale up. At this point, horizontal scaling strategies, such as adding read replicas or evaluating sharding, become necessary. Deleting records doesn't address performance. Relational databases can be horizontally scaled, though it requires more planning than with some NoSQL database types. Switching to self-hosted hardware doesn't remove the fundamental hardware ceiling.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: c109e515-3904-4c6e-8e8f-68affdb8b0fc
+* title: Problem Set: Cloud Databases
+##### !question
+
+An IoT company ingests sensor data from millions of devices. Write volume is extremely high and has outgrown what their current single database node can handle. Read latency is acceptable. Which combination of factors best describes the appropriate next step?
+
+##### !end-question
+##### !options
+
+* Add read replicas, since read replicas distribute both read and write traffic across nodes
+* Vertically scale the database instance, since all writes go to a primary node and adding resources will directly improve write throughput
+* Evaluate sharding to distribute write traffic across multiple nodes, since read replicas do not address write throughput
+* Migrate to a relational database, since relational databases are optimized for high write throughput at scale
+
+##### !end-options
+##### !answer
+
+* Evaluate sharding to distribute write traffic across multiple nodes, since read replicas do not address write throughput
+
+##### !end-answer
+##### !explanation
+
+Read replicas only distribute read traffic, all writes still flow through the primary node, so they do not help a write-heavy bottleneck. Vertical scaling is a valid first step but has a ceiling and may already be exhausted. Sharding partitions data across multiple independent nodes, distributing both write traffic and dataset size. This is the right lever when write throughput has outgrown a single instance. Relational databases are actually harder to shard than most NoSQL databases, making a NoSQL key-value or document store potentially a better long-term fit for this workload.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
