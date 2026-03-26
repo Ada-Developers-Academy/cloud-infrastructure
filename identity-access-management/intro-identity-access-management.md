@@ -111,7 +111,7 @@ Policies can be permissive (explicitly allowing actions) or restrictive (explici
 These four components are designed to be combined together to build an access control system. A typical access control setup might look like this: a **policy** is created that grants read access to a specific database. That policy is attached to a **role** called `db-read-only`. A **group** of users who need read access to that database is assigned the `db-read-only` role. Individual **users** are added to that group, inheriting the role and its associated policy.
 This compositional approach keeps access control manageable, auditable, and consistent. Changes to permissions can be made at the policy or role level and propagate automatically to all principals that reference them, rather than requiring updates to individual user accounts.
 
-![Diagram an example access control setup](assets/access-control-setup.png)
+![Diagram representing how a policy flows down through a role, to a group, and finally to individual users](assets/access-control-setup.png)
 *Fig. Diagram representing how a policy flows down through a role, to a group, and finally to individual users.*
 
 ### The Principle of Least Privilege
