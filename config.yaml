@@ -94,8 +94,8 @@ Standards:
         UID: 29af588e-23f4-477b-b212-fc219b4e87a5
         Path: /networking/problem-set-networking.md
   -
-    Title: Access and Identity Management
-    Description: "Introduction to Access and Identity Management"
+    Title: Identity and Access Management
+    Description: "Introduction to Identity and Access Management, Secret Management, Problem Set"
     UID: e1104252-089f-4bba-87b8-a8f67cf00899
     SuccessCriteria:
       - success criteria
@@ -112,3 +112,7 @@ Standards:
         Type: Lesson
         UID: 95e0313b-3c5c-486d-8270-ee98fbf6e78f
         Path: /identity-access-management/intro-to-encryption.md
+      -
+        Type: Lesson
+        UID: 81364a63-9323-4c0c-8786-8181d5306405
+        Path: /identity-access-management/problem-set.md
