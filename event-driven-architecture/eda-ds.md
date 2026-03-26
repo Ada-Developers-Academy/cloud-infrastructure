@@ -33,7 +33,7 @@ This shift allows us to scale parts of our system independently. If our shipping
 
 ## Summary
 
-In this lesson, we explored why traditional, tightly coupled applications struggle to keep up with the demands of the modern web. We learned that **synchronous communication** creates dependencies that can lead to system-wide failures if one component becomes a bottleneck. By introducing **Distributed Systems** and **Event-Driven Architecture**, we provide a way for services to operate independently. This allows our systems to be more "elastic," reacting to events in real-time and scaling specific components without requiring the entire application to grow at the same rate. This foundation is essential for anyone building reliable services in the cloud.
+In this lesson, we explored why traditional, tightly coupled applications struggle to keep up with the demands of the modern web. We learned that **synchronous communication** creates dependencies that can lead to system-wide failures if one component becomes a bottleneck. By introducing **Distributed Systems** and **Event-Driven Architecture**, we provide a way for services to operate independently. This allows our systems to be more "elastic," reacting to events in real-time and scaling specific components without requiring the entire application to grow at the same rate. This practice of decoupling our system is essential for anyone building reliable services in the cloud.
 
 ## Check for Understanding
 

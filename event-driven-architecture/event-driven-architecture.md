@@ -20,7 +20,7 @@ In our journey through full-stack development, we often rely on the **Request-Re
 
 To build secure, efficient, and resilient systems, we often move toward **Event-Driven Architecture (EDA)**. In this model, systems communicate by capturing and reacting to "events" as they happen.
 
-Events are like announcements that something has occurred. For example, consider a photo upload service which uses a thumbnail service to generate thumbnails for use in a gallery view. In a Request-Response model, the upload service would need to wait for the thumbnail service to finish processing before it can respond to the user. This creates a bottleneck, as the upload service is "blocked" until it receives a response from the thumbnail service. In contrast, in an Event-Driven Architecture, the upload service can simply announce that a new photo has been uploaded and then move on to its next task. The thumbnail service can react to that event whenever it's ready.
+Events are like announcements that something has occurred. For example, consider a photo upload service which uses a thumbnail service to generate thumbnails for use in a gallery view. In a Request-Response model, the upload service would need to wait for the thumbnail service to finish processing before it can respond to the user. This creates a bottleneck, as the upload service is "blocked" until it receives a response from the thumbnail service. In contrast, in an Event-Driven Architecture, the upload service can simply announce that a new photo has been uploaded, then continue its job uploading the next image. The thumbnail service can react to that event whenever it's ready.
 
 We'll consider this example in more detail a little later in this lesson, but the key point here is that the upload service doesn't need to wait for the thumbnail service to finish before it can respond to the user. It doesn't even need to know that the thumbnail service exists!
 
@@ -36,7 +36,7 @@ In the cloud, we have similar concepts but on a much larger scale. Events can re
 
 ### The Benefits of Event-Driven Implementation
 
-By adopting EDA, we gain a number of technical advantages that make our applications more robust.
+By adopting EDA, we gain a number of technical advantages that make our applications more robust. Since EDA is a type of distributed system, we see the scalability and resilience benefits mentioned earlier, as well as several advantages we haven't discussed yet:
 
 | Benefit | How Implementation Provides It |
 | --- | --- |
@@ -49,12 +49,12 @@ By adopting EDA, we gain a number of technical advantages that make our applicat
 
 ## Communicating Through the Pub/Sub Model
 
-Event Driven Architecture is a high-level strategy. It doesn't specifically say how we should structure our systems to enable it.
+Event Driven Architecture is a high-level strategy. It doesn't specifically say how we should structure our systems to enable it. When designing an event driven system we need to consider questions like:
 - How do sources of events communicate with the services that react to those events?
 - How do consumers know when an event has occurred?
 - How do we ensure that events are delivered reliably and in a timely manner?
 
-These are all questions that EDA raises, and they don't have one-size-fits-all answers. However, there are common patterns that have emerged to help us implement EDA effectively. One of the most popular is the Publish/Subscribe model.
+As we often see in development, these questions that EDA raises don't have one-size-fits-all answers. However, there are common patterns that have emerged to help us implement EDA effectively. One of the most popular is the Publish/Subscribe model.
 
 **Publish/Subscribe (Pub/Sub)** is one of the most common patterns we use to implement EDA. In this model, we move away from direct "Point-A to Point-B" communication, such as we see with registering for a click event in the browser. Instead, we use an intermediary to manage the flow of information. A system producing an event doesn't need to know who is listening; it just announces that something happened. A system listening for an event don't need to know who produced the event; they just react when they receive it.
 
@@ -205,7 +205,7 @@ Place the following steps in the correct order for a message traveling through a
 
 ##### !explanation
 
-Unless a service signs up to receive updates on a specific topic, then even if an event occurs, the event won't be able to reach the Subscriber. After subscribing, then once a Publisher emits an event, it goes to the Event Channel, which is responsible for routing that message to all interested parties. Finally, the Subscriber receives the event and performs whatever task it was designed to do in response to that event.
+Unless a service signs up to receive updates on a specific topic, the event won't be able to reach the Subscriber, no matter how many times the event is published. Once subscribed, after a Publisher emits an event, it goes to the Event Channel, which is responsible for routing that message to all interested parties. Finally, the Subscriber receives the event and performs whatever task it was designed to do in response to that event.
 
 ##### !end-explanation
 
