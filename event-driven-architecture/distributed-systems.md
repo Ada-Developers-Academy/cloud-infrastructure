@@ -19,7 +19,7 @@
 
 ## Shifting from One to Many with Distributed Systems
 
-When we first begin our journey in web development, we often build **monolithic centralized systems**. In this model, a single application handles every task—from processing logins to managing a database. While this is simple to build and deploy, it creates a "single point of failure." If that one application encounters an error or runs out of memory, the entire system goes dark for our users.
+Many software services start their lives as **monolithic centralized systems**. In this model, a single application handles every task—from processing logins to managing a database. While this is simple to build and deploy, it creates a "single point of failure." If that one application encounters an error or runs out of memory, the entire system goes dark for our users.
 
 To build systems that can support millions of users across the globe, we move toward **distributed systems**. A distributed system is a collection of independent programs or computers (which we call **nodes**) that work together to achieve a common goal. To our users, the system feels like a single, seamless application, but behind the scenes, it is a coordinated effort between many moving parts.
 
