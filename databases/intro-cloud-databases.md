@@ -15,14 +15,14 @@ To handle the data that powers enterprise applications, we need to create, conne
 | Fully Managed Database | A cloud-based database solution provided by a cloud service provider, where the underlying infrastructure, including virtual machines, storage, and database software, is entirely managed by the service provider. |  | "We used a fully managed database solution during our start-up phase since we didn't have a lot of dedicated team members to manage security updates and other maintenance." |
 | Self-Hosted Database | A database management system that is installed, configured, and maintained by an organization. A self-managed database may be hosted on-premises or on cloud infrastructure. |  | "The company chose a self-hosted database so they could enforce strict data sovereignty requirements and keep all records within their own data center." |
 
-## What is a cloud database
+## What Is a Cloud Database?
 
 During Unit 2 of the core curriculum we install PostgreSQL and run it on our local machines to develop against. This is an on-premises database! We installed a database on hardware under our control and we are responsible for all aspects of keeping it up and running. In contrast, a cloud database is a database that runs on cloud infrastructure, and can be accessed from anywhere with an internet connection.
 
 Before cloud infrastructure existed, companies had to purchase servers, allocate physical space, and employ staff to keep systems running. Scaling up a traditional database also requires buying and configuring additional hardware, which is both costly and time-consuming. However, cloud databases can scale up or down on demand, or even automatically based on workload. 
 
-When it comes to cloud databases, we have a lot of choice! The variety of offerings from cloud vendors enables us to self-host databases using cloud compute and storage resources we've seen eariler, or to tap into fully managed database services that handle the day to day maintenance for us. 
-- Depending on what infrastructure our organization already has or our application's needs, we could even design a hybrid on-premises & cloud system! One example could be that we keep sensitive data in the datacenter that we already own to best use our existing resources, and we store less critical or sensitive data in a cloud database.
+When it comes to cloud databases, we have a lot of choice! The variety of offerings from cloud vendors enables us to self-host databases using cloud compute and storage resources we've seen earlier, or to tap into fully managed database services that handle the day to day maintenance for us. 
+- Depending on what infrastructure our organization already has or our application's needs, we could even design a hybrid on-premises and cloud system! One example could be that we keep sensitive data in the datacenter that we already own to best use our existing resources, and we store less critical or sensitive data in a cloud database.
 
 ## Fully-Managed vs Self-Hosted
 
@@ -48,11 +48,11 @@ With a managed service you pay for the time the database instance runs, as well 
 - **On Demand Instances** - may be billed at different increments, down to the second, typically with required minimum run times.
 - **Reserved Instances** - lowers the cost per hour of storage time, but requires instances to be reserved for months to years, which can lock applications into vendors.
 
-Managed services typically carry higher cost for compute time and storage than cloud compute or storage resources that we manage ourselves because we are paying a premium for the operational automation and vendor expertise embedded in the service. There are many cases where the benefits of a fully managed service can offset the longer term costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning, which can be substantial. 
+Managed services typically carry higher cost for compute time and storage than cloud compute or storage resources that we manage ourselves. We pay a premium for the operational automation and vendor expertise embedded in the service. That higher price can be justified for some organizations when weighed against the potentially substantial longer term costs of self-hosting: engineer time spent on patching, backup management, incident response, and capacity planning.
 - Self-hosted databases can be cheaper, particularly if a team already has strong database administration expertise. 
 - Particularly for smaller teams and startups, the staffing and operational costs of self-hosting a database can outweigh the benefits.
 
-Where self-hosting truly shines is fine grain control over our system. Depending on our exact needs, a managed service may simply not have our required configuration available. A self-hosted database allows us to choose any operating system, any database engine version, and any configuration. This matters for organizations with security & compliance requirements such as: 
+Where self-hosting truly shines is fine grain control over our system. Depending on our exact needs, a managed service may simply not have our required configuration available. A self-hosted database allows us to choose any operating system, any database engine version, and any configuration. This matters for organizations with security and compliance requirements such as: 
 - demanding specific software versions
 - teams running highly customized database configurations
 - workloads that need the absolute maximum IOPS that only direct SSD block storage configurations can provide
@@ -74,8 +74,6 @@ Self-hosted databases offer the greatest control, making them a strong fit for t
 
 ## Check for Understanding
 
-Which of the following is the user responsible for when using a self-hosted database?
-Which of the following is a user responsible for when using a fully managed database?
 
 
 <!-- prettier-ignore-start -->
@@ -153,21 +151,21 @@ Which of the following scenarios are good cases for choosing a self-hosted datab
 
 * The team wants to avoid writing backup and restore scripts.
 * The organization requires a specific database engine configuration that the managed service does not support.
-* The organization has stong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
+* The organization has strong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
 * The organization wants to reduce the time engineers spend on database maintenance.
 
 ##### !end-options
 ##### !answer
 
 * The organization requires a specific database engine configuration that the managed service does not support.
-* The organization has stong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
+* The organization has strong IT infrastructure and already pays for cloud storage resources that could be shared to better their utilize resources.
 
 ##### !end-answer
 ##### !explanation
 
 Self-hosted databases allow fine-grained control the cloud vendors cannot always provide. Managed services abstract away the hardware layer and impose some limits on configuration access. 
 
-If an organization has the IT resources to host set up and maintain their own database and already has underutilised cloud storage that they could use without further costs, it would cost them less to self-host than to pay for additional storage through the managed database service.
+If an organization has the IT resources to host, set up, and maintain their own database and already has underutilized cloud storage that they could use without further costs, it would cost them less to self-host than to pay for additional storage through the managed database service.
 
 ##### !end-explanation
 ### !end-challenge

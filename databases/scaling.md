@@ -12,9 +12,9 @@
 | Replication | The process of copying and synchronizing data across multiple database nodes or regions to improve availability, fault tolerance, and read performance. | Cloning, Data mirroring, database copying | "We added read replicas in each region so that users in Europe and Asia don't have to wait for data to travel all the way from our primary database in the US." |
 | Sharding | A horizontal scaling strategy that partitions a large database into smaller, more manageable pieces called shards, each of which holds a subset of the total data and is distributed across separate servers or nodes. | Partitioning, horizontal partitioning | "After our user base grew to tens of millions, we implemented sharding so that no single database server was responsible for storing and serving all of the data." |
 
-## What does it mean to Scale a Database? 
+## What Does It Mean to Scale a Database? 
 
-Scaling databases is how we ensure that as our data and customer base grows, our database remains accessible and performant. We've talked about scaling resources, as well as the terms vertical & horizontal scaling in other contexts, and databases follow similar patterns. 
+Scaling databases is how we ensure that as our data and customer base grows, our database remains accessible and performant. We've talked about scaling resources, as well as the terms vertical and horizontal scaling in other contexts, and databases follow similar patterns. 
 
 We can think of the issue of scaling a database like a busy restaurant. Most of the day, service is pretty quick, we have plenty of servers and cooks for the number of occupied tables. As the dinner rush approaches and the restaurant gets full, service slows down: we have a fixed number of cook tops in the kitchen and food can only cook so quickly. If the restaurant gets busy enough, customers may face long wait times or be turned away since there are no open tables. 
 

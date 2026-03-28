@@ -5,14 +5,14 @@ Whether hosted locally or in the cloud, databases are typically divided into two
 ## Learning Goals
 
 - Describe key differences between relational and non-relational databases.
-- Describe common kinds of non-relational databases and their strengths & tradeoffs.
-- Describe use cases for relational databases and common kinds of non-relational databases.
+- Describe common kinds of non-relational databases and their strengths and tradeoffs.
+- Describe real world use cases for both relational and non-relational databases.
 
 ## Relational Databases
 
 Relational databases store data in tables made up of rows and columns, with defined schemas that enforce data structure and relationships between tables. Their core strengths are:
 - **Strong consistency** - once data is written, every subsequent read is guaranteed to reflect the most recent data.
-- **Normalization** - organizing the attributes and connections in tables to remove redundant information. This helps reduce database size and keeps our data more accurate by having a single source of truth. 
+- **Normalization** - since relational databases require developers to plan strict schemas ahead of use, they are well suited to avoid redundant information. This helps reduce database size and keeps our data more accurate by having a single source of truth. 
 - **Complex queries** - JOIN operations across tables enable complex associations that help answer very specific questions about our data. 
 
 These databases excel when data integrity matters most, like financial systems, order management, and user account data.
@@ -32,7 +32,8 @@ A key-value database is in some ways like a dictionary data structure. Data is s
 
 **Strengths & Limits**
 
-The primary strength of key-value databases is raw speed and horizontal scalability; they distribute well across many nodes, making them capable of handling enormous volumes of traffic. Because lookups are simple and direct, read and write operations are extremely fast. The main tradeoff is that this simplicity is also a constraint: key-value stores don't support the complex queries, filtering, or joins of relational databases. If we need to find all records that share a particular attribute, we have to know the key ahead of time or build that logic into our application. They're built for speed, not flexibility.
+- The primary strength of key-value databases is raw speed and horizontal scalability; they distribute well across many nodes, making them capable of handling enormous volumes of traffic. Because lookups are simple and direct, read and write operations are extremely fast. 
+- The main tradeoff is that this simplicity is also a constraint: key-value stores don't support the complex queries, filtering, or joins of relational databases. If we need to find all records that share a particular attribute, we have to know the key ahead of time or build that logic into our application. They're built for speed, not flexibility.
 
 **Use Cases**
 
@@ -46,9 +47,9 @@ Document databases store data as individual documents, typically in a JSON or JS
 
 **Strengths & Limits**
 
-The flexibility of the document model is its core strength. Because we can represent a rich, nested structure inside one record, reads are often faster than in a relational database, which would often need multiple joins to assemble the same data. Document databases also scale horizontally well and tolerate evolving data shapes, which is useful when product requirements or types change frequently. 
+- The flexibility of the document model is its core strength. Because we can represent a rich, nested structure inside one record, reads are often faster than in a relational database, which would often need multiple joins to assemble the same data. Document databases also scale horizontally well and tolerate evolving data shapes, which is useful when product requirements or types change frequently. 
 
-The tradeoff is that this flexibility puts more responsibility on the application layer. Since there's no enforced schema, inconsistent data can creep in if validation isn't handled carefully in code. Complex queries that span many documents or require aggregating data across fields can also be slower and harder to optimize than equivalent SQL queries.
+- The tradeoff is that this flexibility puts more responsibility on the application layer. Since there's no enforced schema, inconsistent data can creep in if validation isn't handled carefully in code. Complex queries that span many documents or require aggregating data across fields can also be slower and harder to optimize than equivalent SQL queries.
 
 **Use Cases**
 
@@ -58,11 +59,15 @@ Document databases are often seen in content management systems, where different
 
 **Data Representation**
 
-Graph databases store data as a network of nodes and edges, where nodes represent entities (like a person, a product, or a location) and edges represent the relationships between them (like "follows," "purchased," or "located in"). Both nodes and edges can carry properties as metadata attached directly to them. The key distinction from relational databases is that relationships are first-class citizens, stored natively in the structure of the database rather than inferred at query time through JOIN operations. This means traversing deeply connected data is dramatically faster because the database doesn't need to scan large tables to find related records.
+Graph databases store data as a network of nodes and edges, where nodes represent entities (like a person, a product, or a location) and edges represent the relationships between them (like "follows," "purchased," or "located in"). Both nodes and edges can carry properties as metadata attached directly to them. The key distinction from relational databases is that relationships are first-class citizens, stored natively in the structure of the database rather than inferred at query time through JOIN operations. 
+
+For example, imagine a social network where we want to find all of User A' followers who also follow User B.  In a relational database, we'd store users in one table and follows in another, then write a query with JOIN operations to reconstruct those connections at query time. In a graph database, the 'follows' relationship between users is stored as an actual edge in the database so traversing connections is a direct lookup rather than a computation across tables. This means traversing deeply connected data is dramatically faster because the database doesn't need to scan large tables to find related records.
 
 **Strengths & Limits**
 
-The strength of graph databases is in queries that require hopping across many layers of relationships, an action that becomes exponentially expensive in a relational database. The tradeoff is that graph databases aren't a general-purpose tool. They perform poorly at the kinds of bulk aggregations and tabular reporting that relational databases handle well. They are also typically harder to scale horizontally than key-value or document stores, and require learing their query languages, like Cypher or Gremlin. 
+- The strength of graph databases is in queries that require hopping across many layers of relationships, an action that becomes exponentially expensive in a relational database. 
+
+- The tradeoff is that graph databases aren't a general-purpose tool. They perform poorly at the kinds of bulk aggregations and tabular reporting that relational databases handle well. They are also typically harder to scale horizontally than key-value or document stores, and require learning their query languages, like Cypher or Gremlin. 
 
 **Use Cases**
 
@@ -81,11 +86,12 @@ RAM access is orders of magnitude faster than even the fastest SSD. In-memory da
 
 **Strengths & Limits**
 
-The defining strength of in-memory databases is speed: no other database category comes close for raw read and write throughput. However, this speed comes with constraints around cost vs data size. RAM is significantly more expensive per gigabyte than disk storage, so in-memory databases are typically reserved for datasets where speed matters more than storage size. 
+- The defining strength of in-memory databases is speed: no other database category comes close for raw read and write throughput. 
+- This speed comes with constraints around cost vs data size. RAM is significantly more expensive per gigabyte than disk storage, so in-memory databases are typically reserved for datasets where speed matters more than storage size. 
 
 **Use Cases**
 
-Given their constraints, in-memory databases are best for small amounts of data that need to be read & written constantly. A common use case is application caching: rather than querying a relational database for the same product data on every page load, results are cached in an in-memory store and served directly from there until the cache is invalidated, typically after some period of time. This dramatically reduces load on the primary database during traffic spikes. Another common use case is real-time leaderboards in gaming applications: player scores are written and read constantly, and rankings need to update within milliseconds. 
+Given their constraints, in-memory databases are best for small amounts of data that need to be read and written constantly. A common use case is application caching: rather than querying a relational database for the same product data on every page load, results are cached in an in-memory store and served directly from there until the cache is invalidated, typically after some period of time. This dramatically reduces load on the primary database during traffic spikes. Another common use case is real-time leaderboards in gaming applications: player scores are written and read constantly, and rankings need to update within milliseconds. 
 
 ## Quick Comparison Tables
 
@@ -196,7 +202,7 @@ A content management system stores many different types of content: articles wit
 ##### !end-answer
 ##### !explanation
 
-Document databases store data as individual JSON-like documents, and each document can have its own structure. This flexibility means different content types like articles, videos, & product listings can coexist in the same collection without requiring every record to match a fixed schema or forcing a migration every time a new content type is added. 
+Document databases store data as individual JSON-like documents, and each document can have its own structure. This flexibility means different content types like articles, videos, and product listings can coexist in the same collection without requiring every record to match a fixed schema or forcing a migration every time a new content type is added. 
 
 Strict schema enforcement is a feature of relational databases, JOINs are a relational database concept, and in-memory storage is specific to in-memory databases.
 

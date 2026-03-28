@@ -95,7 +95,7 @@ A three-person engineering team at an early-stage startup is evaluating their da
 ##### !end-answer
 ##### !explanation
 
-The higher per-GB cost of a managed service reflects the operational automation and vendor expertise built into the service. For a small team, the engineering hours required to patch, monitor, back up, and respond to incidents on a self-hosted database can significantly outweigh the storage cost savings. Managed services do not provide dedicated Database Admins, the team is still responsible for schema design, query optimization, and scaling decisions. Performance and cost at scale depend on workload and design, not only the hosting model.
+The higher per-GB cost of a managed service reflects the operational automation and vendor expertise built into the service. For a small team, the engineering hours required to patch, monitor, back up, and respond to incidents on a self-hosted database can significantly outweigh the storage cost savings. Managed services do not provide dedicated database admins, the team is still responsible for schema design, query optimization, and scaling decisions. Performance and cost at scale depend on workload and design, not only the hosting model.
 
 ##### !end-explanation
 ### !end-challenge
