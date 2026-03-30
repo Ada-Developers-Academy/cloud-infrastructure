@@ -116,3 +116,26 @@ Standards:
         Type: Lesson
         UID: 29af588e-23f4-477b-b212-fc219b4e87a5
         Path: /networking/problem-set-networking.md
+  -
+    Title: Event Driven Architecture & Distributed Systems
+    Description: "The Need for Event-Driven Architecture & Distributed Systems, Distributed Systems, Event-Driven Architecture, Problem Set: Event-Driven Architecture & Distributed Systems"
+    UID: 6c88b727-373f-4838-895d-6ad2a26a882f
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: d90651f7-2b90-47ae-961c-713c604506cd
+        Path: /event-driven-architecture/eda-ds.md
+      -
+        Type: Lesson
+        UID: 7251cec0-62e5-4e8c-8604-01465cdc6116
+        Path: /event-driven-architecture/distributed-systems.md
+      -
+        Type: Lesson
+        UID: 23cae71f-4e0b-4563-824c-0478f258d499
+        Path: /event-driven-architecture/event-driven-architecture.md
+      -
+        Type: Lesson
+        UID: ffbc26e0-f75e-409b-b999-10cc44c8b824
+        Path: /event-driven-architecture/problem-set-eda.md
