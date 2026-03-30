@@ -67,6 +67,29 @@ Standards:
         UID: 389c594a-a796-469e-8cd4-980ce4b00760
         Path: /storage/problem-set-storage.md
   -
+    Title: Databases
+    Description: "Intro to Cloud Databases, Database Types & Tradeoffs, Scaling Databases, Problem Set: Cloud Databases"
+    UID: b0ae93e8-dd23-4ba2-9df7-f8b2120140ca
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson    
+        UID: 0c0cef89-cc6d-4f27-b932-7b0d82caee12
+        Path: /databases/intro-cloud-databases.md
+      -
+        Type: Lesson
+        UID: e116cef8-1912-4ab8-adef-28680e9c9f96
+        Path: /databases/types-and-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 65c2b616-ad2a-42ab-a9d0-1b6cc92be9fa
+        Path: /databases/scaling.md
+      -
+        Type: Lesson
+        UID: 6b458a53-2d43-4f08-998f-d64d1d42c5a1
+        Path: /databases/problem-set-databases.md
+  -
     Title: Networking
     Description: "Networking Basics, Networking in the Cloud, Securing Cloud Networks, Hybrid Networking, Problem Set: Networking"
     UID: b45b570c-3a20-4117-b550-398b6a0d537f
