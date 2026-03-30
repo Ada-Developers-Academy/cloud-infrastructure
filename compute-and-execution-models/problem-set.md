@@ -2,6 +2,8 @@
 
 ## Lesson Review
 
+Complete all questions below.
+
 <!-- Question 1 -->
 ### !challenge
 * type: multiple-choice
