@@ -139,3 +139,26 @@ Standards:
         Type: Lesson
         UID: ffbc26e0-f75e-409b-b999-10cc44c8b824
         Path: /event-driven-architecture/problem-set-eda.md
+  -
+    Title: Identity and Access Management
+    Description: "Introduction to Identity and Access Management, Secret Management, Introduction to Encryption, Problem Set"
+    UID: e1104252-089f-4bba-87b8-a8f67cf00899
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 11e16268-ffe2-4e8c-ab95-0d4a199b7ef3
+        Path: /identity-access-management/intro-identity-access-management.md
+      -
+        Type: Lesson
+        UID: b4360db3-b5c8-4271-83fb-079ea11d0e86
+        Path: /identity-access-management/secret-management.md
+      -
+        Type: Lesson
+        UID: 95e0313b-3c5c-486d-8270-ee98fbf6e78f
+        Path: /identity-access-management/intro-to-encryption.md
+      -
+        Type: Lesson
+        UID: 81364a63-9323-4c0c-8786-8181d5306405
+        Path: /identity-access-management/problem-set.md
