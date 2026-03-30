@@ -10,7 +10,7 @@
 - Explain how services authenticate to each other and describe the role secrets play in service-to-service authentication.
 - Identify common secrets management mistakes made during development and describe practices for avoiding them.
 
-### What are Secrets
+### What are Secrets?
 
 In the context of computing and cloud environments, a **secret** is any piece of sensitive information that is used to authenticate, authorize, or encrypt access to a resource. Secrets are the credentials that systems, services, and users rely on to prove identity and establish trust. They are called secrets because their value depends entirely on remaining confidential. A secret that is known to an unauthorized party is no longer a secret, and the protection it was intended to provide is compromised.
 
@@ -36,9 +36,13 @@ It is worth noting that many high-profile security breaches are not caused by so
 
 Before diving into the specific types of secrets used in software systems and how they are managed, it is important to understand the foundations of secrets management: the distinction between **data at rest** and **data in transit**. These two terms describe the two states in which data exists in a system, and each state presents distinct security considerations.
 
+#### Data at Rest
+
 **Data at rest** refers to data that is stored in a persistent location and is not actively moving between systems or components. This includes data stored in databases, file systems, object storage, backup archives, or any other storage medium. Secrets are a category of data that must be protected when at rest. For example, a database credential stored in a configuration file, an API key stored in a secrets management tool, and an encryption key stored in a key management service are all secrets that exist in a state of rest until they are retrieved and used. 
 
 Data at rest is primarily vulnerable to threats that target the storage layer directly. If an attacker gains access to the storage medium where data is held, whether through unauthorized access to a database, theft of a physical storage device, or exploitation of a misconfigured storage bucket, they may be able to read the data directly. This is why data at rest should be encrypted: even if an attacker gains access to the underlying storage, encrypted data is unreadable without the corresponding decryption key.
+
+#### Data in Transit
 
 **Data in transit** refers to data that is actively moving between two points, such as between a client and a server, between two microservices, or between a application and a database. Secrets that are in transit include an API key being sent in an HTTP request header, a database password being passed in a connection string, or an access token being transmitted between services.
 
@@ -72,6 +76,8 @@ In the context of secrets management, passwords and passphrases are among the mo
 
 An **API key** is a secret token issued by a service that grants the holder access to that service's API. API keys are widely used because they are simple to generate and implement, but they carry significant risk if not managed carefully. Unlike some other authentication mechanisms, an API key typically grants access to a service without requiring any additional verification, meaning that anyone who obtains the key can use it to make requests on behalf of the key's owner.
 
+Since the receiving service has no way to distinguish between the legitimate owner presenting the key and an attacker who has obtained it through other means, an attacker can silently impersonate the key's owner, consuming resources, accessing data, and performing actions that will be attributed to the legitimate owner rather than the attacker. This makes detecting and investigating unauthorized use significantly harder, since the activity appears in audit logs as legitimate requests from a known principal.
+
 #### Encryption Keys
 
 An **encryption key** is a piece of data used by an encryption algorithm to transform plaintext into ciphertext, and ciphertext back into plaintext. Encryption keys are among the most sensitive secrets in a system because if a key is compromised, any data protected by that key may be exposed. Encryption keys are covered in depth in the [Introduction to Encryption](./intro-to-encryption.md) lesson.
@@ -104,9 +110,7 @@ Access tokens are widely used in modern authentication protocols including OAuth
 
 Modern software systems are rarely monolithic. They are composed of multiple services that communicate with each other to fulfill requests: a web application might call an authentication service to verify a user's identity, a payment service to process a transaction, and a notification service to send a confirmation email. Each of these interactions requires the calling service to prove to the receiving service that it is authorized to make that request. This is the problem that service-to-service authentication solves.
 
-When a human user authenticates to a system, they typically do so interactively by presenting credentials such as a username and password or a second factor. Services cannot authenticate interactively. They must authenticate programmatically, without human intervention, often at high frequency and across many simultaneous connections. This requires a different approach to authentication than the mechanisms used for human users. Service-to-service authentication ensures that every request between services is verified, regardless of where it originates. Services authenticate to each other by presenting a secret that the receiving service can verify. The type of secret used depends on the architecture of the system and the authentication mechanism in place. Common approaches include:
-- **API keys**: A calling service includes an API key in its request, which the receiving service validates against a known list of authorized keys. This is a simple and widely used approach but carries the risks described in the previous section, particularly if the API key is long-lived and not rotated regularly.
-- **Access tokens**: A calling service obtains a short-lived access token from a central authentication service and presents that token with each request. The receiving service validates the token to verify the caller's identity and permissions. This approach is more secure than API keys because tokens expire quickly, limiting the window of exploitation if a token is compromised.
+When a human user authenticates to a system, they typically do so interactively by presenting credentials such as a username and password or a second factor. Services cannot authenticate interactively. They must authenticate programmatically, without human intervention, often at high frequency and across many simultaneous connections. This requires a different approach to authentication than the mechanisms used for human users. Service-to-service authentication ensures that every request between services is verified, regardless of where it originates. Services authenticate to each other by presenting a secret that the receiving service can verify. The type of secret used depends on the architecture of the system and the authentication mechanism in place.
 
 #### Short-Lived Credentials versus Long-Lived Credentials
 
@@ -135,7 +139,14 @@ A secrets management tool is a dedicated system for storing, retrieving, and man
 
 Cloud platforms provide dedicated secrets management services that implement the capabilities described above at scale. While the specific implementation details vary across platforms, the underlying model is consistent: secrets are stored in an encrypted vault, access is controlled through the platform's IAM system, and all access events are logged.
 
-A typical workflow using a cloud-based secrets management tool looks like this: a secret, such as a database credential, is stored in the secrets management service at deployment time. The application that needs that credential is assigned an IAM role with a policy that grants it permission to retrieve that specific secret. At runtime, the application authenticates to the cloud platform using its assigned role and requests the secret from the secrets management service. The service verifies that the application's role has permission to access the requested secret and, if so, returns it over an encrypted connection. The application uses the secret for the duration of its need and does not store it persistently. This workflow ensures that the secret is never stored in the application's configuration files or source code, that access to the secret is governed by explicit IAM policies, and that every retrieval is logged for audit purposes.
+A typical workflow using a cloud-based secrets management tool looks like this: 
+1. A secret, such as a database credential, is stored in the secrets management service at deployment time. 
+2. The application that needs the credential is assigned an IAM role with a policy that grants it permission to retrieve that specific secret. 
+3. At runtime, the application authenticates to the cloud platform using its assigned role and requests the secret from the secrets management service. 
+4. The service verifies that the application's role has permission to access the requested secret and, if so, returns it over an encrypted connection. 
+5. The application uses the secret for the duration of its need and does not store it persistently.  
+
+This workflow ensures that the secret is never stored in the application's configuration files or source code, that access to the secret is governed by explicit IAM policies, and that every retrieval is logged for audit purposes.
 
 ### Automated Secret Rotation
 
