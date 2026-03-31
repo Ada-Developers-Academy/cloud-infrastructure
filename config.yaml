@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Cloud Building Blocks
-    Description: "Intro to Cloud Computing, Introduction to Containers, Load Balancers & Availability Zones"
+    Description: "Intro to Cloud Computing, Introduction to Containers, Introduction to Load Balancers & Availability Zones"
     UID: 326f81ef-ca6c-4abb-a075-884258807cbf
     SuccessCriteria:
       - success criteria
