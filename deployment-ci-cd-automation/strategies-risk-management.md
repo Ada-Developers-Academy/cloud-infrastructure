@@ -3,10 +3,12 @@
 Core question: How do we reduce blast radius when shipping?
 
 Covers:
-Rolling deployments
-Canary releases
-Blue/green
-Gradual rollouts
+Config vs code
+Deployment types:
+- Rolling deployments
+- Canary releases
+- Blue/green
+- Gradual rollouts
 Tradeoffs (speed, risk, complexity, observability needs)
 
 CFU Ideas:

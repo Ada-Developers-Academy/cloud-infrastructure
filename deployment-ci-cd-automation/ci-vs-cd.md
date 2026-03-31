@@ -1,4 +1,4 @@
-# CI vs. CD: Why Pipelines Exist
+# CI & CD: Why Pipelines Exist
 
 Core question: What should be automated before anything hits production?
 
