@@ -1,16 +1,31 @@
 ---
 Standards:
   -
-    Title: Compute & Execution Models - How Code Runs in the Cloud
-    Description: "Intro to Cloud Computing, The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
-    UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
+    Title: Cloud Building Blocks
+    Description: "Intro to Cloud Computing, Introduction to Containers, Introduction to Load Balancers & Availability Zones"
+    UID: 326f81ef-ca6c-4abb-a075-884258807cbf
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Lesson
         UID: 5a1bfc16-d91c-4e28-bf85-d481239904f1
-        Path: /compute-and-execution-models/intro-to-cloud-computing.md
+        Path: /cloud-building-blocks/intro-to-cloud-computing.md
+      -
+        Type: Lesson
+        UID: dd02607f-a1c4-43d4-83a0-1340865ab601
+        Path: /cloud-building-blocks/intro-to-containers.md
+      -
+        Type: Lesson
+        UID: e0aa96bb-163b-4be0-a75e-93e025539be9
+        Path: /cloud-building-blocks/load-balancing-and-availability-zones.md
+  -
+    Title: Compute & Execution Models - How Code Runs in the Cloud
+    Description: "The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
+    UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
       -
         Type: Lesson
         UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
