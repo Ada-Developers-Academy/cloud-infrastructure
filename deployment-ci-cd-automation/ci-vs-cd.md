@@ -68,7 +68,7 @@ The staging deployment and its associated tests are the critical addition here. 
 
 ## Continuous Deployment
 
-Continuous Deployment takes the final manual step out of the picture. In a Continuous Deployment pipeline, every change that passes all automated checks is deployed to production automatically, with no human approval required. If the tests pass, users see the change.
+**Continuous Deployment** takes the final manual step out of the picture. In a Continuous Deployment pipeline, every change that passes all automated checks is deployed to production automatically, with no human approval required. If the tests pass, users see the change.
 
 This is the most automated point on the CI/CD spectrum, and it is the model used by many high-velocity consumer software teams. It is also the model that creates the most pressure on test coverage and monitoring: because no human reviews a change before it reaches users, the automated checks become the last line of defense.
 
@@ -155,7 +155,7 @@ Repeatability and fast feedback aren't separate benefits of CI/CD — they reinf
 
 ## Summary
 
-At its core, CI/CD is about making software releases boring in the best possible way — predictable, automated, and consistent rather than nerve-wracking and manual. 
+At its core, CI/CD is about making software releases boring in the best possible way: predictable, automated, and consistent rather than nerve-wracking and manual. 
 
 Continuous Integration kicks things off: developers merge changes often rather than stockpiling them, and every merge triggers an automated sequence that builds, tests, and packages the code or stops and raises an alert if something breaks. Running these checks immediately after each change keeps feedback tight, a developer still has full context on what they just wrote, and the fix is straightforward before other changes have been layered on top.
 
@@ -168,7 +168,95 @@ Underneath all three practices is the idea that a release process encoded in a f
 
 ## Check for Understanding
 
-CFU Ideas:
-Continuous Integration (CI) primarily focuses on which of the following?
-What’s the most accurate difference between Continuous Delivery and Continuous Deployment?
-The biggest benefit of a CI/CD pipeline is that it...?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: c0e71571-85f4-49ae-ac2e-ca5e422993ea
+* title: CI & CD: Why Pipelines Exist
+##### !question
+
+A development team notices that when multiple engineers merge their work at the end of a two-week sprint, integration is chaotic and bugs are hard to trace back to a specific change. Which practice most directly addresses this problem?
+
+##### !end-question
+##### !options
+
+* Continuous Deployment, because it removes human approval gates and ships code faster
+* Continuous Integration, because it encourages frequent merges with automated builds and tests that catch problems early
+* Artifact management, because storing versioned builds makes it easier to identify which release introduced the bug
+* Continuous Delivery, because it keeps code in a permanently deployable state at all times
+
+##### !end-options
+##### !answer
+
+* Continuous Integration, because it encourages frequent merges with automated builds and tests that catch problems early
+
+##### !end-answer
+##### !explanation
+
+Continuous Integration addresses the "big bang merge" problem by encouraging developers to merge small changes frequently. Automated builds and tests run on each merge, surfacing conflicts and bugs while they're still isolated and easy to fix, before other changes have been layered on top.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: c497e13a-e91b-4c41-9ca0-a9ee8dd80ebf
+* title: CI & CD: Why Pipelines Exist
+##### !question
+
+Which of the following best describes what makes a CI/CD pipeline more reliable than a manual release checklist over time?
+
+##### !end-question
+##### !options
+
+* Pipelines are faster than manual processes, which reduces the window of risk during a deployment
+* Pipeline configuration lives in version control alongside application code, so the process is consistent, auditable, and can't silently drift
+* Pipelines eliminate the need for staging environments because automated tests can fully replicate production conditions
+* Pipelines allow engineers to skip individual steps when they are confident a change is low risk
+
+##### !end-options
+##### !answer
+
+* Pipeline configuration lives in version control alongside application code, so the process is consistent, auditable, and can't silently drift
+
+##### !end-answer
+##### !explanation
+
+Manual checklists tend to drift over time — steps get added informally, shortcuts get taken, and the "official" process becomes unclear. When a pipeline is defined as code and stored in version control, every release follows the same path, changes to the process are reviewed and tracked, and bypassing steps is structurally prevented rather than just discouraged.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 84b9663e-9e34-4dff-8c9f-35841d5a654d
+* title: CI & CD: Why Pipelines Exist
+##### !question
+
+A consumer app team ships dozens of small changes each day. Every change that passes their full automated test suite and staging checks is immediately released to users without any engineer reviewing or approving the deploy. One morning, a subtle bug slips past the automated checks and reaches production within minutes of being merged. Which practice does this scenario describe, and what tradeoff does the incident highlight?
+
+##### !end-question
+##### !options
+
+* Continuous Delivery — the tradeoff is that staging environments don't catch all bugs
+* Continuous Integration — the tradeoff is that merging frequently increases the chance of introducing bugs
+* Continuous Deployment — the tradeoff is that automated checks serve as the sole gatekeeper, so gaps in test coverage can reach users quickly
+* Artifact management — the tradeoff is that versioned builds are harder to roll back when many changes are released daily
+
+##### !end-options
+##### !answer
+
+* Continuous Deployment — the tradeoff is that automated checks serve as the sole gatekeeper, so gaps in test coverage can reach users quickly
+
+##### !end-answer
+##### !explanation
+
+Continuous Deployment removes the human approval step entirely, deploying automatically once all checks pass. This enables high velocity but places full responsibility on the automated test suite. When coverage has gaps, there is no human review to catch what the tests missed before users are affected.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
