@@ -4,7 +4,7 @@
 - Explain what a container is.
 - Describe the problem containers solve, specifically the problem of environment inconsistency.
 - Identify the key components of a container: the image, the container runtime, and the registry.
-- Explain how containers relate to the compute models.
+- Explain how containers relate to cloud infrastructure.
 
 ### What is a Container?
 
@@ -23,7 +23,7 @@ Containers achieve this portability through isolation. **Isolation** means that 
 
 ## Containers Are Not Virtual Machines
 
-If you have heard of virtual machines (VMs), you might be wondering how containers differ. Both technologies create isolated environments for running software, but they do so at different layers of the system. We will explore this distinction in detail in the next lesson, The Compute Spectrum. For now, the key thing to know is that containers are significantly lighter and faster to start than virtual machines, which makes them well-suited for the kinds of dynamic, scalable cloud deployments we will discuss throughout this curriculum.
+If you have heard of virtual machines (VMs), you might be wondering how containers differ. Both technologies create isolated environments for running software, but they do so at different layers of the system. We will explore this distinction in a later lesson, The Compute Spectrum. For now, the key thing to know is that containers are significantly lighter and faster to start than virtual machines, which makes them well-suited for the kinds of dynamic, scalable cloud deployments we will discuss throughout this curriculum.
 
 ### !end-callout
 
@@ -42,15 +42,15 @@ These three responsibilities map to the **image**, **runtime**, and **registry**
 
 A container **image** is a read-only blueprint that defines everything a container needs to run: the application code, the runtime, the libraries, and the configuration. When a container is started, it is created from an image. The image is the static definition that does not change and the running container is the live instance produced from it.
 
-The image itself never changes. It is the static definition, and the running container is the live instance produced from it. This is the same relationship as a class and an object in object-oriented programming: the class defines the blueprint, and the object is what gets created when that blueprint is executed. Just as multiple objects can be instantiated from the same class, multiple containers can be created from the same image.
+This is the same relationship as a class and an object in object-oriented programming: the class defines the blueprint, and the object is what gets created when that blueprint is executed. Just as multiple objects can be instantiated from the same class, multiple containers can be created from the same image.
 
-An image is defined by a file called a Dockerfile. A Dockerfile is a plain text file that contains a set of instructions for assembling the image, such as which base operating system to use, which dependencies to install, and which command to run when the container starts. When those instructions are executed, the result is a built image that can be run anywhere the container runtime is available.
+There are different libraries and tools to create a container image for an application, but the most popular format and toolset is Docker. With Docker, an image is defined by a plain text file, called a Dockerfile. The Dockerfile contains a set of instructions for assembling the image, such as which base operating system to use, which dependencies to install, and which command to run when the container starts. When those instructions are executed, the result is a built image that can be run anywhere the container runtime is available.
 
 #### The Container Runtime
 
 The container **runtime** is the software responsible for building images and starting, stopping, and managing containers on a host machine. When a developer runs a container, it is the runtime that reads the image, sets up the isolated environment, and starts the process inside it. Without a runtime, an image is just a file that cannot execute on its own.
 
-Docker is the most widely used container runtime . However, the container ecosystem has matured and other runtimes such as containerd and Podman are also common in production environments. The important concept is not the specific tool but the role it plays: the runtime is the layer that sits between the image and the running container.
+As we mentioned earlier, Docker is the most widely used container runtime, however, the container ecosystem has matured and other runtimes such as containerd and Podman are also common in production environments. The important concept is not any one specific tool, but the role it plays: the runtime is the layer that sits between the image and the running container.
 
 #### The Registry
 
@@ -69,13 +69,18 @@ Containers are a foundational building block of modern cloud infrastructure. Whe
 
 Since containers are portable and self-contained, they can run consistently across different environments, from a developer's laptop to a remote server managed by a cloud provider. This portability is a large part of why containers have become the standard unit of deployment in the industry.
 
-As the number of containers in a system grows, managing them manually becomes impractical. Container orchestration is the automated management of containers across multiple machines, including starting and stopping containers, scaling them up or down based on demand, and recovering from failures. Kubernetes is one of the most widely adopted orchestration platform in the industry. Container orchestration is out of scope for this lesson, but feel free to explore your curiosity.
+As the number of containers in a system grows, managing them manually becomes impractical. Container orchestration is the automated management of containers across multiple machines, including starting and stopping containers, scaling them up or down based on demand, and recovering from failures. Kubernetes is one of the most widely adopted orchestration platforms in the industry. Container orchestration is out of scope for this lesson, but feel free to explore your curiosity.
 
 ## Summary
 
 A container is a lightweight, portable unit of software that packages an application together with everything it needs to run. By bundling the application code, runtime, libraries, and configuration into a single self-contained unit, containers solve the environment inconsistency problem that arises when code moves from development to production.
 
-Three components work together to make containers function in practice. The image is the static blueprint that defines the container, built from a set of instructions in a Dockerfile. The runtime is the software that takes that image and creates a running container instance from it. The registry is the storage and distribution system where images are pushed after they are built and pulled from when they are deployed. Together, these three components form the foundation of how containerized applications are built, stored, and delivered in modern software development.
+Three components work together to make containers function in practice.
+- The image is the static blueprint that defines the container, built from a set of instructions in a Dockerfile. 
+- The runtime is the software that takes that image and creates a running container instance from it. 
+- The registry is the storage and distribution system where images are pushed after they are built and pulled from when they are deployed. 
+
+Together, these three components form the foundation of how containerized applications are built, stored, and delivered in modern software development.
 
 ## Check for Understanding
 

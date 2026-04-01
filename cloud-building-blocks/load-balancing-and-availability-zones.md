@@ -7,16 +7,18 @@
 - Define an availability zone and describe its relationship to a cloud region and physical infrastructure.
 - Explain how distributing servers across availability zones reduces the impact of a localized failure.
 
-### Load Balancing
+## Load Balancing
 
 When an application is deployed to a single server, every request that comes in is handled by that one machine. This works well when traffic is low and predictable, but it creates two problems as an application grows. First, a single server has a finite amount of resources. When the number of incoming requests exceeds what that server can handle, performance degrades and requests begin to fail. Second, a single server is a single point of failure. If that server goes offline for any reason, the entire application becomes unavailable.
 
-One solution to both of these problems is to run multiple instances of the application and distribute incoming traffic across them. But this introduces a new question: when a user sends a request, how does it know which instance to go to? A **load balancer** answers that question. A load balancer is a component that sits between the user and a fleet of servers. It receives every incoming request and directs it to one of the available servers based on a set of rules. From the user's perspective, they are communicating with a single address. Behind the scenes, the load balancer is distributing their requests across many servers.
+One solution to both of these problems is to run multiple instances of the application and distribute incoming traffic across them. But this introduces a new question: when a user sends a request, how does it know which instance to go to? A **load balancer** answers that question. A load balancer is a component that sits between the user and a fleet of servers. It receives every incoming request and directs it to one of the available servers based on a set of rules. 
+- From the user's perspective, they are communicating with a single address. 
+- Behind the scenes, the load balancer is distributing their requests across many servers.
 
 ![A diagram showing four stages from left to right. On the far left, three laptop icons representing clients are grouped together. Arrows from each client point to a cloud icon representing the internet. A single arrow points from the internet icon to a load balancer symbol" in the center right. Three arrows point from the load balancer to three server icons on the far right, labeled "Server A," "Server B," and "Server C," each with the subtitle "Healthy."](assets/load-balancer.png)
 *Fig. Requests from multiple clients travel across the internet to a load balancer, which distributes each request to one of several available servers.*
 
-### Routing Strategies
+## Routing Strategies
 
 A load balancing algorithm is the set of rules a load balancer follows to determine which server should handle each incoming request. These algorithms fall into two categories: static and dynamic.
 
@@ -24,7 +26,9 @@ A load balancing algorithm is the set of rules a load balancer follows to determ
 
 **Dynamic load balancing** algorithms examine the current state of the servers before making routing decisions. Since they factor in real-time conditions, they can distribute traffic more efficiently when servers have different capacities or when requests vary significantly in how long they take to process.
 
-#### Static Load Balancing
+Each of these categories can be subdivided further by specific routing strategies. We'll look at some common options for each algorithm next!
+
+### Static Load Balancing
 
 - **Round-robin** is the simplest routing strategy. The load balancer distributes requests to each server in turn, cycling through them in order. The first request goes to server one, the second to server two, the third to server three, and then the cycle repeats. Round-robin works well when servers are roughly equal in capacity and requests require roughly equal amounts of processing.
 
@@ -32,7 +36,7 @@ A load balancing algorithm is the set of rules a load balancer follows to determ
 
 - **IP hash** uses the client's IP address to determine which server handles its requests. The load balancer runs the IP address through a hashing function that converts it to a number, which is then mapped to a specific server. Since the same IP address always produces the same result, the same client is always routed to the same server. 
 
-#### Dynamic Load Balancing
+### Dynamic Load Balancing
 
 - **Least connections** routes each incoming request to the server that currently has the fewest active connections. Unlike round-robin, which distributes requests evenly by count, least connections distributes them based on current load. This avoids sending new requests to servers that are already under heavy load.
 
@@ -42,13 +46,15 @@ A load balancing algorithm is the set of rules a load balancer follows to determ
 
 - **Resource-based** routing distributes traffic by analyzing the current resource usage of each server. Specialized software called an agent runs on each server and reports metrics such as CPU usage and available memory back to the load balancer. Before routing a request, the load balancer checks whether a server has sufficient free resources to handle it. This is the most precise dynamic algorithm because it routes based on what a server can actually handle at that moment rather than using connections or response time as a proxy for load.
 
-### Health Checks
+## Health Checks
 
 A load balancer is only useful if it is routing traffic to servers that are actually able to handle requests. To ensure this, load balancers use health checks. A **health check** is a periodic request that the load balancer sends to each server to verify that it is running and responsive. The load balancer sends these requests at a defined interval, for example every 30 seconds, to a specific endpoint on the server. If the server responds as expected, the load balancer considers it healthy and continues routing traffic to it. If the server fails to respond, or responds with an error, the load balancer marks it as unhealthy and removes it from rotation. Once a server that was previously unhealthy begins responding to health checks successfully again, the load balancer can add it back into rotation.
 
-Health checks make a system more resilient without requiring manual intervention. If a server crashes or becomes unresponsive at any point, the load balancer detects the failure automatically and redistributes traffic to the remaining healthy servers. From the user's perspective, the application continues to function even though one of the servers behind the load balancer is no longer available. Removing an unhealthy server from rotation does not fix the underlying problem. The server still needs to be investigated and repaired. Health checks give a system the ability to protect users from a degraded server, but they are not a substitute for monitoring and diagnosing the root cause of the failure.
+Health checks make a system more resilient without requiring manual intervention. If a server crashes or becomes unresponsive at any point, the load balancer detects the failure automatically and redistributes traffic to the remaining healthy servers. From the user's perspective, the application continues to function even though one of the servers behind the load balancer is no longer available. 
 
-### Availability Zones
+Removing an unhealthy server from rotation does not fix the underlying problem. The server still needs to be investigated and repaired. Health checks give a system the ability to protect users from a degraded server, but they are not a substitute for monitoring and diagnosing the root cause of the failure.
+
+## Availability Zones
 
 Load balancing solves the problem of distributing traffic across multiple servers, but it does not on its own address a more fundamental question: what happens if the physical infrastructure those servers run on fails? A single data center, no matter how well maintained, is vulnerable to localized failures. A power outage, a cooling system failure, or a network disruption can take an entire facility offline. If all of a system's servers are running in that one location, the application goes down with it regardless of how many servers are behind the load balancer. Cloud providers address this problem through availability zones.
 
@@ -59,7 +65,7 @@ A **region** is a geographic area where a cloud provider operates infrastructure
 
 Major cloud providers typically offer three or more availability zones per region. This gives development teams the ability to distribute their infrastructure across multiple isolated locations within a geography that still keeps data and users relatively close together. The key concept behind availability zones is fault isolation. Since each availability zone is physically separate and independently powered, a failure in one zone is contained within that zone and does not propagate to others, which makes them useful for building resilient systems. To take advantage of fault isolation, a team deploys their application across multiple availability zones rather than concentrating everything in one. How that distribution works in practice is where load balancers and availability zones come together.
 
-### Load Balancers and Availability Zones Working Together
+## Load Balancers and Availability Zones Working Together
 
 Load balancing and availability zones are most powerful when used together. On their own, each concept addresses a different problem. A load balancer distributes traffic across multiple servers, and availability zones protect against localized infrastructure failures. Combined, they form the foundation of a highly available system, which refers to a system designed to remain operational and accessible even when individual components fail.
 
@@ -73,7 +79,11 @@ Multi-zone deployments are also more complex to configure and maintain than sing
 
 ## Summary
 
-In this lesson, we explored two foundational concepts in cloud infrastructure: **load balancing** and **availability zones**. A load balancer sits between users and a fleet of servers, distributing incoming traffic according to a routing algorithm. **Static algorithms** follow fixed rules, while **dynamic algorithms** factor in the real-time state of each server. **Health checks** allow the load balancer to detect unhealthy servers and remove them from rotation automatically. **Availability zones** extend this resilience to the physical infrastructure level: by distributing servers across multiple isolated data centers within a region, a team ensures that a localized failure in one zone does not take the entire application offline. 
+In this lesson, we explored two foundational concepts in cloud infrastructure: **load balancing** and **availability zones**. A load balancer sits between users and a fleet of servers, distributing incoming traffic according to a routing algorithm. 
+- **Static algorithms** follow fixed rules
+- **Dynamic algorithms** factor in the real-time state of each server. 
+
+**Health checks** allow the load balancer to detect unhealthy servers and remove them from rotation automatically. **Availability zones** extend this resilience to the physical infrastructure level: by distributing servers across multiple isolated data centers within a region, a team ensures that a localized failure in one zone does not take the entire application offline. 
 
 When load balancing and availability zones are used together, traffic is automatically rerouted away from any zone that goes offline, keeping the application available to users. This increased resilience comes with higher infrastructure costs and greater operational complexity, trade-offs that are generally worth making for production applications but less necessary for development environments and internal tools. These concepts will come up again throughout the rest of the curriculum as we look more closely at how cloud systems are designed to stay reliable under real-world conditions.
 
@@ -86,7 +96,7 @@ When load balancing and availability zones are used together, traffic is automat
 * title: Load Balancing & Availability Zones
 
 ##### !question
-Your team maintains a several servers behind a load balancer. Two of the servers were recently upgraded and now have significantly more CPU and memory than the others. Which routing strategy would best take advantage of the upgraded servers' additional capacity?
+Your team maintains several servers behind a load balancer. Two of the servers were recently upgraded and now have significantly more CPU and memory than the others. Which routing strategy would best take advantage of the upgraded servers' additional capacity?
 ##### !end-question
 
 ##### !options
@@ -112,7 +122,7 @@ Weighted round-robin allows you to assign a higher weight to the more powerful s
 * title: Load Balancing & Availability Zones
 
 ##### !question
-A load balancer is configured with health checks that run every 30 seconds. One server in the fleet begins responding to requests with errors due to a memory leak. What does the load balancer do, and what does this not do?
+A load balancer is configured with health checks that run every 30 seconds. One server in the fleet begins responding to requests with errors due to a memory leak. Which of the following is true about how the load balancer will react?
 ##### !end-question
 
 ##### !options
