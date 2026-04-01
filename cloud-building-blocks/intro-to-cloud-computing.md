@@ -8,7 +8,7 @@
 
 Cloud computing is now a ubiquitous term in software engineering. With the shift of infrastructure ownership from on-premises machines to remote machines (managed by companies like Amazon, Google, Microsoft, or Oracle), the responsibility and ownership of deployment have shifted as well. The lines between code and operations have blurred, and since most modern applications now run in "the Cloud", software engineers need to have some familiarity with it and its capabilities. 
 
-Before diving into the different kinds of cloud computing models and execution models, we will briefly review the the history of cloud computing. Read through the following resources to get a better understanding of how cloud computing came to be.
+In the following lessons, we'll dive into how modern organizations use cloud resources, but first we will briefly review the the history of cloud computing. Read through the following resources to get a better understanding of how cloud computing came to be.
 
 ### Required External Reading List
 - [A Brief History of Cloud Computing](
