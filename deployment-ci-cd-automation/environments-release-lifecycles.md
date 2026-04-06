@@ -15,6 +15,7 @@ So, what happens between "code is merged" and "users see the change"? The answer
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
 | Environment | An isolated instance of infrastructure and application configuration used at a specific stage of the release lifecycle, each serving a distinct purpose in validating and delivering software. | Deployment environment, tier, stage | "The bug only appeared in the production environment because the staging environment was configured with a smaller dataset that didn't trigger the edge case." |
+| Environment Parity | Keeping different environments, such as development, staging, and production environments, as structurally similar as possible. | Environment consistency, dev-prod parity | "Because we maintained environment parity, we caught a bug in staging before it could reach users; the staging environment was close enough to production to surface the issue." |
 | Release Pipeline | A sequence of stages and their actions (such as build, test, and deploy, and the steps required to performs those) that application code moves through on the way to production. | Deployment pipeline, CI/CD pipeline, delivery pipeline | "The release pipeline automatically builds the application, runs unit and integration tests, deploys to staging, and waits for approval before pushing to production." |
 | Artifact | A versioned, deployable output produced by a build process, such as a compiled binary, container image, or packaged application bundle. | Build output, release package, deployable, binary | "After the test step in the release pipeline completes, it publishes a Docker image artifact to our container registry so it can be deployed to the staging environment." |
 | Software Release Lifecycle | The end-to-end process by which software moves from development through testing, staging, and deployment into production. | Release process, deployment lifecycle, software delivery lifecycle | "Our team follows a software release lifecycle that requires every change to pass automated tests and a manual review before it can be promoted to production." |
@@ -37,7 +38,11 @@ After a developer commits code, the **release lifecycle** governs the last 5 ele
 
 The steps above make up the basic release flow that most organizations start with and customize to their needs. Closely related to the release lifecycle is the **release pipeline**. A release pipeline is all of the steps, both automated and manual, that an organization takes to ensure users can access a reliable, secure version of the company's software. Put another way, a release pipeline is an organization's specific plan for their release lifecycle. 
 
-At each step of a release pipeline there are typically quality checks. When there are no issues, the pipeline will move from step to step until the pipeline completes. If one of these checks fails, the pipeline stops at that step and alerts the system that there was an error in need of investigation. We'll dive further into automation later in this topic, but for now we should know that modern organizations and release flows try to automate as much of their release pipeline as possible to avoid manual, inconsistent, and error-prone releases.
+At each step of a release pipeline there are typically quality checks. 
+- When there are no issues, the pipeline will move from step to step until the pipeline completes. 
+- If one of these checks fails, the pipeline stops at that step and alerts the system that there was an error in need of investigation. 
+ 
+We'll dive further into automation later in this topic, but for now we should know that modern organizations and release flows try to automate as much of their release pipeline as possible to avoid manual, inconsistent, and error-prone releases.
 
 ## Environments
 
