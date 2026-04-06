@@ -170,3 +170,79 @@ Continuous Delivery means code is always in a deployable state after passing aut
 ##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
+
+
+
+------------------
+
+
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: ecc5b399-e2b2-43b4-a130-38365f161b79
+* title: Infrastructure-as-Code
+##### !question
+
+After an unexpected production incident, a team's engineering manager asks: "Exactly what changed in our infrastructure last Tuesday, and who approved it?" Without Infrastructure-as-Code, the team struggles to answer — the changes were made manually and no one kept detailed notes.
+
+Why does storing infrastructure definitions in version control make this kind of question easy to answer?
+
+##### !end-question
+##### !options
+
+* Version control systems send automatic alerts whenever infrastructure resources are modified
+* Every change to a configuration file creates a commit record with an author, timestamp, and description, forming a complete audit trail
+* Version control tools archive cloud console activity logs so changes are always traceable
+* Cloud providers require infrastructure files to be version-controlled before allowing changes to production
+
+##### !end-options
+##### !answer
+
+* Every change to a configuration file creates a commit record with an author, timestamp, and description, forming a complete audit trail
+
+##### !end-answer
+##### !explanation
+
+When infrastructure is defined in files stored in version control, every modification goes through a commit — capturing who made the change, when, and ideally why. This creates a reliable audit trail that teams can review at any time. Version control does not monitor the cloud console directly or archive cloud provider activity logs; it only tracks changes made to the files themselves.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 0dc610cc-1443-4975-ac28-d21da9d9bf8d
+* title: Infrastructure-as-Code
+##### !question
+
+A team's repository contains two types of files: one set that specifies the sequence of build, test, and deploy steps their pipeline executes on every pull request, and another set that specifies the virtual machines, databases, and network settings their application runs on.
+
+How should these two types of files be categorized?
+
+##### !end-question
+##### !options
+
+* Both are Infrastructure-as-Code because they are both written in code and checked into version control
+* The pipeline step definitions are configuration-as-code; the resource definitions are Infrastructure-as-Code
+* The resource definitions are configuration-as-code; the pipeline step definitions are Infrastructure-as-Code
+* Both are artifact management files because they define the outputs needed for deployment
+
+##### !end-options
+##### !answer
+
+* The pipeline step definitions are configuration-as-code; the resource definitions are Infrastructure-as-Code
+
+##### !end-answer
+##### !explanation
+
+Infrastructure-as-Code specifically refers to defining and provisioning cloud resources (servers, databases, networks, and similar infrastructure) in machine-readable files. 
+
+Defining the steps of a CI/CD pipeline in code is a closely related practice, but it describes automation logic rather than cloud resources, and is more accurately called configuration-as-code. 
+
+Both practices share the benefits of version control and repeatability, but they apply to different layers of the system.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->

@@ -126,7 +126,7 @@ What that means in practice:
 - A release at 2pm on a Wednesday and a hotfix at 11pm on a Friday go through the same checks
 - If the pipeline definition changes, such as a new test suite being added, a deployment step is updated. That change is tracked in version control just like code, and applies to every future release
 
-That last point is quietly significant. Manual deployment processes tend to drift over time: a step gets added here, a shortcut gets taken there, and six months later nobody is quite sure what the "official" process actually is. A pipeline defined in code doesn't drift unless someone deliberately changes it, and when it does change, there's a record of when, why, and by whom. This is an example of "Infrastructure as code" which we'll dive deeper on in an upcoming lesson!
+That last point is quietly significant. Manual deployment processes tend to drift over time: a step gets added here, a shortcut gets taken there, and six months later nobody is quite sure what the "official" process actually is. A pipeline defined in code doesn't drift unless someone deliberately changes it, and when it does change, there's a record of when, why, and by whom. 
 
 It's also worth naming what repeatability prevents. As we've brought up, a large proportion of production incidents can be traced back to a manual step done incorrectly or inconsistently. Not bugs in the code, but mistakes in the process of getting the code to users. A well-designed CI/CD pipeline doesn't just automate those steps; it makes skipping or bypassing them structurally difficult. Code that doesn't pass the required checks doesn't advance. The pipeline is the gatekeeper, and it applies the same standard to every change without exception.
 
