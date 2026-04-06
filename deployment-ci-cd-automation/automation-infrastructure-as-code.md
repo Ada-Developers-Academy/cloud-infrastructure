@@ -163,36 +163,3 @@ IaC does not automatically detect outages, maintain live standby replicas, or ba
 ##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: multiple-choice
-* id: 7d1a3bce-30bf-42e1-8e12-0b74bf0fa8e0
-* title: Infrastructure-as-Code
-##### !question
-
-A team uses IaC to manage all of their cloud infrastructure. During a late-night incident, an engineer adds a new environment variable directly through the cloud console to resolve an issue quickly, intending to "update the config file tomorrow." That update never happens.
-
-What is the most significant risk created by this situation?
-
-##### !end-question
-##### !options
-
-* The cloud provider may automatically revert the console change since it conflicts with the team's billing plan
-* The IaC configuration file no longer reflects the actual state of the environment, undermining it as a reliable source of truth
-* The environment variable will be lost the next time anyone logs into the console
-* The incident response was handled incorrectly because IaC tools should have been used to detect the root cause
-
-##### !end-options
-##### !answer
-
-* The IaC configuration file no longer reflects the actual state of the environment, undermining it as a reliable source of truth
-
-##### !end-answer
-##### !explanation
-
-When changes are made outside the IaC process, the configuration file drifts from the real state of the environment. This means the file can no longer be trusted as an accurate description of what's actually running — the exact problem IaC is meant to prevent! Future runs of the IaC tool might overwrite the manual change, and the team loses the audit trail and review process that version-controlled infrastructure provides. Cloud providers do not automatically revert console changes to match IaC files.
-
-##### !end-explanation
-### !end-challenge
-<!-- prettier-ignore-end -->
