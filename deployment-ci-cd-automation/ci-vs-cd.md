@@ -12,6 +12,7 @@
 | Artifact Management | A way to store and manage the built versions of your application (not just the source code). An artifact might be a compiled app, a Docker image, or a packaged release file that's ready to deploy. | Artifact repository, package registry | "Our artifact management system stores a versioned Docker image for every successful build so we can redeploy any previous release without rebuilding from source." |
 | Build Automation | Automatically turning raw source code into something runnable. This usually includes installing dependencies, compiling code, and running tests without a human doing it manually. | Automated build, build pipeline | "With build automation in place, every time a developer merges a pull request, the system installs dependencies, compiles the code, and runs tests without any manual steps." |
 | Pipeline Orchestration | The system that coordinates the steps in a CI/CD pipeline. It decides the order of actions like build → test → deploy and triggers each step automatically when code changes. | Pipeline coordination, workflow automation | "Our pipeline orchestration tool kicks off a build the moment code is pushed, then runs tests, and only triggers a deployment to staging if every test passes." |
+| Rollback | Reverting a system back to a previous stable version when something goes wrong during deployment. A rollback may not fully reverse all system impacts, for example, database schema changes or data migrations that will not be undone by reverting the application code. | Revert, rollback deploy, release rollback | "When the new checkout feature caused a spike in errors, the team triggered a rollback to the previous stable release while they investigated the root cause." |
 
 ## What are CI & CD?
 
@@ -101,7 +102,7 @@ Both practices use the same automated pipeline through build, test, and staging,
 Continuous Deployment is powerful, but it's not a fit for every team or every context. It's worth pausing before adopting it when:
 - Regulatory or compliance requirements mandate human review before changes go live (common in healthcare, finance, and government software)
 - Test coverage is not comprehensive enough to be trusted as the sole gatekeeper of production quality
-- Rollback to a prior version is difficult, such as when deployments include database schema migrations or other changes with lasting side effects
+- Reverting back to a prior stable version (a rollback) is difficult, such as when deployments include database schema migrations or other changes with lasting side effects
 
 In these cases, Continuous Delivery is often the better fit because of its deliberate human approval step.
 
