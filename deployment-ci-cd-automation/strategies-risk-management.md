@@ -2,7 +2,8 @@
 
 ## Learning Goals
 
-Core question: How do we reduce blast radius when shipping?
+- Describe common deployment strategies and be able to discuss their tradeoffs around risk management and complexity. 
+- Describe feature flags and where it can be useful to use configuration to decouple deployments from releasing features.
 
 ## Vocabulary and Synonyms
 
@@ -12,7 +13,7 @@ Core question: How do we reduce blast radius when shipping?
 | Feature Flagging | A way to turn features on or off without redeploying code. Useful for gradual rollouts, testing features with small groups, or quickly disabling something if it breaks in production. | Feature flags, feature toggles, feature switches | "We shipped the new dashboard behind a feature flag so we could enable it for internal testers first before rolling it out to all users." |
 | Configuration Management | Managing application settings separately from code. Things like API keys, feature flags, and environment variables are stored securely and injected at runtime rather than hardcoded into the application. | Runtime configuration, config management, secrets management | "We use configuration management to store our database credentials and feature flags outside of the codebase, so we can update them without redeploying the application." |
 
-## Deployment Strategies
+## Evolution of Deployment Strategies
 
 Before modern CI/CD pipelines existed, software releases were infrequent, high-stakes events. Teams spent weeks accumulating changes, testing exhaustively, and then deploying everything at once in what engineers call a big bang or all-at-once deploy. The intuition behind this approach made sense: the more you test before releasing, the safer the release should be.
 
@@ -26,12 +27,28 @@ The engineering industry's response to these problems was to develop deployment 
 
 Below, we'll cover four deployment strategies commonly used in enterprise software today. Each one trades something, typically speed, complexity, or cost, in exchange for different kinds of safety guarantees. Understanding the tradeoffs is what lets you choose the right tool for a given release!
 
-### Rolling deployments
+## Rolling Deployment
 
 A rolling deployment replaces the old version of an application with the new version gradually, one instance (or small group of instances) at a time, rather than replacing all instances simultaneously. At any given moment during the rollout, some servers are running the old version and some are running the new version. Incoming traffic is distributed across both versions, each server transitions to the new version as its turn comes up in the rollout sequence, and the balance shifts as the rollout progresses until all servers are running the new version. 
 
+### Benefits
+
 This rolling strategy helps reduce risk compared to an all-at-once deploy. As the new version is rolled out, we can monitor the updated servers for issues. If a problem emerges, the rollout can be stopped at any point before the new version reaches the full fleet.
 
+- **Reduced customer impact**: At any point during the rollout, only a fraction of users are running the new version. A bug affects that fraction, not everyone.
+- **No downtime**: Because instances are replaced one at a time while others continue serving traffic, the application stays available throughout the deployment.
+- **Simple to implement**: Most managed container platforms and cloud orchestration tools support rolling deployments natively. It's often the default strategy for teams that haven't made a more deliberate choice.
+
+### Tradeoffs
+
+| Metric | Notes |
+|---|---|
+| **Speed** | Slower than big bang; the rollout takes time proportional to instance count. Configurable, but you're trading speed for safety. |
+| **Risk** | Lower than big bang, but not zero. If a bug only surfaces under specific load patterns, it might not appear until the rollout is nearly complete. |
+| **Complexity** | Low. It's a sequential replacement of instances, and most orchestration tools manage this automatically. |
+| **Observability needs** | Moderate. We need monitoring in place to notice if the new version is behaving differently from the old one while both are running. Version-tagged metrics help here. |
+
+During a rolling deployment, our application is briefly running two versions at once. For many changes this is fine, but for changes that alter database schemas, API contracts, or message formats, both versions need to be able to coexist. If the new version writes data in a format the old version can't read, we'll have a problem mid-rollout.
 
 ### Canary releases
 ### Blue/green
