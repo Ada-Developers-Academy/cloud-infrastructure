@@ -72,7 +72,7 @@ We also must ensure **Veracity**, which is the accuracy, precision, and trustwor
 
 These efforts culminate in **Value**. This is our ability to extract meaningful business information from the data using reporting, business intelligence, and machine learning, bridging the gap between raw data and competitive advantage.
 
-![A diagram showing five converging streams labeled Volume, Velocity, Variety, Veracity, and Value, combining into a central database icon labeled 'Actionable Business Insights'.](./assets/analytics-five-vs.png)
+![A diagram showing five converging streams labeled Volume, Velocity, Variety, Veracity, and Value, combining into a central database icon labeled 'Actionable Business Insights'. Volume is described as Massive scale of data. Velocity is described as Speed of data processing. Variety is described as Different data types. Veracity is described as Data quality and accuracy. Value is described as Business impact and ROI.](./assets/analytics-five-vs.png)
 *Fig. The 5 V's of Big Data.*
 
 ## Summary
