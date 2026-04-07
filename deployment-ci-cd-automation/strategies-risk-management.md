@@ -106,14 +106,53 @@ Blue/green is particularly well-suited for changes where version coexistence is 
 | **Complexity** | High infrastructure cost. Two full production environments must be maintained, provisioned, and kept in sync. This is more tractable with IaC and cloud infrastructure than it was with on-premise servers. |
 | **Observability needs** | Moderate. You need enough monitoring to quickly detect problems after the cutover, since all users transition simultaneously and there's no gradual exposure. |
 
-### Gradual rollouts
+## Gradual Rollouts
 
-Describe each type listed as subheadings below 
-- Describe the deployment style
-- clarify how it's different from previously describe deployment types
-- Describe key benefits and tradeoffs. Speak to metrics like: speed, risk, complexity, observability needs
+A gradual rollout releases a new version to an increasing percentage of users in deliberate stages, with explicit validation checkpoints between each step. A typical progression might look like: 5% of users → validate → 25% → validate → 50% → validate → 100%. 
 
-## Decoupling Shipment from Feature Release: Config vs code
+Gradual rollouts are about control over pacing. The rollout can be paused, reversed, or accelerated at any checkpoint based on what the data shows. User segments can be defined in multiple ways: random sample, geographic region, account type, or opt-in status.
+
+### Strategy Comparison
+
+Canary releases and gradual rollouts are closely related, and the terms are sometimes used interchangeably. The distinction, when teams make one, is about **intent and pacing**. 
+- A canary release is primarily a risk detection mechanism: expose a small slice to catch problems early, with no fixed timeline for advancing. 
+- A gradual rollout is a **progressive deployment plan**: the goal is to reach 100%, and the stages are checkpoints on that path rather than open-ended observation windows.
+
+In practice, a canary might stay at 5% for several days while a team evaluates metrics. A gradual rollout sets explicit criteria for advancing to the next tier and follows a schedule when those criteria are met.
+
+### Benefits
+
+Gradual rollouts offer the highest degree of control over a deployment. Each expansion builds confidence with real data, and problems at any stage affect only the users already in the rollout rather than the full user base.
+
+- **Progressive confidence building.** Each expansion of the rollout provides more data. By the time 50% of users are on the new version, we have substantial real-world signal about how it behaves at scale before you reach 100%.
+- **Audience targeting.** Rollouts can be structured by user segment: beta testers first, then paying customers, then all users. This lets us align technical caution with product and business considerations.
+- **Pause and reverse without full rollback.** If metrics degrade at the 25% mark, we don't have to roll back to 0%. We can hold at 25%, investigate, and fix the issue before continuing, rather than abandoning the release entirely.
+
+### Tradeoffs
+
+The gradual rollout strategy works best when paired with clear, pre-defined success criteria: specific error rate thresholds, latency budgets, or business metric benchmarks that must be met before expanding to the next tier. Without defined criteria, teams tend to either advance the rollout on intuition (which erodes the strategy's value) or get stuck in indefinite hold states.
+
+| Metric | Notes |
+|---|---|
+| **Speed** | The slowest strategy to reach full deployment. A full rollout might take days, especially if it's paused for investigation. |
+| **Risk** | Lowest of the four strategies when the checkpoints are enforced. Each expansion is validated before proceeding. |
+| **Complexity** | High. Requires traffic splitting infrastructure, user segmentation logic, version-aware metrics, and clear criteria for when to advance, pause, or reverse. |
+| **Observability needs** | High. The value of gradual rollouts depends entirely on having metrics that tell you whether each tier is performing acceptably. Without that signal, the "validation checkpoints" are theater, not safety. |
+
+## Choosing a Strategy
+
+No single deployment strategy is right for every release. The choice depends on the risk profile of the change, the team's monitoring capabilities, infrastructure cost constraints, and how quickly the change needs to reach all users.
+
+Many mature engineering organizations don't pick one strategy universally. They often pick a default and then deliberately choose a different approach for releases that warrant extra caution. A team might use rolling deployments for routine dependency updates and reserve blue/green or gradual rollouts for significant feature launches or changes that touch core infrastructure.
+
+| Strategy | Best For | Key Tradeoff |
+|---|---|---|
+| **Rolling** | Routine changes with low risk; teams prioritizing simplicity | Limited observability during mixed-version window |
+| **Canary** | Changes where production behavior is hard to predict from tests | Requires strong observability; slower to full deployment |
+| **Blue/Green** | High-stakes changes needing instant rollback; version coexistence is a concern | Infrastructure cost of two full environments |
+| **Gradual rollout** | Significant feature releases; audience-targeted rollouts; maximum risk control | Slowest to full deployment; requires defined success criteria |
+
+## Decoupling Shipping Code and Releasing Features
 
 Define configuration vs code and configuration management with examples
 what are the problems it solves
