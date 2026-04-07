@@ -41,6 +41,8 @@ This rolling strategy helps reduce risk compared to an all-at-once deploy. As th
 
 ### Tradeoffs
 
+During a rolling deployment, our application is briefly running two versions at once. For many changes this is fine, but for changes that alter database schemas, API contracts, or message formats, both versions need to be able to coexist. If the new version writes data in a format the old version can't read, we'll have a problem mid-rollout.
+
 | Metric | Notes |
 |---|---|
 | **Speed** | Slower than big bang; the rollout takes time proportional to instance count. Configurable, but you're trading speed for safety. |
@@ -48,9 +50,29 @@ This rolling strategy helps reduce risk compared to an all-at-once deploy. As th
 | **Complexity** | Low. It's a sequential replacement of instances, and most orchestration tools manage this automatically. |
 | **Observability needs** | Moderate. We need monitoring in place to notice if the new version is behaving differently from the old one while both are running. Version-tagged metrics help here. |
 
-During a rolling deployment, our application is briefly running two versions at once. For many changes this is fine, but for changes that alter database schemas, API contracts, or message formats, both versions need to be able to coexist. If the new version writes data in a format the old version can't read, we'll have a problem mid-rollout.
+## Canary Releases
 
-### Canary releases
+A canary release routes a small, controlled percentage of production traffic to the new version while the majority of users continue on the old version. The new version runs in production but is observed carefully over an extended window before any decision is made to expand the rollout. If the canary version shows elevated error rates, increased latency, or degraded business metrics compared to the control group, the release can be stopped before it affects a significant portion of users.
+
+Rolling deployments are a sequential replacement strategy: every instance eventually gets the new version, and the only question is how fast. Canary releases introduce an explicit **observation phase**: the new version receives a controlled slice of traffic (say, 1–5% to start), and the team watches how it performs before deciding whether to expand the rollout. You might keep a canary running for hours or days at a small traffic percentage before promoting it. A rolling deploy doesn't have that concept of a deliberate holding pattern.
+
+### Benefits
+
+- **Early signal from real users.** Testing can only simulate so much. A canary running against real production traffic surfaces problems that test environments miss: edge cases in real user data, unexpected usage patterns, third-party integrations that behave differently under real load.
+- **Controlled blast radius.** If the canary version has a bug, it affects only the users in the canary slice. A 5% canary means 95% of users are unaffected.
+- **Data-driven promotion decisions.** Rather than relying on test results alone, you can compare error rates, latency percentiles, and business metrics between the canary and the baseline before deciding whether to continue the rollout.
+
+### Tradeoffs
+
+Canary releases require thoughtful user segmentation decisions. The canary slice needs to be statistically representative of your user base. If the 5% receiving the new version skews heavily toward a particular region, device type, or user cohort, the signal you get may not predict how the full rollout will behave.
+
+| Metric | Notes |
+|---|---|
+| **Speed** | Slower than rolling, and significantly slower than big bang. The observation period is intentional, but it means features take longer to reach all users. |
+| **Risk** | Lower than rolling for catching subtle, production-specific bugs. The deliberate observation phase is the key difference. |
+| **Complexity** | Moderate to high. Traffic splitting requires routing infrastructure. Comparing canary metrics against baseline requires solid instrumentation and observability tooling. |
+| **Observability needs** | High. Canary releases only provide value if you can distinguish how the canary group is performing from the control group. You need version-tagged metrics, error rates, and ideally business-level signals like conversion rates. |
+
 ### Blue/green
 ### Gradual rollouts
 
