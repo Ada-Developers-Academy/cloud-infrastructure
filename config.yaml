@@ -1,182 +1,182 @@
 ---
 Standards:
-  # -
-  #   Title: Cloud Building Blocks
-  #   Description: "Intro to Cloud Computing, Introduction to Containers, Introduction to Load Balancers & Availability Zones"
-  #   UID: 326f81ef-ca6c-4abb-a075-884258807cbf
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: 5a1bfc16-d91c-4e28-bf85-d481239904f1
-  #       Path: /cloud-building-blocks/intro-to-cloud-computing.md
-  #     -
-  #       Type: Lesson
-  #       UID: dd02607f-a1c4-43d4-83a0-1340865ab601
-  #       Path: /cloud-building-blocks/intro-to-containers.md
-  #     -
-  #       Type: Lesson
-  #       UID: e0aa96bb-163b-4be0-a75e-93e025539be9
-  #       Path: /cloud-building-blocks/load-balancing-and-availability-zones.md
-  # -
-  #   Title: Compute & Execution Models - How Code Runs in the Cloud
-  #   Description: "The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
-  #   UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
-  #       Path: /compute-and-execution-models/the-compute-spectrum.md
-  #     -
-  #       Type: Lesson
-  #       UID: fbbacab6-45da-4dfe-9b90-1fe210b17997
-  #       Path: /compute-and-execution-models/scaling-models.md
-  #     -
-  #       Type: Lesson
-  #       UID: ee1b1594-684b-4fb7-b8f3-1ba46b895b89
-  #       Path: /compute-and-execution-models/long-running-vs-ephemeral-compute.md
-  #     -
-  #       Type: Lesson
-  #       UID: 513d717c-a8aa-4994-b693-86485355a1a7
-  #       Path: /compute-and-execution-models/failure-modes-tradeoffs.md
-  #     -
-  #       Type: Lesson
-  #       UID: 034ab8c9-687c-4093-b19b-411e99a2dd08
-  #       Path: /compute-and-execution-models/choosing-the-right-model.md
-  #     -
-  #       Type: Lesson
-  #       UID: 3f5cfa81-b23d-469d-8eef-172989fbc989
-  #       Path: /compute-and-execution-models/problem-set.md
-  # -
-  #   Title: Storage
-  #   Description: "What is cloud storage?, Block Storage, File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
-  #   UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
-  #       Path: /storage/what-is-cloud-storage.md
-  #     -
-  #       Type: Lesson
-  #       UID: 8da3844f-e20c-4856-9548-f842608c5f76
-  #       Path: /storage/block-storage.md
-  #     -
-  #       Type: Lesson
-  #       UID: 3f95b513-2836-4077-be5d-ba791a937dc0
-  #       Path: /storage/file-storage.md
-  #     -
-  #       Type: Lesson
-  #       UID: fb2a1545-3818-483a-9da8-459f498fc062
-  #       Path: /storage/object-storage.md
-  #     -
-  #       Type: Lesson
-  #       UID: 231724dd-281c-4af7-9ce0-039c06dd0d63
-  #       Path: /storage/backup-disaster-recovery.md
-  #     -
-  #       Type: Lesson
-  #       UID: 389c594a-a796-469e-8cd4-980ce4b00760
-  #       Path: /storage/problem-set-storage.md
-  # -
-  #   Title: Databases
-  #   Description: "Intro to Cloud Databases, Database Types & Tradeoffs, Scaling Databases, Problem Set: Cloud Databases"
-  #   UID: b0ae93e8-dd23-4ba2-9df7-f8b2120140ca
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson    
-  #       UID: 0c0cef89-cc6d-4f27-b932-7b0d82caee12
-  #       Path: /databases/intro-cloud-databases.md
-  #     -
-  #       Type: Lesson
-  #       UID: e116cef8-1912-4ab8-adef-28680e9c9f96
-  #       Path: /databases/types-and-tradeoffs.md
-  #     -
-  #       Type: Lesson
-  #       UID: 65c2b616-ad2a-42ab-a9d0-1b6cc92be9fa
-  #       Path: /databases/scaling.md
-  #     -
-  #       Type: Lesson
-  #       UID: 6b458a53-2d43-4f08-998f-d64d1d42c5a1
-  #       Path: /databases/problem-set-databases.md
-  # -
-  #   Title: Networking
-  #   Description: "Networking Basics, Networking in the Cloud, Securing Cloud Networks, Hybrid Networking, Problem Set: Networking"
-  #   UID: b45b570c-3a20-4117-b550-398b6a0d537f
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: e57a44dc-c202-4bb8-87e7-d83e09473f85
-  #       Path: /networking/networking-basics.md
-  #     -
-  #       Type: Lesson
-  #       UID: 56f40c31-889e-40ad-ade4-b53dfc19b889
-  #       Path: /networking/networking-in-the-cloud.md
-  #     -
-  #       Type: Lesson
-  #       UID: 1f389f0e-ac55-43c7-95ca-3c0f6b51c1ca
-  #       Path: /networking/securing-cloud-networks.md
-  #     -
-  #       Type: Lesson
-  #       UID: 6f659b71-f3c5-4a10-8307-3bf2d153f7bb
-  #       Path: /networking/hybrid-networking.md
-  #     -
-  #       Type: Lesson
-  #       UID: 29af588e-23f4-477b-b212-fc219b4e87a5
-  #       Path: /networking/problem-set-networking.md
-  # -
-  #   Title: Event Driven Architecture & Distributed Systems
-  #   Description: "The Need for Event-Driven Architecture & Distributed Systems, Distributed Systems, Event-Driven Architecture, Problem Set: Event-Driven Architecture & Distributed Systems"
-  #   UID: 6c88b727-373f-4838-895d-6ad2a26a882f
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: d90651f7-2b90-47ae-961c-713c604506cd
-  #       Path: /event-driven-architecture/eda-ds.md
-  #     -
-  #       Type: Lesson
-  #       UID: 7251cec0-62e5-4e8c-8604-01465cdc6116
-  #       Path: /event-driven-architecture/distributed-systems.md
-  #     -
-  #       Type: Lesson
-  #       UID: 23cae71f-4e0b-4563-824c-0478f258d499
-  #       Path: /event-driven-architecture/event-driven-architecture.md
-  #     -
-  #       Type: Lesson
-  #       UID: ffbc26e0-f75e-409b-b999-10cc44c8b824
-  #       Path: /event-driven-architecture/problem-set-eda.md
-  # -
-  #   Title: Identity and Access Management
-  #   Description: "Introduction to Identity and Access Management, Secret Management, Introduction to Encryption, Problem Set"
-  #   UID: e1104252-089f-4bba-87b8-a8f67cf00899
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #     -
-  #       Type: Lesson
-  #       UID: 11e16268-ffe2-4e8c-ab95-0d4a199b7ef3
-  #       Path: /identity-access-management/intro-identity-access-management.md
-  #     -
-  #       Type: Lesson
-  #       UID: b4360db3-b5c8-4271-83fb-079ea11d0e86
-  #       Path: /identity-access-management/secret-management.md
-  #     -
-  #       Type: Lesson
-  #       UID: 95e0313b-3c5c-486d-8270-ee98fbf6e78f
-  #       Path: /identity-access-management/intro-to-encryption.md
-  #     -
-  #       Type: Lesson
-  #       UID: 81364a63-9323-4c0c-8786-8181d5306405
-  #       Path: /identity-access-management/problem-set.md
+  -
+    Title: Cloud Building Blocks
+    Description: "Intro to Cloud Computing, Introduction to Containers, Introduction to Load Balancers & Availability Zones"
+    UID: 326f81ef-ca6c-4abb-a075-884258807cbf
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 5a1bfc16-d91c-4e28-bf85-d481239904f1
+        Path: /cloud-building-blocks/intro-to-cloud-computing.md
+      -
+        Type: Lesson
+        UID: dd02607f-a1c4-43d4-83a0-1340865ab601
+        Path: /cloud-building-blocks/intro-to-containers.md
+      -
+        Type: Lesson
+        UID: e0aa96bb-163b-4be0-a75e-93e025539be9
+        Path: /cloud-building-blocks/load-balancing-and-availability-zones.md
+  -
+    Title: Compute & Execution Models - How Code Runs in the Cloud
+    Description: "The Compute Spectrum: Control versus Abstraction, Scaling Models: How Systems Respond to Load, Long-Running versus Ephemeral Compute, Failure Modes and Trade-Offs in Production, Choosing the Right Model, Problem Set: Compute and Execution Models"
+    UID: 0789535f-a9f2-4af9-95b4-071cc2de9d05
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: d51fc892-a00c-4709-8f8e-0c02e8db332d
+        Path: /compute-and-execution-models/the-compute-spectrum.md
+      -
+        Type: Lesson
+        UID: fbbacab6-45da-4dfe-9b90-1fe210b17997
+        Path: /compute-and-execution-models/scaling-models.md
+      -
+        Type: Lesson
+        UID: ee1b1594-684b-4fb7-b8f3-1ba46b895b89
+        Path: /compute-and-execution-models/long-running-vs-ephemeral-compute.md
+      -
+        Type: Lesson
+        UID: 513d717c-a8aa-4994-b693-86485355a1a7
+        Path: /compute-and-execution-models/failure-modes-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 034ab8c9-687c-4093-b19b-411e99a2dd08
+        Path: /compute-and-execution-models/choosing-the-right-model.md
+      -
+        Type: Lesson
+        UID: 3f5cfa81-b23d-469d-8eef-172989fbc989
+        Path: /compute-and-execution-models/problem-set.md
+  -
+    Title: Storage
+    Description: "What is cloud storage?, Block Storage, File Storage, Object Storage, Backup & Disaster Recovery, Problem Set: Cloud Storage"
+    UID: b7020e73-1f2e-424e-97ee-f0bc3ea5cc23
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 5c42630d-7dc6-4a16-8b14-87ef7ff2b2d0
+        Path: /storage/what-is-cloud-storage.md
+      -
+        Type: Lesson
+        UID: 8da3844f-e20c-4856-9548-f842608c5f76
+        Path: /storage/block-storage.md
+      -
+        Type: Lesson
+        UID: 3f95b513-2836-4077-be5d-ba791a937dc0
+        Path: /storage/file-storage.md
+      -
+        Type: Lesson
+        UID: fb2a1545-3818-483a-9da8-459f498fc062
+        Path: /storage/object-storage.md
+      -
+        Type: Lesson
+        UID: 231724dd-281c-4af7-9ce0-039c06dd0d63
+        Path: /storage/backup-disaster-recovery.md
+      -
+        Type: Lesson
+        UID: 389c594a-a796-469e-8cd4-980ce4b00760
+        Path: /storage/problem-set-storage.md
+  -
+    Title: Databases
+    Description: "Intro to Cloud Databases, Database Types & Tradeoffs, Scaling Databases, Problem Set: Cloud Databases"
+    UID: b0ae93e8-dd23-4ba2-9df7-f8b2120140ca
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson    
+        UID: 0c0cef89-cc6d-4f27-b932-7b0d82caee12
+        Path: /databases/intro-cloud-databases.md
+      -
+        Type: Lesson
+        UID: e116cef8-1912-4ab8-adef-28680e9c9f96
+        Path: /databases/types-and-tradeoffs.md
+      -
+        Type: Lesson
+        UID: 65c2b616-ad2a-42ab-a9d0-1b6cc92be9fa
+        Path: /databases/scaling.md
+      -
+        Type: Lesson
+        UID: 6b458a53-2d43-4f08-998f-d64d1d42c5a1
+        Path: /databases/problem-set-databases.md
+  -
+    Title: Networking
+    Description: "Networking Basics, Networking in the Cloud, Securing Cloud Networks, Hybrid Networking, Problem Set: Networking"
+    UID: b45b570c-3a20-4117-b550-398b6a0d537f
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: e57a44dc-c202-4bb8-87e7-d83e09473f85
+        Path: /networking/networking-basics.md
+      -
+        Type: Lesson
+        UID: 56f40c31-889e-40ad-ade4-b53dfc19b889
+        Path: /networking/networking-in-the-cloud.md
+      -
+        Type: Lesson
+        UID: 1f389f0e-ac55-43c7-95ca-3c0f6b51c1ca
+        Path: /networking/securing-cloud-networks.md
+      -
+        Type: Lesson
+        UID: 6f659b71-f3c5-4a10-8307-3bf2d153f7bb
+        Path: /networking/hybrid-networking.md
+      -
+        Type: Lesson
+        UID: 29af588e-23f4-477b-b212-fc219b4e87a5
+        Path: /networking/problem-set-networking.md
+  -
+    Title: Event Driven Architecture & Distributed Systems
+    Description: "The Need for Event-Driven Architecture & Distributed Systems, Distributed Systems, Event-Driven Architecture, Problem Set: Event-Driven Architecture & Distributed Systems"
+    UID: 6c88b727-373f-4838-895d-6ad2a26a882f
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: d90651f7-2b90-47ae-961c-713c604506cd
+        Path: /event-driven-architecture/eda-ds.md
+      -
+        Type: Lesson
+        UID: 7251cec0-62e5-4e8c-8604-01465cdc6116
+        Path: /event-driven-architecture/distributed-systems.md
+      -
+        Type: Lesson
+        UID: 23cae71f-4e0b-4563-824c-0478f258d499
+        Path: /event-driven-architecture/event-driven-architecture.md
+      -
+        Type: Lesson
+        UID: ffbc26e0-f75e-409b-b999-10cc44c8b824
+        Path: /event-driven-architecture/problem-set-eda.md
+  -
+    Title: Identity and Access Management
+    Description: "Introduction to Identity and Access Management, Secret Management, Introduction to Encryption, Problem Set"
+    UID: e1104252-089f-4bba-87b8-a8f67cf00899
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 11e16268-ffe2-4e8c-ab95-0d4a199b7ef3
+        Path: /identity-access-management/intro-identity-access-management.md
+      -
+        Type: Lesson
+        UID: b4360db3-b5c8-4271-83fb-079ea11d0e86
+        Path: /identity-access-management/secret-management.md
+      -
+        Type: Lesson
+        UID: 95e0313b-3c5c-486d-8270-ee98fbf6e78f
+        Path: /identity-access-management/intro-to-encryption.md
+      -
+        Type: Lesson
+        UID: 81364a63-9323-4c0c-8786-8181d5306405
+        Path: /identity-access-management/problem-set.md
   - 
     Title: Analytics and Data Processing
     UID: a8b52ed3-d99f-4b2b-8a49-40f7727f59a7
