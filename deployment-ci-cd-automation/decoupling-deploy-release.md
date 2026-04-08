@@ -1,4 +1,4 @@
-## Decoupling Shipping Code and Releasing Features
+# Decoupling Shipping Code and Releasing Features
 
 ## Learning Goals
 
@@ -12,13 +12,9 @@
 | Feature Flagging | A way to turn features on or off without redeploying code. Useful for gradual rollouts, testing features with small groups, or quickly disabling something if it breaks in production. | Feature flags, feature toggles, feature switches | "We shipped the new dashboard behind a feature flag so we could enable it for internal testers first before rolling it out to all users." |
 | Configuration Management | Managing application settings separately from code. Things like API keys, feature flags, and environment variables are stored securely and injected at runtime rather than hardcoded into the application. | Runtime configuration, config management, secrets management | "We use configuration management to store our database credentials and feature flags outside of the codebase, so we can update them without redeploying the application." |
 
-# Decoupling Shipping Code and Releasing Features
-
-The deployment strategies we've looked at so far all share one assumption: releasing a feature to users means deploying a new version of the software. But what if that assumption is wrong, or at least optional?
-
-Many teams have found that the moment a new feature "goes live" doesn't have to be tied to a deployment at all. To understand how, we need to pull apart two things that often get lumped together: code and configuration.
-
 ## Configuration vs. Code
+
+The deployment strategies we've looked at so far all share one assumption: releasing a feature to users means deploying a new version of the software. But what if that assumption is wrong, or at least optional? Many teams have found that the moment a new feature "goes live" doesn't have to be tied to a deployment at all. To understand how, we need to pull apart two things that often get lumped together: **code** and **configuration**.
 
 Think about the last time we deployed an app to a platform like Render or Heroku. We probably set some environment variables alongside the code: a database URL, an API key, maybe a port number. Those variables influenced how the app behaved without being part of the application code itself. That's the main idea behind configuration.
 
@@ -53,11 +49,11 @@ More precisely, in this scenario we'd flip the flag to `true` for 10% of users. 
 
 Feature flags can be applied in a few distinct ways:
 
-**Kill switches**: A flag whose only job is to turn a problematic feature off in an emergency. If a new payment integration starts throwing errors, flipping the kill switch instantly routes users back to the old flow while engineers investigate.
+- **Kill switches**: A flag whose only job is to turn a problematic feature off in an emergency. If a new payment integration starts throwing errors, flipping the kill switch instantly routes users back to the old flow while engineers investigate.
 
-**User-targeted flags**: The feature is visible only to specific users or groups, like internal team members, beta testers, or users in a particular region. This is one of the most common ways to validate a feature under real production conditions without exposing it to everyone.
+- **User-targeted flags**: The feature is visible only to specific users or groups, like internal team members, beta testers, or users in a particular region. This is one of the most common ways to validate a feature under real production conditions without exposing it to everyone.
 
-**Percentage rollouts**: The flag is enabled for a defined percentage of traffic. Combined with monitoring, this is one of the safest ways to release a high-risk feature gradually.
+- **Percentage rollouts**: The flag is enabled for a defined percentage of traffic. Combined with monitoring, this is one of the safest ways to release a high-risk feature gradually.
 
 ## Configuration Management
 
@@ -102,5 +98,13 @@ A team operating this way might follow a sequence like:
 The deployment happened at step 1 and didn't change. Everything from step 2 onward is configuration, that's the decoupling in action!
 
 ## Summary
+
+Software teams often treat deploying code and releasing features as a single event, but they don't have to be. **Code** is the logic baked into the application itself; changing it means going through a build and deploy cycle. **Configuration** is a layer of values (timeouts, thresholds, flags) that the running application reads at runtime and that can be changed without touching a deployment. 
+
+Feature flags live in that configuration layer: a conditional in the codebase routes users to either the old or new behavior depending on the flag's current value. This means a team can ship a half-finished or experimental feature on a regular deploy cadence, keep it invisible to users while it's set to off, then enable it for a small internal group, or a percentage of real users, whenever they're ready - all without triggering a new deployment!
+
+When using feature flags, it's important to build flag retirement into our plan as a discipline. Flags that reached 100% rollout months ago and never got cleaned up accumulate as dead conditional logic. Skipping the clean-up step trades a short-term convenience for long-term codebase complexity: those conditionals left behind have to be decoded by future engineers before they can safely make changes. Teams that treat feature flags as a temporary tool with a planned end date get the benefits: gradual exposure, instant kill switches, audience-targeted launches, without the long-term overhead.
+
+The power of this pattern grows with discipline. A flag flipped carelessly in production is still a production incident, so configuration needs the same guardrails applied to code: a centralized store, access controls, validation, and an audit trail of who changed what and when. That's what configuration management systems provide. Configuration management systems bring version control, validation, and rollback to this layer the same way CI/CD does for source code.
 
 ## Check for Understanding

@@ -78,7 +78,7 @@ This is not a shortcut or a sign of less care; it's a model that requires more r
 Continuous Deployment covers the complete pipeline without manual gates:
 1. CI runs: build, test, artifact creation
 2. CD runs: Artifact is automatically deployed to staging. Integration and acceptance tests run against staging
-3. If all checks pass, the artifact is automatically deployed to production. Monitoring watches for degraded error rates or latency and may trigger automated rollback
+3. If all checks pass, the artifact is automatically deployed to production. Monitoring watches for degraded error rates or latency and may trigger automated rollback to the prior version
 
 ### How this differs from Continuous Delivery
 
@@ -146,7 +146,7 @@ The principle tying all of these together is fast feedback: catch problems as ea
 Here's why that ordering matters: imagine a bug gets introduced in a pull request. 
 - If a unit test catches it two minutes after the developer opens the PR, the fix is straightforward, they still have complete context on the change, the problem is isolated, and nothing else has been built on top of it. 
 - If that same bug slips past and is caught by a manual review at the end of the sprint, fixing it means context-switching back to work that's days old. 
-- If it reaches production, the fix now includes triaging an incident, communicating with users, and potentially a rollback.
+- If it reaches production, the fix now includes triaging an incident, communicating with users, and potentially a rollback to a prior version.
 
 The same bug, with three very different costs, determined entirely by where in the pipeline it was caught. This is why CI specifically emphasizes running tests on every pull request and merge rather than on a schedule or before major releases. The goal isn't just to catch bugs; it's to catch them as close to their origin as possible, before they compound with other changes or travel further through the system.
 

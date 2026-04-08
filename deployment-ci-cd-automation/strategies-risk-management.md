@@ -1,4 +1,4 @@
-# Deployment Strategies
+# Deployment Strategies and Risk Management
 
 ## Learning Goals
 
@@ -147,7 +147,7 @@ The gradual rollout strategy works best when paired with clear, pre-defined succ
 
 No single deployment strategy is right for every release. The choice depends on the risk profile of the change, the team's monitoring capabilities, infrastructure cost constraints, and how quickly the change needs to reach all users.
 
-Many mature engineering organizations don't pick one strategy universally. They often pick a default and then deliberately choose a different approach for releases that warrant extra caution. A team might use rolling deployments for routine dependency updates and reserve blue/green or gradual rollouts for significant feature launches or changes that touch core infrastructure.
+Many mature engineering organizations don't pick one strategy universally. They often pick a default and then deliberately choose a different approach for releases that warrant extra caution. A team might use rolling deployments for routine dependency updates and reserve blue/green or gradual rollouts for significant feature launches or changes that touch core infrastructure. Knowing when to reach for each strategy, rather than defaulting to the same one every time, is what separates deliberate change management from routine deploys.
 
 | Strategy | Best For | Key Tradeoff |
 |---|---|---|
@@ -158,11 +158,177 @@ Many mature engineering organizations don't pick one strategy universally. They 
 
 ## Summary
 
+Software release strategies are a form of risk management. Before modern deployment practices existed, releasing software meant bundling weeks of changes and shipping them to every user at once. The problem with that approach isn't just that bugs happen; it's that when they do, they hit everyone immediately, diagnosis is harder because dozens of changes landed at once, and undoing the release is itself another risky all-or-nothing operation. Modern deployment strategies exist to shrink that risk window. 
 
+**Rolling deployments** swap out servers one at a time so traffic shifts gradually to the new version rather than all at once. 
+**Canary releases** go further: a small slice of real user traffic (say, 1–5%) runs the new version for an extended observation window before the team decides whether to continue rolling out to a larger percentage. 
+**Blue/green deployments** take a different angle entirely: a second full environment is prepared quietly while the live environment runs untouched, and the switchover is just a traffic redirect, making rollback to the prior version nearly instant. 
+**Gradual rollouts** are the most deliberate: the new version is expanded to 5%, then 25%, then 50%, with explicit success criteria checked at each stage before proceeding.
+
+The right strategy depends on the tradeoffs a team is willing to accept, as each strategy makes a different bet about where risk lives: 
+- Rolling deployments are the least operationally complex and work well for routine changes, but they create a window where two versions run simultaneously, which can cause problems if the old and new code can't safely coexist. 
+- Canary and gradual rollout strategies offer the best early warning signal from real production traffic, but they require strong monitoring to be meaningful. Without version-tagged metrics, the "observation phase" is just waiting. 
+- Blue/green sidesteps mixed-version complexity at the cost of running two full production environments, which is expensive but worthwhile for high-stakes releases where instant rollback is a hard requirement. 
+
+Most mature teams don't pick one strategy for everything; they default to rolling for everyday changes and reach for blue/green or gradual rollouts when a release touches something critical. 
 
 ## Check for Understanding
 
-CFU Ideas:
-Which deployment strategy is designed to reduce risk by sending a small percentage of traffic to the new version first?
-Blue/green deployment is best described as...?
-What’s the primary idea behind “blast radius” in deployments?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 40c5d0d3-c222-49c8-ad90-997318971782
+* title: Deployment Strategies and Risk Management
+##### !question
+
+An engineering team is discussing an upcoming release and one engineer says, "We need to think carefully about blast radius here." What concern is this engineer most likely raising?
+
+##### !end-question
+##### !options
+
+* The deployment will require additional cloud infrastructure, increasing costs
+* If the release contains a bug, we should limit how many users are affected before we can respond
+* The new version has not been tested in a staging environment yet
+* The release includes too many new features to deploy at the same time
+
+##### !end-options
+##### !answer
+
+* If the release contains a bug, we should limit how many users are affected before we can respond
+
+##### !end-answer
+##### !explanation
+
+"Blast radius" refers to the scope of impact when something goes wrong during a deployment. A large blast radius means a problem affects all users immediately. Modern deployment strategies like canary releases and gradual rollouts are specifically designed to reduce blast radius by limiting how many users are exposed to the new version at any one time, giving teams a chance to detect and respond to issues before they reach the full user base.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: d870e6e0-341b-4776-b99b-70e9a6a91372
+* title: Deployment Strategies and Risk Management
+##### !question
+
+A team is launching a major redesign of their checkout flow. They want to expose the new version to a small portion of real users first and watch error rates before deciding whether to continue the rollout. Which deployment strategy fits this goal?
+
+##### !end-question
+##### !options
+
+* Blue/green deployment
+* Canary release
+* Rolling deployment
+* Big bang deployment
+
+##### !end-options
+##### !answer
+
+* Canary release
+
+##### !end-answer
+##### !explanation
+
+A canary release intentionally routes a small percentage of live traffic to the new version while the majority of users remain on the old version. This creates an observation window using real user behavior before the team commits to a wider rollout. 
+
+Blue/green switches all traffic at once after preparing a parallel environment. Rolling deployments replace instances sequentially without a deliberate hold period. A big bang deploy ships to all users simultaneously.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: ace26a09-8518-4e07-b4cf-2a27ad50c110
+* title: Deployment Strategies and Risk Management
+##### !question
+
+A company maintains two identical production environments. When deploying a new version, they bring the second environment fully up to date and tested, then redirect all incoming traffic to it in a single switch. The first environment stays running but idle. Which best describes a primary advantage of this approach?
+
+##### !end-question
+##### !options
+
+* It eliminates the need for a staging environment entirely
+* It allows the new version to be gradually tested on increasing percentages of users
+* It enables near-instant rollback by flipping traffic back to the unchanged environment
+* It reduces infrastructure costs by sharing resources between versions
+
+##### !end-options
+##### !answer
+
+* It enables near-instant rollback by flipping traffic back to the unchanged environment
+
+##### !end-answer
+##### !explanation
+
+This describes blue/green deployment. Because the original environment is left completely unchanged during the deployment process, rolling back is as fast as redirecting traffic back to it, no re-deployment required! 
+
+Blue/green does not eliminate the need for staging, does not gradually expose users to the new version, and is actually more expensive than other strategies because it requires two full production environments running in parallel.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: d2485129-6920-441f-b7d1-f860e8a1fc27
+* title: Deployment Strategies and Risk Management
+##### !question
+
+A team is using a rolling deployment to release an update to their API. Partway through the rollout, some servers are running version 1 and others are running version 2. A developer realizes this could be a problem. What situation would make this mixed-version state most risky?
+
+##### !end-question
+##### !options
+
+* The new version adds a new optional feature flag that is off by default
+* The new version changes the format of data written to the shared database in a way version 1 cannot read
+* The new version improves query performance but does not change any data structures
+* The new version updates the UI styling of the homepage
+
+##### !end-options
+##### !answer
+
+* The new version changes the format of data written to the shared database in a way version 1 cannot read
+
+##### !end-answer
+##### !explanation
+
+Rolling deployments create a window where two versions of an application run simultaneously under production load. This is usually fine, but becomes risky when the versions are not compatible with each other. If version 2 writes data in a format version 1 cannot read, servers still on version 1 may fail when they encounter records written by version 2 servers. Changes to database schemas, API contracts, or message formats require special care in rolling deployments. The other options describe changes that don't affect shared data compatibility.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 38eb6e5e-734d-4e99-acec-d487d515b342
+* title: Deployment Strategies and Risk Management
+##### !question
+
+A team rolls out a new recommendation engine to 10% of users, then 30%, then plans to go to 100%. After the jump to 30%, they notice conversion rates drop slightly but aren't sure if it's related to the new version. What is the most appropriate next step given the principles of a gradual rollout?
+
+##### !end-question
+##### !options
+
+* Immediately roll back to 0% and restart the release process from scratch
+* Continue to 100% since the drop is small and may not be related to the release
+* Pause at 30%, investigate whether the metric change is tied to the new version, and decide whether to proceed or reverse based on findings
+* Switch to a blue/green deployment to avoid the issue
+
+##### !end-options
+##### !answer
+
+* Pause at 30%, investigate whether the metric change is tied to the new version, and decide whether to proceed or reverse based on findings
+
+##### !end-answer
+##### !explanation
+
+One of the key benefits of a gradual rollout is the ability to pause at any checkpoint and investigate before proceeding. Unlike a full rollback, pausing holds the rollout at the current stage, which limits further exposure while the team gathers information. Rolling back to 0% would be appropriate if the problem were confirmed and severe, but prematurely rolling back based on an unclear signal discards the progress made. Continuing to 100% without investigating ignores the warning signal the strategy is designed to surface. Switching deployment strategies mid-release is not a practical response to a metric dip.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->

@@ -22,10 +22,8 @@ We've established that a release pipeline moves code through a sequence of valid
 
 It's worth noting that defining a CI/CD pipeline as code is closely related to IAC, but is not typically considered infrastructure-as-code. CI/CD configuration files define the process to to build, test, and deploy software. They specify the logic of the automation itself, not the hardware or cloud resources being managed. This kind of definition of process and configuration is typically called configuration-as-code. Infrastructure-as-Code refers specifically to defining and provisioning IT infrastructure, such as servers, networks, and databases, using machine-readable files.
 
-A core idea of IAC is desired state: rather than writing step-by-step instructions for how to build something, we declare what the end result should be and let the tool figure out what resources need to be added, removed, or updated to match. 
+A core idea of IAC is desired state: rather than writing step-by-step instructions for how to build something, we declare what the end result should be and let the tool figure out what resources need to be added, removed, or updated to match. This approach is sometimes called declarative configuration, and it's what separates IaC from simply automating a series of setup commands. 
 - For example, if a database with a certain configuration should exist, we say so in the file. If it already exists and matches the description, nothing changes. If it doesn't exist yet, the tool creates it. 
- 
-This approach is sometimes called declarative configuration, and it's what separates IaC from simply automating a series of setup commands. 
 
 These infrastructure configuration files are typically plain text (often structured as .yaml files), so they can live in version control alongside application code. When infrastructure is documented as code, changes to an application's infrastructure go through the same review process as code changes: they're proposed, reviewed, discussed, and merged. Teams can see the full history of every infrastructure change, who made it, and why.
 

@@ -9,7 +9,9 @@ A production deploy is causing errors. Which situation is most likely to make a 
 Which answer best captures both the purpose of staging and a common reason it can give false confidence?
 Your team keeps running into “it works in staging but not production” because environments drift over time. Which approach most directly addresses this problem?
 
+--------
 
+Environment questions
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -108,6 +110,8 @@ Staging environments closely mirror production so that changes can be validated 
 
 --------------
 
+CI/CD questions
+
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -175,7 +179,7 @@ Continuous Delivery means code is always in a deployable state after passing aut
 
 ------------------
 
-
+IAC questions
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -279,3 +283,54 @@ When changes are made outside the IaC process, the configuration file drifts fro
 ##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
+
+
+
+-------
+
+Questions for safely undoing work lesson
+
+-------
+
+
+
+Deployment Strategies and Risk Management
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 965c9926-6d03-4f72-b06d-7fdf918cb400
+* title: Deployment Strategies and Risk Management
+##### !question
+
+A startup is deploying a low-risk dependency version bump across their fleet of application servers. They want a simple approach with no downtime and don't need an extended observation window. Which deployment strategy is the most practical fit?
+
+##### !end-question
+##### !options
+
+* Blue/green deployment, because instant rollback is always worth the cost
+* Gradual rollout, because all deployments should go through percentage-based stages
+* Rolling deployment, because it replaces instances sequentially with low complexity and no downtime
+* Canary release, because real user traffic should always validate changes before full rollout
+
+##### !end-options
+##### !answer
+
+* Rolling deployment, because it replaces instances sequentially with low complexity and no downtime
+
+##### !end-answer
+##### !explanation
+
+Rolling deployments are well-suited for routine, lower-risk changes. They replace instances one at a time (or in small groups), keeping the application available throughout with no downtime, and require no specialized traffic-splitting infrastructure or parallel environments. Blue/green is powerful but expensive to operate and most justified for high-stakes releases. Gradual rollouts and canary releases offer stronger risk controls but add meaningful operational complexity that isn't warranted for a routine dependency update.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+
+
+------------
+
+
+Decoupling deployment & release
+
