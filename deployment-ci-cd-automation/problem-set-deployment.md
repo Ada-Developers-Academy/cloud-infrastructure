@@ -11,7 +11,7 @@ Your team keeps running into “it works in staging but not production” becaus
 
 --------
 
-Environment questions
+## Environment questions
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -110,7 +110,7 @@ Staging environments closely mirror production so that changes can be validated 
 
 --------------
 
-CI/CD questions
+## CI/CD questions
 
 
 <!-- prettier-ignore-start -->
@@ -179,13 +179,13 @@ Continuous Delivery means code is always in a deployable state after passing aut
 
 ------------------
 
-IAC questions
+## IAC questions
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
 * id: ecc5b399-e2b2-43b4-a130-38365f161b79
-* title: Infrastructure-as-Code
+* title: Problem Set: Deployment, CI/CD, & Automation
 ##### !question
 
 After an unexpected production incident, a team's engineering manager asks: "Exactly what changed in our infrastructure last Tuesday, and who approved it?" Without Infrastructure-as-Code, the team struggles to answer — the changes were made manually and no one kept detailed notes.
@@ -218,7 +218,7 @@ When infrastructure is defined in files stored in version control, every modific
 ### !challenge
 * type: multiple-choice
 * id: 0dc610cc-1443-4975-ac28-d21da9d9bf8d
-* title: Infrastructure-as-Code
+* title: Problem Set: Deployment, CI/CD, & Automation
 ##### !question
 
 A team's repository contains two types of files: one set that specifies the sequence of build, test, and deploy steps their pipeline executes on every pull request, and another set that specifies the virtual machines, databases, and network settings their application runs on.
@@ -255,7 +255,7 @@ Both practices share the benefits of version control and repeatability, but they
 ### !challenge
 * type: multiple-choice
 * id: 7d1a3bce-30bf-42e1-8e12-0b74bf0fa8e0
-* title: Infrastructure-as-Code
+* title: Problem Set: Deployment, CI/CD, & Automation
 ##### !question
 
 A team uses IaC to manage all of their cloud infrastructure. During a late-night incident, an engineer adds a new environment variable directly through the cloud console to resolve an issue quickly, intending to "update the config file tomorrow." That update never happens.
@@ -288,19 +288,19 @@ When changes are made outside the IaC process, the configuration file drifts fro
 
 -------
 
-Questions for safely undoing work lesson
+## Questions for safely undoing work lesson
 
 -------
 
 
 
-Deployment Strategies and Risk Management
+## Deployment Strategies and Risk Management
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
 * id: 965c9926-6d03-4f72-b06d-7fdf918cb400
-* title: Deployment Strategies and Risk Management
+* title: Problem Set: Deployment, CI/CD, & Automation
 ##### !question
 
 A startup is deploying a low-risk dependency version bump across their fleet of application servers. They want a simple approach with no downtime and don't need an extended observation window. Which deployment strategy is the most practical fit?
@@ -332,5 +332,97 @@ Rolling deployments are well-suited for routine, lower-risk changes. They replac
 ------------
 
 
-Decoupling deployment & release
+## Decoupling deployment & release
 
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: d2b5b8a2-d7f0-4d3d-a20c-2b102d0428cf
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+Shortly after a newly released recommendation engine goes live to all users, the on-call engineer notices a sharp increase in error rates. The team needs to stop the bleeding immediately while they investigate the root cause. Which of the following represents the fastest and lowest-risk response if the feature was built with a kill switch?
+
+##### !end-question
+##### !options
+
+* Redeploy the previous version of the application using the release pipeline.
+* Flip the feature flag off, routing all users back to the previous recommendation behavior without a deployment.
+* Initiate a blue/green traffic switch back to the prior environment.
+* Roll back the database to its state before the feature launched.
+
+##### !end-options
+##### !answer
+
+* Flip the feature flag off, routing all users back to the previous recommendation behavior without a deployment.
+
+##### !end-answer
+##### !explanation
+
+A kill switch is a feature flag whose purpose is emergency rollback. Because it's a configuration change rather than a deployment, it takes effect immediately with no pipeline to run and no infrastructure changes to coordinate. This is one of the primary reasons teams invest in feature flags: the ability to reverse a feature release in seconds without going through the full deployment process.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 80ac0465-16e3-4a97-9d35-5c995f6105c5
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+A startup begins using feature flags stored as simple environment variables set manually on each server. As the team grows and the number of flags increases, which of the following problems would a proper configuration management system most directly help solve?
+
+##### !end-question
+##### !options
+
+* Ensuring that feature flags are compiled into the application binary for faster reads.
+* Providing a central store with access controls, validation, and an audit trail of who changed which flag and when.
+* Automatically removing flags from the codebase after they reach 100% rollout.
+* Generating unit tests for every conditional branch introduced by a feature flag.
+
+##### !end-options
+##### !answer
+
+* Providing a central store with access controls, validation, and an audit trail of who changed which flag and when.
+
+##### !end-answer
+##### !explanation
+
+As feature flag usage scales, managing them through manually-set environment variables breaks down. A configuration management system addresses this by centralizing where flags live, restricting who can change them in production, validating that values are well-formed before they go live, and logging every change with author and timestamp. This applies the same rigor to configuration that CI/CD applies to code, which is important because a misconfigured flag can cause a production incident just like bad code in a deployment can.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 2730bdc1-8194-4e10-bd69-f992e36c57c1
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+A team is preparing to launch a major redesign of their mobile app's onboarding flow. The product manager wants to release it first to users who opted into beta testing, then to all new signups, and finally to the full user base, each stage happening weeks apart. The engineering lead says only one deployment is needed. Which approach makes this possible?
+
+##### !end-question
+##### !options
+
+* Running three separate versions of the application simultaneously, each deployed to a different environment.
+* Using a gradual rollout deployment strategy that automatically expands traffic over time.
+* Shipping the new onboarding flow behind a feature flag that can be enabled for specific user segments through configuration changes.
+* Scheduling three separate production deployments timed to each release stage.
+
+##### !end-options
+##### !answer
+
+* Shipping the new onboarding flow behind a feature flag that can be enabled for specific user segments through configuration changes.
+
+##### !end-answer
+##### !explanation
+
+Feature flags allow a team to ship code once and then control who sees a feature through configuration rather than through additional deployments. Enabling the flag for beta testers, then new signups, then everyone is a series of configuration changes: no new builds or deploys required. This is the core value of decoupling shipping code from releasing features: the technical operation (deploy) happens once, and the product decision (who sees the feature, when) is made separately through configuration.
+
+##### !end-explanation
+### !end-challenge
+<!--prettier-ignore-end -->
