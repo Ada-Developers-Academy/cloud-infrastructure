@@ -9,7 +9,7 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| Artifact Management | A way to store and manage the built versions of your application (not just the source code). An artifact might be a compiled app, a Docker image, or a packaged release file that's ready to deploy. | Artifact repository, package registry | "Our artifact management system stores a versioned Docker image for every successful build so we can redeploy any previous release without rebuilding from source." |
+| Artifact Management | A way to store and manage the built versions of an application (not just the source code). An artifact might be a compiled app, a Docker image, or a packaged release file that's ready to deploy. | Artifact repository, package registry | "Our artifact management system stores a versioned Docker image for every successful build so we can redeploy any previous release without rebuilding from source." |
 | Build Automation | Automatically turning raw source code into something runnable. This usually includes installing dependencies, compiling code, and running tests without a human doing it manually. | Automated build, build pipeline | "With build automation in place, every time a developer merges a pull request, the system installs dependencies, compiles the code, and runs tests without any manual steps." |
 | Pipeline Orchestration | The system that coordinates the steps in a CI/CD pipeline. It decides the order of actions like build → test → deploy and triggers each step automatically when code changes. | Pipeline coordination, workflow automation | "Our pipeline orchestration tool kicks off a build the moment code is pushed, then runs tests, and only triggers a deployment to staging if every test passes." |
 | Rollback | Reverting a system back to a previous stable version when something goes wrong during deployment. A rollback may not fully reverse all system impacts, for example, database schema changes or data migrations that will not be undone by reverting the application code. | Revert, rollback deploy, release rollback | "When the new checkout feature caused a spike in errors, the team triggered a rollback to the previous stable release while they investigated the root cause." |
@@ -25,7 +25,7 @@ We've likely already encountered CI/CD by using a managed deployment platform. W
 
 ## Continuous Integration
 
-Think about a group project in school where everyone works on their section independently and then tries to combine everything the night before it's due. The content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction no longer matches the conclusion. The later you wait to integrate everyone's work, the messier the merge.
+Think about a group project in school where everyone works on their section independently and then tries to combine everything the night before it's due. The content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction no longer matches the conclusion. The later we wait to integrate everyone's work, the messier the merge.
 
 **Continuous Integration** (CI) is the software development answer to this problem. CI is the practice of merging code changes into a shared branch frequently, often multiple times per day, with automated builds and tests that run every time a PR opens or merge happens. The goal is to catch problems early, when they're small, cheap to fix, and easy to trace back to a specific change.
 
@@ -150,7 +150,7 @@ Here's why that ordering matters: imagine a bug gets introduced in a pull reques
 
 The same bug, with three very different costs, determined entirely by where in the pipeline it was caught. This is why CI specifically emphasizes running tests on every pull request and merge rather than on a schedule or before major releases. The goal isn't just to catch bugs; it's to catch them as close to their origin as possible, before they compound with other changes or travel further through the system.
 
-Fast feedback also changes how teams feel about their pipeline. A check that fails in under five minutes and tells you exactly what broke is useful. A validation step that takes an hour and returns a cryptic error is something teams learn to dread and look for ways around. Well-designed automated checks should feel like a helpful signal, not a punishment, and that experience is largely a function of how fast and specific the feedback is.
+Fast feedback also changes how teams feel about their pipeline. A check that fails in under five minutes and tells us exactly what broke is useful. A validation step that takes an hour and returns a cryptic error is something teams learn to dread and look for ways around. Well-designed automated checks should feel like a helpful signal, not a punishment, and that experience is largely a function of how fast and specific the feedback is.
 
 Repeatability and fast feedback aren't separate benefits of CI/CD — they reinforce each other. A repeatable pipeline gives automated checks a consistent environment to run in. Fast-feedback checks make the repeatable pipeline worth trusting. Together, they replace the anxiety of "I hope this deploy goes okay" with something much closer to confidence.
 
