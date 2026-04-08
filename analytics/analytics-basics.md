@@ -48,7 +48,7 @@ To perform advanced analytics, we must process massive, complex datasets. Tradit
 
 Traditional relational databases are designed for structured data and moderate workloads. They often struggle to scale efficiently as data volume grows, leading to performance bottlenecks and increased costs. In contrast, cloud-based big data solutions are built to handle large volumes of diverse data with high velocity, providing the necessary infrastructure for modern analytics.
 
-For any examples we explore in the classroom, the datasets we use are small and simplified for ease of use. In real-world applications, the scale of data can be orders of magnitude larger, requiring robust cloud architectures to manage it effectively. So while it may not seem like the specialized big data tools are necessary for our examples, keep in mind that they are essential for handling the complexities of real-world data analytics at scale!
+For any examples we explore in the classroom, the datasets we use are small and simplified for ease of use. In real-world applications, the scale of data can be orders of magnitude larger, requiring robust cloud architectures to manage it effectively. So while it may not seem like the specialized big data tools we'll be looking at are necessary for our examples, keep in mind that they are essential for handling the complexities of real-world data analytics at scale!
 
 ### !end-callout
 
