@@ -2,8 +2,8 @@
 
 ## Learning Goals
 
+- Describe the role deployment strategies play in software release
 - Describe common deployment strategies and be able to discuss their tradeoffs around risk management and complexity. 
-- Describe feature flags and where it can be useful to use configuration to decouple deployments from releasing features.
 
 ## Vocabulary and Synonyms
 
