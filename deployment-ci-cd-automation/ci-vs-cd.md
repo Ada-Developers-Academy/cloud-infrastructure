@@ -102,7 +102,7 @@ Both practices use the same automated pipeline through build, test, and staging,
 Continuous Deployment is powerful, but it's not a fit for every team or every context. It's worth pausing before adopting it when:
 - Regulatory or compliance requirements mandate human review before changes go live (common in healthcare, finance, and government software)
 - Test coverage is not comprehensive enough to be trusted as the sole gatekeeper of production quality
-- Reverting back to a prior stable version (a rollback) is difficult, such as when deployments include database schema migrations or other changes with lasting side effects
+- Reverting back to a prior stable version (a rollback) is difficult or impossible, which can happen when deployments include changes with lasting side effects
 
 In these cases, Continuous Delivery is often the better fit because of its deliberate human approval step.
 

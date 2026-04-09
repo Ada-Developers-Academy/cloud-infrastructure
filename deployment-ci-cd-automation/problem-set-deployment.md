@@ -290,8 +290,69 @@ When changes are made outside the IaC process, the configuration file drifts fro
 
 ## Questions for safely undoing work lesson
 
--------
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: gT7fV2yMoE9iQcUkBs4lDnXwAp
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
 
+After a bad deployment, a team determines that reverting to the previous version would be unsafe because the release included a migration that restructured how customer records are stored. They choose to write a targeted patch and ship it as a new release instead. This approach is best described as a:
+
+##### !end-question
+##### !options
+
+* Rollback
+* Monitoring gate
+* Roll-forward
+* Expand-contract migration
+
+##### !end-options
+##### !answer
+
+* Roll-forward
+
+##### !end-answer
+##### !explanation
+
+A roll-forward means responding to a broken deployment by developing and releasing a corrective fix rather than reverting to the prior version. When a deployment has changed persistent state — like restructuring how records are stored — rolling back the code may leave the old application incompatible with the new database structure. In those cases, pushing a fix forward is often the safer and faster path to recovery.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: wC2pS9eKmNzYbX5tGvIqOjUdFr
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+A team finishes a rollback and assumes the incident is closed. Fifteen minutes later, they learn users are still experiencing slow page loads. What step did the team most likely skip?
+
+##### !end-question
+##### !options
+
+* They did not write a post-mortem before closing the incident
+* They did not verify that monitoring signals returned to their pre-deployment baseline after the rollback
+* They did not notify users before initiating the rollback
+* They did not re-run the CI pipeline against the reverted version
+
+##### !end-options
+##### !answer
+
+* They did not verify that monitoring signals returned to their pre-deployment baseline after the rollback
+
+##### !end-answer
+##### !explanation
+
+Executing a rollback is not the same as confirming recovery. After restoring a prior version, the team must check that the metrics that indicated the problem (error rates, latency, health checks, business signals) have returned to their normal pre-deployment levels. Skipping this verification step means an incident can appear closed while users are still being affected.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+-------
 
 
 ## Deployment Strategies and Risk Management
