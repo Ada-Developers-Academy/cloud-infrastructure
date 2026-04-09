@@ -47,9 +47,9 @@ IaC addresses this directly. Because the environment is defined in a file, the f
 
 ### Repeatability and Auditability
 
-IaC makes environments repeatable in the same way that CI/CD makes release pipelines repeatable. Spinning up a new staging environment doesn't require following a long setup document that may be out of date — it means running the same configuration file used to build the previous one. This is especially valuable in disaster recovery scenarios, where quickly rebuilding a failed environment can be the difference between a minor incident and an extended outage.
+IaC makes environments repeatable in the same way that CI/CD makes release pipelines repeatable. Spinning up a new staging environment doesn't require following a long setup document that may be out of date; it means running the same configuration file used to build the previous one. This is especially valuable in disaster recovery scenarios, where quickly rebuilding a failed environment can be the difference between a minor incident and an extended outage.
 
-Auditability comes from version control. Every change to infrastructure is a change to a file, and every change to a file is a commit with an author, a timestamp, and a message. Teams can answer questions like "What did the production database configuration look like before last week's deploy?" or "When did we add that new environment variable?" without digging through logs or asking around.
+Auditability comes from version control. Every change to infrastructure is a change to a file, and every change to a file is a commit with an author, a timestamp, and a message. Teams can answer questions like "What did the production database configuration look like before last week's deploy?" or "When did we add that new environment variable?" by going directly to the commit history.
 
 ## Summary
 

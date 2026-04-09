@@ -14,7 +14,7 @@ By the end of this lesson, students should be able to:
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
 | Rollback | Reverting a system to a previously deployed, known-good version after a release has introduced problems. | Revert, restore | "When error rates spiked after the release, the team initiated a rollback to the previous version while they investigated the cause." |
-| Roll-forward | Responding to a bad deploy by developing and deploying a fix to the broken version, rather than reverting to the prior one. | Hotfix, forward fix | "Because the deployment included a database migration, the team decided to roll forward with a patch rather than risk reverting the schema." |
+| Roll-forward | Responding to a bad deployment by developing and deploying a fix to the broken version, rather than reverting to the prior one. | Hotfix, forward fix | "Because the deployment included a database migration, the team decided to roll forward with a patch rather than risk reverting the schema." |
 | Monitoring Gate | A defined threshold or condition checked automatically after a deployment that determines whether the release is healthy or triggers a rollback. | Automated rollback trigger, deployment health check | "The team configured a monitoring gate to automatically roll back if the error rate exceeded 2% within five minutes of a deploy." |
 
 ## When Do We Need to Rollback?

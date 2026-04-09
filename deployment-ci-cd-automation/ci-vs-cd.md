@@ -12,7 +12,7 @@
 | Artifact Management | A way to store and manage the built versions of an application (not just the source code). An artifact might be a compiled app, a Docker image, or a packaged release file that's ready to deploy. | Artifact repository, package registry | "Our artifact management system stores a versioned Docker image for every successful build so we can redeploy any previous release without rebuilding from source." |
 | Build Automation | Automatically turning raw source code into something runnable. This usually includes installing dependencies, compiling code, and running tests without a human doing it manually. | Automated build, build pipeline | "With build automation in place, every time a developer merges a pull request, the system installs dependencies, compiles the code, and runs tests without any manual steps." |
 | Pipeline Orchestration | The system that coordinates the steps in a CI/CD pipeline. It decides the order of actions like build → test → deploy and triggers each step automatically when code changes. | Pipeline coordination, workflow automation | "Our pipeline orchestration tool kicks off a build the moment code is pushed, then runs tests, and only triggers a deployment to staging if every test passes." |
-| Rollback | Reverting a system back to a previous stable version when something goes wrong during deployment. A rollback may not fully reverse all system impacts, for example, database schema changes or data migrations that will not be undone by reverting the application code. | Revert, rollback deploy, release rollback | "When the new checkout feature caused a spike in errors, the team triggered a rollback to the previous stable release while they investigated the root cause." |
+| Rollback | Reverting a system back to a previous stable version when something goes wrong during deployment. | Revert, rollback deploy, release rollback | "When the new checkout feature caused a spike in errors, the team triggered a rollback to the previous stable release while they investigated the root cause." |
 
 ## What are CI & CD?
 
@@ -25,7 +25,7 @@ We've likely already encountered CI/CD by using a managed deployment platform. W
 
 ## Continuous Integration
 
-Think about a group project where everyone works on their section independently and then tries to combine everything the night before it's due. The content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction no longer matches the conclusion. The later we wait to integrate everyone's work, the messier the merge.
+Think about a group project where everyone works on their section independently and then tries to combine everything the night before it's due: the content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction may no longer match the conclusion. The later we wait to integrate everyone's work, the messier the merge!
 
 **Continuous Integration** (CI) is the software development answer to this problem. CI is the practice of merging code changes into a shared branch frequently, often multiple times per day, with automated builds and tests that run every time a PR opens or merge happens. The goal is to catch problems early, when they're small, cheap to fix, and easy to trace back to a specific change.
 
@@ -50,7 +50,7 @@ If any step fails, the pipeline stops and no artifact is created. The developer 
 
 **Continuous Delivery** (CD) extends CI by automating the pipeline further through staging deployment, integration testing, and any other validation steps. This means our code is always in a state that *could* be deployed to production. The defining feature of Continuous Delivery is the word 'could': a human still makes the decision of when to push the release to production.
 
-We can think of it like a restaurant's kitchen pass: food is cooked, plated, checked by the chef, and sitting under the heat lamp ready to go. It could go out immediately, but a server has to pick it up and carry it to the table. Continuous Delivery is the practice that keeps food on the kitchen pass. The decision of when to send it out remains with the team.
+We can think of it like a restaurant's kitchen pass: food is cooked, plated, checked by the chef, and sitting under the heat lamp ready to go. The food could go out immediately, but a server has to pick it up and carry it to the table. Continuous Delivery is the practice that keeps food on the kitchen pass. The decision of when to send it out remains with the team.
 
 As we mentioned, CD picks up where CI leaves off, taking the artifact created by CI and moving it through the staging and pre-production validation stages. A continuous delivery processes may look like:
 1. The artifact from CI is automatically deployed to the staging environment
