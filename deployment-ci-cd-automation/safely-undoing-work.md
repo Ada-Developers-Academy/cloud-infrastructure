@@ -27,7 +27,7 @@ The first part of that plan is detection: recognizing that something has gone wr
 - First, there needs to be a monitoring system watching for problems.
 - Second, the team needs to know what the system looked like *before* the deploy, because "something went wrong" is really "something changed in a bad direction." Without a baseline, we can't see the direction.
 
-Later in the curriculum we'll talk about tooling for observation, for now let's take a look at common signals that teams monitor to check if a deployment has introduced a problem:
+Let's take a look at common signals that teams monitor to check if a deployment has introduced a problem:
 - **Error rate increase**: The application's error rate rises meaningfully above its pre-deployment baseline shortly after a release.
 - **Latency degradation**: Requests that normally complete quickly are now slow, often causing cascading timeouts in other parts of the system.
 - **Failed health checks**: Most platforms automatically check whether running instances are responsive. When instances start failing those checks after a deploy, the platform may already be routing traffic away from them.
