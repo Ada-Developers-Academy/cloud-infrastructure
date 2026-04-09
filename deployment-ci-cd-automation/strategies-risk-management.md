@@ -79,7 +79,7 @@ Canary releases require thoughtful user segmentation decisions. The canary slice
 | **Speed** | Slower than rolling, and significantly slower than big bang. The observation period is intentional, but it means features take longer to reach all users. |
 | **Risk** | Lower than rolling for catching subtle, production-specific bugs. The deliberate observation phase is the key difference. |
 | **Complexity** | Moderate to high. Traffic splitting requires routing infrastructure. Comparing canary metrics against baseline requires solid instrumentation and observability tooling. |
-| **Observability needs** | High. Canary releases only provide value if we can distinguish how the canary group is performing from the control group. We need version-tagged metrics, error rates, and ideally business-level signals like conversion rates. |
+| **Observability needs** | High. Canary releases only provide value if we can distinguish how the canary group is performing from the control group. We need metrics tagged by application version, error rates, and ideally business-level signals like conversion rates. |
 
 ## Blue/Green Deployment
 
