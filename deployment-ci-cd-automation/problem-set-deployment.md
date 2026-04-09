@@ -1,18 +1,5 @@
 # Problem Set: Deployment, CI/CD, & Automation
 
-Suggested Questions:
-A pull request is merged. Which sequence best represents a typical, safe path to production?
-Which option best distinguishes CI, Continuous Delivery, and Continuous Deployment?
-You have a new release candidate and want a fast rollback path by keeping the previous version ready while you validate the new one with real traffic. Which strategy best fits?
-Which option best describes the main risk-control benefit of blue/green deployment?
-A production deploy is causing errors. Which situation is most likely to make a rollback insufficient or risky?
-Which answer best captures both the purpose of staging and a common reason it can give false confidence?
-Your team keeps running into “it works in staging but not production” because environments drift over time. Which approach most directly addresses this problem?
-
---------
-
-## Environment questions
-
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
@@ -106,12 +93,76 @@ Staging environments closely mirror production so that changes can be validated 
 ### !end-challenge
 <!--prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 4Bq2mRwX7nKpLsJ9cTzYeA3dFhV0gU
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
 
+A pull request is merged. Which sequence best represents a typical, safe path to production?
 
---------------
+##### !end-question
+##### !options
 
-## CI/CD questions
+* Merge → deploy to production → run tests → monitor
+* Merge → build artifact → run automated tests → deploy to staging → validate → deploy to production → monitor
+* Merge → deploy to staging → build artifact → deploy to production → run tests
+* Merge → run automated tests → deploy to production → build artifact → monitor
 
+##### !end-options
+##### !answer
+
+* Merge → build artifact → run automated tests → deploy to staging → validate → deploy to production → monitor
+
+##### !end-answer
+##### !explanation
+
+After a PR is merged:
+1. The release lifecycle begins with a **build** step that turns source code into a versioned, deployable artifact. 
+2. Automated tests run against that artifact before it goes anywhere. 
+3. The artifact is then promoted to a **staging environment**, which mirrors production as closely as possible, so that integration issues and configuration mismatches can be caught before real users are affected. 
+4. Only after staging validation passes does the artifact get deployed to **production**, followed by verification and ongoing monitoring. 
+
+Building artifacts after deployment (options C and D) or skipping staging entirely (option A) removes critical safety gates that prevent broken changes from reaching users.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 9wZnPk3RsTqBmYcXeL7gJvD2hA0fUi
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+Which option best distinguishes Continuous Integration (CI), Continuous Delivery, and Continuous Deployment?
+
+##### !end-question
+##### !options
+
+* CI deploys to production automatically; Continuous Delivery requires human approval for staging; Continuous Deployment skips testing entirely
+* CI, Continuous Delivery, and Continuous Deployment are different names for the same automated pipeline, the only differences are in the tools used
+* CI automates building and testing; Continuous Delivery automates through staging tests and keeps code ready for release; Continuous Deployment deploys to production automatically once all checks pass
+* CI automates deployment to production environments; Continuous Delivery adds a staging environment; Continuous Deployment adds automated tests
+
+##### !end-options
+##### !answer
+
+* CI automates building and testing; Continuous Delivery automates through staging tests and keeps code ready for release; Continuous Deployment deploys to production automatically once all checks pass
+
+##### !end-answer
+##### !explanation
+
+These three practices build on each other and each extends automation one step further down the pipeline. 
+- **Continuous Integration (CI)** covers the build and test stages. Every pull request and merge triggers an automated sequence that compiles code, runs tests, and produces an artifact (or raises an alert if something breaks). 
+- **Continuous Delivery** picks up from a passing CI run and automates deployment through staging and any additional validation, leaving the code in a state that *could* go to production at any time, but a human still makes the final call. 
+- **Continuous Deployment** removes that human approval step entirely: if all automated checks pass, the pipeline deploys to production with no manual intervention. 
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -143,43 +194,6 @@ Continuous Deployment is not the right fit when compliance rules require human s
 ##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: multiple-choice
-* id: ca4c7337-0308-4a1f-827b-e748f67761e3
-* title: Problem Set: Deployment, CI/CD, & Automation
-##### !question
-
-A fintech company's compliance team requires that a senior engineer sign off on every change before it goes live in production. The rest of their pipeline — building, testing, and staging deployment — is fully automated. Which CI/CD practice best describes this setup?
-
-##### !end-question
-##### !options
-
-* Continuous Integration only, because nothing is deployed automatically
-* Continuous Deployment, because all testing and staging steps are automated
-* Continuous Delivery, because the pipeline automates validation but a human approves the production release
-* Neither, because true CI/CD does not allow manual approval steps
-
-##### !end-options
-##### !answer
-
-* Continuous Delivery, because the pipeline automates validation but a human approves the production release
-
-##### !end-answer
-##### !explanation
-
-Continuous Delivery means code is always in a deployable state after passing automated checks, but the decision to release to production remains with a human. This is especially appropriate in regulated industries where compliance requires an approval step before changes reach end users.
-
-##### !end-explanation
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-
-
-------------------
-
-## IAC questions
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -284,11 +298,40 @@ When changes are made outside the IaC process, the configuration file drifts fro
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 5rEqMnW1kBsLzCpYvJxTgH8dF3aU0o
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
 
+A production deployment is causing errors. Which situation is most likely to make a rollback insufficient or risky?
 
--------
+##### !end-question
+##### !options
 
-## Questions for safely undoing work lesson
+* The deployment only updated application code and no other system components were changed
+* The deployment included a database migration that removed a column from a table 
+* The previous artifact version is stored in the artifact repository and can be retrieved quickly
+* The team has monitoring gates configured to detect elevated error rates automatically
+
+##### !end-options
+##### !answer
+
+* The deployment included a database migration that removed a column from a table 
+
+##### !end-answer
+##### !explanation
+
+Rollback is straightforward when a deployment only changes application code: re-deploy the previous artifact, and the system returns to its prior state. Complications arise when a deployment also changes **persistent state**, in this case, the database schema. 
+
+If a migration dropped a column that the previous version of the application queries, rolling back the code leaves the old application running against a schema it was never designed for. Every query that referenced the dropped column will now fail, potentially making the situation worse than the original error. 
+
+The other options (A, C, D) all describe conditions that make rollback *easier* and more reliable, not harder.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -352,11 +395,6 @@ Executing a rollback is not the same as confirming recovery. After restoring a p
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
--------
-
-
-## Deployment Strategies and Risk Management
-
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
@@ -388,12 +426,71 @@ Rolling deployments are well-suited for routine, lower-risk changes. They replac
 ### !end-challenge
 <!--prettier-ignore-end -->
 
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 2vCpRmW8kJnTbxQsYeLgZa5dH0fUo3
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
 
+You have a new release candidate and want a fast rollback path by keeping the previous version ready while you validate the new one with real traffic. Which strategy best fits?
 
-------------
+##### !end-question
+##### !options
 
+* Rolling deployment, because it replaces instances one at a time and stops if a problem is detected
+* Gradual rollout, because it expands the release in percentage tiers with explicit validation checkpoints
+* Blue/green deployment, because a second full environment runs the new version while the previous environment stays live and idle
+* Canary release, because it routes a small percentage of traffic to the new version for an extended observation window
 
-## Decoupling deployment & release
+##### !end-options
+##### !answer
+
+* Blue/green deployment, because a second full environment runs the new version while the previous environment stays live and idle
+
+##### !end-answer
+##### !explanation
+
+**Blue/green deployment** is the strongest fit when the top priority is having the previous version immediately available for rollback. 
+
+Rolling deployments can stop mid-rollout, but rolling back means re-deploying the old version, which takes time. Canary and gradual rollout strategies also require re-deploying to reverse course. Blue/green is the only strategy where the previous version is continuously running and immediately available as a rollback target throughout the validation window.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 7hKsNmBpRwYqLzXcTe4vJd1gF9aU0i
+* title: Problem Set: Deployment, CI/CD, & Automation
+##### !question
+
+Which option best describes the main risk-control benefit of a gradual rollout?
+
+##### !end-question
+##### !options
+
+* It eliminates the possibility of bugs reaching production by running more tests before each deployment
+* It removes the need for a rollback plan because the rollout can be paused at any checkpoint
+* It limits the number of users affected at each stage and allows the team to validate real-world behavior with data before expanding exposure further
+* It reduces infrastructure costs by running only one environment throughout the deployment
+
+##### !end-options
+##### !answer
+
+* It limits the number of users affected at each stage and allows the team to validate real-world behavior with data before expanding exposure further
+
+##### !end-answer
+##### !explanation
+
+A gradual rollout releases a new version to an increasing percentage of users in deliberate stages, for example, 5% → 25% → 50% → 100%, with explicit validation checkpoints between each step. The primary risk-control benefit is **blast radius management**: if a problem surfaces, it affects only the users already in the rollout rather than the entire user base, buying the team time to pause, investigate, or reverse course before the issue spreads. 
+
+Gradual rollouts do not eliminate bugs (option A) or remove the need for rollback planning (option B). They also typically require additional traffic-splitting infrastructure, meaning they can increase cost and complexity rather than reduce it (option D).
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 ### !challenge
