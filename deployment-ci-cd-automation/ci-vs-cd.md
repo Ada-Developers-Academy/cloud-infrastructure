@@ -16,16 +16,16 @@
 
 ## What are CI & CD?
 
-We've established that a release pipeline is the sequence of steps code travels through on its way to production. But what keeps that pipeline running smoothly and automatically, rather than requiring engineers to manually kick off each stage? The answer is a set of practices known as CI/CD.
+We've established that a release pipeline is the sequence of steps code travels through on its way to production. But what keeps that pipeline running smoothly and automatically, rather than requiring engineers to manually kick off each stage? The answer is a set of practices known as **CI/CD**.
 
 CI/CD stands for Continuous Integration, Continuous Delivery, and Continuous Deployment. These are a family of related practices that, taken together, describe how teams automate and standardize the journey from a merged pull request to a running production system. These practices build on one another: each piece picks up where the previous one leaves off and extends automation a step further down the release pipeline.
 
-We've likely already encountered CI/CD by using a managed deployment platform. When we connect a GitHub repository to a deployment service like Render, we are able to choose a branch of our repository to track. When we push new code to the branch, the platform automatically triggers a redeploy. That automatic trigger is CI/CD at work!
-- In a production engineering organization, the same principle applies, but with more steps, environments, and safeguards in between.
+We've likely already encountered CI/CD by using a managed deployment platform. When we connect a GitHub repository to a deployment platform like Render, we are able to choose a branch of our repository to track. When we push new code to the branch, the platform automatically triggers a redeploy. That automatic trigger is CI/CD at work!
+- In a larger organization, the same principle applies, but with more steps, environments, and safeguards in between.
 
 ## Continuous Integration
 
-Think about a group project in school where everyone works on their section independently and then tries to combine everything the night before it's due. The content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction no longer matches the conclusion. The later we wait to integrate everyone's work, the messier the merge.
+Think about a group project where everyone works on their section independently and then tries to combine everything the night before it's due. The content might be good, but the formatting is inconsistent, some sections contradict others, and the introduction no longer matches the conclusion. The later we wait to integrate everyone's work, the messier the merge.
 
 **Continuous Integration** (CI) is the software development answer to this problem. CI is the practice of merging code changes into a shared branch frequently, often multiple times per day, with automated builds and tests that run every time a PR opens or merge happens. The goal is to catch problems early, when they're small, cheap to fix, and easy to trace back to a specific change.
 
@@ -48,16 +48,16 @@ If any step fails, the pipeline stops and no artifact is created. The developer 
 
 ## Continuous Delivery
 
-**Continuous Delivery** (CD) extends CI by automating the pipeline further through staging deployment, integration testing, and any other validation steps. This means our code is always in a state that *could* be deployed to production. The defining feature of Continuous Delivery is the word could: a human still makes the decision of when to actually release to production.
+**Continuous Delivery** (CD) extends CI by automating the pipeline further through staging deployment, integration testing, and any other validation steps. This means our code is always in a state that *could* be deployed to production. The defining feature of Continuous Delivery is the word 'could': a human still makes the decision of when to push the release to production.
 
-We can think of it like a restaurant's kitchen pass: food is cooked, plated, checked by the chef, and sitting under the heat lamp ready to go. It could go out immediately. But a server has to pick it up and carry it to the table. Continuous Delivery is the practice that keeps food on the kitchen pass. The decision of when to send it out remains with the team.
+We can think of it like a restaurant's kitchen pass: food is cooked, plated, checked by the chef, and sitting under the heat lamp ready to go. It could go out immediately, but a server has to pick it up and carry it to the table. Continuous Delivery is the practice that keeps food on the kitchen pass. The decision of when to send it out remains with the team.
 
-As we mentioned, CD picks up where CI leaves off, taking the artifact created by CI and moving it through the staging and pre-production validation stages. After a successful CI run:
-1. The artifact is automatically deployed to the staging environment
+As we mentioned, CD picks up where CI leaves off, taking the artifact created by CI and moving it through the staging and pre-production validation stages. A continuous delivery processes may look like:
+1. The artifact from CI is automatically deployed to the staging environment
 2. Integration tests, smoke tests, and any additional automated checks run against staging
 3. The pipeline marks the release as ready and notifies the team
 
-At this point a human can review the results and if everything looks good,approve the production deployment, starting the next step in the release pipeline.
+At this point a human can review the results and if everything looks good, approve the production deployment, starting the next step in the release pipeline!
 
 The staging deployment and its associated tests are the critical addition here. Code that passed unit tests in CI now gets validated against an environment that mirrors production, which catches a different class of bugs: issues with configuration, infrastructure compatibility, or interactions between services that unit tests can't surface, all before they can affect a real user.
 
@@ -69,16 +69,16 @@ The staging deployment and its associated tests are the critical addition here. 
 
 ## Continuous Deployment
 
-**Continuous Deployment** takes the final manual step out of the picture. In a Continuous Deployment pipeline, every change that passes all automated checks is deployed to production automatically, with no human approval required. If the tests pass, users see the change.
+**Continuous Deployment** takes the final manual step out of the picture. In a continuous deployment pipeline, every change that passes all automated checks is deployed to production automatically, with no human approval required. If the tests pass, users see the change.
 
-This is the most automated point on the CI/CD spectrum, and it is the model used by many high-velocity consumer software teams. It is also the model that creates the most pressure on test coverage and monitoring: because no human reviews a change before it reaches users, the automated checks become the last line of defense.
+This is the most automated point on the CI/CD spectrum, and it is the model used by many high-velocity consumer software teams. It is also the model that creates the most pressure on test coverage and monitoring. No human reviews a change before it reaches users, so the automated checks become the last line of defense.
 
-This is not a shortcut or a sign of less care; it's a model that requires more rigor in automated testing and monitoring precisely because the automation has to be trustworthy enough to act without asking permission. Teams that practice Continuous Deployment typically have extensive test suites, strong monitoring, and automated rollback to a prior build configured (which we'll talk about in a later lesson), because those systems are doing the job that a human reviewer does in a Continuous Delivery pipeline.
+This is not a shortcut or a sign of less care; it's a model that requires more rigor in automated testing and monitoring precisely because the automation has to be trustworthy enough to act without asking permission. Teams that practice Continuous Deployment typically have extensive test suites, strong monitoring, and automated rollback to a prior build configured (which we'll talk about in a later lesson), because those systems are doing the job that a human reviewer does in a continuous delivery pipeline.
 
-Continuous Deployment covers the complete pipeline without manual gates:
-1. CI runs: build, test, artifact creation
-2. CD runs: Artifact is automatically deployed to staging. Integration and acceptance tests run against staging
-3. If all checks pass, the artifact is automatically deployed to production. Monitoring watches for degraded error rates or latency and may trigger automated rollback to the prior version
+Continuous deployment covers the complete pipeline without manual gates:
+1. CI runs: build, test, artifact creation.
+2. CD runs: Artifact is automatically deployed to staging. Integration and acceptance tests run against staging.
+3. If all checks pass, the artifact is automatically deployed to production. Monitoring watches for degraded error rates or latency and may trigger automated rollback to the prior version.
 
 ### How this differs from Continuous Delivery
 
@@ -108,11 +108,9 @@ In these cases, Continuous Delivery is often the better fit because of its delib
 
 ## CI/CD Makes Pipelines Repeatable
 
-Most of us have experienced a deployment that went sideways at some point. Not because the code was bad, but because of something in the process around it. Maybe a step was skipped under deadline pressure, a configuration was set differently than usual, or one team member deployed things slightly differently than another. The code itself was fine; the way it moved to production wasn't. The core of the issue is often that we didn't have a clear process that ensured the same things happened every single time. 
+Most of us have experienced a deployment that went sideways at some point. Not because the code was bad, but because of something in the process around it. Maybe a step was skipped under deadline pressure, a configuration was set differently than usual, or one team member deployed things slightly differently than another. The code itself was fine; the way it moved to production wasn't. The heart of the issue is often that we didn't have a clear process that ensured the same things happened every single time. 
 
-The reason engineering teams invest in CI, CD, and Continuous Deployment isn't just to automate individual steps, it's to build a pipeline that behaves the same way every single time code moves through it. Repeatability is the core value CI/CD adds to a release pipeline. 
-
-When we talk about a repeatable pipeline, we mean one where the same inputs always produce the same outputs through the same validated steps, regardless of who wrote the code, what time of day it is, or how many changes are in the release. That consistency is what makes software releases predictable and trustworthy instead of nerve-wracking.
+When we talk about a repeatable pipeline, we mean one where the same inputs always produce the same outputs through the same validated steps, regardless of who wrote the code, what time of day it is, or how many changes are in the release. The reason engineering teams invest in CI, CD, and Continuous Deployment isn't just to automate individual steps, it's to build a pipeline that behaves the same way every single time code moves through it. That consistency is what makes software releases predictable and trustworthy instead of nerve-wracking.
 
 ### Pipelines as a Repeatable Path
 
@@ -127,7 +125,7 @@ What that means in practice:
 - A release at 2pm on a Wednesday and a hotfix at 11pm on a Friday go through the same checks
 - If the pipeline definition changes, such as a new test suite being added, a deployment step is updated. That change is tracked in version control just like code, and applies to every future release
 
-That last point is quietly significant. Manual deployment processes tend to drift over time: a step gets added here, a shortcut gets taken there, and six months later nobody is quite sure what the "official" process actually is. A pipeline defined in code doesn't drift unless someone deliberately changes it, and when it does change, there's a record of when, why, and by whom. 
+The last point is quietly significant. Manual deployment processes tend to drift over time: a step gets added here, a shortcut gets taken there, and six months later nobody is quite sure what the "official" process actually is. A pipeline defined in code doesn't drift unless someone deliberately changes it, and when it does change, there's a record of when, why, and by whom. 
 
 It's also worth naming what repeatability prevents. As we've brought up, a large proportion of production incidents can be traced back to a manual step done incorrectly or inconsistently. Not bugs in the code, but mistakes in the process of getting the code to users. A well-designed CI/CD pipeline doesn't just automate those steps; it makes skipping or bypassing them structurally difficult. Code that doesn't pass the required checks doesn't advance. The pipeline is the gatekeeper, and it applies the same standard to every change without exception.
 
@@ -152,7 +150,7 @@ The same bug, with three very different costs, determined entirely by where in t
 
 Fast feedback also changes how teams feel about their pipeline. A check that fails in under five minutes and tells us exactly what broke is useful. A validation step that takes an hour and returns a cryptic error is something teams learn to dread and look for ways around. Well-designed automated checks should feel like a helpful signal, not a punishment, and that experience is largely a function of how fast and specific the feedback is.
 
-Repeatability and fast feedback aren't separate benefits of CI/CD — they reinforce each other. A repeatable pipeline gives automated checks a consistent environment to run in. Fast-feedback checks make the repeatable pipeline worth trusting. Together, they replace the anxiety of "I hope this deploy goes okay" with something much closer to confidence.
+Repeatability and fast feedback aren't separate benefits of CI/CD, they reinforce each other. A repeatable pipeline gives automated checks a consistent environment to run in. Fast-feedback checks make the repeatable pipeline worth trusting. Together, they replace the anxiety of "I hope this deploy goes okay" with something much closer to confidence.
 
 ## Summary
 

@@ -42,7 +42,7 @@ At each step of a release pipeline there are typically quality checks.
 - When there are no issues, the pipeline will move from step to step until the pipeline completes. 
 - If one of these checks fails, the pipeline stops at that step and alerts the system that there was an error in need of investigation. 
  
-We'll dive further into automation later in this topic, but for now we should know that modern organizations and release flows try to automate as much of their release pipeline as possible to avoid manual, inconsistent, and error-prone releases.
+We'll dive further into deployment automation later in this topic, but for now we should know that modern organizations and release flows try to automate as much of their release pipeline as possible to avoid manual, inconsistent, and error-prone releases.
 
 ## Environments
 
@@ -171,4 +171,3 @@ Keeping environments separate ensures that code is validated at each stage befor
 ##### !end-explanation
 ### !end-challenge
 <!--prettier-ignore-end -->
-
