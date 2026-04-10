@@ -30,16 +30,16 @@ Reporting generally falls into three categories.
 
 Building custom web applications to visualize every new dataset can be slow and expensive. To deliver insights securely and at scale, we rely on managed **Business Intelligence (BI)** platforms.
 
+Modern cloud BI platforms are usually fully managed and can be serverless, allowing them to scale automatically to support thousands of concurrent users without the need to provision infrastructure. To maintain consistently fast performance and shield underlying data warehouses from repetitive queries, BI tools often utilize high-performance, in-memory calculation engines. 
+
+BI platforms allow organizations to embed interactive dashboards directly into web applications, giving users with business expertise the ability to explore data on their own without needing to write code. Visualizations can also be delivered via email or accessed through mobile apps, ensuring that insights are available wherever and whenever they are needed. Furthermore, they enforce row-level security (RLS) so users only see the data they are authorized to view. For instance, a global retail chain can use row-level security to ensure that regional managers logging into the same central sales dashboard only see the metrics specific to their own geographic territories.
+
 | Provider | Service Name |
 | -------- | ------------ |
 | AWS | QuickSight |
 | Azure | Power BI |
 | Google Cloud | Google Cloud Looker Studio |
 | OCI | Oracle Analytics Cloud |
-
-Modern cloud BI platforms are fully managed and serverless, allowing them to scale automatically to support thousands of concurrent users without the need to provision infrastructure. To maintain consistently fast performance and shield underlying data warehouses from repetitive queries, BI tools often utilize high-performance, in-memory calculation engines. 
-
-BI platforms allow organizations to embed interactive dashboards directly into web applications, giving users with business expertise the ability to explore data on their own without needing to write code. Visualizations can also be delivered via email or accessed through mobile apps, ensuring that insights are available wherever and whenever they are needed. Furthermore, they enforce row-level security (RLS) so users only see the data they are authorized to view. For instance, a global retail chain can use row-level security to ensure that regional managers logging into the same central sales dashboard only see the metrics specific to their own geographic territories.
 
 ## Enhancing Analytics with Machine Learning and AI
 
