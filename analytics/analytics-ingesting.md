@@ -50,25 +50,38 @@ ELT represents the modern cloud-native approach. Raw data is extracted and immed
 
 The significant advantage of ELT is that it allows us to store all raw data without needing to predict in advance which data will be valuable. This means we can retain a complete historical record and apply transformations as needed for different use cases, without being limited by the constraints of a traditional ETL pipeline. ELT is particularly well-suited for handling large volumes of semi-structured or unstructured data, such as logs, click streams, and social media feeds, which may not fit neatly into a relational schema.
 
-## Practical System Roles in Data Processing
-To implement batch and stream processing or to orchestrate ELT pipelines, we rely on managed cloud services. Rather than provisioning and maintaining the underlying hardware ourselves, we use specialized platforms that handle the heavy lifting. These platforms can be broadly categorized into three roles: managed data integration, big data cluster platforms, and real-time streaming platforms.
+### !callout-info
 
-While the general categories of platforms are consistent across providers, the specific implementations and features may vary. So as we look into the services provided by a particular provider, we may need to expand our search beyond those listed here to find the best fit for our specific use case.
+## Analytics Product Offerings Across Cloud Providers
+
+Here and in the following lessons, we'll be taking a very brief look at a number of service roles within the overarching cloud analytics ecosystem. In order to help ground these concepts in real-world examples, we'll list some of the specific services offered by each of the major cloud providers that fit into these categories.
+
+Different providers slice up the analytics workflow into different services, and the specific features of those services may vary. As a result, the services you'll see listed are not always going to be a one-to-one match across providers, but they should act as a reasonable starting point for jumping into the offerings of a particular provider. As a result, it may be necessary to expand your search beyond the specific services listed here to find the best fit for your use case within a particular provider's ecosystem.
+
+### !end-callout
+
+## Practical System Roles in Data Processing
+
+To implement batch and stream processing or to orchestrate ELT pipelines, we rely on managed cloud services. Rather than provisioning and maintaining the underlying hardware ourselves, we use specialized platforms that handle the heavy lifting. These platforms can be broadly categorized into three roles: managed data integration, big data cluster platforms, and real-time streaming platforms.
 
 ### Managed Data Integration
 
-We use serverless platforms to automatically discover data, catalog its metadata, and execute ETL or ELT jobs without requiring us to manage the underlying infrastructure.
+Cloud providers offer a variety of services that automate the discovery, cataloging, and transformation of data. Offerings may run from self-hosted data integration tools to fully managed, serverless platforms. Often, some selection of open source data integration tools is also available in a managed format, allowing us to run familiar frameworks without needing to manage the underlying infrastructure. Apache Airflow and Apache Spark are two popular examples of open source data integration tools that are commonly offered in a managed format by cloud providers.
+
+Regardless of the specific service, these platforms allow us to orchestrate complex ETL or ELT workflows. They can automatically discover and catalog metadata about our data assets, making it easier to manage and understand our data. They may also provide a visual interface for designing data pipelines, allowing us to define the flow of data from source to destination, along with any necessary transformations, without writing code.
 
 | Provider | Service Name |
 | -------- | ------------ |
 | AWS | AWS Glue |
 | Azure | Azure Data Factory |
-| Google Cloud | Google Cloud Data Fusion |
-| OCI | Oracle Data Integration |
+| Google Cloud | Google Cloud Dataflow |
+| OCI | OCI Data Integration |
 
 ### Big Data Cluster Platforms
 
 These are managed cluster environments designed to host distributed data processing frameworks, such as Apache Hadoop and Apache Spark. We use these platforms to distribute massive, petabyte-scale data transformation tasks across multiple compute nodes, analyzing our data in parallel.
+
+Many of these services are also available in a serverless format, allowing us to run big data processing jobs without needing to manage the underlying cluster infrastructure. This means we can focus on writing our data transformation logic while the cloud provider handles provisioning, scaling, and maintaining the cluster.
 
 | Provider | Service Name |
 | -------- | ------------ |
@@ -79,7 +92,12 @@ These are managed cluster environments designed to host distributed data process
 
 ### Real-Time Streaming Platforms
 
-To process fast-moving data without loss, we use highly scalable, fault-tolerant message brokers. These platforms securely buffer, capture, and process continuous streams of data at a massive scale before the data disappears.
+To process fast-moving data without loss, we use highly scalable, fault-tolerant **message brokers**. These platforms securely buffer, capture, and process continuous streams of data at a massive scale before the data disappears. Here, Apache Kafka is a dominant open source framework that is commonly offered in a managed format by cloud providers. These platforms allow us to handle high volumes of streaming data, such as click streams, IoT device data, and social media feeds, with low latency and high reliability.
+
+These services are:
+- **highly durable** through replication across multiple availability zones,
+- **decoupled** through data buffering so that producers and consumers can operate independently, and
+- **scalable** through sharding or partitioning to handle varying volumes of data without loss, even during traffic spikes.
 
 | Provider | Service Name |
 | -------- | ------------ |
