@@ -57,7 +57,7 @@ Teams track uptime as a reliability indicator because it provides a direct measu
 
 ### Error Rate
 
-**Error rate** is the percentage of requests that result in an error over a given period. A rising error rate is often the first sign that reliability is degrading, even before users begin reporting problems. As discussed in [Introduction to Observability](./intro-to-observability.md), error rate is one of the four golden signals and is one of the most important metrics a team can track.
+**Error rate** is the percentage of requests that result in an error over a given period. A rising error rate is often the first sign that reliability is degrading, even before users begin reporting problems. As discussed in [Introduction to Observability](./intro-to-observability.md), measuring errors is one of the four golden signals and is one of the most important metrics a team can track.
 
 Error rate is particularly useful because it is directly tied to the user experience. A system with a high error rate is failing its users in a measurable way, regardless of whether the system is technically considered available.
 
@@ -91,9 +91,9 @@ Understanding what reliability means and how to measure it is only part of the p
 
 ### Monitoring
 
-**Monitoring** is the practice of continuously watching the signals a system produces and responding when some metric crosses a defined threshold. Observability gives teams the signals they need to understand what a system is doing. 
+**Monitoring** is the practice of continuously watching the signals a system produces and responding when some metric crosses a defined threshold. Observability gives teams the signals they need to understand what a system is doing. Monitoring is what teams do with those signals in practice.
 
-Monitoring is what teams do with those signals in practice. In the context of reliability, monitoring is how teams know whether their system is meeting its reliability targets. A team that has defined an SLO that 99.9% of requests must complete successfully needs a way to continuously measure whether that target is being met. Without monitoring, a team has no way of knowing whether reliability is degrading until users begin reporting problems, by which point the impact on users may already be significant.
+In the context of reliability, monitoring is how teams know whether their system is meeting its reliability targets. A team that has defined an SLO that 99.9% of requests must complete successfully needs a way to continuously measure whether that target is being met. Without monitoring, a team has no way of knowing whether reliability is degrading until users begin reporting problems, by which point the impact on users may already be significant.
 
 Monitoring also connects directly to MTTD. A team with well-configured monitoring and alerts will detect failures faster than a team that relies on user reports, which means recovery can begin sooner and the overall impact of the failure is reduced. 
 

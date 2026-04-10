@@ -31,7 +31,8 @@ AIOps tools do not replace observability signals. They consume them.  The metric
 Rather than relying on fixed thresholds, AIOps tools build a **behavioral baseline** for each service they monitor. A behavioral baseline is a learned model of what "normal" looks like for a specific service, built by analyzing historical data over time. Normal behavior is not a single fixed value. It varies throughout the day, across days of the week, and across seasons. The following examples illustrate how normal behavior varies across different services and time periods:
 - A web application typically receives more traffic during business hours than at night. 
 - An e-commerce platform sees higher load on weekends and significantly higher load during sale events. 
-- A payroll processing service that experiences a predictable surge in database activity at the end of each month when payroll runs are executed
+- A payroll processing service that experiences a predictable surge in database activity at the end of each month when payroll runs are executed.
+
 A baseline accounts for these patterns by learning the expected range of behavior for a service at each point in time, rather than applying a single threshold that is supposed to represent normal across all conditions.
 
 Building an accurate baseline requires an initial period of data collection. Most AIOps tools generally require an observation period ranging from a few days to several weeks to generate initial, actionable insights. This baselining period is an important expectation to set. Teams should not expect immediate results when first deploying an AIOps tool, and the insights it produces will become more accurate as the tool collects more data over time.
@@ -56,7 +57,7 @@ The value of reactive insights in the context of reliability is their effect on 
 
 ### Proactive Insights
 
-**Proactive insights** analyze historical trends and early warning signals to surface potential issues before they affect users. Where a reactive insight responds to something that is already happening, a proactive insight identifies a pattern that suggests something is likely to happen if no action is taken.
+**Proactive insights** analyze historical trends and early warning signals to surface potential issues *before* they affect users. Where a reactive insight responds to something that is already happening, a proactive insight identifies a pattern that suggests something is likely to happen if no action is taken.
 
 Examples of conditions that proactive insights might surface include a service whose memory consumption has been increasing steadily over several weeks and is approaching its allocated limit, a gradual rise in database query times that has not yet affected users but follows a pattern that historically precedes a larger failure, or a service that is approaching a concurrency limit that will cause it to start rejecting requests once crossed.
 
@@ -180,20 +181,20 @@ When implementing an AI-driven monitoring solution, which of the following are t
 ##### !end-question
 
 ##### !options
-* At least 24–48 hours of data collection to establish a baseline.
-* Advanced expertise in machine learning from the operations team.
-* A defined coverage boundary (such as specific tags or resource groups).
-* Manual configuration of every individual metric alarm.
+a| At least 24–48 hours of data collection to establish a baseline.
+b| Advanced expertise in machine learning from the operations team.
+c| A defined coverage boundary (such as specific tags or resource groups).
+d| Manual configuration of every individual metric alarm.
 ##### !end-options
 
 ##### !answer
-* At least 24–48 hours of data collection to establish a baseline.
-* A defined coverage boundary (such as specific tags or resource groups).
+a|
+c|
 ##### !end-answer
 
 #### !explanation 
 An AIOps tool requires an initial data collection period of at least 24 to 48 hours to build an accurate behavioral baseline before it can begin generating reliable insights. Without this baselining period, the tool does not have enough data to distinguish normal behavior from anomalies. A defined coverage boundary is also required because the tool can only monitor and analyze the services it has been configured to watch. Without knowing which parts of the system to focus on, the tool has no scope within which to operate.
-<br><br>
+<br>  
 Advanced expertise in machine learning is not required from the operations team because AIOps tools are designed to abstract that complexity away. The team interacts with the insights the tool produces, not the underlying models. Manual configuration of every individual metric alarm is also not required, and is in fact one of the limitations of traditional monitoring that AIOps tools are designed to eliminate. The tool builds and maintains its own understanding of normal behavior automatically, without requiring a human to define a threshold for every metric.
 #### !end-explanation 
 ### !end-challenge

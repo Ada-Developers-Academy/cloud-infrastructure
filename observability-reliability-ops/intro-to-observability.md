@@ -46,7 +46,7 @@ These four signals do not replace other metrics, but they provide a consistent a
 
 ## Monitoring and Metrics
 
-**Monitoring** is the practice of continuously watching the signals a system produces and responding when something crosses a defined threshold. Metrics are the signal most commonly associated with monitoring because they produce a continuous stream of numerical data that can be watched and compared against thresholds over time. When a metric crosses a threshold, an alert fires and notifies the team. Monitoring is what teams do with observability data. Observability gives you the signals. Monitoring is the act of watching them and deciding when to act. We will return to monitoring in the next lesson when we look at how teams use it to measure and maintain the reliability of their systems.
+**Monitoring** is the practice of continuously watching the signals a system produces and responding when something crosses a defined threshold. Metrics are the signal most commonly associated with monitoring because they produce a continuous stream of numerical data that can be watched and compared against thresholds over time. When a metric crosses a threshold, an alert fires and notifies the team. Monitoring is what teams *do* with observability data. Observability gives you the signals. Monitoring is the act of watching them and deciding when to act. We will return to monitoring in the next lesson when we look at how teams use it to measure and maintain the reliability of their systems.
 
 ### !end-callout
 
@@ -57,17 +57,17 @@ A **log** is a timestamped record of a discrete event that occurred within a sys
 - A database query that was executed
 - An error message with a stack trace
 - A payment transaction that was processed
-- A request that was rejected because the user was not authorized. 
+- A request that was rejected because the user was not authorized
 
 Logs are the most detailed of the three signals because they capture the specific context around individual events rather than summarizing system behavior as a number. Logs are well suited to answering the question of what happened and when. When a team receives an alert that error rates have spiked, logs are where they look to find out what the error actually is. A log entry might reveal that a specific database query is failing with a timeout error, or that a particular API endpoint is returning a permissions error for a subset of users. That level of detail is not available in a metric.
 
 What logs cannot tell you is how a problem traveled through a distributed system. A log entry records what happened inside one service at one moment in time. If a user request touches five services before returning a response, the logs from each of those services exist independently. Connecting them into a coherent picture of what happened to that specific request requires tracing, which we will review in the next section. 
 
-Production systems can generate an enormous volume of log data. A busy application might write millions of log entries per day, which introduces challenges around storage, search, and noise. Not every event is worth logging, and one of the ongoing challenges of observability is making intentional decisions about what to log so that the important signals do not get buried in irrelevant data. 
+Production systems can generate an enormous volume of log data. A busy application might write millions of log entries per day, which introduces challenges around storage, search, and noise. Not every event is worth logging, and care must be taken in other cases to ensure that personally identifiable information (PII) is not captured. One of the ongoing challenges of observability is making intentional decisions about what to log, so that the important signals do not get buried in irrelevant data, and customer privacy policies are respected.
 
 #### Traces
 
-A **trace** is a record of the path a single request takes as it travels through a distributed system. Where metrics describe the overall behavior of a system and logs capture individual events within a single service, a trace follows one specific request from the moment it enters the system to the moment a response is returned, recording every service it touches along the way. A trace is made up of individual units called spans. Each **span** represents one unit of work performed by one service as part of handling the request. For example, a single API request might generate trace that includes:
+A **trace** is a record of the path a single request takes as it travels through a distributed system. Where metrics describe the overall behavior of a system and logs capture individual events within a single service, a trace follows one specific request from the moment it enters the system to the moment a response is returned, recording every service it touches along the way. A trace is made up of individual units called spans. Each **span** represents one unit of work performed by one service as part of handling the request. For example, a single API request might generate a trace that includes:
 
 - A span for the initial HTTP handler
 - A span for a call to an authentication service
@@ -78,9 +78,8 @@ Each span records how long that unit of work took and whether it succeeded or fa
 
 What traces cannot tell you is how the system is behaving overall. A trace describes one request. It does not tell you how many requests are failing, what the error rate is across the system as a whole, or whether a trend is developing over time. For that, teams return to metrics.
 
-![An diagram titled "Three Pillars of Observability: Logs, Metrics and Traces" showing three symbols side by side. The first symbol is labeled "Logs" with the description "A log is a timestamped record of a discrete event that occurred within a system." The second symboled is labeled "Metrics" with the description "Metrics are numerical values over time." The third symbol is labeled "Traces" with the description "A trace is a record of the path a single request takes as it travels through a distributed system."](assets/metrics-logs-traces.png)
-
-*Fig. The three pillars of observability: logs, metrics, and traces. Each signal answers a different kind of question about system behavior.*
+![A diagram titled "Three Pillars of Observability: Metrics, Logs and Traces" showing three symbols side by side. The first symbol is labeled "Metrics" with the description "Metrics are numerical values over time." The second symbol is labeled "Logs" with the description "A log is a timestamped record of a discrete event that occurred within a system." The third symbol is labeled "Traces" with the description "A trace is a record of the path a single request takes as it travels through a distributed system."](assets/metrics-logs-traces.png)  
+*Fig. The three pillars of observability: metrics, logs, and traces. Each signal answers a different kind of question about system behavior.*
 
 #### How the Three Signals Work Together
 
@@ -122,8 +121,7 @@ Consider a scenario where most API requests complete in 50 milliseconds, but 2% 
 
 This is why the industry commonly uses percentiles rather than averages to measure response time. A percentile describes the experience of a specific portion of users. The 99th percentile, often written as p99, is the response time below which 99% of requests fell. Put another way, only 1% of requests took longer than the p99 value. For example, if your p99 is 400ms then that means 99 out of every 100 users received a response within 400ms, but 1 out of every 100 experienced something slower. That 1% might sound small, but on a system handling 100,000 requests per minute that is 1,000 users every minute experiencing your slowest responses.
 
-![A line chart titled "Request Latency Percentiles" showing four lines plotted over dates from August 3 to August 9, 2025. The y-axis is labeled "Milliseconds" and ranges from 0 to 20. The p99 line shows significantly higher and more variable latency than the p50, p90, and p95 lines, indicating that while most requests are fast and consistent, a small percentage of requests experience much slower response times](assets/percentiles.png)
-
+![A line chart titled "Request Latency Percentiles" showing four lines plotted over dates from August 3 to August 9, 2025. The y-axis is labeled "Milliseconds" and ranges from 0 to 20. The p99 line shows significantly higher and more variable latency than the p50, p90, and p95 lines, indicating that while most requests are fast and consistent, a small percentage of requests experience much slower response times](assets/percentiles.png)  
 *Fig. Request latency percentiles over a one-week period. The p99 line shows significantly higher and more variable latency than the p50, p90, and p95 lines, indicating that while most requests are fast and consistent, a small percentage of requests experience much slower response times.*
 
 These measurements surface the outliers that averages hide, giving teams a more accurate picture of how the system is actually performing for real users. Percentiles are introduced here as a concept to be aware of rather than something to configure. The important takeaway is that averages can mask performance problems affecting a small but real subset of users, and that the choice of how to summarize metric data has real consequences for what a team is able to see.

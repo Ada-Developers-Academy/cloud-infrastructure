@@ -1,4 +1,4 @@
-# Problem Set: AI for Operations
+# Problem Set: Observability, Reliability & Operations
 
 ## Lesson Review
 
@@ -68,19 +68,19 @@ A team is evaluating the reliability of their cloud application. Which of the fo
 ##### !end-question
 
 ##### !options
-* Mean Time Between Failures (MTBF)
-* The number of engineers on the team
-* Mean Time to Detect (MTTD)
-* Throughput
-* The size of the team's deployment pipeline
-* Error rate
+a| Mean Time Between Failures (MTBF)
+b| The number of engineers on the team
+c| Mean Time to Detect (MTTD)
+d| Throughput
+e| The size of the team's deployment pipeline
+f| Error rate
 ##### !end-options
 
 ##### !answer
-* Mean Time Between Failures (MTBF)
-* Mean Time to Detect (MTTD)
-* Throughput
-* Error rate
+a|
+c| 
+d|
+f|
 ##### !end-answer
 
 #### !explanation 
@@ -133,31 +133,31 @@ Select the four services the team should prioritize for AIOps monitoring given t
 ##### !end-question
 
 ##### !options
-* The payment processing service
-* The internal reporting dashboard
-* The order management service
-* The promotional email service
-* The customer authentication service
-* The product catalog service
+a| The product catalog service
+b| The payment processing service
+c| The order management service
+d| The internal reporting dashboard
+e| The promotional email service
+f| The customer authentication service
 ##### !end-options
 
 ##### !answer
-* The payment processing service
-* The order management service
-* The customer authentication service
-* The product catalog service
+a|
+b|
+c|
+f|
 ##### !end-answer
 
 #### !explanation 
 The payment processing service handles all financial transactions, meaning failures directly result in lost revenue and damaged user trust, making it the highest priority for monitoring. The order management service is central to the application's core function and failures here affect every order in the system. The customer authentication service is a dependency for most other user-facing actions, and a failure here would prevent users from accessing the application entirely. The product catalog service is the first point of contact for users browsing the application, and degraded performance here directly affects the user experience and the ability to drive purchases.
-<br><br>
+<br>  
 The internal reporting dashboard and the promotional email service are lower priority because they serve internal users or run infrequently. Failures in these services do not directly affect the real-time experience of customers using the application, making them reasonable candidates to defer when budget is constrained.
 #### !end-explanation 
 ### !end-challenge
 
 ## Case Study Review
 
-Read the following scenario, then answer the questions below. The full postmortem can be found [here](https://blog.cloudflare.com/post-mortem-on-cloudflare-control-plane-and-analytics-outage/).
+Read the following scenario, then answer the questions below (~12 minutes). The full postmortem can be found [here](https://drive.google.com/file/d/1yG8qXNdMnHqXao3m8s2s7785UhLRUFVs/view?usp=sharing) ([source](https://blog.cloudflare.com/post-mortem-on-cloudflare-control-plane-and-analytics-outage/)).
 
 In November 2023, Cloudflare experienced a significant outage affecting its control plane and analytics services. The outage lasted approximately 36 hours and was caused by a power failure at one of three data centers the company relied on in the Portland, Oregon area. 
 
