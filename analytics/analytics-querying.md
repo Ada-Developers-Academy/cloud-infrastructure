@@ -44,18 +44,22 @@ And because we can query data in place, we can analyze vast amounts of raw data 
 
 Depending on the structure of our data and the questions we are trying to answer, we rely on different types of specialized engines to perform our searches. 
 
-### Serverless Interactive Querying Engines
+### Interactive Query-in-Place Engines
 
-**Serverless Interactive Querying Engines** enable us to analyze vast amounts of structured and semi-structured data directly in object storage using standard SQL. Because they are serverless, we do not need to provision or manage any underlying infrastructure, and we only pay for the queries we run. In order to query multiple data sources, first, we usually would set up a data source to bridge the gap between the query engine and the data lake, such as a data catalog or a semantic layer. This allows us to run federated queries across multiple data sources, including relational databases, data lakes, and even external APIs, all from a single interface.
+**Interactive Query-in-Place Engines** enable us to analyze vast amounts of structured and semi-structured data directly in object storage using standard SQL. They can be managed or serverless, giving us options about how much infrastructure management we want to handle ourselves. These engines are designed to be highly scalable and cost-effective, allowing us to run queries on petabyte-scale datasets without needing to provision or manage a separate data warehouse. Not all providers offer this as a distinct service, with some instead providing this functionality as a feature within their data warehousing or data lake services, but the core concept of query-in-place analytics is still present.
 
-For example, we might have an object storage data lake that contains historical purchase data in a plain Parquet file. We can use a serverless interactive querying engine to run SQL queries directly against that to extract insights about user behavior. We would register the data lake in our data catalog, either by setting up schema information manually, or running a data crawler to try to determine the data structure automatically. Once the data is registered, we can use the query engine to run SQL queries that join the historical data with other structured data sources, such as a customer database, to gain deeper insights, all while leaving the actual data in place!
+Costs usually accumulate based on the amount of data scanned by each query or the compute units used to carry out that request, making it important to optimize our data storage and query patterns to minimize unnecessary scanning. These engines are ideal for ad-hoc exploration and analysis of large datasets, allowing us to quickly extract insights without needing to set up complex data pipelines or move data into a separate database.
+
+In order to query multiple data sources, first, we usually would set up a data source to bridge the gap between the query engine and the data lake, such as a data catalog or a semantic layer. This allows us to run federated queries across multiple data sources, including relational databases, data lakes, and even external APIs, all from a single interface.
+
+For example, we might have an object storage data lake that contains historical purchase data in a plain Parquet file. We can use an interactive query-in-place engine to run SQL queries directly against that to extract insights about user behavior. We would register the data lake in our data catalog, either by setting up schema information manually, or running a data crawler to try to determine the data structure automatically. Once the data is registered, we can use the query engine to run SQL queries that join the historical data with other structured data sources, such as a customer database, to gain deeper insights, all while leaving the actual data in place!
 
 | Provider | Service Name |
 | -------- | ------------ |
 | AWS | Amazon Athena |
-| Azure | Azure Synapse Analytics SQL Pool |
-| Google Cloud | BigQuery On-Demand |
-| OCI | OCI Data Flow SQL Endpoints |
+| Azure | Fabric SQL Analytics Endpoint |
+| Google Cloud | BigQuery BigLake |
+| OCI | Autonomous AI Lakehouse |
 
 ### Search and Observability Suites
 
@@ -66,7 +70,7 @@ Often, these suites are still able to provide SQL-like query interfaces, but the
 | Provider | Service Name |
 | -------- | ------------ |
 | AWS | Amazon OpenSearch Service |
-| Azure | Azure AI Search |
+| Azure | Elastic Cloud |
 | Google Cloud | Elastic Cloud |
 | OCI | OCI Search Service |
 
