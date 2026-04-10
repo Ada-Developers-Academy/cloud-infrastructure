@@ -10,8 +10,8 @@
 | --------- | --------- | -------- | --------- |
 | **Data Catalog** | A centralized repository that stores and organizes metadata about an organization's data assets. | Metadata Index | We checked the data catalog to find the exact source table for our new sales report. |
 | **Semantic Layer** | A user-friendly architectural layer that simplifies interactions by mapping technical metadata to readable business definitions. | Business Translation Layer | Our semantic layer ensures that the term "revenue" means the same thing across all our dashboards. |
-| **Query-In-Place** | Performing analytics directly against data stored in object storage without moving it to a separate database. | Query-on-Demand | We use query-in-place to analyze logs right in the data lake without setting up a complex ETL pipeline. |
 | **Data Crawler** | A tool that automatically scans data sources to infer schema and populate metadata in a data catalog. | Schema Inference Tool | The data crawler helped us quickly register our new S3 bucket in the data catalog by detecting the structure of our log files. |
+| **Query-In-Place** | Performing analytics directly against data stored in object storage without moving it to a separate database. | Query-on-Demand | We use query-in-place to analyze logs right in the data lake without setting up a complex ETL pipeline. |
 
 ## Organizing Data with Metadata, Catalogs, and the Semantic Layer
 
@@ -20,6 +20,12 @@ Once we ingest massive volumes of data and store it in the cloud, finding and ex
 **Data Catalogs** act as centralized repositories that store and organize metadata about our data assets, such as sources, tables, schemas, and columns. They serve as a single source of truth, enabling us to easily discover data, track its lineage, and govern access securely across the organization.
 
 While highly skilled data engineers understand how to work directly with tables and raw data structures, most business users do not have the deep technical experience needed to extract insights so easily. To bridge this gap, we implement a **Semantic Layer**. This is a user-friendly architectural layer designed to simplify interactions between complex data systems and business users. By mapping technical metadata to readable business definitions, it allows analysts to focus on extracting insights without needing to know the technicalities of data retrieval.
+
+The function of the semantic layer can be implemented in a variety of ways, often through a semantic modeling layer built directly into a Business Intelligence tool, or a set of configurations (e.g., YAML files) that define the mappings between technical metadata and business terms. For example, if we have a database table with the technical name `tbl_sales_data_2024_q1`, the semantic layer might map this to a more user-friendly business term like "Q1 Sales Data". This way, when an analyst wants to query sales data for the first quarter, they can simply ask for "Q1 Sales Data" without needing to know the underlying technical details.
+
+Due to the importance of the data catalog and semantic layer, many organizations use **Data Crawlers** to automatically scan data sources and infer schema information, populating the data catalog with metadata. This helps ensure that new datasets are quickly registered and made discoverable for analysis, but for semantic layers in particular, it's important to have any automated processes reviewed by domain experts to ensure that the business definitions are accurate and consistent across the organization.
+
+Maintaining a well-governed semantic layer is crucial for ensuring that business terms are consistently defined across the organization, which is especially important when integrating AI assistants that rely on this layer to generate accurate insights.
 
 ## Enabling Query-on-Demand and In-Place Analytics
 
