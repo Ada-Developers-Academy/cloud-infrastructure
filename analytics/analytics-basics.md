@@ -85,6 +85,11 @@ Much of the rest of this module will discuss how cloud analytics systems are des
 
 There isn't typically a single tool that handles all aspects of governance and lineage; instead, these are implemented through a combination of access controls, data catalogs, pipeline orchestration tools, and monitoring systems, some of which we'll explore in later lessons. For now, just keep in mind that ensuring data veracity is a critical part of the analytics ecosystem, and it requires careful design and ongoing management to maintain trust in our insights.
 
+## The Breadth of Cloud-Based Data Analytics
+
+Data analytics is a vast field with many different techniques, tools, and approaches, and could be an entire course (or courses!) in itself. In this module, we will be taking a high-level look at the core concepts and system roles that make up the modern cloud analytics ecosystem. In the next few lessons, we will explore the end-to-end journey of data in a modern cloud analytics pipeline, covering everything from ingestion to storage, processing, and consumption. Along the way, we will see how different technologies and services work together to unlock the value of big data and drive informed business decisions.
+
+There are many ways to slice up analytics workflows into conceptual pieces, and different providers may offer services that handle those pieces differently. As a result, we won't be looking at specific services, instead focusing on the general system roles and how they fit together. However, we will provide some examples of services that fit into these roles across the major cloud providers to help ground these concepts in real-world offerings. While the services we mention may not always be a one-to-one match across providers, they should serve as a reasonable starting point for exploring the offerings of a particular provider and learning more about how they tackle these core analytics challenges.
 
 ## Summary
 
