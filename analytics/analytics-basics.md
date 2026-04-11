@@ -75,6 +75,16 @@ For any examples we explore in the classroom, the datasets we use are small and 
 
 ### !end-callout
 
+## Addressing the Veracity Challenge with Governance and Lineage
+
+Much of the rest of this module will discuss how cloud analytics systems are designed to handle the Volume, Velocity, and Variety of big data, along with tools to help us extract Value from it. However, we must also address the Veracity challenge to ensure that our insights are based on accurate and trustworthy data. Two critical concepts for managing veracity are **governance** and **lineage**.
+
+**Governance** is the set of policies, roles, and controls that manage who can access which datasets, how long data is retained, and what verification is required before data is used for decisions. Good governance reduces risk (security, privacy, and compliance), enforces consistent business definitions, and ensures that analytics deliver repeatable, auditable results.
+
+**Lineage** records the path data takes from its source through every transformation and storage location. By tracking lineage (sources, pipeline steps, timestamps, and versions), we can trace a reported metric back to the raw events that produced it, debug pipeline failures, and demonstrate provenance for audits. Practically, lineage is captured via metadata catalogs, pipeline logs, and versioned storage so analysts and engineers can confidently interpret and validate results.
+
+There isn't typically a single tool that handles all aspects of governance and lineage; instead, these are implemented through a combination of access controls, data catalogs, pipeline orchestration tools, and monitoring systems, some of which we'll explore in later lessons. For now, just keep in mind that ensuring data veracity is a critical part of the analytics ecosystem, and it requires careful design and ongoing management to maintain trust in our insights.
+
 
 ## Summary
 
