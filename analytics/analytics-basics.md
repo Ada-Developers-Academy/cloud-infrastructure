@@ -42,16 +42,6 @@ The analytics maturity model consists of four distinct stages:
 
 To perform advanced analytics, we must process massive, complex datasets. Traditional databases built for standard web applications cannot handle these workloads, so we design specialized cloud systems to manage the core challenges of big data. These are known as **the "5 V's"**.
 
-### !callout-info
-
-## As Data Grows, Traditional Databases Struggle
-
-Traditional relational databases are designed for structured data and moderate workloads. They often struggle to scale efficiently as data volume grows, leading to performance bottlenecks and increased costs. In contrast, cloud-based big data solutions are built to handle large volumes of diverse data with high velocity, providing the necessary infrastructure for modern analytics.
-
-For any examples we explore in the classroom, the datasets we use are small and simplified for ease of use. In real-world applications, the scale of data can be orders of magnitude larger, requiring robust cloud architectures to manage it effectively. So while it may not seem like the specialized big data tools we'll be looking at are necessary for our examples, keep in mind that they are essential for handling the complexities of real-world data analytics at scale!
-
-### !end-callout
-
 ### Volume
 
 **Volume** represents the massive size of ingested datasets, ranging from terabytes to exabytes. To store this reliably, we require highly scalable and durable cloud storage infrastructure. 
@@ -74,6 +64,17 @@ These efforts culminate in **Value**. This is our ability to extract meaningful 
 
 ![A diagram showing five converging streams labeled Volume, Velocity, Variety, Veracity, and Value, combining into a central database icon labeled 'Actionable Business Insights'. Volume is described as Massive scale of data. Velocity is described as Speed of data processing. Variety is described as Different data types. Veracity is described as Data quality and accuracy. Value is described as Business impact and ROI.](./assets/analytics-five-vs.png)
 *Fig. The 5 V's of Big Data.*
+
+### !callout-info
+
+## As Data Grows, Traditional Databases Struggle
+
+Traditional relational databases are designed for structured data and moderate workloads. They often struggle to scale efficiently as data volume grows, leading to performance bottlenecks and increased costs. In contrast, cloud-based big data solutions are built to handle large volumes of diverse data with high velocity, providing the necessary infrastructure for modern analytics.
+
+For any examples we explore in the classroom, the datasets we use are small and simplified for ease of use. In real-world applications, the scale of data can be orders of magnitude larger, requiring robust cloud architectures to manage it effectively. So while it may not seem like the specialized big data tools we'll be looking at are necessary for our examples, keep in mind that they are essential for handling the complexities of real-world data analytics at scale!
+
+### !end-callout
+
 
 ## Summary
 
