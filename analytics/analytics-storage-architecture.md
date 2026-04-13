@@ -53,13 +53,6 @@ Modern cloud infrastructure has changed this dynamic. With the scalability and c
 
 The gains of being able to retain more historical and granular data in the warehouse are significant, but unchecked growth of data still leads to performance issues and increased costs when running queries. To optimize query performance, modern cloud analytics systems use **Massively Parallel Processing (MPP)** architectures. Though the warehouse data itself uses columnar storage, MPP systems distribute table rows across multiple compute nodes in chunks called **slices**, allowing them to process complex analytical queries in parallel against petabyte-scale datasets. Each compute node works on its own slice of the data, and the results are combined to produce the final query output. This means that instead of a single server handling all the data processing, multiple servers work together to execute queries much faster, even as the volume of data grows.
 
-| Provider | Service Name |
-| -------- | ------------ |
-| AWS | Amazon Redshift |
-| Azure | Azure Synapse Analytics |
-| Google Cloud | Google BigQuery |
-| OCI | Oracle Autonomous Data Warehouse |
-
 Data warehouses are ideal for structured data that fits well into a relational schema and is used for enterprise reporting and business intelligence. However, they are not the only storage solution for analytics. As we've seen in the previous lessons, modern applications can use both structured and unstructured data, across structured and unstructured storage systems. This is where data lakes and data lakehouses come into play.
 
 ### Data Lakes
