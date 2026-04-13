@@ -87,7 +87,7 @@ There isn't typically a single tool that handles all aspects of governance and l
 
 ## The Breadth of Cloud-Based Data Analytics
 
-Data analytics is a vast field with many different techniques, tools, and approaches, and could be an entire course (or courses!) in itself. In this module, we will be taking a high-level look at the core concepts and system roles that make up the modern cloud analytics ecosystem. In the next few lessons, we will explore the end-to-end journey of data in a modern cloud analytics pipeline, covering everything from ingestion to storage, processing, and consumption. Along the way, we will see how different technologies and services work together to unlock the value of big data and drive informed business decisions.
+Data analytics is a vast field with many different techniques, tools, and approaches, and could be an entire course (or courses!) in itself. In this module, we will be taking a high-level look at the core concepts and system roles that make up the modern cloud analytics ecosystem. In the next few lessons, we will explore the end-to-end journey of data in a modern cloud analytics pipeline. We'll start by looking at where we store all the data required for analytics. Then we'll move into how data flows through the system, covering ingestion, discovery, and querying. We'll finish up by looking at how insights are visualized and delivered to end users. Along the way, we will see how different technologies and services work together to unlock the value of big data and drive informed business decisions.
 
 ## Summary
 
