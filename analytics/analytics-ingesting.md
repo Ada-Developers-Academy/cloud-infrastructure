@@ -8,106 +8,124 @@
 ## Vocabulary and Synonyms
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| **Batch Processing** | A method used to periodically complete high-volume, repetitive data jobs. | Scheduled Processing | We rely on batch processing overnight to calculate our daily sales totals. |
-| **Stream Processing** | Handling continuous, high-velocity data flows with extremely low latency. | Real-Time Processing | Stream processing allows our application to detect fraudulent credit card transactions instantly. |
-| **ETL** | Extract, Transform, Load: A traditional pipeline where data is transformed on a dedicated server before being stored. | Traditional Pipeline | Our legacy system uses an ETL pipeline to clean customer records before saving them to the data warehouse. |
-| **ELT** | Extract, Load, Transform: A modern approach where raw data is loaded directly into storage and transformed later on-demand. | Cloud-Native Pipeline | By adopting ELT, we can securely store raw event logs in the data lake and decide how to format them later. |
+| **Pipeline** | A series of data processing steps that move raw data from its source to a destination where it can be analyzed. | Data Workflow | Our data pipeline ensures that raw records are cleaned and formatted before reaching the reporting team. |
 | **Data Catalog** | A centralized repository that stores metadata about data assets, making it easier to discover and manage data. | Metadata Repository | We use a data catalog to keep track of all our datasets and their schemas across the organization. |
 | **Message Broker** | A platform that securely buffers, captures, and processes continuous streams of data at a massive scale. | Event Bus | We use a message broker to handle the high volume of clickstream data from our website in real-time. |
 
-## Choosing Between Batch and Stream Processing
-In a cloud-based analytics system, raw data rarely arrives perfectly formatted or at a convenient speed. Organizations must handle massive historical dumps as well as continuous, high-speed events. This makes it important that we understand how data is collected, routed, and transformed using different processing paradigms and pipeline architectures so that it can be effectively analyzed.
+## Ingestion: The First Step in the Analytics Journey
 
-When considering data collection, we first decide how quickly the data needs to be processed.
+Before we can analyze data, we must first capture it. The ingestion stage is responsible for collecting raw data from various sources in a reliable and scalable manner. Data can arrive at different speeds which requires different processing paradigms. Data can arrive in different formats, which requires different approaches to how we transform and store it. Data can also arrive in different volumes, which requires different levels of scalability and durability in our storage solutions.
 
-**Batch processing** is a method used to process large volumes of accumulated data at scheduled, periodic intervals. Certain data processing tasks are compute-intensive and inefficient to run on individual, real-time transactions. Instead, our systems process such tasks in accumulated batches, often during off-peak times when computing resources are more readily available, such as overnight or weekly. This approach is highly efficient for heavy, complex transformations and is best suited for workloads that do not require immediate insights.
+Ingestion must take all of this into account to ensure that we have the necessary data available for downstream processing and analysis.
 
-For example, consider an e-commerce system that receives orders throughout the day. Instead of processing analytics for every order immediately, the system collects all orders at the end of each day and processes them in one batch for the fulfillment team.
-
-Alternatively, **stream processing** is a method designed to handle continuous, high-velocity data flows with extremely low latency. Data records are captured and processed individually or in micro-batches within milliseconds of being generated. This paradigm is essential for applications requiring immediate action.
-
-For example, we can track changes in public sentiment regarding our products by continuously analyzing clickstream data and social media streams in real-time, enabling us to respond promptly, or use it for live dashboards and credit card fraud detection.
-
-Neither batch nor stream processing is inherently better than the other; they are simply different tools for different use cases. Batch processing is ideal for heavy, complex transformations that can be scheduled during off-peak hours, while stream processing is essential for applications that require immediate insights and actions. Our task is to choose the appropriate processing paradigm based on the specific requirements of our data and the business needs we aim to address.
-
-## Designing Data Pipelines with ETL and ELT
+## Data Pipelines
 Raw data must be extracted from its source and formatted before it can be effectively analyzed. We must design data pipelines that efficiently route and clean this information without creating bottlenecks in our operational systems.
+
+**Data pipelines** are the end-to-end flows that move raw data from source systems into a useful, analyzable form. They comprise a series of steps that *extract* data from various sources, *transform* it into a consistent format, and *load* it into a target storage system. The name of this final step "load" can be confusing, since it might sounds like we're loading the data somewhere else. A more intuitive name for this step might be "store" or "save", since the data is being stored in a data lake or data warehouse, not necessarily loaded into another system. However, the term "load" is most commonly used in the industry to refer to this final step of the pipeline.
+
+Taken all together, this process has traditionally been known as ETL (Extract, Transform, Load), where data is transformed before being loaded into storage. However, modern cloud architectures based around data lakes often use ELT (Extract, Load, Transform), where raw data is loaded first and transformed on-demand using the cloud's distributed compute power. Both paradigms are still widely used, and the choice between them depends on the specific requirements of the data and the business needs we aim to address. We will explore both approaches in more detail in the next sections.
 
 ### ETL (Extract, Transform, Load)
 
-ETL represents the traditional data pipeline model. Raw data is extracted from a source, transformed into a standard format on a dedicated processing server, and then loaded into a target storage system like a data warehouse. Because this process can be resource-heavy, jobs are often scheduled during off-peak hours to reduce the strain on the original source systems.
+ETL represents the traditional data pipeline model. Raw data is extracted from a source, transformed into whatever format our schema requires using a dedicated transformation service, and then loaded into a target storage system like a data warehouse. Once in the data warehouse, further computations and aggregations can be performed to prepare the data for analysis. This process can be quite resource-heavy, so jobs are often scheduled during off-peak hours to reduce the strain on the original data source systems.
 
-This approach was very dominant in the era of on-premises data centers, where compute and storage resources were limited and expensive. But as data volumes have exploded and cloud computing has become more prevalent, the ETL model has shown limitations in terms of scalability and flexibility. Only specifically-identified, high value data is transformed and stored. Large volumes of raw data are often discarded or archived without transformation, which can lead to missed opportunities for insights.
+This approach was very dominant in the era of on-premises data centers, where compute and storage resources were limited and expensive. As mentioned in the discussion of data storage, in order to save on storage costs, organizations made trade-offs by only transforming and storing data that they predicted would be valuable for analysis. This results in large volumes of raw data being discarded or archived without ever being analyzed, potentially leading to missed insight opportunities. As data volumes continue to grow while storage costs decrease, and as the need for more flexible, on-demand analysis increases, the limitations of the ETL model are harder to justify.
 
-However, the ETL model is still widely used for certain workloads, such as generating standard monthly billing reports or performing complex transformations that require a lot of compute power. While in others, it is being replaced by the more modern ELT approach.
+However, the ETL model is still widely used for certain workloads, such as generating standard monthly billing reports or performing complex transformations that require a lot of compute power. For more moderate workloads, it is being replaced by the more modern ELT approach.
 
 ![A split diagram comparing data pipelines. The left ETL path shows data moving from a Source to a Transformation server, and finally to a Data Warehouse. The right ELT path shows data moving directly from a Source to a Data Lake, with a looping arrow indicating Transformation happening inside the Data Lake itself, often on-demand at query time.](./assets/analytics-etl-elt.png)  
 *Fig. Comparing traditional ETL pipelines with modern ELT pipelines.*
 
 ### ELT (Extract, Load, Transform)
 
-ELT represents the modern cloud-native approach. Raw data is extracted and immediately loaded directly into a highly scalable target system, such as a data lake or lakehouse, in its original state. The transformation step happens *after* the data is securely stored, often as the data is queried for analysis. This leverages the massive, distributed compute power of the cloud storage environment to process the data on-demand.
+ELT represents the modern cloud-native approach to ingestion. Raw data is extracted and immediately loaded directly into a highly scalable target system, such as a data lake or lakehouse, in its original state. When organizing our data lake using the Medallion Architecture, this raw, unaltered storage serves as our "Bronze" layer. Transformation steps happen *after* the data is securely stored, producing our "Silver" and "Gold" layers. Some transformations may also happen on-demand, using features of our data catalog to apply business rules and definitions at query time, without needing to create new physical tables. This allows us to leverage the massive, distributed compute power of the cloud storage environment to process the data when needed, providing greater flexibility and scalability compared to traditional ETL pipelines.
 
-The significant advantage of ELT is that it allows us to store all raw data without needing to predict in advance which data will be valuable. This means we can retain a complete historical record and apply transformations as needed for different use cases, without being limited by the constraints of a traditional ETL pipeline. ELT is particularly well-suited for handling large volumes of semi-structured or unstructured data, such as logs, click streams, and social media feeds, which may not fit neatly into a relational schema.
+The significant advantage of ELT is that it allows us to store all raw data without needing to predict in advance which data will be valuable. This means we can both retain a complete historical record and apply data transformations for different use cases, using the same transformation services that can process our more traditional ETL workloads. But we can do so without being limited by the constraints of a traditional ETL pipeline.
 
-### !callout-info
+ELT is particularly well-suited for handling large volumes of semi-structured or unstructured data, such as logs, click streams, and social media feeds, which may not fit neatly into a relational schema. Storing them in a data lake in their raw form allows us to apply different transformations and analyses as our needs evolve.
 
-## Analytics Product Offerings Across Cloud Providers
+### Cloud Transformation Services
 
-Here and in the following lessons, we'll be taking a very brief look at a number of service roles within the overarching cloud analytics ecosystem. In order to help ground these concepts in real-world examples, we'll list some of the specific services offered by each of the major cloud providers that fit into these categories.
+Cloud providers offer a variety of managed services to help us transform our incoming data for our analytics needs. These services can handle complex, distributed processing of petabyte-scale datasets. They allow us to focus on writing our data transformation logic while providing options about how much operational management we want to take on.
 
-Different providers slice up the analytics workflow into different services, and the specific features of those services may vary. As a result, the services you'll see listed are not always going to be a one-to-one match across providers, but they should act as a reasonable starting point for jumping into the offerings of a particular provider. As a result, it may be necessary to expand your search beyond the specific services listed here to find the best fit for your use case within a particular provider's ecosystem.
-
-### !end-callout
-
-## Practical System Roles in Data Processing
-
-To implement batch and stream processing or to orchestrate ELT pipelines, we rely on managed cloud services. Rather than provisioning and maintaining the underlying hardware ourselves, we use specialized platforms that handle the heavy lifting. These platforms can be broadly categorized into three roles: managed data integration, big data cluster platforms, and real-time streaming platforms.
-
-### Managed Data Integration
-
-Cloud providers offer a variety of services that automate the discovery, cataloging, and transformation of data. Offerings may run from self-hosted data integration tools to fully managed, serverless platforms. Often, some selection of open source data integration tools is also available in a managed format, allowing us to run familiar frameworks without needing to manage the underlying infrastructure. Apache Airflow and Apache Spark are two popular examples of open source data integration tools that are commonly offered in a managed format by cloud providers.
-
-Regardless of the specific service, these platforms allow us to orchestrate complex ETL or ELT workflows. They can automatically discover and catalog metadata about our data assets, making it easier to manage and understand our data. They may also provide a visual interface for designing data pipelines, allowing us to define the flow of data from source to destination, along with any necessary transformations, without writing code.
-
-| Provider | Service Name |
-| -------- | ------------ |
-| AWS | AWS Glue |
-| Azure | Azure Data Factory |
-| Google Cloud | Google Cloud Dataflow |
-| OCI | OCI Data Integration |
-
-### Big Data Cluster Platforms
-
-These are managed cluster environments designed to host distributed data processing frameworks, such as Apache Hadoop and Apache Spark. We use these platforms to distribute massive, petabyte-scale data transformation tasks across multiple compute nodes, analyzing our data in parallel.
+To manage large-scale data transformation workloads, transformation services typically take the form of managed cluster environments designed to host distributed data processing frameworks, such as Apache Hadoop and Apache Spark. There ability to split workload across multiple nodes allows them to efficiently process massive datasets that would be impractical to handle on a single server.
 
 Many of these services are also available in a serverless format, allowing us to run big data processing jobs without needing to manage the underlying cluster infrastructure. This means we can focus on writing our data transformation logic while the cloud provider handles provisioning, scaling, and maintaining the cluster.
 
-| Provider | Service Name |
-| -------- | ------------ |
-| AWS | Amazon EMR (Elastic MapReduce) |
-| Azure | Azure HDInsight |
-| Google Cloud | Google Cloud Dataproc |
-| OCI | Oracle Big Data Service |
+## Velocity and Volume: Choosing the Right Processing Paradigm
 
-### Real-Time Streaming Platforms
+In a cloud-based analytics system, raw data rarely arrives perfectly formatted or at a convenient speed. Organizations must handle massive historical dumps as well as continuous, high-speed events. Understanding the volume and velocity of data being ingested is crucial for selecting the most appropriate processing paradigm and tools to ensure that data is transformed and made available for analysis in a timely manner.
 
-To process fast-moving data without loss, we use highly scalable, fault-tolerant **message brokers**. These platforms securely buffer, capture, and process continuous streams of data at a massive scale before the data disappears. Here, Apache Kafka is a dominant open source framework that is commonly offered in a managed format by cloud providers. These platforms allow us to handle high volumes of streaming data, such as click streams, IoT device data, and social media feeds, with low latency and high reliability.
+If data arrives in large batches or does not require immediate insights, **Batch Processing** is often the most efficient approach. Whereas if data arrives continuously and requires real-time analysis, **Stream Processing** may be necessary to capture and process data to produce rapid insights.
+
+### Batch Processing
+
+**Batch Processing** is an ingestion method used to process large volumes of accumulated data at scheduled, periodic intervals. Certain data processing tasks are compute-intensive and inefficient to run on individual transactions as they occur. Instead, it can be more efficient to collect data over a period of time, such as daily or weekly, and process it all at once. This approach is highly efficient for heavy, complex transformations, but since we only process the data periodically, it introduces latency between when data is generated and when insights are available. As a result, batch processing is best suited for workloads that do not require rapid responses.
+
+For example, consider an e-commerce system that receives orders throughout the day. Instead of processing analytics for every order immediately, the system collects all orders at the end of each day and processes them in one batch for the fulfillment team. Fulfillment requires a comprehensive view of all orders to optimize delivery routes and inventory management, and waiting until the end of the day to process this data is acceptable since it would not introduce significant delays in the fulfillment process.
+
+### Stream Processing
+
+Alternatively, **Stream Processing** is an ingestion method designed to handle continuous, high-velocity data flows with extremely low latency. Data records are captured and processed individually or in micro-batches within milliseconds of being generated. This paradigm is essential for applications requiring immediate action in response to application events.
+
+For example, we can track changes in public sentiment regarding our products by continuously analyzing clickstream data and social media streams in real-time, enabling us to respond promptly. Or we can monitor financial transactions for signs of fraud, where even a delay of a few seconds could result in significant losses. Stream processing allows us to capture data as it arrives, as well as to kick off real-time analytics and alerting.
+
+Neither batch nor stream processing is inherently better than the other; they are simply different tools for different use cases. Our task is to choose the appropriate processing paradigm based on the specific requirements of our data and the business needs we aim to address.
+
+### Cloud Streaming Services
+
+Stream processing requires a different set of tools than batch processing. To process fast-moving data without loss, we use highly scalable, fault-tolerant **message brokers**. These platforms securely buffer, capture, and process continuous streams of data at a massive scale before the data disappears. Apache Kafka is a dominant open source framework that is commonly offered in a managed format by cloud providers. These platforms allow us to handle high volumes of streaming data, with low latency and high reliability.
 
 These services are:
+
 - **highly durable** through replication across multiple availability zones,
 - **decoupled** through data buffering so that producers and consumers can operate independently, and
 - **scalable** through sharding or partitioning to handle varying volumes of data without loss, even during traffic spikes.
 
-| Provider | Service Name |
-| -------- | ------------ |
-| AWS | Amazon Kinesis, Amazon MSK (Managed Streaming for Apache Kafka) |
-| Azure | Azure Event Hubs |
-| Google Cloud | Google Cloud Pub/Sub, Managed Service for Apache Kafka |
-| OCI | OCI Streaming |
+## Scenario-Driven Data Pipeline Examples
+
+Understanding the distinct roles of data pipelines is much easier when we see them working together to solve real business problems. Because organizations face different challenges regarding the volume, velocity, and variety of their data, we rarely rely on a single, one-size-fits-all pipeline. 
+
+Let's explore three practical scenarios to see how the different processing paradigms and pipeline architectures come together to handle various data requirements.
+
+### Traditional ETL for High-Volume Relational Data
+
+When we have well-structured, relational data—think massive daily logs of financial transactions or inventory updates—we need a reliable pipeline that cleans and formats this data so it can power complex business reports. In this scenario, we prioritize governance, structure, and reporting speed over real-time flexibility.
+
+In this pipeline, data moves in a scheduled, predictable batch process:
+
+1. **Extraction:** We extract the high-volume relational data from our operational databases during off-peak hours to avoid impacting our daily application performance.
+2. **Transformation:** The data flows into a powerful transformation service, which scrubs the data for errors, standardizes formats, and joins related tables.
+3. **Loading:** The polished, highly structured data is loaded into a data warehouse. This warehouse is optimized for complex, historical aggregations.
+
+### ELT and the Medallion Architecture for Semi-Structured Data
+
+Modern applications often generate massive volumes of semi-structured data, like JSON files from user clickstreams or mobile app interactions. If we tried to force this massive, flexible data into a rigid relational database right away, our pipeline would bottleneck. Instead, we use an Extract, Load, Transform (ELT) approach built around a data lake and the Medallion Architecture.
+
+In this pipeline, we leverage the vast scale of cloud object storage and apply structure only when we need it:
+
+1. **The Bronze Layer:** We extract the raw JSON clickstream data and load it directly into a highly scalable object store without any modifications. This serves as our data lake's foundational "Bronze" layer, ensuring we never lose the original data.
+2. **Cataloging:** A data catalog automatically crawls the raw files in the object store, inferring the schema and registering the metadata so our tools know what information is available.
+3. **The Silver Layer:** We use a transformation service to read the Bronze data, clean out any corrupted records, and rewrite the data back to the object store in a highly compressed, columnar format like Apache Parquet. 
+4. **The Gold Layer:** We run a final transformation to aggregate the cleaned data into curated, business-level metrics (e.g., "daily clicks per user"), storing this "Gold" data in the object store.
+
+### Real-Time Stream Processing and Anomaly Detection
+
+Some data loses its value if we wait for an overnight batch job to process it. When dealing with high-velocity data, such as a continuous stream of IoT sensor readings or live credit card swipes, we need a pipeline that can react instantly to anomalies while also retaining the data for future historical analysis.
+
+In this pipeline, we split the data stream to serve two different architectural needs simultaneously:
+
+1. **Ingestion:** Thousands of IoT sensors continuously push tiny data payloads to a highly scalable, real-time data stream processor. This service securely buffers the continuous flow so no records are dropped during traffic spikes.
+2. **Real-Time Path (Stream Processing):** As the data flows through the stream, a dedicated stream processing engine analyzes the records in milliseconds. It looks for specific conditions—such as a sensor reporting a temperature spike above a safe threshold. If an anomaly is detected, it instantly triggers an alert or an automated response.
+3. **Historical Path (Data Lake Storage):** Simultaneously, the stream processor batches the incoming raw data and delivers it to our centralized object store (Data Lake). 
+
+### Choose the Right Pipeline for the Job
+
+By exploring these scenarios, we can see that building a modern ingestion pipeline requires matching the right tools to the shape and speed of our data. We use traditional ETL pipelines and data warehouses for governed, high-volume structured reporting. When handling massive volumes of semi-structured data, we rely on object stores, data catalogs, and the Medallion Architecture to clean our data with greater flexibility. Finally, when we need to catch anomalies the moment they happen, we utilize stream processing engines that react in milliseconds while safely archiving the raw events in our data lake for the future.
 
 ## Summary
-We explored how to process data efficiently by considering the differences between batch processing for high-volume, scheduled jobs, and stream processing for continuous, low-latency data flows. We saw how traditional ETL pipelines transform data before loading it into storage, while modern ELT architectures load raw data first and transform it on-demand, leveraging the cloud's distributed compute power. Finally, we identified the roles of managed data integration services, big data cluster platforms, and real-time streaming platforms in orchestrating these processes without the operational burden of hardware management.
+
+We explored the differences between how traditional ETL pipelines transform data before loading it into storage, while modern ELT architectures load raw data first and transform it on-demand, leveraging the cloud's distributed compute power. We saw how to process data efficiently by considering batch processing for high-volume, scheduled jobs, and stream processing for continuous, low-latency data flows. Finally, we looked at practical scenarios that demonstrate how different pipeline architectures and processing paradigms come together to solve real business problems, showing that the best approach depends on the specific requirements of our data and the insights we need to generate.
 
 ## Check for Understanding
 
