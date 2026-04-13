@@ -16,45 +16,49 @@
 
 Data has no value on its own. Its true worth is unlocked when decision-makers can understand and act upon it. The consumption layer of a cloud analytics architecture bridges the gap between raw datasets and actionable business insights by using business intelligence (BI) platforms, data visualization, and artificial intelligence.
 
-If we just hand stakeholders a raw table of millions of rows, they cannot easily make decisions. Visualizations translate complex data into accessible visual narratives, making it easier for users to identify trends, patterns, and anomalies. For example, a hospital network can plot patient intake volumes on a simple bar chart to properly staff the right number of nurses, which is much faster than attempting to spot trends in raw text logs.
+If we just hand stakeholders a raw table of millions of rows, they cannot easily make decisions. Visualizations translate complex data into accessible visual narratives, making it easier for users to identify trends, patterns, and anomalies. For example, a hospital network can plot patient intake volumes on a simple bar chart to assist planning staffing levels, which is much faster than attempting to spot trends in raw text logs.
 
 Reporting generally falls into three categories.
-1. **Static reports** (such as PDFs accessed via portals) provide a fixed point-in-time snapshot of information.
+1. **Static reports** (such as PDFs) provide a fixed point-in-time snapshot of information.
 2. **Interactive reports** provide self-service tools where users can apply filters or drill down into details.
-3. **Dashboards** act as high-level visual roll-ups of key business metrics.
+3. **Dashboards** act as high-level visual representations of key business metrics.
 
 ![Three panels showing different report types: Static Reports (a static PDF document), Interactive Reports (a computer screen with an interactive chart featuring dropdown filters) with Drill Down and other Self Service Tools, and Dashboards (a large monitor displaying a dashboard with multiple high-level metric summaries) displaying Key Business Metrics.](./assets/analytics-report-types.png)  
 *Fig. The three main categories of reporting: static reports, interactive reports, and dashboards.*
 
-## Delivering Insights via Managed Business Intelligence Platforms
+## Delivering Insights via Business Intelligence Platforms
 
-Building custom web applications to visualize every new dataset can be slow and expensive. To deliver insights securely and at scale, we rely on managed **Business Intelligence (BI)** platforms.
+Building custom web applications to visualize every new dataset can be slow and expensive. To deliver insights securely and at scale, we rely on **Business Intelligence (BI)** platforms.
 
-Modern cloud BI platforms are usually fully managed and can be serverless, allowing them to scale automatically to support thousands of concurrent users without the need to provision infrastructure. To maintain consistently fast performance and shield underlying data warehouses from repetitive queries, BI tools often utilize high-performance, in-memory calculation engines. 
+BI platforms provide a wide variety of benefits to help enable insights for business users.
 
-BI platforms allow organizations to embed interactive dashboards directly into web applications, giving users with business expertise the ability to explore data on their own without needing to write code. Visualizations can also be delivered via email or accessed through mobile apps, ensuring that insights are available wherever and whenever they are needed. Furthermore, they enforce row-level security (RLS) so users only see the data they are authorized to view. For instance, a global retail chain can use row-level security to ensure that regional managers logging into the same central sales dashboard only see the metrics specific to their own geographic territories.
+- **Dashboards and Interactive Reporting:** Users can design, customize, and publish highly formatted, infographic-style dashboards and reports that feature interactive drill-down and filtering capabilities.
+- **Automated Delivery and Alerts:** Dashboards and reports can be scheduled for email delivery, and users can set up threshold-based alerts to be notified immediately of important changes in the data.
+- **Embeddable Insights:** Organizations can embed interactive visualizations, dashboards, and even full authoring or natural language querying capabilities directly into their own custom applications and portals.
+- **Connectivity:** They can securely connect to and combine petabytes of data across multiple data sources, including data warehouses, data lakes, and external providers.
+- **Secure Access Control:** They offer robust governance tools, including Row-Level Security (RLS), which ensures that individual users only see the specific slices of data they are authorized to view within a shared dashboard.
+- **Performance and Efficiency:** To speed data retrieval at scale and minimize repetitive queries to the underlying data sources, BI tools often utilize fast, in-memory calculation engines.
 
-| Provider | Service Name |
-| -------- | ------------ |
-| AWS | QuickSight |
-| Azure | Power BI |
-| Google Cloud | Google Cloud Looker Studio |
-| OCI | Oracle Analytics Cloud |
+The specific features and capabilities of BI platforms can vary widely, but they all share the common goal of making data more accessible and actionable for business users.
+
+In addition to their rich feature sets, modern cloud BI platforms are usually fully managed and can be serverless, allowing them to scale automatically to support thousands of concurrent users without the need to provision infrastructure.
 
 ## Enhancing Analytics with Machine Learning and AI
 
-While dashboards help us monitor current business operations, integrating artificial intelligence allows us to anticipate issues and interact with our data more naturally. 
+Many BI platforms have started to integrate machine learning and generative AI capabilities to enhance the analytics experience. In addition to helping us monitor current business operations through dashboards, these AI features allow us to anticipate issues and interact with our data more naturally.
 
-BI tools leverage integrated machine learning models to automatically perform anomaly detection, alerting users to sudden data changes. They also power predictive forecasting based on historical trends. For instance, AI could highlight a sudden drop or spike in sales of particular offerings, which might indicate a problem in some market sector, or a new opportunity to develop!
+BI tools leverage integrated machine learning models to automatically perform anomaly detection, alerting users to sudden data changes. They also power predictive forecasting based on historical trends. For instance, AI could highlight a sudden drop or spike in sales of particular offerings, which might indicate a problem in some market sector, or a new opportunity to pursue!
 
-Another way that AI is integrated into modern analytics platforms is through providing AI assistants that allow non-technical business users to ask plain-language questions, such as "What were the top sales regions last month?". The AI assistant translates these natural language prompts into SQL queries using Text-to-SQL, which generates immediate charts and insights. For this to scale reliably without hallucinations, the system relies on a highly governed semantic layer. This layer ensures business terms like "revenue" are consistently defined across the organization, providing the AI with the precise context it needs to fetch the correct data.
+Another way that AI is integrated into modern analytics platforms is through providing AI assistants that allow non-technical business users to ask plain-language questions, such as "What were the top sales regions last month?". The AI assistant translates these natural language prompts into SQL queries using Text-to-SQL, immediately generating custom charts and insights.
+
+For AI-powered queries to scale reliably without hallucinations, these systems rely on a high-quality semantic layer. Whether by leveraging resources like a data catalog, or using features included within the BI platform, having specific definitions and mappings for business terms (e.g., "revenue") ensures that the AI assistant can accurately retrieve the correct data and provide trustworthy insights.
 
 ![A flow diagram showing a user typing a plain-text question. The user asks "What were the top sales regions last month?". This is processed by an AI assistant using a governed semantic layer providing the business context mapping "revenue" to its data source. The AI translates the text into a SQL query using Text-to-SQL and sends the query to the database to perform data retrieval. The data retrieved from the database is used by the BI platform to produce Visual Output, comprising Charts & Insights. These are returned to the user, providing Immediate Insights.](./assets/analytics-text-to-sql.png)
 *Fig. How Text-to-SQL translates natural language questions into visual insights using a semantic layer.*
 
 ## Summary
 
-We learned that raw data only becomes valuable when it is translated into accessible visualizations, reports, and dashboards. By utilizing serverless, managed business intelligence platforms, we can securely deliver interactive insights to thousands of users through in-memory calculation engines and row-level security. Finally, integrating machine learning and generative AI empowers us to forecast trends and use Text-to-SQL to ask plain-language questions, provided we maintain a well-governed semantic layer to ensure accuracy.
+We learned that raw data only becomes valuable when it is translated into accessible visualizations, reports, and dashboards. By utilizing business intelligence platforms, we can securely deliver interactive insights to thousands of users through high-performance visualization tools, automated reporting, and embeddable analytics, all while maintaining robust security. Finally, integrating machine learning and generative AI empowers us to forecast trends and use Text-to-SQL to ask plain-language questions, as long as we maintain a well-governed semantic layer to ensure accuracy.
 
 ## Check for Understanding
 
