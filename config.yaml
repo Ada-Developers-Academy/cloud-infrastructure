@@ -206,9 +206,5 @@ Standards:
         Path: /analytics/analytics-visualization.md
       - 
         Type: Lesson
-        UID: c2a23047-1e03-4bb9-9f41-ff548bebb54f
-        Path: /analytics/analytics-end-2-end.md
-      - 
-        Type: Lesson
         UID: b6a83a46-87c6-427a-8d12-f1ca4bc2a7c5
         Path: /analytics/problem-set-analytics.md
