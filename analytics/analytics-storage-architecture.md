@@ -212,3 +212,49 @@ Being optimized for daily, transactional CRUD operations is a characteristic of 
 ### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: 557797fd-64d9-4ee4-aeee-88834f826112
+* title: Data Storage Architectures for Cloud Analytics
+
+##### !question
+
+A logistics company currently stores petabytes of raw, unstructured GPS and telemetry data from their trucks, but their executive team is frustrated. While their data science team is able to perform exploratory analysis, any time the executives want to run high-performance, reliable financial reports, the data engineering team has to spend days copying and transforming the raw data into a completely separate, rigidly structured database. The logistics company wants to modernize its architecture to support both the flexible exploratory workloads and the high-performance, ACID-compliant business reporting without duplicating the data across two disconnected systems.
+
+Which of the following architectures would best meet their needs?
+
+##### !end-question
+
+##### !options
+
+a| A **Data Warehouse**, because it applies a strict schema-on-write approach that will permanently format the unstructured GPS data into relational tables, ensuring the executive team has a single source of truth for their reports.
+b| A **Data Lakehouse**, because it requires data to be explicitly copied and moved into a completely separate relational database system before any business intelligence reporting can be performed.
+c| A **Data Lake**, because it provides the highly structured, predefined relational schemas and built-in ACID transaction guarantees necessary to deliver fast, reliable query performance for the executive dashboards.
+d| A **Data Lakehouse**, because it unifies the massive, flexible storage of raw data needed by data scientists with the high-performance querying and data management guarantees (like ACID transactions) required for executive reporting.
+e| A **Data Lake**, because storing the GPS and telemetry data in its raw format allows the executive team to instantly generate high-performance financial reports without the need for a data catalog or any additional processing steps.
+
+##### !end-options
+
+##### !answer
+
+d|
+
+##### !end-answer
+
+##### !explanation
+
+A **Data Lakehouse** would best meet the logistics company's needs because it combines the flexibility of a data lake with the performance and reliability of a data warehouse. It allows the company to store their raw, unstructured GPS and telemetry data in a single, unified storage layer while providing the necessary schema and organizational structure for efficient querying. This means that the data science team can continue to perform exploratory analysis on the raw data, while the executive team can run high-performance, ACID-compliant financial reports without needing to duplicate the data across separate systems.
+
+<br>
+
+A **Data Warehouse** would not be ideal because it would require the company to transform and load their raw data into a structured format, which is time-consuming and inflexible. A **Data Lake** alone would not provide the necessary performance optimizations and data management features for reliable executive reporting. The other options either mischaracterize the capabilities of the architectures or suggest impractical solutions that do not align with the company's needs.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->

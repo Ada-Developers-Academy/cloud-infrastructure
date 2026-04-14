@@ -76,6 +76,57 @@ We learned that successfully analyzing big data requires us to organize it with 
 
 ### !challenge
 
+* type: checkbox
+* id: 909f0f88-c5a6-4fe9-aff0-b98a57166b63
+* title: Data Discovery, Search, and Querying
+
+##### !question
+
+Your company is migrating petabytes of diverse, raw files (CSV, JSON, and Parquet) into a centralized cloud object storage data lake. Your analytics team wants to easily find specific datasets and run ad-hoc SQL queries against these files directly where they live, without having to build complex pipelines to copy the data into a traditional relational database first.
+
+What Data Catalog features would be most critical to enable this use case?
+
+##### !end-question
+
+##### !options
+
+a| **Discoverability:** It acts as a centralized metadata repository that stores information about data sources, schemas, and columns, making raw data assets searchable and understandable for analysts.
+b| **Lineage and Impact Analysis:** It tracks where data originated and how it was transformed, allowing teams to assess how changes to a specific dataset might impact downstream reports and dashboards.
+c| **High-Velocity Data Buffering:** It acts as a fault-tolerant message broker that temporarily buffers continuous, real-time streaming data from IoT devices to prevent data loss before it hits the data lake.
+d| **Enabling Direct Querying:** It provides a layer of abstraction that serves as a bridge between the raw files in object storage and interactive query engines, allowing analysts to run SQL queries directly against the data lake.
+e| **In-Memory Data Visualization:** It provides a high-performance, in-memory calculation engine used to render highly formatted, interactive visual dashboards directly to executive stakeholders.
+
+##### !end-options
+
+##### !answer
+
+a|
+b|
+d|
+
+##### !end-answer
+
+##### !explanation
+
+The most critical features of a Data Catalog for this use case would be **Discoverability**, **Lineage and Impact Analysis**, and **Enabling Direct Querying**.
+- **Discoverability** is essential for making the raw data assets in the data lake searchable and understandable for analysts, allowing them to quickly find the datasets they need for their analysis.
+- **Lineage and Impact Analysis** is important for understanding where the data originated and how it was transformed, which helps teams assess how changes to a specific dataset might impact downstream reports and dashboards.
+- **Enabling Direct Querying** is crucial for allowing analysts to run SQL queries directly against the data lake without needing to build complex pipelines to copy the data into a traditional relational database first.
+
+<br>
+
+The other options, **High-Velocity Data Buffering** and **In-Memory Data Visualization**, are not typically features of a Data Catalog. High-velocity data buffering is more related to data ingestion and streaming services, while in-memory data visualization is a feature of business intelligence platforms rather than data catalogs.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
 * type: multiple-choice
 * id: c4e891e5-ae2e-4eac-b7a2-ddf0222f1449
 * title: Data Discovery, Search, and Querying

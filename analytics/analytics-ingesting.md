@@ -47,7 +47,7 @@ The significant advantage of ELT is that it allows us to store all raw data with
 
 ELT is particularly well-suited for handling large volumes of semi-structured or unstructured data, such as logs, click streams, and social media feeds, which may not fit neatly into a relational schema. Storing them in a data lake in their raw form allows us to apply different transformations and analyses as our needs evolve.
 
-### Cloud Transformation Services
+### Transformation Services
 
 Cloud providers offer a variety of managed services to help us transform our incoming data for our analytics needs. These services can handle complex, distributed processing of petabyte-scale datasets. They allow us to focus on writing our data transformation logic while providing options about how much operational management we want to take on.
 
@@ -231,14 +231,14 @@ In contrast, batch processing is typically scheduled to run during off-peak hour
 
 ##### !question
 
-Which of the following is NOT a common role of managed cloud services in data processing?
+Which of the following is NOT a common role of data processing cloud services?
 
 ##### !end-question
 
 ##### !options
 
-a| Automatically discovering and cataloging data metadata.
-b| Orchestrating ETL or ELT jobs without requiring infrastructure management.
+a| Managing multiple layers of data transformation, from raw to business-ready formats, using the Medallion Architecture.
+b| Periodically importing massive data dumps for batch processing workloads.
 c| Providing a platform for distributed data processing frameworks like Hadoop and Spark.
 d| Serving as a highly scalable, fault-tolerant processor for real-time streaming data.
 e| Replacing the need for any data transformation by automatically converting all raw data into business-ready insights.
@@ -253,11 +253,11 @@ e|
 
 ##### !explanation
 
-While managed cloud services play a crucial role in automating data discovery, cataloging, orchestrating ETL/ELT jobs, providing platforms for distributed processing, and handling real-time streaming data, they do not replace the need for data transformation. Data transformation is a critical step in the analytics process that involves cleaning, structuring, and enriching raw data to make it suitable for analysis.
+Cloud data processing services play a crucial role in the data catalogs that help enable multiple layers of data transformation, managing periodic batch processing, providing platforms for distributed processing, and handling real-time streaming data. They do not replace the need for data transformation. Data transformation is a critical step in the analytics process that involves cleaning, structuring, and enriching raw data to make it suitable for analysis.
 
 <br>
 
-Managed services facilitate this transformation but do not automatically convert all raw data into business-ready insights without any user-defined transformations or configurations.
+Data processing services facilitate this transformation but do not automatically convert all raw data into business-ready insights without any user-defined transformations or configurations.
 
 ##### !end-explanation
 
