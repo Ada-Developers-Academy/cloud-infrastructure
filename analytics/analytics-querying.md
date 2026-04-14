@@ -8,9 +8,11 @@
 ## Vocabulary and Synonyms
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
+| **Data Catalog** | A centralized repository that stores metadata about data assets, making it easier to discover and manage data. | Metadata Repository | We use a data catalog to keep track of all our datasets and their schemas across the organization. |
 | **Semantic Layer** | A user-friendly architectural layer that simplifies interactions by mapping technical metadata to readable business definitions. | Business Translation Layer | Our semantic layer ensures that the term "revenue" means the same thing across all our dashboards. |
 | **Data Crawler** | A tool that automatically scans data sources to infer schema and populate metadata in a data catalog. | Schema Inference Tool | The data crawler helped us quickly register our new S3 bucket in the data catalog by detecting the structure of our log files. |
 | **Query-In-Place** | Performing analytics directly against data stored in object storage without moving it to a separate database. | Query-on-Demand | We use query-in-place to analyze logs right in the data lake without setting up a complex ETL pipeline. |
+| **Search and Observability Suite** | A distributed search and analytics engine designed for handling semi-structured and unstructured data, often with a SQL-like interface. | Log Analytics Platform | Our search and observability suite allows us to analyze application logs in real time to quickly identify issues. |
 
 ## Organizing Data with Metadata, Catalogs, and the Semantic Layer
 

@@ -8,8 +8,8 @@
 ## Vocabulary and Synonyms
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| **Drill Down** | The ability to click on a data point in a report or dashboard to access more detailed information. | Data Exploration, Interactive Analysis | Our sales dashboard allows users to drill down into specific regions to see individual store performance. |
 | **Business Intelligence (BI) Platform** | A system used to translate raw data into accessible visual narratives and interactive dashboards. | BI Tool, Reporting Suite | We use a BI platform to visualize our monthly sales trends. |
+| **Drill Down** | The ability to click on a data point in a report or dashboard to access more detailed information. | Data Exploration, Interactive Analysis | Our sales dashboard allows users to drill down into specific regions to see individual store performance. |
 | **Text-to-SQL** | An AI-driven process that translates natural language questions into database queries. | Natural Language Querying | Text-to-SQL allows our marketing team to ask questions without knowing how to write database code. |
 
 ## Translating Data with Reporting and Dashboards

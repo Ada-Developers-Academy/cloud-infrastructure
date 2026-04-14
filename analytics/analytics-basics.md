@@ -9,7 +9,7 @@
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
 | **Data Analytics** | The overarching system and process of converting raw data into actionable insights. | Business Intelligence, Data Analysis | We use data analytics to understand how users interact with our new application feature. |
-| **Big Data** | Datasets that are stored rapidly from various sources and are massive in size, making them complicated to analyze. | Massive Datasets | Our cloud storage architecture was specifically designed to handle the challenges of big data. |
+| **Big Data** | Datasets that are stored from various sources and are massive in size, making them complicated to analyze. | Massive Datasets | Our cloud storage architecture was specifically designed to handle the challenges of big data. |
 | **Dashboard** | A visual display of key metrics and data points, often used in descriptive analytics to summarize information. | Data Visualization, Reporting Interface | The marketing team uses a dashboard to track the performance of their campaigns in real-time. |
 | **Metric** | A quantifiable measure used to track and assess the status of a specific business process. | Key Performance Indicator (KPI) | We monitor the metric of user retention to evaluate the success of our new feature. |
 | **Drill-Down** | A technique in diagnostic analytics that allows users to explore data in more detail by breaking it down into finer levels of granularity. | Data Exploration, Deep Dive | By drilling down into the sales data, we discovered that a specific product category was underperforming. |

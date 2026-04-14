@@ -8,9 +8,12 @@
 ## Vocabulary and Synonyms
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| **Pipeline** | A series of data processing steps that move raw data from its source to a destination where it can be analyzed. | Data Workflow | Our data pipeline ensures that raw records are cleaned and formatted before reaching the reporting team. |
-| **Data Catalog** | A centralized repository that stores metadata about data assets, making it easier to discover and manage data. | Metadata Repository | We use a data catalog to keep track of all our datasets and their schemas across the organization. |
-| **Message Broker** | A platform that securely buffers, captures, and processes continuous streams of data at a massive scale. | Event Bus | We use a message broker to handle the high volume of clickstream data from our website in real-time. |
+| **Data Pipeline** | A series of data processing steps that move raw data from its source to a destination where it can be analyzed. | Data Workflow | Our data pipeline ensures that raw records are cleaned and formatted before reaching the reporting team. |
+| **ETL (Extract, Transform, Load)** | A traditional data pipeline model where data is extracted from sources, transformed into a desired format, and then loaded into a target storage system. | Traditional Data Pipeline | We use an ETL pipeline to process our daily sales data, transforming it before loading it into the data warehouse. |
+| **ELT (Extract, Load, Transform)** | A modern data pipeline model where data is extracted and immediately loaded into a target system, with transformations applied on-demand. | Modern Data Pipeline | Our ELT pipeline allows us to store all raw clickstream data in the data lake and transform it as needed for different analyses. |
+| **Batch Processing** | A data processing method that handles large volumes of accumulated data at scheduled intervals. | Scheduled Processing | We run batch processing jobs overnight to generate our monthly financial reports. |
+| **Stream Processing** | A data processing method that handles continuous, high-velocity data flows with low latency. | Real-Time Processing | We use stream processing to analyze live sensor data from our IoT devices and trigger alerts for anomalies. |
+| **Real-Time Data Streaming Service** | A service that captures, buffers, and processes continuous streams of data with high durability and low latency. | Message Broker | Our real-time streaming platform ensures that we can process millions of events per second without losing any data. |
 
 ## Ingestion: The First Step in the Analytics Journey
 
@@ -72,9 +75,9 @@ For example, we can track changes in public sentiment regarding our products by 
 
 Neither batch nor stream processing is inherently better than the other; they are simply different tools for different use cases. Our task is to choose the appropriate processing paradigm based on the specific requirements of our data and the business needs we aim to address.
 
-### Cloud Streaming Services
+### Streaming Services
 
-Stream processing requires a different set of tools than batch processing. To process fast-moving data without loss, we use highly scalable, fault-tolerant **message brokers**. These platforms securely buffer, capture, and process continuous streams of data at a massive scale before the data disappears. Apache Kafka is a dominant open source framework that is commonly offered in a managed format by cloud providers. These platforms allow us to handle high volumes of streaming data, with low latency and high reliability.
+Stream processing requires a different set of tools than batch processing. To process fast-moving data without loss, we use highly scalable, fault-tolerant **Real-time Data Streaming Services**. These services robustly buffer, capture, and process continuous streams of data at a massive scale. Apache Kafka is a dominant open source framework that is commonly offered in a managed format by cloud providers, along with provider-specific offerings. These platforms allow us to handle high volumes of streaming data, with low latency and high reliability.
 
 These services are:
 
@@ -237,7 +240,7 @@ Which of the following is NOT a common role of managed cloud services in data pr
 a| Automatically discovering and cataloging data metadata.
 b| Orchestrating ETL or ELT jobs without requiring infrastructure management.
 c| Providing a platform for distributed data processing frameworks like Hadoop and Spark.
-d| Serving as a highly scalable, fault-tolerant message broker for real-time streaming data.
+d| Serving as a highly scalable, fault-tolerant processor for real-time streaming data.
 e| Replacing the need for any data transformation by automatically converting all raw data into business-ready insights.
 
 ##### !end-options
