@@ -40,6 +40,9 @@ A **gate** stops progress until a condition is met. A manual approval process is
 
 A **guardrail** allows progress to continue within defined boundaries. It does not stop work from happening; it prevents work from happening in ways that violate organizational policy. A guardrail catches a problem at the point it occurs and provides feedback that allows it to be corrected immediately, rather than surfacing it days later through a manual review process.
 
+![A side-by-side flowchart comparing two deployment models. On the left, the gate model shows an engineer proposing a change, filing a ticket, waiting for manual review, and receiving either an approval to continue or a rejection that restarts the cycle. On the right, the guardrail model shows an engineer proposing a change that triggers an automated policy check. If the check passes, deployment continues. If a violation is flagged, deployment is blocked, immediate feedback is communicated to the engineer, and the engineer implements a fix before redeploying. A dashed arrow on each side indicates the path back to the start of the cycle.](assets/gates-vs-guardrail.png)
+*Fig. The gate model blocks progress pending manual review, while the guardrail model enforces the same requirements automatically, providing immediate feedback and allowing work to continue without waiting for a human reviewer.*
+
 Effective governance in a cloud environment looks more like guardrails than gates. The goal is not to slow teams down but to ensure that the speed at which they move does not outpace the organization's ability to understand and manage what is being built. The following section introduces Policy as Code as the primary mechanism through which guardrail-style governance is implemented in practice.
 
 ## Policy as Code
