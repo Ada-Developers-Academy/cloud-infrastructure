@@ -176,7 +176,42 @@ Standards:
       -
         Type: Lesson
         UID: 81364a63-9323-4c0c-8786-8181d5306405
-        Path: /identity-access-management/problem-set.md
+        Path: /identity-access-management/problem-set.md  
+  -
+    Title: Deployment, CI/CD, & Automation
+    Description: "Release Lifecycles & Environments, CI & CD: Why Pipelines Exist, Automation Beyond App Deploys: Infrastructure-as-Code, Rollbacks, Roll-forwards, and Safely Undoing Work, Deployment Strategies and Risk Management, Decoupling Shipping Code and Releasing Features, Problem Set: Deployment, CI/CD, & Automation"
+    UID: c86ed618-76e8-46a7-a6ba-897cd36f31d8
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 43e09b94-1325-450f-a3e5-75aa76d7c39b
+        Path: /deployment-ci-cd-automation/environments-release-lifecycles.md
+      -
+        Type: Lesson
+        UID: 9a0a90fb-0f6c-408e-b8f4-fde017eb74d3
+        Path: /deployment-ci-cd-automation/ci-vs-cd.md
+      -
+        Type: Lesson
+        UID: b96cda4e-a0d4-4bc3-9252-311c0023215b
+        Path: /deployment-ci-cd-automation/automation-infrastructure-as-code.md
+      -
+        Type: Lesson
+        UID: fde0296a-0cd3-47c4-8043-28f14c158874
+        Path: /deployment-ci-cd-automation/safely-undoing-work.md
+      -
+        Type: Lesson
+        UID: 4fdab632-abd6-4699-bc9c-336648fb05fb
+        Path: /deployment-ci-cd-automation/strategies-risk-management.md
+      -
+        Type: Lesson
+        UID: ee43ba27-b3a2-4a51-beac-b6cf8eedff10
+        Path: /deployment-ci-cd-automation/decoupling-deploy-release.md
+      -
+        Type: Lesson
+        UID: 34200199-90af-4db0-9b46-08c750b250bf
+        Path: /deployment-ci-cd-automation/problem-set-deployment.md
   -
     Title: Observability, Reliability & Operations
     Description: "Introduction to Observability, Introduction to Reliability, AI for Operations, Problem Set"
