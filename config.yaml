@@ -179,7 +179,7 @@ Standards:
         Path: /identity-access-management/problem-set.md  
   -
     Title: Deployment, CI/CD, & Automation
-    Description: "Environments & Release Lifecycles, CI & CD: Why Pipelines Exist, Automation Beyond App Deploys: Infrastructure-as-Code, Rollbacks, Roll-forwards, and Safely Undoing Work, Deployment Strategies and Risk Management, Decoupling Shipping Code and Releasing Features, Problem Set: Deployment, CI/CD, & Automation"
+    Description: "Release Lifecycles & Environments, CI & CD: Why Pipelines Exist, Automation Beyond App Deploys: Infrastructure-as-Code, Rollbacks, Roll-forwards, and Safely Undoing Work, Deployment Strategies and Risk Management, Decoupling Shipping Code and Releasing Features, Problem Set: Deployment, CI/CD, & Automation"
     UID: c86ed618-76e8-46a7-a6ba-897cd36f31d8
     SuccessCriteria:
       - success criteria

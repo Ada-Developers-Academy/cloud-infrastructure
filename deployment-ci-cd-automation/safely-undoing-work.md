@@ -42,7 +42,7 @@ A useful habit to develop is checking these signals *immediately* after every de
 
 Let's think about how version control works with code: if a commit introduces a bug, we don't have to rewrite history. We can check out a prior commit and we're back to the state the code was in before the problem. A rollback applies the same idea to a running production system: we revert to the version of the application that was running before the problematic release.
 
-In practice, that means re-deploying a previous build artifact. This is why artifact versioning, which we mentioned in the CI/CD lesson, matters beyond just keeping things organized: without a library of prior build outputs to pull from, "rollback to the previous version" becomes much harder or time consuming than it sounds.
+In practice, that means re-deploying a previous build artifact. This is why artifact versioning, which we mentioned in the [CI/CD lesson](./ci-vs-cd.md), matters beyond just keeping things organized: without a library of prior build outputs to pull from, "rollback to the previous version" becomes much harder or time consuming than it sounds.
 
 On managed deployment platforms, this process might be a button or a one-line command if the platform maintains a deployment history and handles the mechanics of restoring a prior version. One of the operational benefits of managed platforms is that this safety net often comes built in.
 
@@ -128,13 +128,13 @@ Monitoring gates work in both directions: they can trigger automatic rollback wh
 ## Summary
 
 When a deployment causes problems in production, we typically have two choices: go backward or go forward. 
-- Rolling back means re-deploying a prior build artifact to restore the system to a known-good state. Its primary value is speed and certainty, giving the team room to investigate without an active outage increasing pressure on them. 
-- Roll-forward instead ships a corrective release, which becomes the better path when the deployment touched persistent state that the previous code can no longer safely read. A migration that restructured how data is stored, for instance, may leave the old application unable to function correctly even if the code itself is restored. In those cases, fixing forward is often cleaner than trying to unwind. 
+- **Rolling back** means re-deploying a prior build artifact to restore the system to a known-good state. Its primary value is speed and certainty, giving the team room to investigate without an active outage increasing pressure on them. 
+- **Roll-forward** instead ships a corrective release, which becomes the better path when the deployment touched persistent state that the previous code can no longer safely read. A migration that restructured how data is stored, for instance, may leave the old application unable to function correctly even if the code itself is restored. In those cases, fixing forward is often cleaner than trying to unwind. 
  
 The right call depends on what the deployment actually changed, and experienced teams develop an instinct for that judgment quickly.
 
 A deeper challenge developers face is the asymmetry between code and data. "Undo" is a concept that applies cleanly to code but only partially to persistent state. Application artifacts live in a versioned library and can be swapped freely in either direction. Database schemas and stored values don't revert when code does; a transformation that reformats records persists in the database regardless of what happens to the application layer. 
-- This is the problem the expand-contract pattern addresses, by spreading a risky schema change across multiple smaller deployments that each remain compatible with both the current and previous version of the application. No single release creates a situation where rolling back the code would break the data layer. 
+- This is the problem the **expand-contract pattern** addresses, by spreading a risky schema change across multiple smaller deployments that each remain compatible with both the current and previous version of the application. No single release creates a situation where rolling back the code would break the data layer. 
 
 Monitoring gates close the loop at deploy time. They automatically detect degraded signals and trigger recovery before a human might notice, and then confirm that recovery actually worked before the incident is considered closed.
 

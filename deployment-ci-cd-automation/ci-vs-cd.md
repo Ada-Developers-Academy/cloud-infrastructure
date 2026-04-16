@@ -11,7 +11,7 @@
 | --------- | --------- | -------- | --------- |
 | Artifact Management | A way to store and manage the built versions of an application (not just the source code). An artifact might be a compiled app, a Docker image, or a packaged release file that's ready to deploy. | Artifact repository, package registry | "Our artifact management system stores a versioned Docker image for every successful build so we can redeploy any previous release without rebuilding from source." |
 | Build Automation | Automatically turning raw source code into something runnable. This usually includes installing dependencies, compiling code, and running tests without a human doing it manually. | Automated build, build pipeline | "With build automation in place, every time a developer merges a pull request, the system installs dependencies, compiles the code, and runs tests without any manual steps." |
-| Pipeline Orchestration | The system that coordinates the steps in a CI/CD pipeline. It decides the order of actions like build → test → deploy and triggers each step automatically when code changes. | Pipeline coordination, workflow automation | "Our pipeline orchestration tool kicks off a build the moment code is pushed, then runs tests, and only triggers a deployment to staging if every test passes." |
+| Pipeline Orchestration | The system that coordinates the steps in a CI/CD pipeline. It is configured to execute the order of actions like `build` → `test` → `deploy` and triggers each step automatically when code changes. | Pipeline coordination, workflow automation | "Our pipeline orchestration tool kicks off a build the moment code is pushed, then runs tests, and only triggers a deployment to staging if every test passes." |
 | Rollback | Reverting a system back to a previous stable version when something goes wrong during deployment. | Revert, rollback deploy, release rollback | "When the new checkout feature caused a spike in errors, the team triggered a rollback to the previous stable release while they investigated the root cause." |
 
 ## What are CI & CD?
@@ -20,7 +20,7 @@ We've established that a release pipeline is the sequence of steps code travels 
 
 CI/CD stands for Continuous Integration, Continuous Delivery, and Continuous Deployment. These are a family of related practices that, taken together, describe how teams automate and standardize the journey from a merged pull request to a running production system. These practices build on one another: each piece picks up where the previous one leaves off and extends automation a step further down the release pipeline.
 
-We've likely already encountered CI/CD by using a managed deployment platform. When we connect a GitHub repository to a deployment platform like Render, we are able to choose a branch of our repository to track. When we push new code to the branch, the platform automatically triggers a redeploy. That automatic trigger is CI/CD at work!
+When we connect a GitHub repository to a deployment platform like Render, we are able to choose a branch of our repository to track. When we push new code to the branch, the platform automatically triggers a redeploy. That automatic trigger is CI/CD at work!
 - In a larger organization, the same principle applies, but with more steps, environments, and safeguards in between.
 
 ## Continuous Integration
@@ -29,7 +29,7 @@ Think about a group project where everyone works on their section independently 
 
 **Continuous Integration** (CI) is the software development answer to this problem. CI is the practice of merging code changes into a shared branch frequently, often multiple times per day, with automated builds and tests that run every time a PR opens or merge happens. The goal is to catch problems early, when they're small, cheap to fix, and easy to trace back to a specific change.
 
-CI lives at the build and test stages of the release lifecycle and pipelines. CI systems typically use event driven architectures, where they listen for events from repos like "PR opened" or "PR merged". When they recieve an event, the system triggers whatever steps that a team has outlined through scripts for their build, test, and artifact storing processes.
+CI lives at the build and test stages of the release lifecycle and pipelines. CI systems typically use event driven architectures, where they listen for events from repos like "PR opened" or "PR merged". When they receive an event, the system triggers whatever steps that a team has outlined through scripts for their build, test, and artifact storing processes.
 
 When a developer opens a pull request or merges code, the CI system automatically:
 1. Pulls the latest code from the repository
@@ -48,7 +48,7 @@ If any step fails, the pipeline stops and no artifact is created. The developer 
 
 ## Continuous Delivery
 
-**Continuous Delivery** (CD) extends CI by automating the pipeline further through staging deployment, integration testing, and any other validation steps. This means our code is always in a state that *could* be deployed to production. The defining feature of Continuous Delivery is the word 'could': a human still makes the decision of when to push the release to production.
+**Continuous Delivery** (CD) extends CI by automating the pipeline further through staging deployment, integration testing, and any other validation steps. This means our code is always in a state that *could* be deployed to production. The defining feature of Continuous Delivery is the word _'could'_: a human still makes the decision of when to push the release to production.
 
 We can think of it like a restaurant's kitchen pass: food is cooked, plated, checked by the chef, and sitting under the heat lamp ready to go. The food could go out immediately, but a server has to pick it up and carry it to the table. Continuous Delivery is the practice that keeps food on the kitchen pass. The decision of when to send it out remains with the team.
 
@@ -65,13 +65,13 @@ The staging deployment and its associated tests are the critical addition here. 
 
 - **Reduced release risk**: By the time a human approves a production deploy, the change has already been tested in a realistic environment.
 - **Always release-ready**: The team can deploy at any time because the pipeline is continuously preparing tested, validated artifacts.
-- **Controlled release timing**: Becasue they are always release-ready, teams can coordinate releases with business needs, like an end-of-sprint window, a low-traffic period, or a planned announcement, without slowing down the automation work that prepares the release.
+- **Controlled release timing**: Because they are always release-ready, teams can coordinate releases with business needs, like an end-of-sprint window, a low-traffic period, or a planned announcement, without slowing down the automation work that prepares the release.
 
 ## Continuous Deployment
 
 **Continuous Deployment** takes the final manual step out of the picture. In a continuous deployment pipeline, every change that passes all automated checks is deployed to production automatically, with no human approval required. If the tests pass, users see the change.
 
-This is the most automated point on the CI/CD spectrum, and it is the model used by many high-velocity consumer software teams. It is also the model that creates the most pressure on test coverage and monitoring. No human reviews a change before it reaches users, so the automated checks become the last line of defense.
+This is the most automated point on the CI/CD spectrum, and it is the model used by many high-velocity consumer software teams. It is also the model that creates the most pressure on test coverage and monitoring. Aside from the initial code review for a pull request, no human reviews a change before it reaches users, so the automated checks become the last line of defense.
 
 This is not a shortcut or a sign of less care; it's a model that requires more rigor in automated testing and monitoring precisely because the automation has to be trustworthy enough to act without asking permission. Teams that practice Continuous Deployment typically have extensive test suites, strong monitoring, and automated rollback to a prior build configured (which we'll talk about in a later lesson), because those systems are doing the job that a human reviewer does in a continuous delivery pipeline.
 
@@ -156,11 +156,11 @@ Repeatability and fast feedback aren't separate benefits of CI/CD, they reinforc
 
 At its core, CI/CD is about making software releases boring in the best possible way: predictable, automated, and consistent rather than nerve-wracking and manual. 
 
-Continuous Integration kicks things off: developers merge changes often rather than stockpiling them, and every merge triggers an automated sequence that builds, tests, and packages the code or stops and raises an alert if something breaks. Running these checks immediately after each change keeps feedback tight, a developer still has full context on what they just wrote, and the fix is straightforward before other changes have been layered on top.
+**Continuous Integration** kicks things off: developers merge changes often rather than stockpiling them, and every merge triggers an automated sequence that builds, tests, and packages the code or stops and raises an alert if something breaks. Running these checks immediately after each change keeps feedback tight, a developer still has full context on what they just wrote, and the fix is straightforward before other changes have been layered on top.
 
-Continuous Delivery picks up from a passing CI run and automates the path through staging, where a production-like environment can surface problems that unit tests tend to miss, like mismatched configuration, unexpected service interactions, or infrastructure incompatibilities. The output is a release that's been thoroughly validated and is ready to go live whenever the team decides, with a human making that final call. 
+**Continuous Delivery** picks up from a passing CI run and automates the path through staging, where a production-like environment can surface problems that unit tests tend to miss, like mismatched configuration, unexpected service interactions, or infrastructure incompatibilities. The output is a release that's been thoroughly validated and is ready to go live whenever the team decides, with a human making that final call. 
 
-Continuous Deployment takes human approval out of the equation entirely, deploying automatically once all checks pass. The tradeoff is that the automated checks have to be comprehensive enough to act as the sole gatekeeper: there's no human review between a passing test suite and real users. Teams that have compliance obligations, incomplete test coverage, or deployments with lasting side effects that are difficult to undo are generally better served by keeping deployment manual.
+**Continuous Deployment** takes human approval out of the equation entirely, deploying automatically once all checks pass. The tradeoff is that the automated checks have to be comprehensive enough to act as the sole gatekeeper: there's no human review between a passing test suite and real users. Teams that have compliance obligations, incomplete test coverage, or deployments with lasting side effects that are difficult to undo are generally better served by keeping deployment manual.
 
 Underneath all three practices is the idea that a release process encoded in a file is fundamentally more reliable than one that exists as institutional knowledge. Pipeline configuration lives in version control alongside the application, so every release follows the same path, shortcuts are blocked rather than just discouraged, and changes to the process are reviewed and tracked just like any other code change. 
 - This is what makes CI/CD valuable beyond the individual automation wins at each stage. It shifts deployments from something that requires careful coordination and institutional knowledge to something a new team member can trigger on their first week with full confidence that the same safeguards apply.

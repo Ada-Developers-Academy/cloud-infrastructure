@@ -25,7 +25,7 @@ It's worth noting that defining a CI/CD pipeline as code is closely related to I
 A core idea of IAC is desired state: rather than writing step-by-step instructions for how to build something, we declare what the end result should be and let the tool figure out what resources need to be added, removed, or updated to match. This approach is sometimes called declarative configuration, and it's what separates IaC from simply automating a series of setup commands. 
 - For example, if a database with a certain configuration should exist, we say so in the file. If it already exists and matches the description, nothing changes. If it doesn't exist yet, the tool creates it. 
 
-These infrastructure configuration files are typically plain text (often structured as .yaml files), so they can live in version control alongside application code. When infrastructure is documented as code, changes to an application's infrastructure go through the same review process as code changes: they're proposed, reviewed, discussed, and merged. Teams can see the full history of every infrastructure change, who made it, and why.
+These infrastructure configuration files are typically plain text (often structured as `.yaml` files), so they can live in version control alongside application code. When infrastructure is documented as code, changes to an application's infrastructure go through the same review process as code changes: they're proposed, reviewed, discussed, and merged. Teams can see the full history of every infrastructure change, who made it, and why.
 
 ## Use Case: Defining Environments 
 
@@ -37,7 +37,7 @@ This approach also makes onboarding new environments straightforward. If a team 
 
 ## Benefits of IAC
 
-We talked a bit in the CI/CD lesson around benefits to our release pipeline that we get when we automate and use code to define our pipeline steps: reducing drift, having consistent set up and configuration of resources, and being able to see the history of the pipeline in version control. IAC gives us those same kinds of benefits for our underlying infrastructure and environments.
+We talked a bit in the [CI/CD lesson](./ci-vs-cd.md) around benefits to our release pipeline that we get when we automate and use code to define our pipeline steps: reducing drift, having consistent set up and configuration of resources, and being able to see the history of the pipeline in version control. IAC gives us those same kinds of benefits for our underlying infrastructure and environments.
 
 ### Reducing Configuration Drift
 
@@ -53,11 +53,11 @@ Auditability comes from version control. Every change to infrastructure is a cha
 
 ## Summary
 
-When infrastructure is managed by hand, that process is nearly impossible to reproduce exactly. Memory fades, steps get skipped, and the people who know the "right" way to set something up become single points of failure. Infrastructure-as-Code solves this by moving those decisions into files: machine-readable declarations that describe what cloud resources should exist and how they should be configured. Because those declarations live in plain text files in a repository, every infrastructure change goes through the same pull request and review workflow as the rest of our codebase. Tools that support IaC read those files and reconcile the real world with what's described, creating or adjusting resources as needed. The practical effect is that standing up a new environment looks less like a project and more like running a command.
+When infrastructure is managed by hand, that process is nearly impossible to reproduce exactly. Memory fades, steps get skipped, and the people who know the "right" way to set something up become single points of failure. **Infrastructure-as-Code** solves this by moving those decisions into files: machine-readable declarations that describe what cloud resources should exist and how they should be configured. Because those declarations live in plain text files in a repository, every infrastructure change goes through the same pull request and review workflow as the rest of our codebase. Tools that support IaC read those files and reconcile the real world with what's described, creating or adjusting resources as needed. The practical effect is that standing up a new environment looks less like a project and more like running a command.
 
 This approach directly addresses two problems that tend to compound over time in production systems. 
-- The first is configuration drift — the gradual, often invisible divergence between environments that causes bugs to appear in production but not in staging. Because IaC files are the authoritative record of what an environment should look like, untracked manual changes stand out rather than quietly accumulating. 
-- The second problem is institutional knowledge loss. Runbooks and setup guides go stale; a well-maintained IaC repository doesn't, because it has to stay in sync with the actual infrastructure or things break. New team members can understand the full shape of the infrastructure by reading the same files that built it, and disaster recovery becomes a repeatable process rather than a high-stakes improvisation.
+- The first is **configuration drift** — the gradual, often invisible divergence between environments that causes bugs to appear in production but not in staging. Because IaC files are the authoritative record of what an environment should look like, untracked manual changes stand out rather than quietly accumulating. 
+- The second problem is **institutional knowledge loss**. Runbooks and setup guides go stale; a well-maintained IaC repository doesn't, because it has to stay in sync with the actual infrastructure or things break. New team members can understand the full shape of the infrastructure by reading the same files that built it, and disaster recovery becomes a repeatable process rather than a high-stakes improvisation.
 
 ## Check for Understanding
 
