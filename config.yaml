@@ -212,6 +212,37 @@ Standards:
         Type: Lesson
         UID: 34200199-90af-4db0-9b46-08c750b250bf
         Path: /deployment-ci-cd-automation/problem-set-deployment.md
+  - 
+    Title: Analytics and Data Processing
+    UID: a8b52ed3-d99f-4b2b-8a49-40f7727f59a7
+    Description: "Introduction to Cloud-Based Data Analytics and Big Data"
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      - 
+        Type: Lesson
+        UID: 59a9c048-f92c-493c-b947-52921e8511d0
+        Path: /analytics/analytics-basics.md
+      - 
+        Type: Lesson
+        UID: a314e0b2-a3bc-4e87-a672-97fb37c423ce
+        Path: /analytics/analytics-storage-architecture.md
+      - 
+        Type: Lesson
+        UID: 10c17332-147b-4518-81a2-055f35cbd835
+        Path: /analytics/analytics-ingesting.md
+      - 
+        Type: Lesson
+        UID: e1dbd9ec-78ac-40bb-b963-d0052e49ae1f
+        Path: /analytics/analytics-querying.md
+      - 
+        Type: Lesson
+        UID: ede0a2cb-7b55-4b00-aa11-92704b5c0d80
+        Path: /analytics/analytics-visualization.md
+      - 
+        Type: Lesson
+        UID: b6a83a46-87c6-427a-8d12-f1ca4bc2a7c5
+        Path: /analytics/problem-set-analytics.md
   -
     Title: Observability, Reliability & Operations
     Description: "Introduction to Observability, Introduction to Reliability, AI for Operations, Problem Set"
