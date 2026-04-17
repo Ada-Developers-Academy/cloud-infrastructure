@@ -91,7 +91,7 @@ Data analytics is a vast field with many different techniques, tools, and approa
 
 ## Summary
 
-We learned that data analytics goes beyond simply storing information; it is the process of finding real business value in raw data. By maturing our analytics from descriptive summaries to prescriptive recommendations, we can actively shape our applications to serve users better. By designing robust cloud architectures to handle the volume, velocity, variety, veracity, and value of big data, we can securely and efficiently power our organization's future decisions.
+We learned that **data analytics** goes beyond simply storing information; it is the process of finding real business value in raw data. By maturing our analytics from **descriptive summaries** to **prescriptive recommendations**, we can actively shape our applications to serve users better. By designing robust cloud architectures to handle the **volume**, **velocity**, **variety**, **veracity**, and **value** of big data, we can securely and efficiently power our organization's future decisions.
 
 ## Check for Understanding
 

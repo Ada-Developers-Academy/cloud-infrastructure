@@ -68,7 +68,7 @@ For example, we might have an application that generates a large volume of logs,
 
 ## Summary
 
-We learned that successfully analyzing big data requires us to organize it with data catalogs and a semantic layer, making it discoverable and understandable for all users. By leveraging decoupled compute and storage, we can perform query-in-place analytics directly against our object storage, saving time and resources. Finally, choosing the right tool—whether an interactive query-in-place engine for more structured data, or a search and observability suite for unstructured text—ensures we can extract the insights we need efficiently.
+We learned that successfully analyzing big data requires us to organize it with **data catalogs** and a **semantic layer**, making it discoverable and understandable for all users. By leveraging decoupled compute and storage, we can perform **query-in-place analytics** directly against our object storage, saving time and resources. Finally, choosing the right tool—whether an interactive query-in-place engine for more structured data, or a **search and observability suite** for unstructured text—ensures we can extract the insights we need efficiently.
 
 ## Check for Understanding
 

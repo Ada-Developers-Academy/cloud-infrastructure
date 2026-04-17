@@ -119,7 +119,7 @@ External tools needn't be aware of the exact internal structure of the data lake
 
 ## Summary
 
-Storing data for daily operations requires fundamentally different technologies than storing data for analytics. We use OLTP databases for fast, transactional application updates, and OLAP systems for complex, historical business queries. To manage analytical workloads efficiently in the cloud, we leverage Data Warehouses for highly structured reporting and Data Lakes for massive, flexible, raw data storage. By utilizing columnar storage formats, Massively Parallel Processing, and the organized layers of the Medallion Architecture, we ensure our data remains performant, organized, and ready to deliver valuable business insights.
+Storing data for daily operations requires fundamentally different technologies than storing data for analytics. We use **OLTP** databases for fast, transactional application updates, and **OLAP** systems for complex, historical business queries. To manage analytical workloads efficiently in the cloud, we leverage **Data Warehouses** for highly structured reporting and **Data Lakes** for massive, flexible, raw data storage. By utilizing **columnar storage** formats, **Massively Parallel Processing**, and the organized layers of the **Medallion Architecture**, we ensure our data remains performant, organized, and ready to deliver valuable business insights.
 
 ## Check for Understanding
 

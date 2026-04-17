@@ -128,7 +128,7 @@ By exploring these scenarios, we can see that building a modern ingestion pipeli
 
 ## Summary
 
-We explored the differences between how traditional ETL pipelines transform data before loading it into storage, while modern ELT architectures load raw data first and transform it on-demand, leveraging the cloud's distributed compute power. We saw how to process data efficiently by considering batch processing for high-volume, scheduled jobs, and stream processing for continuous, low-latency data flows. Finally, we looked at practical scenarios that demonstrate how different pipeline architectures and processing paradigms come together to solve real business problems, showing that the best approach depends on the specific requirements of our data and the insights we need to generate.
+We explored the differences between how **traditional ETL** pipelines transform data before loading it into storage, while **modern ELT** architectures load raw data first and transform it on-demand, leveraging the cloud's distributed compute power. We saw how to process data efficiently by considering **batch processing** for high-volume, scheduled jobs, and **stream processing** for continuous, low-latency data flows. Finally, we looked at practical scenarios that demonstrate how different pipeline architectures and processing paradigms come together to solve real business problems, showing that the best approach depends on the specific requirements of our data and the insights we need to generate.
 
 ## Check for Understanding
 

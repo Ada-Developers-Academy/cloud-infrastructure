@@ -58,7 +58,7 @@ For AI-powered queries to scale reliably without hallucinations, these systems r
 
 ## Summary
 
-We learned that raw data only becomes valuable when it is translated into accessible visualizations, reports, and dashboards. By utilizing business intelligence platforms, we can securely deliver interactive insights to thousands of users through high-performance visualization tools, automated reporting, and embeddable analytics, all while maintaining robust security. Finally, integrating machine learning and generative AI empowers us to forecast trends and use Text-to-SQL to ask plain-language questions, as long as we maintain a well-governed semantic layer to ensure accuracy.
+We learned that raw data only becomes valuable when it is translated into accessible visualizations, reports, and dashboards. By utilizing **business intelligence platforms**, we can securely deliver interactive insights to thousands of users through high-performance visualization tools, automated reporting, and embeddable analytics, all while maintaining robust security. Finally, integrating machine learning and generative AI empowers us to forecast trends and use Text-to-SQL to ask plain-language questions, as long as we maintain a well-governed semantic layer to ensure accuracy.
 
 ## Check for Understanding
 
