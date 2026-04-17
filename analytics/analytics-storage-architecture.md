@@ -31,6 +31,15 @@ Conversely, **Online Analytical Processing (OLAP)** systems are optimized for co
 ![A side-by-side architectural comparison. On the left, an OLTP system shows many small, rapid arrows representing thousands of concurrent user transactions (like shopping carts) updating a relational database (which stores current data via rapid, small transactions). On the right, an OLAP system shows a large arrow representing large-scale data extraction moving massive amounts of data into a data warehouse, which after analytical processing, produces a Business Analytics Report (e.g., Sales Trends).](./assets/analytics-oltp-olap.png)  
 *Fig. Comparing the workload patterns and data flow of OLTP and OLAP systems.*
 
+| Feature | OLTP | OLAP | 
+| --------- | --------- | -------- | 
+| **Primary Purpose** | Day-to-day transactional operations | Complex analytical queries & reporting | 
+| **Typical Operations** | CRUD (Create, Read, Update, Delete) | Aggregations, trend analysis, multidimensional queries | 
+| **Data Volume Per Query** | Small (single rows or few records) | Large (historical datasets, batch ingestion) | 
+| **Query Speed** | Faster | Slower | 
+| **Concurrency** | Thousands of concurrent users | Fewer concurrent users (analysts) | 
+| **Example Use Case** | Tracking loyalty points, managing payments, updating inventory | Identifying top-selling products over a time period to inform budgets | 
+
 ## Analytics Storage Architectures
 
 As we move data out of our transactional systems into analytics systems, we need robust storage architectures to house it. The paradigm we choose depends on the structure of our data and how we intend to use it.
