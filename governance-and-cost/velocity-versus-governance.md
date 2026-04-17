@@ -49,7 +49,7 @@ Effective governance in a cloud environment looks more like guardrails than gate
 
 **Policy as Code (PaC)** is the practice of defining and enforcing governance rules as executable, version-controlled code. Before exploring what that means, it is worth drawing a clear distinction from a concept covered earlier in this curriculum: Infrastructure as Code.
 
-Infrastructure as Code (IaC) describes what should be built. It defines the resources, configurations, and relationships that make up a cloud environment. PaC describes what is allowed. It defines the rules, constraints, and requirements that infrastructure must satisfy before it is deployed. The two are complementary: IaC provisions the environment, and PaC governs how that provisioning is permitted to happen.
+[Infrastructure as Code (IaC)](../deployment-ci-cd-automation/automation-infrastructure-as-code.md) describes what should be built. It defines the resources, configurations, and relationships that make up a cloud environment. PaC describes what is allowed. It defines the rules, constraints, and requirements that infrastructure must satisfy before it is deployed. The two are complementary: IaC provisions the environment, and PaC governs how that provisioning is permitted to happen.
 
 ### Policies as a Contract
 
@@ -66,31 +66,33 @@ Consider the following example. An organization requires that every cloud resour
 With Policy as Code, that requirement is expressed as an executable rule. The following pseudocode illustrates what this policy might express, using simplified syntax for readability.
 
 ```
-policy "require-cost-center-tag" {
-  description = "All resources must have a cost-center tag with a non-empty value."
+policy "require-valid-cost-center-tag" {
+  description = "All resources must have a cost-center tag with an approved value."
+
+  allowed_values = ["engineering", "product", "data", "security", "infrastructure"]
 
   rule {
     resource.tags["cost-center"] must exist
-    resource.tags["cost-center"] must not be empty
+    resource.tags["cost-center"] must be in allowed_values
   }
 
   on violation {
     block deployment
-    message = "Deployment blocked: resource is missing a required cost-center tag.
-               Add a cost-center tag before redeploying."
+    message = "Deployment blocked: resource is missing a valid cost-center tag.
+               Accepted values are: engineering, product, data, security, infrastructure."
   }
 }
 ```
 
-When an engineer attempts to deploy a resource without a cost-center tag, the policy check catches the violation before the resource is created. The deployment is blocked, and the engineer receives a message explaining exactly what is missing and what action is needed. The engineer adds the required tag and redeploys. No manual reviewer was required, no ticket was filed, and no time was spent waiting for approval. The governance requirement was enforced consistently at the point of deployment.
+When an engineer attempts to deploy a resource without a cost-center tag or applies an invalid cost-center tag, the policy check catches the violation before the resource is created. The deployment is blocked, and the engineer receives a message explaining exactly what is missing and what action is needed. The engineer adds the required tag and redeploys. No manual reviewer was required, no ticket was filed, and no time was spent waiting for approval. The governance requirement was enforced consistently at the point of deployment.  This is a simple example to illustrate how a requirement becomes an executable rule. More complex environments can come with more complex policies.
 
-PaC is not limited to any single format or language. Policies may be written in general purpose programming languages, domain-specific languages designed for policy evaluation, or structured configuration formats. The example above is illustrative of the concept rather than representative of any specific tool or implementation. What all approaches share is that policies are machine-readable, version-controlled, and evaluated automatically as part of the deployment process. Like application code, they can be tested, reviewed, and updated through the same collaborative workflows engineers already use.
+PaC is not limited to any single format or language. Policies may be written in general purpose programming languages, domain-specific languages designed for policy evaluation, or structured configuration formats. They may be entirely self-contained or may enforce rules based on other data sources, such as requiring not only that a cost center tag be present, but that it have a valid, recognized value.The example above is illustrative of the concept rather than representative of any specific tool or implementation. What all approaches share is that policies are machine-readable, version-controlled, and evaluated automatically as part of the deployment process. Like application code, they can be tested, reviewed, and updated through the same collaborative workflows engineers already use.
 
 ### Guardrails in Practice: How Policy as Code Resolves the Velocity & Governance Tension
 
 In a velocity-first culture, governance requirements exist informally if at all. They are applied inconsistently because there is no mechanism to enforce them, and the gap between what the organization expects and what actually gets deployed widens over time. PaC closes that gap by making requirements explicit and enforcing them automatically at the point of deployment.
 
-In a governance-heavy culture, human reviewers are the enforcement mechanism. Every change waits for a reviewer to determine whether it is acceptable, which introduces delays that slow delivery and motivate teams to find workarounds. PaC removes the human reviewer from routine, rule-based checks. Following our example above, a reviewer does not need to verify that every resource has a cost-center tag because the policy system does that automatically. Human review is reserved for decisions that genuinely require judgment rather than applied uniformly to every change.
+In a governance-heavy culture, human reviewers are the enforcement mechanism. Every change waits for a reviewer to determine whether it is acceptable, which introduces delays that slow delivery and motivate teams to find workarounds. PaC removes the human reviewer from routine, rule-based checks. Following our example above, a reviewer does not need to verify that every resource has a cost-center tag because the policy system does that automatically. Human review is reserved for decisions that genuinely require judgment rather than those that are applied uniformly to every change.
 
 The result is a governance model that enforces organizational requirements consistently and at scale, without introducing the friction that causes teams to route around it. Engineers move quickly within defined boundaries. Policies are transparent and auditable. Feedback is immediate rather than delayed. Teams move quickly, and governance requirements are met consistently, without either goal compromising the other.
 
@@ -139,18 +141,18 @@ A team is deploying infrastructure changes frequently. An audit reveals that sev
 ##### !end-question
 
 ##### !options
-a| Send a weekly reminder email to all engineers outlining the required security configurations
-b| Add the security configuration requirement to the engineering handbook and ask team leads to enforce it during code review
-c| Express the security configuration requirement as an executable policy that automatically blocks any deployment missing the required configuration and returns specific feedback to the engineer
+a| Express the security configuration requirement as an executable policy that automatically blocks any deployment missing the required configuration and returns specific feedback to the engineer
+b| Send a weekly reminder email to all engineers outlining the required security configurations
+c| Add the security configuration requirement to the engineering handbook and ask team leads to enforce it during code review
 d| Require engineers to submit a checklist confirming compliance before each deployment is approved
 ##### !end-options
 
 ##### !answer
-c|
+a|
 ##### !end-answer
 
 #### !explanation 
-The root cause of the problem is that the requirement was not enforced at the point of deployment. Options A, B, and D all rely on human awareness or manual processes, which are subject to the same inconsistency that caused the problem in the first place. A Policy as Code check enforces the requirement automatically every time a deployment is proposed, returns immediate and specific feedback when a violation is detected, and does not require a human reviewer or introduce wait time into the deployment process.
+The root cause of the problem is that the requirement was not enforced at the point of deployment. A Policy as Code check, as described in the first option, enforces the requirement automatically every time a deployment is proposed, returns immediate and specific feedback when a violation is detected, and does not require a human reviewer or introduce wait time into the deployment process. The other options all rely on human awareness or manual processes, which are subject to the same inconsistency that caused the problem in the first place. 
 #### !end-explanation 
 ### !end-challenge
 

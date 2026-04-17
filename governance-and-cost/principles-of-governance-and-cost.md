@@ -91,8 +91,8 @@ A **tag** is a key-value pair attached to a cloud resource as metadata. Tags do 
 
 A tagging strategy is an organization's defined approach to applying tags: which tags are required on all resources, what values are acceptable for each tag, and how that standard is communicated and maintained across teams. Without a deliberate strategy, tagging becomes inconsistent. Some teams tag thoroughly, others minimally, and the result is a cloud environment where resources cannot be reliably attributed to owners or costs cannot be accurately allocated. A straightforward example might require the following tags on all resources:
 
-| Tag Key | Description | Example Value |
-| --------- | --------- | -------- | --------- |
+| <div style="min-width:6em;">Tag Key</div> | Description | Example Value |
+| --------- | --------- | -------- | 
 | `team` | The team responsible for the resource | `payments`|
 | `environment` | The deployment environment | `production`, `staging`, `development`|
 | `project` | The project or initiative the resource supports | `checkout-redesign`|
@@ -114,13 +114,15 @@ An effective tagging strategy is one that serves the actual needs of the organiz
 
 When tagging is applied inconsistently or not at all, the downstream effects are concrete and compounding. Cost allocation breaks down when resources cannot be attributed to an owner, making it impossible to produce accurate reports on what each team or project is spending. Idle and orphaned resources become harder to identify and decommission because there is no reliable way to determine who owns them or whether they are still needed. Governance policy checks that depend on tag data produce incomplete or inaccurate results. Over time, an environment with inconsistent tagging becomes progressively harder to manage because the metadata that would enable informed decisions about cost, ownership, and resource lifecycle is absent or unreliable.
 
+More recently, _some_ cloud platforms have enabled retroactive tagging but it has limitations when it comes to historical cost attribution. If a resource was never tagged during a given billing period, no retroactive correction can recover cost attribution for that period because the underlying tag data does not exist. Tagging gaps from periods where no tag was present cannot be recovered, which is why applying tags consistently at the point of resource creation is the most reliable approach.
+
 For individual contributors working within a team, inconsistent tagging is often not immediately visible as a problem. Its consequences surface at the organizational level, in billing reports, in audit findings, and in the time spent manually tracing resource ownership when something goes wrong. Applying tags correctly and consistently at the point of resource creation is one of the most direct ways an individual contributor supports the broader governance and cost management practices of the organization.
 
 ## Summary
 
 Cloud governance emerged as a direct response to the shift from physical infrastructure to cloud computing. Where physical infrastructure imposed natural cost controls through procurement cycles and capital approval processes, the cloud removed those controls entirely. Governance exists to replace them with intentional policies, processes, and technical controls that maintain visibility, accountability, and compliance across a cloud environment.
 
-Within that broader governance framework, cost management is the discipline focused specifically on understanding and controlling cloud spending. It depends on two foundational capabilities: billing visibility, which surfaces what is being spent and where, and cost allocation, which attributes that spending to the teams and projects responsible for it. Budgets and alerts extend cost management into a proactive practice by closing the feedback loop between provisioning decisions and their financial consequences. Cloud cost optimization tools, available from every major cloud provider, complement these practices by automatically identifying waste and surfacing actionable recommendations across four key categories: right-sizing, idle resource decommission, purchasing options, and storage optimization.
+Within that broader governance framework, cost management is the discipline focused specifically on understanding and controlling cloud spending. It depends on two foundational capabilities: billing visibility, which surfaces what is being spent and where, and cost allocation, which attributes that spending to the teams and projects responsible for it. Budgets and alerts extend cost management into a proactive practice by closing the feedback loop between provisioning decisions and their financial consequences. Cloud cost optimization tools, available from every major cloud provider, complement these practices by automatically identifying waste and surfacing actionable recommendations across four key categories: right-sizing, idle resource decommissioning, purchasing options, and storage optimization.
 
 Tagging strategies are the connective tissue that makes both governance and cost management functional at scale. Without consistent tagging, resources cannot be reliably attributed to owners, costs cannot be accurately allocated, and governance policies that depend on tag data cannot be enforced. A tagging strategy defines which tags are required, what values are acceptable, and how that standard is maintained across teams and resources.
 
