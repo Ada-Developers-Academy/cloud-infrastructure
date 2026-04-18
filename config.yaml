@@ -266,3 +266,26 @@ Standards:
         Type: Lesson
         UID: 2d51a0bb-b948-4986-9a41-cd6c138fcb61
         Path: /observability-reliability-ops/problem-set.md
+  -
+    Title: Governance & Cost
+    Description: "Core Principles of Governance & Cost, Governance & Cost Driven Architectural Decision Making, Velocity versus Governance Problem Set"
+    UID: b4177df4-9d47-40e2-b251-da99ff329a5b
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 17eddf19-b221-40d0-94d7-0bcc97c31a0f
+        Path: /governance-and-cost/principles-of-governance-and-cost.md
+      -
+        Type: Lesson
+        UID: 83690b06-5d2d-4169-b430-5cb6c70112af
+        Path: /governance-and-cost/decision-making.md
+      -
+        Type: Lesson
+        UID: a79665ce-a95e-49dd-bd13-89da6087602a
+        Path: /governance-and-cost/velocity-versus-governance.md
+      -
+        Type: Lesson
+        UID: 7aa5dfed-cb17-452b-942d-68137e44620e
+        Path: /governance-and-cost/problem-set.md
