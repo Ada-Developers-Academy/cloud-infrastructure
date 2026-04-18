@@ -66,27 +66,25 @@ Consider the following example. An organization requires that every cloud resour
 With Policy as Code, that requirement is expressed as an executable rule. The following pseudocode illustrates what this policy might express, using simplified syntax for readability.
 
 ```
-policy "require-valid-cost-center-tag" {
-  description = "All resources must have a cost-center tag with an approved value."
-
-  allowed_values = ["engineering", "product", "data", "security", "infrastructure"]
+policy "require-cost-center-tag" {
+  description = "All resources must have a cost-center tag with a non-empty value."
 
   rule {
     resource.tags["cost-center"] must exist
-    resource.tags["cost-center"] must be in allowed_values
+    resource.tags["cost-center"] must not be empty
   }
 
   on violation {
     block deployment
-    message = "Deployment blocked: resource is missing a valid cost-center tag.
-               Accepted values are: engineering, product, data, security, infrastructure."
+    message = "Deployment blocked: resource is missing a required cost-center tag.
+                Add a cost-center tag before redeploying."
   }
 }
 ```
 
 When an engineer attempts to deploy a resource without a cost-center tag or applies an invalid cost-center tag, the policy check catches the violation before the resource is created. The deployment is blocked, and the engineer receives a message explaining exactly what is missing and what action is needed. The engineer adds the required tag and redeploys. No manual reviewer was required, no ticket was filed, and no time was spent waiting for approval. The governance requirement was enforced consistently at the point of deployment.  This is a simple example to illustrate how a requirement becomes an executable rule. More complex environments can come with more complex policies.
 
-PaC is not limited to any single format or language. Policies may be written in general purpose programming languages, domain-specific languages designed for policy evaluation, or structured configuration formats. They may be entirely self-contained or may enforce rules based on other data sources, such as requiring not only that a cost center tag be present, but that it have a valid, recognized value.The example above is illustrative of the concept rather than representative of any specific tool or implementation. What all approaches share is that policies are machine-readable, version-controlled, and evaluated automatically as part of the deployment process. Like application code, they can be tested, reviewed, and updated through the same collaborative workflows engineers already use.
+PaC is not limited to any single format or language. Policies may be written in general purpose programming languages, domain-specific languages designed for policy evaluation, or structured configuration formats. They may be entirely self-contained—as in the example above—or may enforce rules based on other data sources, such as requiring not only that a cost center tag be present, but that it have a valid, recognized value. The example above is illustrative of the concept rather than representative of any specific tool or implementation. What all approaches share is that policies are machine-readable, version-controlled, and evaluated automatically as part of the deployment process. Like application code, they can be tested, reviewed, and updated through the same collaborative workflows engineers already use.
 
 ### Guardrails in Practice: How Policy as Code Resolves the Velocity & Governance Tension
 

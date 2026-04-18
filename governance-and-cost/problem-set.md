@@ -57,7 +57,11 @@ e|
 ##### !end-answer
 
 #### !explanation 
-Over-provisioning means paying for capacity that is not being used, which generates ongoing charges for as long as the resource remains at its current size. Cost optimization tools analyze utilization patterns and surface over-provisioned resources as right-sizing candidates. The second option (Services are more likely to experience reliability issues under load), describes under-provisioning, not over-provisioning. The fourth option, "Engineers are unable to deploy new resources until existing ones are decommissioned", is not a consequence of over-provisioning because cloud environments do not typically prevent new resource creation based on existing resource utilization.
+Over-provisioning means paying for capacity that is not being used, which generates ongoing charges for as long as the resource remains at its current size. Cost optimization tools analyze utilization patterns and surface over-provisioned resources as right-sizing candidates.
+
+<br>
+
+Services are more likely to experience reliability issues under load when dealing with under-provisioning, not over-provisioning. An inability for engineers to deploy new resources until existing ones are decommissioned is not a consequence of over-provisioning because cloud environments do not typically prevent new resource creation based on existing resource utilization.
 #### !end-explanation 
 ### !end-challenge
 
@@ -113,7 +117,7 @@ e|
 ##### !end-answer
 
 #### !explanation 
-An effective tagging strategy is one that is applied consistently, defined clearly in advance, used to support cost allocation and ownership tracking, and maintained as the organization changes. The second option ("The strategy requires as many tags as possible to maximize data collection") is incorrect because comprehensiveness is not inherently valuable if it comes at the expense of consistency. A smaller set of well-chosen tags applied reliably across every resource provides more value than an extensive set applied sporadically.
+An effective tagging strategy is one that is applied consistently, defined clearly in advance, used to support cost allocation and ownership tracking, and maintained as the organization changes. The remaining option is incorrect because comprehensiveness is not inherently valuable if it comes at the expense of consistency. A smaller set of well-chosen tags applied reliably across every resource provides more value than an extensive set applied sporadically.
 #### !end-explanation 
 ### !end-challenge
 
@@ -211,8 +215,11 @@ e|
 ##### !end-answer
 
 #### !explanation 
-The waste Duolingo found fell into three categories: resources that were no longer needed (legacy clusters, deprecated services, overscaled staging environments), resources that were over-provisioned relative to actual demand, and costs that engineers were not aware of because cost data was not visible or accessible. The first option addresses visibility. The second option addresses idle and legacy resource accumulation. The third option addresses cost-aware decision making by making cost implications visible to engineers as part of their normal planning process, rather than something discovered after the fact on a bill. The fifth option addresses over-provisioning. The fourth option is incorrect — switching all resources to spot instances is not appropriate for all workloads, particularly production services requiring high availability, and does not address the root causes of the waste described in the case study.
-#### !end-explanation 
+The waste Duolingo found fell into three categories: resources that were no longer needed (legacy clusters, deprecated services, overscaled staging environments), resources that were over-provisioned relative to actual demand, and costs that engineers were not aware of because cost data was not visible or accessible. Regularly reviewing cloud costs addresses visibility. Establishing resource lifecycle policies addresses idle and legacy resource accumulation. Integrating cost options into planning addresses cost-aware decision making by making cost implications visible to engineers as part of their normal planning process, rather than something discovered after the fact on a bill. Right-sizing compute resources addresses over-provisioning.
+	
+<br>
+
+Switching all resources to spot instances is incorrect because it is not appropriate for all workloads, particularly production services requiring high availability, and does not address the root causes of the waste described in the case study.#### !end-explanation 
 ### !end-challenge
 
 <!-- Question # 8 -->
