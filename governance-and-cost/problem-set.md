@@ -219,7 +219,8 @@ The waste Duolingo found fell into three categories: resources that were no long
 	
 <br>
 
-Switching all resources to spot instances is incorrect because it is not appropriate for all workloads, particularly production services requiring high availability, and does not address the root causes of the waste described in the case study.#### !end-explanation 
+Switching all resources to spot instances is incorrect because it is not appropriate for all workloads, particularly production services requiring high availability, and does not address the root causes of the waste described in the case study.
+#### !end-explanation 
 ### !end-challenge
 
 <!-- Question # 8 -->
@@ -245,5 +246,5 @@ b|
 
 #### !explanation 
 Over-provisioning is one of the most common and costly patterns in cloud infrastructure, and it occurs for understandable reasons. When engineers are uncertain about future demand, provisioning generously feels like the safer choice. Without visibility into utilization data over time, and without a governance practice or organizational prompt to review capacity decisions, initial allocations tend to persist indefinitely. Duolingo's experience illustrates exactly this pattern: a service provisioned more generously than necessary continued to run at that allocation until engineers specifically looked for over-provisioning opportunities.
- #### !end-explanation 
+#### !end-explanation 
 ### !end-challenge
