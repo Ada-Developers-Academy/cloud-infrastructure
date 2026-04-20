@@ -215,7 +215,7 @@ Standards:
   - 
     Title: Analytics and Data Processing
     UID: a8b52ed3-d99f-4b2b-8a49-40f7727f59a7
-    Description: "Introduction to Cloud-Based Data Analytics and Big Data; Data Storage Architectures for Cloud Analytics; Data Ingestion and Processing Paradigms; Data Discovery, Search, and Querying; Visualization, Business Intelligence, and AI in Cloud Analytics, Problem Set"
+    Description: "Introduction to Cloud-Based Data Analytics and Big Data; Data Storage Architectures for Cloud Analytics; Data Ingestion and Processing Paradigms; Data Discovery, Search, and Querying; Visualization, Business Intelligence, and AI in Cloud Analytics; Problem Set: Analytics and Data Processing"
     SuccessCriteria:
       - success criteria
     ContentFiles:
