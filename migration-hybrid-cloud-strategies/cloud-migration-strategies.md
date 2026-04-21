@@ -67,16 +67,56 @@ The first question to ask of any workload is: does it still need to exist at all
 
 As organizations grow and evolve, applications accumulate. An internal tool built for a project that ended three years ago. A reporting dashboard that duplicates something a newer platform provides. A service kept running because no one has confirmed it's safe to turn off. These workloads don't deliver value, but they do carry cost in infrastructure, maintenance overhead, security surface area, and the cognitive burden of tracking systems that no one is responsible for.
 
-Before investing time to migrate a workload, it's worth asking whether migration is the right decision. Retiring a workload removes it from the migration plan entirely and simplifies the resulting cloud environment.
+Before investing time to migrate a workload, it's worth asking whether migration is the right decision. **Retiring** a workload removes it from the migration plan entirely and simplifies the resulting cloud environment.
 
-Let's see how this applies to our example organization: at FieldOps Inc., the portfolio assessment turns up a legacy employee scheduling tool built in 2014. When the team pulls access logs, they find it hasn't been used by anyone in 11 months. The company now uses a commercial HR platform that handles scheduling natively. 
-- The CTO assigns this workload to **Retire**. 
-- The server is decommissioned, and the migration plan shrinks by one workload.
+Let's see how this applies to our example organization! At FieldOps Inc., the portfolio assessment turns up a legacy employee scheduling tool built in 2014. 
+- When the team pulls access logs, they find it hasn't been used by anyone in 11 months. The company now uses a commercial HR platform that handles scheduling natively. 
+- The CTO assigns this workload to be retired. The server is decommissioned, and the migration plan shrinks by one workload.
 
 ```
 [DIAGRAM PLACEHOLDER]
 Before: [Legacy Scheduling App] on on-premises server — consuming maintenance, patching, server costs
 After: [Decommissioned] — no server, no maintenance, no migration needed
+```
+
+### 2. Retain
+
+Some workloads aren't ready to migrate, and that's a legitimate outcome of a migration assessment. Some systems have dependencies, constraints, or circumstances that make migration impractical *right now*.
+
+A workload might depend on specialized hardware that has no cloud equivalent. It might be deeply integrated with other on-premises systems in ways that would make isolation too costly or risky right now. It might be scheduled for replacement within the next year, making migration a poor investment. Or the team simply may not have the bandwidth to migrate everything at once, and this workload doesn't justify reprioritizing other work.
+
+**Retaining** a workload means keeping it on-premises intentionally, not indefinitely. This is not the same as ignoring the workload, it means acknowledging the constraints, documenting them, and scheduling a future reassessment rather than letting the workload quietly persist without a plan.
+
+Over at FieldOps Inc., one of their workloads is a real-time telemetry processing service that ingests data from physical sensors on utility equipment. The service runs on bare-metal servers with specialized network interface cards that the cloud can't replicate.
+- The vendor has a cloud-compatible version on their roadmap, but it won't be available for at least 12 months. 
+- The CTO assigns this workload to be retained and schedules a migration readiness review for the following year.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [Telemetry Service] on specialized on-premises hardware
+After: [Telemetry Service] still on-premises — flagged for reassessment when vendor roadmap delivers
+```
+
+### 3. Rehost (Lift and Shift)
+
+As we saw earlier in this lesson, rehosting or "lifting and shifting" is the fastest migration path and the one that requires the least cloud expertise. 
+- It's particularly appropriate when speed is the primary constraint: a regulatory deadline, a contract obligation, an expiring data center lease. 
+- It's also a reasonable starting point when an organization wants to exit on-premises infrastructure quickly and is prepared to optimize once the application is in the cloud.
+
+The tradeoffs are that a rehosted application likely:
+- won't benefit from cloud-native features
+- will cost more to run than an equivalent application designed for the cloud
+- will carry the same architectural limitations it had on-premises
+
+Let's check in with FieldOps Inc.. Their contract management application is a ten-year-old Java application that processes field service contracts. It works reliably, but it was designed as a single-instance application with no scaling logic. 
+- The data center lease expires in 18 months, and redesigning the application isn't in the current budget. 
+- The CTO assigns this workload to be rehosted. It will move to a cloud virtual machine as-is. Optimization is logged as future work.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [Contract Mgmt App Server (on-prem)] → [Database Server (on-prem)]
+After:  [Contract Mgmt App VM (cloud)] → [Database VM (cloud)]
+        Same topology. Same configuration. Running in cloud infrastructure.
 ```
 
 
