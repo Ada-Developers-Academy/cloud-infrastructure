@@ -9,7 +9,7 @@
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
-| **Lift-and-shift** | Moving an application from on-premises to the cloud without making changes to the code or architecture | Rehost, migrate-as-is | "We chose a lift-and-shift approach for the billing service so we could meet the compliance deadline without rewriting the application." |
+| **Lift-and-shift** | Moving an application from on-premises to the cloud without making changes to the code or architecture | Rehost, migrate-as-is | "We used a lift-and-shift approach for the payroll system because we needed to be out of the data center by the end of the quarter." |
 | **Re-architecture** | Redesigning an application to take advantage of cloud-native features, such as containers, managed services, or serverless compute | Refactor, cloud-native rewrite | "Re-architecting the API layer took three months, but it cut our infrastructure costs by half and made the service horizontally scalable." |
 | **Legacy system** | An existing system built with older technologies or architectures that may be difficult to change, integrate with modern tooling, or migrate | Old system, technical debt | "Our billing service is a legacy system running on a 2011 OS version, it's a migration priority because the vendor stopped releasing patches." |
 | **Cloud-Native** | An application designed to run in the cloud and take full advantage of cloud capabilities, typically emphasizing scalability, resilience, and automation. | Cloud-Optimized | "We built the order system as a cloud-native service with policies to auto-scale horizontally when traffic spikes around sales and holidays" |
@@ -20,6 +20,70 @@
 | **Policy guardrail** | An automated rule or constraint that prevents cloud resources from being created or configured in ways that violate an organization's policies | Policy boundary, preventive control | "A policy guardrail prevented engineers from opening port 22 to the public internet, even if they tried to do it accidentally." |
 
 ## The 7 Rs of Migration
+
+When an organization decides to move to the cloud, a common instinct is to treat migration as a single event: pick up everything on-premises and set it down in the cloud. That rarely works in practice. Organizations have dozens or hundreds of applications, each with different technical complexity, business value, and readiness for the cloud. 
+- Some systems are worth investing in and modernizing, while others might be barely used and should be turned off. Other services may need to move quickly for business reasons, with improvements deferred to later.
+
+The **7 Rs** are a framework for thinking through these complexities. Rather than treating every application the same, we assess each workload individually and assign it a migration strategy. The 7 Rs give us a shared vocabulary for those decisions and a way to communicate them clearly across technical and business teams.
+
+### Lift-and-Shift vs. Re-Architecture
+
+Before walking through each R, it helps to understand the two ends of the spectrum that most migration decisions fall on: lift-and-shift and re-architecture.
+
+**Lift-and-shift** 
+
+Lift-and-shift (also called Rehost) means picking up an application as-is and setting it down in a cloud environment. 
+- Nothing about the code or architecture changes: the application runs on a cloud virtual machine the same way it ran on an on-premises server. 
+- This is typically the fastest path, it requires less cloud expertise, carries a lower upfront cost than refactoring, and brings less risk of introducing new bugs. 
+
+The tradeoff is that the application won't take advantage of cloud-native features like auto-scaling, managed databases, or serverless compute. It will likely cost more to run in the cloud than an equivalent application that was designed for the cloud.
+
+**Re-architecture** 
+
+Re-architecture (also called Refactor) means redesigning the application to take full advantage of what the cloud offers. 
+- An application that was built as a monolith might be decomposed into microservices. 
+- A database that was managed in-house might be replaced with a fully managed cloud equivalent. 
+
+These changes can take significantly longer and require more resources, but they can transform how a system scales, how it recovers from failures, and what it costs to run at scale. Re-architecting delivers the most long-term value for high-traffic, business-critical applications.
+
+Neither approach is universally correct, the right choice depends on the workload, the business constraints, and the team's capacity. Most real migration plans include both strategies applied to different workloads. Lift-and-shift handles the applications that need to move quickly or that don't justify significant investment. Re-architecture handles the systems where cloud-native investment will pay long-term dividends.
+
+| | Lift-and-Shift (Rehost) | Re-Architecture (Refactor) |
+|---|---|---|
+| **Speed** | Fast (weeks to months) | Slow (months to years) |
+| **Cost to migrate** | Low | High |
+| **Long-term cloud costs** | Higher (not cloud-optimized) | Lower (optimized for cloud) |
+| **Risk** | Lower | Higher |
+| **Cloud-native benefits** | Low to None | Full |
+| **Best when** | Speed or compliance pressure; applications that will be replaced soon | High-value, long-lived systems where cloud benefits justify the investment |
+
+### 1. Retire
+
+> **A Running Scenario: FieldOps Inc.**
+>
+> To make the 7 Rs concrete, we'll follow a fictional mid-sized company called FieldOps Inc. as we explore the 7 Rs. FieldOps provides field service management software to utility companies. They have 40+ workloads running across aging on-premises servers, a data center contract expiring in 18 months, and a leadership team that wants to move entirely to the cloud before renewal. Their CTO has just finished a portfolio assessment and is assigning each workload to a migration strategy.
+
+The first question to ask of any workload is: does it still need to exist at all?
+
+As organizations grow and evolve, applications accumulate. An internal tool built for a project that ended three years ago. A reporting dashboard that duplicates something a newer platform provides. A service kept running because no one has confirmed it's safe to turn off. These workloads don't deliver value, but they do carry cost in infrastructure, maintenance overhead, security surface area, and the cognitive burden of tracking systems that no one is responsible for.
+
+Before investing time to migrate a workload, it's worth asking whether migration is the right decision. Retiring a workload removes it from the migration plan entirely and simplifies the resulting cloud environment.
+
+Let's see how this applies to our example organization: at FieldOps Inc., the portfolio assessment turns up a legacy employee scheduling tool built in 2014. When the team pulls access logs, they find it hasn't been used by anyone in 11 months. The company now uses a commercial HR platform that handles scheduling natively. 
+- The CTO assigns this workload to **Retire**. 
+- The server is decommissioned, and the migration plan shrinks by one workload.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [Legacy Scheduling App] on on-premises server — consuming maintenance, patching, server costs
+After: [Decommissioned] — no server, no maintenance, no migration needed
+```
+
+
+
+
+
+------------------
 
 Call out Lift-and-Shift vs Re-Architecture and explain when each is appropriate and their tradeoffs (speed, cost, complexity, long-term value)
 Include before/after architecture diagram of each approach
