@@ -119,22 +119,98 @@ After:  [Contract Mgmt App VM (cloud)] → [Database VM (cloud)]
         Same topology. Same configuration. Running in cloud infrastructure.
 ```
 
+### 4. Replatform (Lift, Tinker, and Shift)
 
+Replatforming sits between rehosting and re-architecture; it takes more time than rehosting but less than a full re-architecture. We move the application to the cloud, but we make targeted improvements along the way to take meaningful advantage of cloud capabilities, without redesigning the application from scratch. 
+- This can deliver meaningful reductions in operational overhead, particularly through managed services that eliminate the need to patch and maintain database servers or operating systems.
 
+Common replatforming moves include switching from a self-managed database to a managed cloud database service, upgrading to a supported operating system version, or moving from a self-hosted application server to a platform-as-a-service environment. The core application logic stays the same; what changes is the infrastructure it runs on.
 
+In our example comanpy FieldOps Inc., their customer portal uses a relational database that the operations team manages manually on-premises. During the migration planning, the engineering lead points out that the database server requires significant hands-on maintenance every time there's a version update, and the team has had two unplanned outages in the past year due to storage running out. 
+- The CTO assigns the portal to be replatformed: the application moves to a cloud virtual machine, but the database is migrated to a managed cloud database service. 
+- The application requires minor code changes for the new connection configuration, but no logic changes.
 
-------------------
+```
+[DIAGRAM PLACEHOLDER]
+Before: [Customer Portal App Server (on-prem)] → [Self-Managed DB Server (on-prem)]
+After:  [Customer Portal App VM (cloud)] → [Managed Cloud Database Service]
+        Application unchanged. Database maintenance is now the provider's responsibility.
+```
 
-Call out Lift-and-Shift vs Re-Architecture and explain when each is appropriate and their tradeoffs (speed, cost, complexity, long-term value)
-Include before/after architecture diagram of each approach
+### 5. Refactor / Re-Architect
 
-1. Retire: remove outdated, unused applications. Eliminates unnecessary maintenance and reduces complexity in the migration process. 
-2. Retain: keep certain workloads on-prem for now since they might not be ready for migration or don’t provide enough value to justify the effort. They retain on-prem till a better opportunity for migration arises.
-3. Rehost: lift and shift, move apps to the cloud with minimal or no changes. Fast and cost effective, but doesn’t leverage cloud native features. An org might do this for speed in order to ensure compliance with new regulations without overhauling the application
-4. Replatform: lift, tinker, and shift. This allows for optimizations to apps during migration (like upgrading DBs or OS to improve performance in the cloud).This could help reduce operational costs.
-5. Refactor or re-architecting: redesigning apps to take full advantage of cloud-native features (such as microservices, cloud computing, containers, etc). This requires more time and resources, but delivers significant long term benefits.
-6. Repurchase: replace application entirely with a cloud-based alternative aka drop and shop. Example: Migrate your customer relationship management (CRM) system to Salesforce.com.
-7. Relocate: Optional, relocating transfers workloads by moving virtual machines directly between environments without modifying applications. It is designed for speed with minimal disruption and no reconfiguration.
+We saw earlier in the lesson that refactoring in this context means redesigning the application to take full advantage of cloud-native capabilities. Where rehosting and replatforming treat the cloud as a better place to run the same application, refactoring treats the cloud as an opportunity to build a better application.
+
+This might mean:
+- decomposing a monolith into microservices that can be scaled independently
+- replacing a batch processing job with an event-driven architecture that processes records in real time
+- containerizing services so they can be deployed and scaled through an orchestration platform
+- adopting serverless compute for components with highly variable traffic patterns
+
+Refactoring requires more time and resources than any other migration strategy. The engineering team needs to understand not just the existing system but also the cloud-native patterns that will replace it. The risk of introducing bugs or regressions is higher because the scope of change is larger.
+
+The return on that investment, for the right workload, can be substantial. Applications that have been properly refactored for the cloud can scale to handle orders-of-magnitude more traffic, recover automatically from failures, and may cost significantly less to operate than their on-premises equivalents.
+
+In our example company FieldOps Inc., their dispatch and routing service is the core of their product. It processes thousands of field job assignments per day, and on peak days (after a storm event, when utilities need emergency repairs across a wide area) it gets hit with ten times the normal volume. The current monolithic application can't scale fast enough for those spikes. 
+- The CTO assigns it to be refactored. The team breaks the service into independently deployable components: job intake, routing logic, and notifications. 
+- The routing component, the most compute-intensive, is moved to serverless compute that scales automatically with demand.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [Dispatch Monolith on a large provisioned VM]
+        — scales poorly, entire app must scale together, expensive to over-provision
+
+After:  [Job Intake Service] → [Routing Function (serverless)] → [Notification Service]
+        — each component scales independently; routing auto-scales on demand
+```
+
+### 6. Repurchase (Drop and Shop)
+
+Sometimes the most efficient way to move a workload to the cloud is to stop maintaining it and subscribe to a commercial alternative that already does what we need.
+
+This is most common for general-purpose business software: CRM platforms, email systems, HR tools, accounting software, document management. If an organization is self-hosting a CRM on-premises, migrating that infrastructure to the cloud might require more effort than simply switching to a commercially hosted CRM that's maintained by a dedicated vendor and already runs in the cloud.
+
+Repurchasing eliminates the migration problem by eliminating the workload. The infrastructure goes away, and responsibility for uptime, updates, and security patches shifts to the vendor. The tradeoffs are a loss of customization, potential complexity in migrating existing data to the new platform, and an ongoing subscription cost.
+
+Let's look at how FieldOps Inc. handled migrating their CRM tool. Their sales team uses a self-hosted CRM that was originally chosen because it could be customized. Over the years, most of those customizations have been worked around using other tools, and the CRM runs on aging hardware that's going to need significant attention. 
+- The sales team evaluates a commercial hosted CRM and finds it covers everything they need. 
+- The CTO assigns the self-hosted CRM to be repurchased: the team migrates the customer data to the commercial platform and decommissions the on-premises CRM server.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [CRM Tool hosted inside the on-premises network] — Self-hosted CRM on an on-premises server. Internal team responsible for hosting, backups, upgrades, and security patches.
+After:  [CRM Tool hosted in the cloud and accessed by services in the on-premises network] — Commercial hosted CRM. Data migrated. No infrastructure to maintain. Vendor handles uptime and updates.
+```
+
+### 7. Relocate
+
+Relocate is sometimes listed as optional in the 7Rs because it applies to a narrower set of scenarios than the other Rs. It is a specialized strategy for organizations that are already running virtualized workloads and want to move them to the cloud with minimal disruption. This generally requires compatible virtualization platforms on both ends.
+
+Rather than copying an application and setting it up fresh in the cloud, relocation transfers virtual machine images directly between environments, keeping the same virtual infrastructure configuration. This approach is designed for speed and minimal reconfiguration. It's particularly useful when an organization uses the same virtualization platform in both their on-premises environment and the cloud environment they're migrating to. 
+- No application code changes, no reconfiguration of the guest operating system — the VM moves and continues running!
+
+At our example company FieldOps Inc., their infrastructure team manages a cluster of virtual machines running on a hypervisor platform that their cloud provider also supports. 
+- Rather than setting up new cloud VMs and reinstalling each application, the team exports the VM images and imports them directly into the cloud environment. 
+- The workloads come up running without any reconfiguration. The team estimates this saves three weeks compared to a traditional rehost approach.
+
+```
+[DIAGRAM PLACEHOLDER]
+Before: [VM Image A] [VM Image B] [VM Image C] — on-premises hypervisor cluster
+After:  [VM Image A] [VM Image B] [VM Image C] — same images, now running on cloud infrastructure. No OS changes. No application changes. Direct transfer.
+```
+
+### Choosing the Right Strategy
+
+Migration strategies aren't mutually exclusive. A real migration plan will use several of them simultaneously across different workloads. The decision for each workload comes down to a few core questions:
+
+- Is this workload still valuable? If not, **Retire** it.
+- Is this workload ready to move at all? If not, **Retain** it.
+- Does this workload need to move fast? If yes, **Rehost** or **Relocate**.
+- Can we get meaningful operational wins with targeted improvements? If yes, **Replatform**.
+- Is this a high-value, long-lived system where cloud-native investment pays off? If yes, **Refactor**.
+- Does a better commercial product exist for this function? If yes, **Repurchase**.
+
+The goal is to make a deliberate decision for each workload rather than applying the same strategy across the board. Lift-and-shifting everything into the cloud and we pay cloud prices for on-premises thinking. Refactor everything and we run out of time and budget before we move anything. A thoughtful mix gets workloads moved efficiently while investing engineering effort where it delivers the most long-term value.
 
 
 ## Cloud Governance
