@@ -2,20 +2,21 @@
 
 ## Learning Goals
 
-Learning Goal: Students will be able to understand that in the real-world there are environments that are hybrid and can reason about operational complexity.
+- Describe motivations for organizations to use hybrid and multi-cloud environments
+- Reason about operational complexity that must be managed in hybrid and multi-cloud environments
 
 ## Vocabulary and Synonyms
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
+- multi-cloud environment
 
-
-## Hybrid Environment
+## Hybrid Environments
 On-prem and cloud coexistence
 Transitional vs long-term hybrid environment
 Include hybrid system diagram with clear boundary markers.
 
-## Multi-Cloud Environment
+## Multi-Cloud Environments
 What it a Multi-Cloud Environment?
 Why organizations might adopt it
 Operational tradeoffs

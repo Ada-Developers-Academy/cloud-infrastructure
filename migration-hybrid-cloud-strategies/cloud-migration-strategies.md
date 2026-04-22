@@ -74,7 +74,7 @@ Let's see how this applies to our example organization! At FieldOps Inc., the po
 - The CTO assigns this workload to be retired. The server is decommissioned, and the migration plan shrinks by one workload.
 
 ![A before and after scenario highlighting the labor and costs saved by retiring an unused service rather than migrating it.](assets/retire.png)  
-*Fig. Resources used before and after retiring an unused service.*
+*Fig. Resources used before and after retiring an unused service. ([Full Size Image](assets/retire.png))*
 
 ### 2. Retain
 
@@ -141,14 +141,8 @@ In our example company FieldOps Inc., their dispatch and routing service is the 
 - The CTO assigns it to be refactored. The team breaks the service into independently deployable components: job intake, routing logic, and notifications. 
 - The routing component, the most compute-intensive, is moved to serverless compute that scales automatically with demand.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [Dispatch Monolith on a large provisioned VM]
-        — scales poorly, entire app must scale together, expensive to over-provision
-
-After:  [Job Intake Service] → [Routing Function (serverless)] → [Notification Service]
-        — each component scales independently; routing auto-scales on demand
-```
+![A before and after scenario of refactoring a monolithic on-prem service for migration by breaking it into microservices to take advantage of cloud benefits.](assets/refactor.png)  
+*Fig. Refactoring a monolithic app into cloud microservices and serverless compute functions.*
 
 ### 6. Repurchase (Drop and Shop)
 
@@ -162,15 +156,12 @@ Let's look at how FieldOps Inc. handled migrating their CRM tool. Their sales te
 - The sales team evaluates a commercial hosted CRM and finds it covers everything they need. 
 - The CTO assigns the self-hosted CRM to be repurchased: the team migrates the customer data to the commercial platform and decommissions the on-premises CRM server.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [CRM Tool hosted inside the on-premises network] — Self-hosted CRM on an on-premises server. Internal team responsible for hosting, backups, upgrades, and security patches.
-After:  [CRM Tool hosted in the cloud and accessed by services in the on-premises network] — Commercial hosted CRM. Data migrated. No infrastructure to maintain. Vendor handles uptime and updates.
-```
+![A before and after scenario of purchasing a commercial vendor managed tool to replace a self-hosted on-prem tool to simplify an organization's system.](assets/repurchase.png)  
+*Fig. Purchasing a commercial vendor managed tool to replace a self-hosted on-prem tool.*
 
 ### 7. Relocate
 
-Relocate is sometimes listed as optional in the 7Rs because it applies to a narrower set of scenarios than the other Rs. It is a specialized strategy for organizations that are already running virtualized workloads and want to move them to the cloud with minimal disruption. This generally requires compatible virtualization platforms on both ends.
+Relocate is sometimes listed as optional in the 7Rs because it applies to a narrower set of scenarios than the other Rs. It's a specialized strategy for organizations that are already running virtualized workloads and want to move them to the cloud with minimal disruption. This generally requires compatible virtualization platforms on both ends.
 
 Rather than copying an application and setting it up fresh in the cloud, relocation transfers virtual machine images directly between environments, keeping the same virtual infrastructure configuration. This approach is designed for speed and minimal reconfiguration. It's particularly useful when an organization uses the same virtualization platform in both their on-premises environment and the cloud environment they're migrating to. 
 - No application code changes, no reconfiguration of the guest operating system — the VM moves and continues running!
@@ -178,12 +169,6 @@ Rather than copying an application and setting it up fresh in the cloud, relocat
 At our example company FieldOps Inc., their infrastructure team manages a cluster of virtual machines running on a hypervisor platform that their cloud provider also supports. 
 - Rather than setting up new cloud VMs and reinstalling each application, the team exports the VM images and imports them directly into the cloud environment. 
 - The workloads come up running without any reconfiguration. The team estimates this saves three weeks compared to a traditional rehost approach.
-
-```
-[DIAGRAM PLACEHOLDER]
-Before: [VM Image A] [VM Image B] [VM Image C] — on-premises hypervisor cluster
-After:  [VM Image A] [VM Image B] [VM Image C] — same images, now running on cloud infrastructure. No OS changes. No application changes. Direct transfer.
-```
 
 ### Choosing the Right Strategy
 
