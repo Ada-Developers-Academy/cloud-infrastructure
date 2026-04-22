@@ -2,10 +2,10 @@
 
 ## Learning Goals
 
-*   Evaluate the tradeoffs between building custom machine learning models and adopting Machine Learning as a Service (MLaaS).
-*   Understand how full custom machine learning platforms orchestrate model development while managing underlying cloud infrastructure.
-*   Describe how tunable foundation models and generative AI assistants bridge the gap between custom development and pre-trained APIs.
-*   Identify key categories of off-the-shelf AI services and how they process text, speech, vision, and enterprise search tasks.
+- Evaluate the tradeoffs between building custom machine learning models and adopting Machine Learning as a Service (MLaaS).
+- Understand how full custom machine learning platforms orchestrate model development while managing underlying cloud infrastructure.
+- Describe how tunable foundation models and generative AI assistants bridge the gap between custom development and pre-trained APIs.
+- Identify key categories of off-the-shelf AI services and how they process text, speech, vision, and enterprise search tasks.
 
 ## Vocabulary and Synonyms
 
@@ -13,55 +13,62 @@
 | --------- | --------- | -------- | --------- |
 | **Machine Learning as a Service** | Cloud-based offerings that provide pre-built machine learning tools and APIs, eliminating the need to manage infrastructure. | MLaaS, managed ML | We adopted Machine Learning as a Service to add language translation to our app quickly. |
 | **Optical Character Recognition** | The automated process of identifying and extracting text and data from scanned documents or images. | OCR, text extraction | Using optical character recognition, our system automatically pulls structured data from uploaded patient intake forms. |
-| **Foundation Model** | A massive AI model pre-trained on internet-scale data that can be adapted for a wide variety of specific tasks. | Base model, FM | Rather than building a new algorithm from scratch, we customized a foundation model to handle our internal document summarization. |
-| **Generative AI Assistant** | An AI-powered companion embedded into software environments to help users generate code, analyze data, or answer questions. | Virtual assistant, AI coding companion | Our developers rely on a generative AI assistant to suggest code improvements and debug complex functions. |
+| **Generative AI Assistant** | An AI-powered companion embedded into software environments to help users generate code, analyze data, or answer questions. | Virtual assistant, AI coding companion | Our developers employ a generative AI assistant to suggest code improvements and debug complex functions. |
 | **Chatbot** | A conversational interface that processes natural language input to interact with human users seamlessly. | Conversational agent, virtual rep | We implemented a chatbot to handle routine customer support requests, reducing wait times significantly. |
 
 ## Evaluating Tradeoffs: Custom Models vs. Machine Learning as a Service (MLaaS)
 
-Building secure and efficient systems requires us to allocate our computing resources and developer time effectively. Before writing any data processing code, we must decide whether we should build a custom model from scratch or utilize an existing managed cloud service. Making the right architectural choice early on ensures our applications are delivered reliably, protect sensitive user data appropriately, and operate cost-effectively.
+Up to this point, we have focused on the core concepts and techniques of machine learning, from the types of problems various learning solutions can solve, to the lifecycle of building and deploying models, to the specific architectures that power generative AI. All of these concepts are useful for understanding how machine learning works, and essential for building custom models from scratch. However, building and maintaining custom machine learning models is not the only way to integrate AI into our applications.
 
-Organizations face important tradeoffs when choosing an approach. Machine Learning as a Service (MLaaS) provides pre-built models and algorithms that can be integrated rapidly without requiring a deep background in advanced statistics or data science. This approach is ideal for standard tasks where speed and convenience are prioritized. In contrast, custom models provide complete ownership and the flexibility to tailor architectures to highly specific datasets and specialized business logic. For example, if we are building an application to translate user reviews into different languages, an MLaaS API is highly efficient. However, if we are building a proprietary algorithmic trading system based on unique financial indicators, a custom model is strictly necessary.
+Cloud providers offer a wide range of managed services that allow us to leverage machine learning without needing to manage the underlying infrastructure or develop complex algorithms ourselves. By understanding the tradeoffs between building custom models and using **Machine Learning as a Service (MLaaS)**, we can make informed architectural decisions that align with our business needs, technical capabilities, and resource constraints.
+
+**Machine Learning as a Service (MLaaS)** provides pre-built models and algorithms that can be rapidly integrated with our projects without requiring a deep background in advanced statistics or data science. This approach is ideal for standard tasks where speed and convenience are prioritized. In contrast, training custom models provide complete ownership and the flexibility to tailor architectures to highly specific datasets and specialized business logic. Somewhere between these two extremes, we can also leverage tunable foundation models and generative AI assistants to build custom applications without the need to train a model from scratch.
+
+If we are building an application to translate user reviews into different languages, an MLaaS API is highly efficient. Pre-built machine learning translation services are widely available. However, if we are building a proprietary algorithmic trading system based on unique financial indicators, a custom model is strictly necessary.
+
+### !callout-info
+
+## Replacing Human Tasks with Machine Learning
+
+In the previous example, we suggested using an MLaaS API to translate user reviews. When thinking about replacing human tasks with machine learning, it is important to consider the ramifications of taking a task that would have been performed and vetted by a human and replacing it with an automated system.
+
+If we were thinking about translating the core elements of our user interface, we might want to consider the risks of using an automated system that may not be able to understand the nuances of language, and perhaps keep that responsibility under human control since the way users experience our service can be significantly affected by the qualities of the verbiage being used. But for the case of providing translations of user written reviews, it would be unlikely that a company would even be able to hire enough human translators to keep up with the volume of reviews. In other words, this is a feature that most likely would not exist at all if not for the use of machine learning. Further, the risk of mistranslation is relatively low. User reviews are often informal and contain typos even before any automated translation, so the potential for harm is minimal.
+
+In this case, the benefits of making user reviews accessible to more people through machine learning argue a strong case for using machine learning. It's important to evaluate the risks and benefits of replacing human tasks with machine learning on a case-by-case basis, considering the potential for harm, the value of the task, and the feasibility of using machine learning to perform it effectively.
+
+### !end-callout
 
 We must also consider cost and infrastructure. Custom models require substantial computational resources, such as specialized Graphics Processing Units (GPUs), and demand significant infrastructure management to train and host safely. MLaaS abstracts away the underlying hardware, relying on a pay-as-you-go model where we only pay for the specific predictions or API calls our application makes.
-
-```
-_Alt. A balanced scale. On the left side, representing Custom Models, are icons for high flexibility, custom datasets, and heavy GPU computing. On the right side, representing MLaaS, are icons for rapid deployment, ease of use, and pay-as-you-go pricing._
-*Fig. Balancing the tradeoffs between developing custom models and integrating MLaaS.*
-```
 
 ## Full Custom Machine Learning Platforms (Platform-as-a-Service)
 
 When our business requirements dictate that we must build a custom model, configuring the underlying servers and updating the software libraries manually can introduce security vulnerabilities and operational delays. By adopting a managed Platform-as-a-Service (PaaS) solution, we centralize our data processing in a secure environment and ensure our infrastructure scales safely and automatically.
 
-Cloud providers offer fully integrated machine learning platforms that manage the heavy lifting of the machine learning lifecycle. These platforms provide integrated development environments (IDEs) and orchestration tools that allow software engineers and data scientists to build, train, tune, and deploy custom models at a massive scale. By providing managed infrastructure, developers can focus entirely on the application logic and model performance rather than provisioning instances or patching hardware operating systems. For example, AWS offers Amazon SageMaker, Microsoft Azure provides Azure Machine Learning, Google Cloud offers Vertex AI, and Oracle provides OCI Data Science. 
+Cloud providers offer fully integrated machine learning platforms that manage the heavy lifting of the machine learning lifecycle. These platforms provide integrated development environments (IDEs) and orchestration tools that allow software engineers and data scientists to build, train, tune, and deploy custom models at a massive scale. More bespoke model approaches that AI engineers and data scientists investigating can be built using hosted Jupyter notebooks, which provide a familiar environment for data science work built around Python and popular machine learning libraries. These platforms also provide tools for data labeling, feature engineering, tuning various model parameters, and model monitoring, all while relieving organizations of the need to manage the underlying cloud infrastructure.
 
-## Tunable Foundation Models and Generative AI Assistants
+## Tunable Foundation Models
 
-Processing internet-scale data to build a massive language model requires an immense amount of time, computational power, and financial investment. To build robust generative applications efficiently, we can leverage secure, pre-trained models hosted by our cloud providers, allowing us to keep our proprietary corporate data private while benefiting from state-of-the-art technology.
+As we discussed in [Generative AI vs. Traditional Machine Learning](./ml-gen-ai.md), training a custom model from scratch is a resource-intensive process that requires significant time, computational power, and financial investment. However, we can leverage secure, pre-trained models hosted by our cloud providers, allowing us to keep our proprietary corporate data private while benefiting from state-of-the-art technology of the latest foundation models.
 
-Cloud providers offer managed services that provide secure API access to massive, pre-trained foundation models from leading AI organizations. These services represent a powerful middle ground between off-the-shelf APIs and full custom development. Developers can use these platforms to privately customize (fine-tune) models with their own enterprise data, or utilize them in Retrieval-Augmented Generation (RAG) workflows to supply dynamic, domain-relevant context. We can access these foundation models through services like Amazon Bedrock, Azure AI Foundry, Vertex AI Generative AI Studio, and OCI Generative AI. 
-
-This category also includes ready-to-use AI assistants designed to accelerate software development or summarize enterprise data. These generative assistants integrate directly into our IDEs or team messaging platforms to generate code, troubleshoot pipelines, or answer questions based on company documentation. Examples include Amazon Q, Copilot in Azure, and Gemini in Google Cloud.
-
-```
-_Alt. A flowchart showing a large, generic foundation model being securely connected to a private database of company documents. The output points to a highly specialized, customized generative AI application._
-*Fig. Tunable foundation models allow us to build custom generative applications securely without training a model from scratch.*
-```
+Cloud providers offer managed services that provide secure API access to massive, pre-trained foundation models from leading AI organizations. These services represent a powerful middle ground between off-the-shelf APIs and full custom development. Developers can use these platforms to privately customize (fine-tune) models with their own enterprise data, or utilize them in Retrieval-Augmented Generation (RAG) workflows to supply dynamic, domain-relevant context.
 
 ## Off-the-Shelf AI Services (Pre-Trained APIs)
 
 Many common business operations—such as reading text from a scanned invoice, transcribing a customer service call, or routing a support request—are universal challenges. By integrating secure, pre-trained APIs into our applications, we avoid reinventing existing solutions and significantly accelerate our software development process.
 
-These off-the-shelf AI services are highly scalable, ready-to-use models accessible via simple API calls, requiring no underlying machine learning experience to integrate. We can categorize these APIs by their primary functions:
+These off-the-shelf AI services are highly scalable, ready-to-use models that are typically accessible via simple API calls, requiring no underlying machine learning experience to integrate. We can categorize these APIs by their primary functions:
 
-*   **Text & Documents:** These natural language processing APIs extract key entities, determine sentiment, translate between languages, or perform intelligent optical character recognition (OCR) to pull structured data from scanned forms and documents. Examples include Amazon Comprehend and Amazon Textract, Azure AI Language and Document Intelligence, Google Cloud Natural Language and Document AI, and OCI Language and Document Understanding.
-*   **Speech & Vision:** Computer vision APIs are used for identifying objects, people, or inappropriate content in images and video. Speech APIs convert lifelike text-to-speech for accessibility or perform automatic speech recognition to transcribe uploaded audio. These include Amazon Rekognition, Amazon Polly, Azure AI Vision, and Google Cloud Vision APIs.
-*   **Search, Chat, & Recommendations:** This category includes enterprise intelligent search engines that understand natural language queries (like Amazon Kendra or Vertex AI Search). It also encompasses conversational interfaces for building advanced customer service chatbots (like Amazon Lex, Azure AI Bot Service, DialogFlow, or Oracle Digital Assistant), as well as personalization engines that analyze user activity to generate tailored product recommendations.
+- **Text & Documents:** These natural language processing APIs extract key entities, determine sentiment, translate between languages, or perform intelligent optical character recognition (OCR) to pull structured data from scanned forms and documents.
+
+- **Speech & Vision:** Computer vision APIs are used for identifying objects, people, or inappropriate content in images and video. Speech APIs convert lifelike text-to-speech for accessibility or perform automatic speech recognition to transcribe uploaded audio.
+
+- **Search, Chat, & Recommendations:** This category includes enterprise intelligent search engines that understand natural language queries. It also encompasses conversational interfaces for building advanced customer service chatbots, as well as personalization engines that analyze user activity to generate tailored product recommendations.
+
+- **Generative AI Assistants:** These are pre-built, customizable assistants that integrate directly into software development environments or team messaging platforms to generate code, analyze data, or answer questions based on company documentation.
 
 ## Summary
 
-Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints. We can choose to integrate rapid, cost-effective Machine Learning as a Service (MLaaS) tools, or we can use dedicated ML platforms like Amazon SageMaker or Azure Machine Learning to manage the infrastructure needed for highly specialized custom models. To leverage the power of modern generative AI, we can securely access tunable foundation models through services like Amazon Bedrock. Finally, for standardized tasks like object recognition, language translation, or chatbot interfaces, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. By understanding the unique role of each service tier, we can design efficient, secure, and innovative cloud architectures.
+Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints. We can choose to integrate rapid, cost-effective Machine Learning as a Service (MLaaS) tools, or we can use dedicated ML platforms to manage the infrastructure needed for highly specialized custom models. To leverage the power of modern generative AI while minimizing the need for custom development, we can utilize tunable foundation models that allow us to securely customize pre-trained models with our own data. Finally, for standardized tasks like object recognition, language translation, or chatbot interfaces, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. There's a service level for every use case, and understanding the tradeoffs between these options is essential for making informed decisions about what services make the most sense for our applications.
 
 ## Check for Understanding
 
