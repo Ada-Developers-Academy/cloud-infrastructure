@@ -12,9 +12,14 @@
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 | --------- | --------- | -------- | --------- |
 | **Machine Learning as a Service** | Cloud-based offerings that provide pre-built machine learning tools and APIs, eliminating the need to manage infrastructure. | MLaaS, managed ML | We adopted Machine Learning as a Service to add language translation to our app quickly. |
+| **Natural Language Processing** | A branch of AI that enables computers to understand and process human language. | NLP, text analysis | Our customer support chatbot uses natural language processing to understand user queries. |
+| **Sentiment Analysis** | A technique in NLP that determines the emotional tone behind a body of text. | Opinion mining, emotion detection | We use sentiment analysis to gauge customer satisfaction from product reviews. |
 | **Optical Character Recognition** | The automated process of identifying and extracting text and data from scanned documents or images. | OCR, text extraction | Using optical character recognition, our system automatically pulls structured data from uploaded patient intake forms. |
-| **Generative AI Assistant** | An AI-powered companion embedded into software environments to help users generate code, analyze data, or answer questions. | Virtual assistant, AI coding companion | Our developers employ a generative AI assistant to suggest code improvements and debug complex functions. |
+| **Computer Vision** | A field of AI that enables machines to interpret and understand visual information from the world. | CV, image recognition | Our security system uses computer vision to identify unauthorized individuals in real-time. |
+| **Text-to-Speech** | A technology that converts written text into spoken words. | TTS, speech synthesis | We implemented text-to-speech to make our app more accessible to visually impaired users. |
+| **Automatic Speech Recognition** | The technology that converts spoken language into text. | ASR, speech-to-text | Our virtual assistant uses automatic speech recognition to transcribe user voice commands. |
 | **Chatbot** | A conversational interface that processes natural language input to interact with human users seamlessly. | Conversational agent, virtual rep | We implemented a chatbot to handle routine customer support requests, reducing wait times significantly. |
+| **Generative AI Assistant** | An AI-powered companion embedded into software environments to help users generate code, analyze data, or answer questions. | Virtual assistant, AI coding companion | Our developers employ a generative AI assistant to suggest code improvements and debug complex functions. |
 
 ## Evaluating Tradeoffs: Custom Models vs. Machine Learning as a Service (MLaaS)
 
