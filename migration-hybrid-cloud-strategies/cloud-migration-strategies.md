@@ -3,7 +3,7 @@
 ## Learning Goals
 - Identify each of the 7 Rs of migration and describe when each is appropriate.
 - Explain the tradeoffs between lift-and-shift and re-architecture approaches across speed, cost, complexity, and long-term value.
-- Describe why governance matters in cloud and hybrid environments and explain the shared responsibility concept.
+- Describe why governance matters in cloud and hybrid environments and how the shared responsibility concept applies in this context.
 
 ## Vocabulary and Synonyms
 
@@ -212,21 +212,263 @@ Migration strategies aren't mutually exclusive. A real migration plan will use s
 
 The goal is to make a deliberate decision for each workload rather than applying the same strategy across the board. Lift-and-shifting everything into the cloud and we pay cloud prices for on-premises thinking. Refactor everything and we run out of time and budget before we move anything. A thoughtful mix gets workloads moved efficiently while investing engineering effort where it delivers the most long-term value.
 
-
 ## Cloud Governance
 
-Why governance matters
-Policy, cost control, security guardrails
-Shared responsibility concept
-Why governance increases in importance in hybrid systems
+Moving workloads to the cloud introduces something that on-premises environments rarely surfaced as an explicit concern: the ease of creating new infrastructure. In an on-premises environment, provisioning a new server requires physical hardware, a procurement process, and coordination with an operations team. The friction is natural. In the cloud, a developer with the right credentials can spin up a virtual machine, create a database, or open a network port in minutes, without anyone else knowing.
+
+That speed is one of the cloud's greatest benefits. It's also one of its most significant risks if it isn't managed deliberately. **Cloud governance** is the set of policies, controls, and processes that define how cloud resources are allowed to be created, configured, and operated within an organization.
+
+### Why Governance Matters
+
+Without governance, cloud environments tend to drift. Teams create resources in unexpected regions. Test databases get left running and billed indefinitely. Security groups accumulate permissive rules as engineers debug problems and forget to tighten them afterward. None of these are malicious decisions; they're the natural result of moving fast in an environment where mistakes are easy to make and hard to detect.
+
+The consequences aren't just operational: 
+- A misconfigured storage bucket or database that's exposed to the public internet is a data security incident waiting to happen. 
+- Uncontrolled resource creation makes cloud bills unpredictable and hard to attribute to specific teams or products. 
+
+Without governance, it becomes difficult to answer basic questions like: "What's running?", "Who's responsible for it?", or "Is it compliant?".
+
+Governance addresses this not by slowing teams down, but by encoding constraints into the environment itself. 
+- A policy guardrail that prevents storage buckets from being created without encryption doesn't require engineers to remember the rule, it enforces the rule automatically at creation time. 
+- A budget alert that triggers at 80% of a team's monthly cloud allocation doesn't require a finance review, it notifies the responsible team directly.
+
+The goal isn't "compliance theater", it's about making safe behavior the default and making violations visible.
+
+### Policy and Cost Control
+
+Cloud governance typically covers two related areas: security policy and cost control.
+
+**Security policies** defines what configurations are allowed. Examples include: 
+- which regions workloads can be deployed to
+- what ports may be opened on virtual machines
+- whether storage must be encrypted
+- what authentication mechanisms are required
+
+These rules can be enforced through automated policy controls that prevent non-compliant resources from being created at all, rather than relying on humans to catch violations after the fact.
+
+**Cost control** establishes budgets, alerts, and spending limits. This could look like:
+- Teams or projects are assigned cloud budgets, then if spending approaches a threshold, alerts notify the responsible team. 
+- Organizations configure hard limits that prevent resources from being created if they would breach the budget. 
+
+Cost governance also includes tagging policies, which require all resources to be labeled with the team, project, and environment they belong to, so that spending can be attributed accurately.
+
+### The Shared Responsibility Model and Migration
+
+We've covered the shared responsibility model in previous lessons: it defines the boundary between what the cloud provider is responsible for and what our organization is responsible for. That model becomes particularly relevant during migration.
+
+When we move a workload to the cloud, we hand off responsibility for the physical layer: the hardware, the data center, the power and cooling, and the hypervisor. But we don't hand off responsibility for how we configure what runs on top of it. Access policies, security group rules, encryption settings, database configurations, application secrets, all of that remains our responsibility.
+
+The shift from on-premises to cloud doesn't reduce our security obligations. It changes what they look like. On-premises, we secured a physical perimeter: who could enter the data center, which cables were connected to which ports. In the cloud, we secure a configuration surface: who has permission to access which services, which network rules govern what traffic can flow. Governance frameworks are how we make those responsibilities concrete and enforce them consistently across every team that touches cloud resources.
+
+### Why Governance Becomes More Important in Hybrid Environments
+
+A fully on-premises environment is governed through physical and organizational controls: who has access to the data center, what change management processes exist, what the network perimeter looks like. Those controls, while sometimes slow, are inherently centralized.
+
+A fully cloud environment can be governed through cloud-native policy tools: organization-level policies, role-based access controls, automated compliance checks.
+
+A hybrid environment combines both, and that's where governance complexity compounds. Data flows across the boundary between on-premises and cloud systems. Access controls that were designed for one environment may not apply consistently in the other. Teams that work primarily in the cloud may not be familiar with on-premises constraints, and vice versa. Monitoring and visibility tools often don't span both environments by default, which means it's harder to detect misconfigurations or anomalous behavior that crosses the boundary.
+
+This is why hybrid migrations require governance to be planned proactively rather than applied retroactively. Decisions about who owns what, how policy enforcement works across both environments, and how access is managed consistently need to be made before workloads start moving, not after problems surface in production.
 
 ## Summary
 
+Every application in a migration portfolio has a different risk profile, business value, and readiness for the cloud, which is why the 7 Rs exist as a decision framework rather than a single prescribed path. 
+- some workloads are candidates to be switched off entirely
+- others need to move quickly with no changes
+- critical or long lived system are often worth the time and investment to be re-architected to enable cloud-native benefits
+
+The decision for each workload sits on a spectrum between speed and optimization: moving fast keeps costs low and risk contained, while investing in cloud-native redesign pays off in lower long-term operating costs and greater scalability. A well-constructed migration plan assigns each workload a deliberate strategy based on its specific characteristics, rather than treating the entire portfolio the same way.
+
+Once workloads land in the cloud, governance becomes the mechanism that keeps the environment coherent as it grows. The same speed that makes the cloud attractive also makes it easy for environments to sprawl in ways that are expensive to untangle later. 
+- Automated policy controls prevent misconfigured resources from being created in the first place, rather than relying on engineers to catch problems manually. 
+- Budget alerts and tagging requirements ensure spending stays attributable and predictable. 
+
+The shared responsibility model means our teams retain ownership of how cloud resources are configured and secured, even as the provider takes on the physical infrastructure layer. Governance is how we make that ownership concrete across every team working in the environment.
 
 ## Check for Understanding
 
-Which strategy prioritizes speed over optimization?
-When is refactoring usually justified?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: aB3kR7mNpQ2xW9vLtY4dF6hJ8c
+* title: Cloud Migration Strategies
+##### !question
 
-Reflection Discussion question in class:
-A company needs to exit a data center in 6 months. Which strategy would you recommend first and why?
+A logistics company needs to exit their data center lease in 60 days. Their inventory management system is tightly coupled to the database and hasn't been touched in five years. Engineering bandwidth is limited. Which migration approach is the most realistic given these constraints?
+
+##### !end-question
+##### !options
+
+* Refactor the application into microservices before moving it to the cloud
+* Rehost the application by moving it to cloud infrastructure without making changes
+* Repurchase the application with a commercial SaaS alternative
+* Retain the application on-premises until a better migration window opens
+
+##### !end-options
+##### !answer
+
+* Rehost the application by moving it to cloud infrastructure without making changes
+
+##### !end-answer
+##### !explanation
+
+When the primary constraint is time, rehost (lift-and-shift) is the appropriate strategy. It allows the team to meet the deadline by moving the application as-is without requiring code changes or re-architecture. Refactoring would take far longer than the available window, and retaining it on-premises defeats the purpose of exiting the data center.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: zE5nT1wCuM8bG3sXoP7jK9qA2r
+* title: Cloud Migration Strategies
+##### !question
+
+An e-commerce company's order processing service handles millions of transactions annually and is expected to be in use for the next decade. It currently cannot scale horizontally and fails during peak traffic. Engineering leadership is willing to invest 6 months of development time on it. Which migration strategy is most appropriate?
+
+##### !end-question
+##### !options
+
+* Retire the service since it can't handle peak load
+* Rehost the service to move it quickly and revisit scaling later
+* Refactor the service to take advantage of cloud-native scaling and resilience
+* Replatform the service by switching to a managed database to reduce costs
+
+##### !end-options
+##### !answer
+
+* Refactor the service to take advantage of cloud-native scaling and resilience
+
+##### !end-answer
+##### !explanation
+
+Refactoring is justified when a system is high-value, long-lived, and has known limitations that cloud-native architecture can solve. With a decade of expected use and engineering time available, re-architecting for horizontal scaling is a sound investment. Rehosting would move the problem to the cloud without solving it, and replatforming alone wouldn't address the core architectural constraint.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: hV6yD4fB0mZ2cN8wLsQ1pR5eT3
+* title: Cloud Migration Strategies
+##### !question
+
+A company completes a major cloud migration and grants all engineers permissions to provision any cloud resource in any region. Three months later, the finance team reports the cloud bill has tripled and is impossible to break down by team or product. What is the most likely root cause?
+
+##### !end-question
+##### !options
+
+* The migration strategy selected was too aggressive for the organization's size
+* The cloud provider's pricing model changed unexpectedly after the migration
+* Cloud governance policies were not established to control how resources are created and managed
+* The organization failed to retire enough on-premises workloads before migrating
+
+##### !end-options
+##### !answer
+
+* Cloud governance policies were not established to control how resources are created and managed
+
+##### !end-answer
+##### !explanation
+
+Without governance controls in place, engineers can freely spin up resources across any region, making costs unpredictable and impossible to attribute. Governance policies define who can create resources, in which regions, and with what tagging requirements — all of which enable cost tracking and accountability. The tripling of costs and inability to attribute spending are classic symptoms of ungoverned cloud environments.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: kJ9oW2rM5bX8nH7tCvA4pG1qY6
+* title: Cloud Migration Strategies
+##### !question
+
+A healthcare company is audited and discovers that a cloud storage bucket containing patient records has been publicly accessible for four months. No one on the team was aware of the misconfiguration. Which underlying problem does this scenario best illustrate?
+
+##### !end-question
+##### !options
+
+* The company chose the wrong migration strategy for its compliance workloads
+* The absence of cloud governance allowed a misconfiguration to go undetected
+* The cloud provider failed to enforce default security settings on the bucket
+* The team should have retained this workload on-premises instead of migrating
+
+##### !end-options
+##### !answer
+
+* The absence of cloud governance allowed a misconfiguration to go undetected
+
+##### !end-answer
+##### !explanation
+
+Cloud governance includes policies and controls that prevent and detect insecure configurations. Without guardrails in place, a developer can open a storage bucket to the public without any automated check flagging the issue. This is a predictable consequence of moving fast in the cloud without governance — mistakes are easy to make and hard to detect.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: uS3dL7fI0aE9nO5vBq2mK8wR4c
+* title: Cloud Migration Strategies
+##### !question
+
+A company is migrating a suite of 40 applications to the cloud. Their platform team has identified that 8 applications are no longer used by any team and have had zero traffic for over a year. What is the recommended action for these applications?
+
+##### !end-question
+##### !options
+
+* Rehost them anyway to preserve them in case they are needed in the future
+* Replatform them so they consume fewer cloud resources
+* Retire them to eliminate unnecessary maintenance and reduce migration scope
+* Retain them on-premises since they don't justify the migration effort
+
+##### !end-options
+##### !answer
+
+* Retire them to eliminate unnecessary maintenance and reduce migration scope
+
+##### !end-answer
+##### !explanation
+
+Retire is the appropriate strategy for workloads that are no longer in use or providing value. Migrating unused applications wastes engineering time and would result in ongoing cloud costs for resources with no business return. Identifying and retiring these early reduces complexity and lets the team focus migration effort where it delivers real value.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: gC1xN6hT8eU3wF5yP0bA7mJ4oQ
+* title: Cloud Migration Strategies
+##### !question
+
+A media company uses a self-hosted project management tool that required heavy customization when it was first deployed. Over time, those customizations were abandoned, and the team now uses the tool in its default configuration. A fully managed SaaS version of the tool exists and covers all current needs. Which migration strategy applies?
+
+##### !end-question
+##### !options
+
+* Replatform by switching to a managed database to reduce the hosting overhead
+* Refactor the tool to improve performance before moving it to the cloud
+* Repurchase by migrating to the commercial hosted version and decommissioning the self-hosted instance
+* Relocate by transferring the virtual machine image directly to cloud infrastructure
+
+##### !end-options
+##### !answer
+
+* Repurchase by migrating to the commercial hosted version and decommissioning the self-hosted instance
+
+##### !end-answer
+##### !explanation
+
+Repurchase makes sense when a commercial product already covers the organization's needs and the self-hosted version no longer provides unique value. Since the customizations are unused and a hosted SaaS alternative exists, switching to it eliminates infrastructure maintenance without losing functionality.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
