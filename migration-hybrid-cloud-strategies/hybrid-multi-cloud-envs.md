@@ -43,7 +43,7 @@ A concrete example: a large hospital network uses cloud services for its patient
 The distinction between temporary and long-term matters operationally. In a long-term hybrid environment, we need permanent solutions for cross-environment identity management, monitoring, and cost governance. We can't treat those as temporary scaffolding waiting to be removed.
 
 ![A diagram of the boundaries between self-hosted and cloud infrastructure in a hybrid environment.](assets/hybrid-environment.png)  
-*Fig. The boundaries between self-hosted and cloud infrastructure in a hybrid environment.*
+*Fig. The boundaries between self-hosted and cloud infrastructure in a hybrid environment. ([Full Size Image](assets/hybrid-environment.png))*
 
 ## Multi-Cloud Environments
 
@@ -53,47 +53,29 @@ Multi-cloud is distinct from hybrid environments, though both involve complexity
 
 ### Why organizations adopt multi-cloud
 
-Multi-cloud adoption usually traces back to a combination of strategic intent and organizational reality.
+Multi-cloud adoption usually traces back to a combination of strategic intent and organizational reality:
 
-**Provider specialization.** 
+- **Provider specialization.** Different cloud providers have genuinely different strengths. An organization running large-scale machine learning workloads might find one provider's GPU infrastructure and managed ML tooling significantly more capable than another's. The same organization might rely on a different provider for enterprise identity management because its existing corporate identity systems integrate more cleanly there. Rather than forcing all workloads onto a single provider's tooling, multi-cloud allows teams to use the best available tool for each job.
 
-Different cloud providers have genuinely different strengths. An organization running large-scale machine learning workloads might find one provider's GPU infrastructure and managed ML tooling significantly more capable than another's. The same organization might rely on a different provider for enterprise identity management because its existing corporate identity systems integrate more cleanly there. Rather than forcing all workloads onto a single provider's tooling, multi-cloud allows teams to use the best available tool for each job.
+- **Avoiding vendor lock-in.** Organizations that have built deeply on a single provider's proprietary services sometimes find that switching is more expensive than they anticipated. Proprietary API formats, native data storage systems, data transfer costs, and tight integrations with managed services all create migration friction. Distributing workloads across providers is one way to preserve optionality: no single provider holds the entire relationship.
 
-**Avoiding vendor lock-in.** 
+- **Regulatory distribution.** Some organizations operate in regions or industries where no single provider can meet all regulatory requirements. A financial services firm might need to satisfy data residency requirements across multiple countries, and different providers may be the approved choice in different jurisdictions. 
 
-Organizations that have built deeply on a single provider's proprietary services sometimes find that switching is more expensive than they anticipated. Proprietary API formats, native data storage systems, data transfer costs, and tight integrations with managed services all create migration friction. Distributing workloads across providers is one way to preserve optionality: no single provider holds the entire relationship.
+- **Resilience.** A provider-level outage, while rare, affects every workload running on that provider. Organizations that can tolerate no single failure point across their entire infrastructure sometimes distribute critical workloads across providers so that a failure in one doesn't bring down everything.
 
-**Regulatory distribution.** 
-
-Some organizations operate in regions or industries where no single provider can meet all regulatory requirements. A financial services firm might need to satisfy data residency requirements across multiple countries, and different providers may be the approved choice in different jurisdictions. 
-
-**Resilience.** 
-
-A provider-level outage, while rare, affects every workload running on that provider. Organizations that can tolerate no single failure point across their entire infrastructure sometimes distribute critical workloads across providers so that a failure in one doesn't bring down everything.
-
-**Acquisition and merger history.** 
-
-Multi-cloud environments can be an artifact of organizational history rather than a planned architecture. For example, a team might choose a particular cloud vendor, then their organization acquires a company who was using a different cloud vendor. The new org brings its systems and cloud infrastructure along, and the overall system now has multiple cloud relationships to manage.
+- **Acquisition and merger history.** Multi-cloud environments can be an artifact of organizational history rather than a planned architecture. For example, a team might choose a particular cloud vendor, then their organization acquires a company who was using a different cloud vendor. The new org brings its systems and cloud infrastructure along, and the overall system now has multiple cloud relationships to manage.
 
 ### Operational tradeoffs
 
-The advantages of a multi-cloud strategy come with corresponding costs.
+The advantages of a multi-cloud strategy come with corresponding complexity and costs:
 
-**Increased operational complexity.** 
+- **Increased operational complexity.** Each provider has different APIs, different tooling, different deployment mechanisms, different networking models, and different pricing structures. Teams that operate across multiple providers need to maintain fluency, and often separate tooling, for each system. A runbook that works for deploying to one provider will not necessarily transfer to another.
 
-Each provider has different APIs, different tooling, different deployment mechanisms, different networking models, and different pricing structures. Teams that operate across multiple providers need to maintain fluency, and often separate tooling, for each system. A runbook that works for deploying to one provider will not necessarily transfer to another.
+- **Harder to achieve consistency.** Security policies, tagging conventions, network configurations, and access models need to be defined and enforced independently across each provider. What is a policy attached to an IAM role in one provider could be a different configuration object with different syntax in another. Maintaining consistent policy enforcement across providers requires deliberate investment.
 
-**Harder to achieve consistency.** 
+- **Data transfer costs.** Moving data between cloud providers is not free, and the costs can be significant. An architecture where services in different providers communicate frequently or share large datasets may incur data egress fees that erode the cost benefits of using the better-suited provider.
 
-Security policies, tagging conventions, network configurations, and access models need to be defined and enforced independently across each provider. What is a policy attached to an IAM role in one provider could be a different configuration object with different syntax in another. Maintaining consistent policy enforcement across providers requires deliberate investment.
-
-**Data transfer costs.** 
-
-Moving data between cloud providers is not free, and the costs can be significant. An architecture where services in different providers communicate frequently or share large datasets may incur data egress fees that erode the cost benefits of using the better-suited provider.
-
-**Reduced negotiating leverage.** 
-
-Concentrating spend with a single provider often unlocks enterprise discount agreements and committed use pricing. Splitting spend across multiple providers may reduce access to those arrangements.
+- **Reduced negotiating leverage.** Concentrating spend with a single provider often unlocks enterprise discount agreements and committed use pricing. Splitting spend across multiple providers may reduce access to those arrangements.
 
 
 
