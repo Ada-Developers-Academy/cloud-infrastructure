@@ -80,20 +80,133 @@ Designing intelligent systems requires a steadfast commitment to ethical princip
 
 ## Check for Understanding
 
-**1. Which of the following best describes the "Black Box" problem in machine learning?**
-A. The inability to safely store physical server hardware.
-B. The tradeoff where simple models are highly accurate but complex models are highly explainable.
-C. The tradeoff where complex models are highly accurate but their internal decision-making processes are unexplainable to humans.
-D. The process of intentionally hiding user data to comply with privacy laws.
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 
-**2. If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, which technique should we use to synthesize new, nuanced data points for that minority class?**
-A. Random Undersampling
-B. Active Learning
-C. SMOTE (Synthetic Minority Oversampling Technique)
-D. Generative Adversarial Networks (GANs)
+### !challenge
 
-**3. What is a primary strategic benefit of implementing Human-in-the-Loop (HITL) in an AI workflow? (Choose all that apply)**
-A. It provides ethical reasoning and accountability for high-stakes decisions.
-B. It eliminates the financial costs associated with data labeling.
-C. It completely prevents data drift from occurring in production models.
-D. It allows the model to use active learning to request human input for ambiguous or low-confidence predictions.
+* type: multiple-choice
+* id: 989eeb2f-2302-4921-a5d2-2524dcead2e7
+* title: Responsible AI, Automation Risks, and Limitations
+
+##### !question
+
+Which of the following best describes the "black box" problem in machine learning?
+
+##### !end-question
+
+##### !options
+
+a| The inability to safely store physical server hardware.
+b| The tradeoff where simple models are highly accurate but complex models are highly explainable.
+c| The tradeoff where complex models are highly accurate but their internal decision-making processes are unexplainable to humans.
+d| The process of intentionally hiding user data to comply with privacy laws.
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+The "black box" problem refers to the tradeoff in machine learning where complex models, such as deep neural networks, can achieve high accuracy but operate in a way that is not explainable to humans. We can understand the processes by which these models operate, but we cannot predict their outputs or explain why they produced a certain result. This is a significant challenge in fields where explainability is crucial, such as healthcare or finance.
+
+<br>
+
+The physical storage of server hardware is unrelated to the "black box" problem (though may be evocative of a different kind of "black box" issue related to flight safety). The statement that simple models are highly accurate but complex models are highly explainable is the opposite of the actual tradeoff. Hiding user data to comply with privacy laws is a separate issue related to data protection, not the "black box" problem.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: 085f34a1-734c-4a99-ace5-abe53f3db0dd
+* title: Responsible AI, Automation Risks, and Limitations
+
+##### !question
+
+If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, which technique should we use to synthesize new, nuanced data points for that minority class?
+
+##### !end-question
+
+##### !options
+
+a| Random Undersampling
+b| Active Learning
+c| SMOTE (Synthetic Minority Oversampling Technique)
+d| Random Oversampling
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+SMOTE (Synthetic Minority Oversampling Technique) is the appropriate technique for addressing class imbalance by generating new, synthetic data points for the underrepresented minority class. SMOTE works by creating synthetic examples based on the existing minority class data, which helps to balance the dataset without discarding valuable information from the majority class.
+
+<br>
+
+Random Undersampling would involve removing data points from the majority class, which can lead to loss of valuable information. Active Learning is a technique where the model identifies low-confidence predictions and requests human input, but it does not directly address class imbalance. Random Oversampling simply duplicates existing minority class examples, which can lead to overfitting, whereas SMOTE creates new, synthetic examples that can help the model learn more effectively from the minority class.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: checkbox
+* id: e0104d38-d6d6-4358-9452-9739045de731
+* title: Responsible AI, Automation Risks, and Limitations
+
+##### !question
+
+What is a primary strategic benefit of implementing Human-in-the-Loop (HITL) in an AI workflow?
+
+##### !end-question
+
+##### !options
+
+a| It provides ethical reasoning and accountability for high-stakes decisions.
+b| It eliminates the financial costs associated with data labeling.
+c| It completely prevents data drift from occurring in production models.
+d| It allows the model to use active learning to request human input for ambiguous or low-confidence predictions.
+
+##### !end-options
+
+##### !answer
+
+a|
+d|
+
+##### !end-answer
+
+##### !explanation
+
+Human-in-the-Loop (HITL) provides ethical reasoning and accountability for high-stakes decisions by allowing human operators to supervise, intervene, or override automated outputs when necessary. This is crucial in situations where AI systems may encounter complex ethical dilemmas that require human judgment. Additionally, HITL can enable active learning, where the model identifies low-confidence predictions and requests human input for ambiguous cases, which can help optimize the learning process.
+
+<br>
+
+While HITL can help mitigate some labeling issues, it does not eliminate its financial costs, as human involvement can be expensive and time-consuming. HITL also does not completely prevent data drift, which is a phenomenon where the real-world data diverges from the training data over time. Data drift requires continuous monitoring and maintenance of models, regardless of HITL implementation.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->

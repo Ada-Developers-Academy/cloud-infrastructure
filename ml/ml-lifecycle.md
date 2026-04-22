@@ -121,22 +121,130 @@ The machine learning lifecycle consists of five key phases: **Formulating the Pr
 
 ## Check for Understanding
 
-**1. Place the following phases of a machine learning project in the correct chronological order:**
-A) Test the model
-B) Deploy your model
-C) Formulate a problem
-D) Train the model
-E) Prepare your data
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 
-**2. Which of the following principles are used to define "Good Data"? (Choose all that apply)**
-A) Representative
-B) Reactionary
-C) Reliable
-D) Redundant
-E) Responsible
+### !challenge
 
-**3. When preparing a machine learning model for a real-time chatbot, which computing phase focuses heavily on minimizing latency and ensuring high availability?**
-A) Model Training
-B) Model Inference
-C) Tokenization
-D) Hyperparameter Tuning
+* type: ordering
+* id: 64bb178d-cc89-4707-a783-c903d5576aaf
+* title: The Machine Learning Project Lifecycle
+
+##### !question
+
+Place the following phases of a machine learning project in the correct chronological order:
+
+##### !end-question
+
+##### !answer
+
+1. Formulate a problem
+1. Prepare your data
+1. Train the model
+1. Test the model
+1. Deploy your model
+1. Monitor and maintain the model
+
+##### !end-answer
+
+##### !explanation
+
+The Machine Learning Project Lifecycle follows a structured sequence of phases. We start by **formulating the problem** to define what we want to predict. Next, we **prepare our data** by collecting, cleaning, and engineering features. After that, we **train the model** using the prepared data. Once the model is trained, we **test the model** using a held-out dataset to evaluate its performance. If the model performs well, we **deploy it** into production to make predictions on live data. Finally, we continuously **monitor and maintain the model** to ensure it remains accurate and relevant over time.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: checkbox
+* id: e2258d99-2da7-4d8c-8ea6-b3b550a54fe6
+* title: The Machine Learning Project Lifecycle
+
+##### !question
+
+Which of the following principles are used to define "good data"?
+
+##### !end-question
+
+##### !options
+
+a| Representative
+b| Reactionary
+c| Reliable
+d| Redundant
+e| Responsible
+
+##### !end-options
+
+##### !answer
+
+a| Representative
+c| Reliable
+e| Responsible
+
+##### !end-answer
+
+##### !explanation
+
+The 5 R's of good data are: Relevant, Representative, Rich, Reliable, and Responsible. Of those, the options included in this question are Representative, Reliable, and Responsible. **Representative** data accurately reflects the real-world population or scenario we want to model. **Reliable** data is accurate and consistent, while **Responsible** data is ethically sourced and used in a way that respects privacy and complies with relevant regulations.
+
+<br>
+
+The missing qualities of good data are Relevant, which means the data should be directly related to the problem we are trying to solve, and Rich, which means the data should contain enough features and information to allow the model to learn meaningful patterns.
+
+<br>
+
+Reactionary and Redundant are not concepts among the qualities of good data.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: de95c83f-984f-4c81-9f50-2f6788062c3e
+* title: The Machine Learning Project Lifecycle
+
+##### !question
+
+When preparing a machine learning model for a real-time chatbot, which computing phase focuses heavily on minimizing latency and ensuring high availability?
+
+##### !end-question
+
+##### !options
+
+a| Model Training
+b| Model Inference
+c| Tokenization
+d| Hyperparameter Tuning
+
+##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
+##### !explanation
+
+Model inference is the phase where the trained model is used to make predictions on new, unseen data. In the context of a real-time chatbot, inference focuses heavily on minimizing latency and ensuring high availability, as the chatbot needs to respond to user inputs instantly.
+
+<br>
+
+Model training, on the other hand, is a compute-heavy process that occurs before deployment and does not require low latency. Tokenization is a technique used in feature engineering to break text into units, and hyperparameter tuning (which was not discussed in the text) is an optimization process during model training, neither of which directly relates to the real-time requirements of inference.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->

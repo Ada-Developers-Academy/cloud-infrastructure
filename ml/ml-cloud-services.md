@@ -77,25 +77,164 @@ Building intelligent cloud applications requires us to carefully evaluate our bu
 
 ## Check for Understanding
 
-**1. Which of the following is a primary tradeoff when choosing to build a Custom Machine Learning Model instead of using Machine Learning as a Service (MLaaS)? (Choose all that apply)**
-A) Custom models require significant computational resources, like GPUs, and heavy infrastructure management.
-B) Custom models provide the lowest flexibility and are restricted strictly to pre-defined use cases.
-C) Custom models require advanced data science skills and more time to develop, train, and test.
-D) Custom models run exclusively on serverless architectures and require no active monitoring.
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 
-**2. Which category of off-the-shelf AI services would be best suited for an application that needs to pull structured data fields from thousands of scanned PDF invoices?**
-A) Speech & Vision APIs
-B) Search, Chat, & Recommendation APIs
-C) Text & Document APIs (such as OCR)
-D) Generative AI Assistants
+### !challenge
 
-**3. What is the primary role of a Full Custom Machine Learning Platform (Platform-as-a-Service)?**
-A) To completely eliminate the need for training data by generating all necessary data synthetically.
-B) To provide an integrated development environment and orchestration tools that manage the heavy lifting of the ML lifecycle.
-C) To serve as an off-the-shelf chatbot that answers customer service queries automatically.
-D) To convert text into lifelike speech without requiring any custom coding.
+* type: checkbox
+* id: 8b323032-bdff-4565-b8c3-bde92965ee53
+* title: Cloud ML Services
 
-**4. Place the following cloud ML approaches in order from the highest level of custom code and infrastructure management required to the lowest level:**
-A) Off-the-Shelf AI Services (Pre-Trained APIs)
-B) Full Custom Machine Learning Platforms (PaaS)
-C) Tunable Foundation Models
+##### !question
+
+Which of the following is a primary tradeoff when choosing to build a Custom Machine Learning Model instead of using Machine Learning as a Service (MLaaS)?
+
+##### !end-question
+
+##### !options
+
+a| Custom models require significant computational resources, like GPUs, and heavy infrastructure management.
+b| Custom models provide the lowest flexibility and are restricted strictly to pre-defined use cases.
+c| Custom models require advanced data science skills and more time to develop, train, and test.
+d| Custom models run exclusively on serverless architectures and require no active monitoring.
+
+##### !end-options
+
+##### !answer
+
+a|
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Building custom machine learning models requires significant computational resources, such as specialized GPUs, and demands substantial infrastructure management to train and host safely. Additionally, developing custom models requires advanced data science skills and more time to develop, train, and test compared to using pre-built MLaaS solutions.
+
+<br>
+
+Rather than lowering flexibility, custom models provide the highest level of flexibility, allowing us to tailor architectures to highly specific datasets and specialized business logic. Custom models can run on various architectures, including serverless, but they still typically require ongoing monitoring to ensure they perform as expected and to manage any issues that arise.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: db43a47a-6893-4b70-87dc-0430cb509a84
+* title: Cloud ML Services
+
+##### !question
+
+Which category of off-the-shelf AI services would be best suited for an application that needs to pull structured data fields from thousands of scanned PDF invoices?
+
+##### !end-question
+
+##### !options
+
+a| Speech & Vision APIs
+b| Search, Chat, & Recommendation APIs
+c| Text & Document APIs
+d| Generative AI Assistants
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Text & Document APIs are designed for natural language processing tasks, including intelligent optical character recognition (OCR) that can extract structured data from scanned forms and documents. This makes them the best choice for an application that needs to pull structured data fields from thousands of scanned PDF invoices.
+
+<br>
+
+Speech & Vision APIs may sound like it could be a good choice, but its vision capabilities are more suited for tasks involving image object recognition rather than text recognition. Search, Chat, & Recommendation APIs are focused on enterprise search and conversational interfaces. Generative AI Assistants are typically used for generating code or analyzing data rather than extracting structured data from documents.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: c2f77bae-9228-45ae-86b1-4dc9f7cddc83
+* title: Cloud ML Services
+
+##### !question
+
+What is the primary role of a Full Custom Machine Learning Platform (Platform-as-a-Service)?
+
+##### !end-question
+
+##### !options
+
+a| To completely eliminate the need for training data by generating all necessary data synthetically.
+b| To provide an integrated development environment and orchestration tools that manage the heavy lifting of the ML lifecycle.
+c| To serve as an off-the-shelf chatbot that answers customer service queries automatically.
+d| To convert text into lifelike speech without requiring any custom coding.
+
+##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
+##### !explanation
+
+A Full Custom Machine Learning Platform (Platform-as-a-Service) provides an integrated development environment and orchestration tools that manage the heavy lifting of the machine learning lifecycle. This allows software engineers and data scientists to build, train, tune, and deploy custom models at scale without needing to manage the underlying cloud infrastructure.
+
+<br>
+
+Training data is always required for machine learning models, making that option incorrect. Off-the-shelf chatbots and text-to-speech services are examples of specific AI services, not the primary role of a full custom machine learning platform.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: ordering
+* id: 3c774a7c-57ba-4ee3-89ff-785e8d089f2f
+* title: Cloud ML Services
+
+##### !question
+
+Place the following cloud ML approaches in order from the highest level of custom code and infrastructure management required at the top, to the lowest level required at the end.
+
+##### !end-question
+
+##### !answer
+
+1. Full Custom Machine Learning Platforms (PaaS)
+1. Tunable Foundation Models
+1. Off-the-Shelf AI Services (Pre-Trained APIs)
+
+##### !end-answer
+
+##### !explanation
+
+Full Custom Machine Learning Platforms (PaaS) require the highest level of custom code and infrastructure management, as they allow for building and deploying custom models that may require significant resources and expertise. Tunable Foundation Models offer a middle ground, allowing for customization of pre-trained models with proprietary data while still abstracting away much of the underlying complexity. Off-the-Shelf AI Services (Pre-Trained APIs) require the lowest level of custom code and infrastructure management, as they provide ready-to-use models accessible via simple API calls without needing to manage the underlying machine learning processes.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->

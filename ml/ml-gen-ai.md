@@ -70,20 +70,124 @@ Of these three optimization techniques, prompt engineering is the fastest and lo
 
 ## Check for Understanding
 
-**1. Which of the following best describes how a Large Language Model (LLM) understands the relationship between words like "car" and "automobile"?**
-A) By searching a built-in dictionary file during every request.
-B) By breaking text down into tokens and analyzing their numerical vector embeddings, which place related concepts close together mathematically.
-C) By using forward diffusion to add noise to the text.
-D) By relying entirely on prompt engineering to define every word.
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 
-**2. What is the primary difference between Retrieval-Augmented Generation (RAG) and Fine-Tuning?**
-A) RAG requires massive amounts of unlabeled internet data, while Fine-Tuning requires no data at all.
-B) RAG alters the underlying weights of the foundation model, while Fine-Tuning only changes the user's prompt.
-C) RAG dynamically supplies domain-relevant documents as context without changing model weights, while Fine-Tuning actively modifies the model's internal weights using a specific dataset.
-D) There is no difference; RAG and Fine-Tuning are different terms for the exact same process.
+### !challenge
 
-**3. Which of the following statements accurately describe Multimodal models? (Choose all that apply)**
-A) They rely on a single input type, such as only text or only images.
-B) They are designed to process and generate multiple modes of data simultaneously.
-C) They learn how different modalities, like images and text, are connected and can influence each other.
-D) They are the fastest and lowest-cost optimization approach for text generation.
+* type: multiple-choice
+* id: 1237abf4-7185-420e-8298-88cb92e08b0d
+* title: Generative AI vs. Traditional Machine Learning
+
+##### !question
+
+Which of the following best describes how a Large Language Model (LLM) understands the relationship between words like "car" and "automobile"?
+
+##### !end-question
+
+##### !options
+
+a| By searching a built-in dictionary file during every request.
+b| By breaking text down into tokens and analyzing their numerical vector embeddings, which place related concepts close together mathematically.
+c| By using forward diffusion to add noise to the text.
+d| By relying entirely on prompt engineering to define every word.
+
+##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
+##### !explanation
+
+Large Language Models (LLMs) process text by breaking it down into tokens and converting those tokens into numerical vector embeddings. These embeddings capture the semantic relationships between words, meaning that related concepts like "car" and "automobile" will have similar vector representations, placing them close together in the model's mathematical space. This allows the LLM to understand that these words are closely related without needing to search a dictionary or rely solely on prompt engineering.
+
+<br>
+
+A dictionary lookup would simply replace words with definitions, which an LLM would still need to process as tokens and vectors to understand their relationships. Forward diffusion is a technique used in image generation, not in understanding text. Prompt engineering can guide the model's behavior but does not define the underlying relationships between words in the way that vector embeddings do.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: fd423fe6-b330-4572-9648-669ff386dd81
+* title: Generative AI vs. Traditional Machine Learning
+
+##### !question
+
+What is the primary difference between Retrieval-Augmented Generation (RAG) and Fine-Tuning?
+
+##### !end-question
+
+##### !options
+
+a| RAG requires massive amounts of unlabeled internet data, while Fine-Tuning requires no data at all.
+b| RAG alters the underlying weights of the foundation model, while Fine-Tuning only changes the user's prompt.
+c| RAG dynamically supplies domain-relevant documents as context without changing model weights, while Fine-Tuning actively modifies the model's internal weights using a specific dataset.
+d| There is no difference; RAG and Fine-Tuning are different terms for the exact same process.
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Retrieval-Augmented Generation (RAG) is a technique that dynamically retrieves domain-relevant documents and supplies them to the model as external context to improve the accuracy of its responses. It does not require modifying the underlying weights of the foundation model. In contrast, Fine-Tuning is a supervised learning process that involves training a pre-trained model further on a specific, smaller dataset, which actively modifies the model's internal weights to better align with a specialized task.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: checkbox
+* id: 46eed1e1-7732-4941-b9bc-f568ec8af3b3
+* title: Generative AI vs. Traditional Machine Learning
+
+##### !question
+
+Which of the following statements accurately describe Multimodal models?
+
+##### !end-question
+
+##### !options
+
+a| They rely on a single input type, such as only text or only images.
+b| They are designed to process and generate multiple modes of data simultaneously.
+c| They learn how different modalities, like images and text, are connected and can influence each other.
+d| They are the fastest and lowest-cost optimization approach for text generation.
+
+##### !end-options
+
+##### !answer
+
+b|
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Multimodal models are designed to process and generate multiple modes of data simultaneously, such as text, images, audio, and video. They learn how different modalities are connected and can influence each other, allowing them to perform complex tasks that involve understanding and generating across different types of data. For example, a multimodal model could analyze an uploaded photograph of a broken machine part alongside a text-based question and then generate both a text description of the repair and a new graphic illustrating the solution.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->

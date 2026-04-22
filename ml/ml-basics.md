@@ -109,20 +109,129 @@ Modern organizations generate massive amounts of complex data, but raw data alon
 
 ## Check for Understanding
 
-**1. How does machine learning differ from classical programming?**
-A. Machine learning uses static, hand-coded rules to process data, while classical programming relies on artificial intelligence.
-B. Machine learning only works with numerical data, whereas classical programming works with both text and numbers.
-C. Machine learning ingests historical data and outputs to autonomously generate rules, whereas classical programming applies human-authored rules to data to generate an output.
-D. Machine learning relies strictly on Business Intelligence tools to function.
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 
-**2. Which of the following problems would be best solved using a Classification model? (Choose all that apply)**
-A. Predicting the future price of a stock.
-B. Flagging an incoming email as "Spam" or "Not Spam".
-C. Determining if an uploaded image contains a "Cat" or a "Dog".
-D. Grouping users into undefined marketing segments based on browsing history.
+### !challenge
 
-**3. A real estate application wants to predict the future sale price of homes in a specific neighborhood based on square footage and the number of bedrooms. Which type of machine learning solution is most appropriate?**
-A. Regression
-B. Anomaly Detection
-C. Classification
-D. Clustering
+* type: multiple-choice
+* id: 545a7156-dec9-4fb3-a1e4-521185eb25c6
+* title: Introduction to Machine Learning Problems and Solutions
+
+##### !question
+
+How does machine learning differ from classical programming?
+
+
+##### !end-question
+
+##### !options
+
+a| Machine learning uses static, hand-coded rules to process data, while classical programming relies on artificial intelligence.
+b| Machine learning only works with numerical data, whereas classical programming works with both text and numbers.
+c| Machine learning ingests historical data and outputs to autonomously generate rules, whereas classical programming applies human-authored rules to data to generate an output.
+d| Machine learning relies strictly on Business Intelligence tools to function.
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Machine learning differs from classical programming in that it does not rely on human-authored rules to process data. Instead, machine learning algorithms ingest historical data and the corresponding outputs to autonomously generate the rules needed to make predictions on new, unseen data. In contrast, classical programming requires developers to write explicit rules and logic to process data and produce outputs. This fundamental difference allows machine learning to find complex patterns in large datasets that would be difficult or impossible for humans to explicitly program.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: checkbox
+* id: c7efba2c-8597-4b28-b521-35ee628d45a2
+* title: Introduction to Machine Learning Problems and Solutions
+
+##### !question
+
+Which of the following problems would be best solved using a Classification model?
+
+##### !end-question
+
+##### !options
+
+a| Predicting the future price of a stock.
+b| Flagging an incoming email as "Spam" or "Not Spam".
+c| Determining if an uploaded image contains a "Cat" or a "Dog".
+d| Grouping users into undefined marketing segments based on browsing history.
+
+##### !end-options
+
+##### !answer
+
+b|
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Classification models are used to predict discrete labels or categories. In this case, flagging an incoming email as "Spam" or "Not Spam" and determining if an uploaded image contains a "Cat" or a "Dog" are both examples of classification problems because they involve assigning data points to specific categories.
+
+<br>
+
+Predicting the future price of a stock is a regression problem because it involves forecasting a continuous numerical value, while grouping users into undefined marketing segments is a clustering problem because it involves finding inherent structures in the data without predefined labels. Clustering is a form of unsupervised learning, which is different from classification, which is a form of supervised learning.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+
+### !challenge
+
+* type: multiple-choice
+* id: 79225315-75a3-4299-b815-5d891d8283c6
+* title: Introduction to Machine Learning Problems and Solutions
+
+##### !question
+
+A real estate application wants to predict the future sale price of homes in a specific neighborhood based on square footage and the number of bedrooms. Which type of machine learning solution is most appropriate?
+
+##### !end-question
+
+##### !options
+
+a| Regression
+b| Anomaly Detection
+c| Classification
+d| Clustering
+
+##### !end-options
+
+##### !answer
+
+a|
+
+##### !end-answer
+
+##### !explanation
+
+Predicting the future sale price of homes based on features like square footage and the number of bedrooms is a regression problem because it involves forecasting a continuous numerical value.
+
+<br>
+
+Anomaly detection is used for identifying outliers in data, classification is used for predicting discrete categories, and clustering is used for finding inherent structures in unlabeled data. None of these other approaches would be appropriate for predicting a continuous value like home prices.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
