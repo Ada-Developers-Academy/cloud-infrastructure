@@ -321,37 +321,6 @@ When the primary constraint is time, rehost (lift-and-shift) is the appropriate 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: zE5nT1wCuM8bG3sXoP7jK9qA2r
-* title: Cloud Migration Strategies
-##### !question
-
-An e-commerce company's order processing service handles millions of transactions annually and is expected to be in use for the next decade. It currently cannot scale horizontally and fails during peak traffic. Engineering leadership is willing to invest 6 months of development time on it. Which migration strategy is most appropriate?
-
-##### !end-question
-##### !options
-
-* Retire the service since it can't handle peak load
-* Rehost the service to move it quickly and revisit scaling later
-* Refactor the service to take advantage of cloud-native scaling and resilience
-* Replatform the service by switching to a managed database to reduce costs
-
-##### !end-options
-##### !answer
-
-* Refactor the service to take advantage of cloud-native scaling and resilience
-
-##### !end-answer
-##### !explanation
-
-Refactoring is justified when a system is high-value, long-lived, and has known limitations that cloud-native architecture can solve. With a decade of expected use and engineering time available, re-architecting for horizontal scaling is a sound investment. Rehosting would move the problem to the cloud without solving it, and replatforming alone wouldn't address the core architectural constraint.
-
-##### !end-explanation
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: multiple-choice
 * id: hV6yD4fB0mZ2cN8wLsQ1pR5eT3
 * title: Cloud Migration Strategies
 ##### !question
@@ -374,69 +343,7 @@ A company completes a major cloud migration and grants all engineers permissions
 ##### !end-answer
 ##### !explanation
 
-Without governance controls in place, engineers can freely spin up resources across any region, making costs unpredictable and impossible to attribute. Governance policies define who can create resources, in which regions, and with what tagging requirements — all of which enable cost tracking and accountability. The tripling of costs and inability to attribute spending are classic symptoms of ungoverned cloud environments.
-
-##### !end-explanation
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: multiple-choice
-* id: kJ9oW2rM5bX8nH7tCvA4pG1qY6
-* title: Cloud Migration Strategies
-##### !question
-
-A healthcare company is audited and discovers that a cloud storage bucket containing patient records has been publicly accessible for four months. No one on the team was aware of the misconfiguration. Which underlying problem does this scenario best illustrate?
-
-##### !end-question
-##### !options
-
-* The company chose the wrong migration strategy for its compliance workloads
-* The absence of cloud governance allowed a misconfiguration to go undetected
-* The cloud provider failed to enforce default security settings on the bucket
-* The team should have retained this workload on-premises instead of migrating
-
-##### !end-options
-##### !answer
-
-* The absence of cloud governance allowed a misconfiguration to go undetected
-
-##### !end-answer
-##### !explanation
-
-Cloud governance includes policies and controls that prevent and detect insecure configurations. Without guardrails in place, a developer can open a storage bucket to the public without any automated check flagging the issue. This is a predictable consequence of moving fast in the cloud without governance — mistakes are easy to make and hard to detect.
-
-##### !end-explanation
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: multiple-choice
-* id: uS3dL7fI0aE9nO5vBq2mK8wR4c
-* title: Cloud Migration Strategies
-##### !question
-
-A company is migrating a suite of 40 applications to the cloud. Their platform team has identified that 8 applications are no longer used by any team and have had zero traffic for over a year. What is the recommended action for these applications?
-
-##### !end-question
-##### !options
-
-* Rehost them anyway to preserve them in case they are needed in the future
-* Replatform them so they consume fewer cloud resources
-* Retire them to eliminate unnecessary maintenance and reduce migration scope
-* Retain them on-premises since they don't justify the migration effort
-
-##### !end-options
-##### !answer
-
-* Retire them to eliminate unnecessary maintenance and reduce migration scope
-
-##### !end-answer
-##### !explanation
-
-Retire is the appropriate strategy for workloads that are no longer in use or providing value. Migrating unused applications wastes engineering time and would result in ongoing cloud costs for resources with no business return. Identifying and retiring these early reduces complexity and lets the team focus migration effort where it delivers real value.
+Without governance controls in place, engineers can freely spin up resources across any region, making costs unpredictable and impossible to attribute. Governance policies define who can create resources, in which regions, and with what tagging requirements, all of which enable cost tracking and accountability. The tripling of costs and inability to attribute spending are classic symptoms of ungoverned cloud environments.
 
 ##### !end-explanation
 ### !end-challenge
