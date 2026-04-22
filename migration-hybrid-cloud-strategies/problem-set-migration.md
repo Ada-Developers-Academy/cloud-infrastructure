@@ -4,12 +4,12 @@
 
 ### Deliverable
 
-Using the scenario below, create a migration plan for the services listed. 
+Using the scenario below, create a migration plan for the services listed. In the migration plan, folks should: 
 - Determine which of the 7 R's best applies to each workload
-- Discuss the benefits and tradeoffs of the approach you decide
+- Discuss the benefits and tradeoffs of the chosen approach
 - Identify at least 1 governance consideration
 
-Students should be prepared to discuss their migration plan in-class. 
+Please submit completed plans in the "Migration Plan Submission" section below. Students should be prepared to discuss their migration plan during class. 
 
 ### Scenario
 
@@ -37,6 +37,8 @@ Further constraints and context:
 - The organization cannot afford extended service outages.
 - No prior cloud experience among IT staff.
 - The analytics tool is rarely used but important for audits.
+
+### Migration Plan Submission
 
 <!-- prettier-ignore-start -->
 ### !challenge

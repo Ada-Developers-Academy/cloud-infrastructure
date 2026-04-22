@@ -73,11 +73,8 @@ Let's see how this applies to our example organization! At FieldOps Inc., the po
 - When the team pulls access logs, they find it hasn't been used by anyone in 11 months. The company now uses a commercial HR platform that handles scheduling natively. 
 - The CTO assigns this workload to be retired. The server is decommissioned, and the migration plan shrinks by one workload.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [Legacy Scheduling App] on on-premises server — consuming maintenance, patching, server costs
-After: [Decommissioned] — no server, no maintenance, no migration needed
-```
+![A before and after scenario highlighting the labor and costs saved by retiring an unused service rather than migrating it.](assets/retire.png)  
+*Fig. Resources used before and after retiring an unused service.*
 
 ### 2. Retain
 
@@ -91,11 +88,8 @@ Over at FieldOps Inc., one of their workloads is a real-time telemetry processin
 - The vendor has a cloud-compatible version on their roadmap, but it won't be available for at least 12 months. 
 - The CTO assigns this workload to be retained and schedules a migration readiness review for the following year.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [Telemetry Service] on specialized on-premises hardware
-After: [Telemetry Service] still on-premises — flagged for reassessment when vendor roadmap delivers
-```
+![A before and after scenario highlighting that retaining a service means creating a follow up plan to re-evaluate the service at a later date](assets/retain.png)  
+*Fig. The plan for a hard to move service before and after review for migration readiness.*
 
 ### 3. Rehost (Lift and Shift)
 
@@ -112,12 +106,8 @@ Let's check in with FieldOps Inc.. Their contract management application is a te
 - The data center lease expires in 18 months, and redesigning the application isn't in the current budget. 
 - The CTO assigns this workload to be rehosted. It will move to a cloud virtual machine as-is. Optimization is logged as future work.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [Contract Mgmt App Server (on-prem)] → [Database Server (on-prem)]
-After:  [Contract Mgmt App VM (cloud)] → [Database VM (cloud)]
-        Same topology. Same configuration. Running in cloud infrastructure.
-```
+![A before and after scenario of a service in an on premises datacenter being moved to the cloud without changes](assets/rehost.png)  
+*Fig. Rehosting an app and its database from on-prem to the cloud.*
 
 ### 4. Replatform (Lift, Tinker, and Shift)
 
@@ -130,12 +120,8 @@ In our example comanpy FieldOps Inc., their customer portal uses a relational da
 - The CTO assigns the portal to be replatformed: the application moves to a cloud virtual machine, but the database is migrated to a managed cloud database service. 
 - The application requires minor code changes for the new connection configuration, but no logic changes.
 
-```
-[DIAGRAM PLACEHOLDER]
-Before: [Customer Portal App Server (on-prem)] → [Self-Managed DB Server (on-prem)]
-After:  [Customer Portal App VM (cloud)] → [Managed Cloud Database Service]
-        Application unchanged. Database maintenance is now the provider's responsibility.
-```
+![A before and after scenario of replatforming a service by shifting the app to a cloud vm and switching the database to a managed cloud database.](assets/replatform.png)  
+*Fig. Replatforming an app to the cloud and migrating to a vendor managed database.*
 
 ### 5. Refactor / Re-Architect
 
