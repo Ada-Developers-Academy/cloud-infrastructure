@@ -20,7 +20,7 @@
 
 ## Machine Learning Development Lifecycle
 
-When we apply machine learning to solve real-world problems, we follow a structured lifecycle that guides us from understanding the problem to deploying a working model. This lifecycle consists of five key phases: Formulating the Problem, Data Preparation, Model Training, Model Testing, and Deployment.
+When we apply machine learning to solve real-world problems, we follow a structured lifecycle that guides us from understanding the problem to deploying a working model. This lifecycle consists of six key phases: Formulating the Problem, Data Preparation, Model Training, Model Testing, Deployment, and Monitoring and Maintenance.
 
 - **Formulate the Problem**: First, we frame the core problem in terms of what we can observe and what target answer the model needs to predict. The learning model and solution type will depend on the data we have and the question we want to answer. For example, a financial organization can define a problem to classify whether a credit card transaction is genuine or fraudulent.
 
@@ -32,7 +32,9 @@ When we apply machine learning to solve real-world problems, we follow a structu
 
 - **Deployment**: Finally, we integrate the trained model into a production pipeline to generate predictions on live, real-world data.
 
-_Alt. A diagram showing five sequential, interconnected circles representing the machine learning lifecycle: Formulate a problem, Prepare your data, Train the model, Test the model, and Deploy your model._
+- **Monitoring and Maintenance**: After deployment, we continuously monitor the model's performance and retrain it with new data as needed. This creates a feedback loop that allows the model to improve over time and adapt to changing conditions.
+
+_Alt. A diagram showing five sequential, interconnected circles representing the machine learning lifecycle: Formulate a problem, Prepare your data, Train the model, Test the model, Deploy your model, Monitor and maintain the model. Each circle is labeled with its respective phase, and arrows indicate the flow from one phase to the next, with a feedback loop including preparing data, training the model, and testing the model to represent the tight, iterative nature of the machine learning lifecycle._  
 *Fig. The Iterative Machine Learning Lifecycle*
 
 ## The Importance of High-Quality Data
@@ -97,6 +99,12 @@ While neither the initial values, nor the final vector representations, are dire
 After training, we evaluate the model's performance using the held-out dataset to ensure it can generalize to new, unseen data. This step is crucial to prevent overfitting, where a model performs well on training data but poorly on new data. Crucially, if the model does not perform well on the held-out dataset, we must resist the temptation to use the test data to adjust the model, as this can lead to overfitting. Instead, we should return to the training phase and make adjustments there, such as improving data quality or engineering better features.
 
 Once we are satisfied with the model's performance, we deploy it into production, where it can make predictions on live data.
+
+## Monitoring and Maintenance
+
+After deployment, we continuously monitor the model's performance and retrain it with new data as needed. This helps prevent *model drift*, which occurs when the model's performance degrades over time due to changes in the underlying data distribution. By regularly updating the model with new data, we can ensure that it remains accurate and relevant as conditions evolve.
+
+For example, if we have a model that predicts customer churn, we would monitor its predictions against actual customer behavior and retrain it periodically with new data to ensure it remains accurate as market conditions and customer preferences evolve.
 
 ## Compute Needs: Training vs. Inference
 
