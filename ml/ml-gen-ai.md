@@ -26,10 +26,8 @@ Traditional Machine Learning (ML) uses algorithms to find patterns and make pred
 
 **Generative AI** is a further subset of deep learning. While traditional DL models are typically used to classify data or predict outcomes, Generative AI models are capable of generating entirely new data based on the patterns and structures they learned from their training data. They accomplish this by adapting deep learning models without needing to be completely retrained from scratch. For instance, instead of merely recognizing a stop sign in a photo, a generative AI model can generate a brand-new image of a stop sign on a city street that has never existed.
 
-```
-_Alt. A diagram consisting of four concentric circles. The outermost circle is Artificial intelligence, the next inner circle is Machine learning, the next inner circle is Deep learning, and the innermost circle is Generative AI._
+![Alt. A diagram consisting of four concentric circles. The outermost circle is Artificial intelligence, the next inner circle is Machine learning, the next inner circle is Deep learning, and the innermost circle is Generative AI.](./assets/ml-layers.png)  
 *Fig. Generative AI is a specialized subset of deep learning, which itself is a subset of machine learning and artificial intelligence.*
-```
 
 ## Foundation Models and Large Language Models (LLMs)
 
@@ -37,10 +35,10 @@ Building individual machine learning models from scratch for every new feature w
 
 Large language models (LLMs) are a specific type of foundation model that often utilize an architectural approach called a *transformer* to respond to and generate human-like text. They process text by breaking it down into basic units called tokens, which can be whole words, phrases, or individual characters. The model assigns these tokens numerical representations called *embeddings*—the same vectors, or lists of numerical values discussed with text feature engineering—that capture the nuanced semantic relationships and context between different concepts. Again, tokens that are semantically related, like "cat", "feline", and "kitten," will have similar vector representations, allowing the model to take their relationship into account to generate coherent responses.
 
-```
-_Alt. A graph showing data points plotted on axes. The dots for 'Cat', 'Feline', and 'Kitten' are clustered closely together in one area, while dots for 'Dog' and 'Puppy' are clustered in another area._
-*Fig. Vectors map tokens into a numerical space, placing semantically related concepts close together.*
-```
+![A graph showing data points plotted on axes. The dots for 'Cat', 'Feline', and 'Kitten' are clustered closely together in one area, while dots for 'Dog' and 'Puppy' are clustered in another area. Arrows point from the origin to each work dot, since vectors are typically conceptualized as a directional line drawn from one place to another.](./assets/ml-embedding.png)  
+*Fig. Vectors map tokens into a numerical space, placing semantically related concepts close together. The "coordinates" of the head of each line are determined by the long list of numbers associated with the term (not depicted).*
+
+We should note that the model still has no intrinsic understanding of the meaning of these tokens. It only encodes that certain tokens are often used in similar contexts. When users prompt a model with some initial prompt, the response of the model seems coherent because it is able to draw on the relationships between tokens that it learned during training. So as it predicts each next token, it is able to generate text that is contextually relevant and semantically meaningful, even though it does not "understand" the text in the way a human would.
 
 ## Beyond Text: Diffusion and Multimodal Architectures
 
