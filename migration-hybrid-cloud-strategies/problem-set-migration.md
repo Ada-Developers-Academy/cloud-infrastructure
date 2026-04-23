@@ -188,8 +188,6 @@ Retire is the appropriate strategy for workloads that are no longer in use or pr
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-## Hybrid & multi-cloud
-
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
