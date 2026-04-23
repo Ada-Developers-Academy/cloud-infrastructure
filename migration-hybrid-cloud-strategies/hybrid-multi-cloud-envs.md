@@ -25,7 +25,7 @@ In a hybrid environment, on-premises systems and cloud systems coexist and typic
 
 When we covered cloud migration strategies in the previous lesson, we looked at how most migrations are incremental. Organizations rarely move everything at once; they move workload by workload, team by team. The period between "everything is on-premises" and "everything is in the cloud" is a hybrid environment, and it's a state most organizations spend significant time in. However, some organizations end up in a hybrid environment permanently, and by choice. 
 
-### Transitional vs. long-term hybrid environments
+### Transitional vs. Long-Term Hybrid Environments
 
 The most important question to ask about any hybrid environment is: is this temporary, or is it intended to last?
 
@@ -51,7 +51,7 @@ A **multi-cloud environment** is one in which an organization runs workloads acr
 
 Multi-cloud is distinct from hybrid environments, though both involve complexity that a single-cloud or fully on-premises setup does not. Where hybrid means mixing on-premises and cloud infrastructure, multi-cloud means mixing providers within the cloud. Many large organizations are doing both at the same time!
 
-### Why organizations adopt multi-cloud
+### Why Organizations Adopt Multi-Cloud
 
 Multi-cloud adoption usually traces back to a combination of strategic intent and organizational reality:
 
@@ -65,7 +65,7 @@ Multi-cloud adoption usually traces back to a combination of strategic intent an
 
 - **Acquisition and merger history.** Multi-cloud environments can be an artifact of organizational history rather than a planned architecture. For example, a team might choose a particular cloud vendor, then their organization acquires a company who was using a different cloud vendor. The new org brings its systems and cloud infrastructure along, and the overall system now has multiple cloud relationships to manage.
 
-### Operational tradeoffs
+### Operational Tradeoffs
 
 The advantages of a multi-cloud strategy come with corresponding complexity and costs:
 
@@ -81,7 +81,7 @@ The advantages of a multi-cloud strategy come with corresponding complexity and 
 
 The combination of hybrid environments and multi-cloud adoption creates governance challenges that don't exist in simpler architectures. The following challenges apply in both contexts and tend to compound when they appear together.
 
-### Identity and access challenges
+### Identity and Access Challenges
 
 In a single cloud environment, access management is handled by one IAM system. When we add an on-premises environment or a second cloud provider, we add identity systems that don't automatically trust each other.
 
@@ -100,12 +100,31 @@ In multi-cloud environments, this extends further. Each provider may have a diff
 
 The principle of least privilege is harder to maintain when access spans multiple systems. Auditing who has access to what is harder when logs are in separate places that don't aggregate automatically.
 
+### Observability Complexity
+
+In the observability lesson, we covered how distributed systems require teams to correlate signals across multiple services to diagnose a problem. Hybrid and multi-cloud environments extend that problem: signals are now scattered across environments that may have entirely separate monitoring tools, log storage systems, and tracing infrastructure.
+
+Imagine this: a user submits an order through the cloud-hosted web application. The order validation service, also in the cloud, looks fine. But the order reaches the on-premises fulfillment system and fails silently. No alert fires. The cloud monitoring dashboard shows a healthy API. The on-premises monitoring system, which uses entirely different tooling, shows an error that nobody on the cloud operations team can see without logging into a separate console.
+
+This is the observability gap that multi-environment architectures create. A request that crosses the network boundary may cross a monitoring boundary at the same time. Unless we invest in cross-environment observability practices like unified log aggregation, distributed tracing that spans both environments, and alerting that correlates signals regardless of where they originate, we'll have blind spots at exactly the points where complex failures are most likely to appear.
+
+Multi-cloud compounds this. Each provider has its own native monitoring and logging tooling, with different query languages, different retention policies, and different alert mechanisms. Teams operating across providers frequently end up with a fragmented view of their own systems unless they deliberately invest in finding or creating aggregation infrastructure that pulls from all sources to allow a full view of their application and services.
+
+### Cost Visibility
+
+In a single cloud environment, cost visibility is primarily a discipline and tagging problem: if we tag resources consistently and organize accounts by team or service, we can generate reasonably accurate reports of who is spending how much and on what.
+
+In hybrid environments, cloud costs and on-premises costs live in different systems. Cloud spending appears in the provider's billing console, billed by usage. On-premises costs are capital expenditures and operational costs tracked in finance systems with different cadences, different categorizations, and different levels of granularity. Comparing the real cost of running a workload on-premises against running it in the cloud requires pulling data from both systems and translating it into comparable terms. This is harder than it sounds, and frequently doesn't happen until there is a specific reason to investigate.
+
+In multi-cloud environments, cloud costs are distributed across multiple providers' billing systems. An engineering team might have real-time visibility into one provider's spend and only monthly visibility into another's. Data egress fees that get charged when data moves between providers may not appear in either provider's cost allocation in a way that makes the cross-provider data flow obvious.
+
+Without cost visibility, teams find out about budget problems after they've already happened. An architecture that looked efficient at design time may have hidden costs that only surface at billing time. Just like with observability, organizations operating across multiple providers often need dedicated tooling to aggregate cost data into a single view.
 
 
 
 
-Observability complexity
-Cost visibility
+
+
 Increased failure surface area
 
 ## Summary
