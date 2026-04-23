@@ -34,8 +34,8 @@ When we apply machine learning to solve real-world problems, we follow a structu
 
 - **Monitoring and Maintenance**: After deployment, we continuously monitor the model's performance and retrain it with new data as needed. This creates a feedback loop that allows the model to improve over time and adapt to changing conditions.
 
-_Alt. A diagram showing five sequential, interconnected circles representing the machine learning lifecycle: Formulate a problem, Prepare your data, Train the model, Test the model, Deploy your model, Monitor and maintain the model. Each circle is labeled with its respective phase, and arrows indicate the flow from one phase to the next, with a feedback loop including preparing data, training the model, and testing the model to represent the tight, iterative nature of the machine learning lifecycle._  
-*Fig. The Iterative Machine Learning Lifecycle*
+![A diagram showing six sequential, interconnected circles representing the machine learning lifecycle: Formulate a problem, Prepare your data, Train the model, Test the model, Deploy your model, Monitor and maintain the model. Each circle is labeled with its respective phase, and arrows indicate the flow from one phase to the next, with a feedback loop including preparing data, training the model, and testing the model to represent the tight, iterative nature of the machine learning lifecycle.](./assets/ml-lifecycle.png)  
+*Fig. Machine Learning Development Lifecycle*
 
 ## The Importance of High-Quality Data
 
