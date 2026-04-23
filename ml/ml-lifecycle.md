@@ -77,12 +77,21 @@ Machine learning algorithms rely entirely on mathematics to function, meaning th
 
 A **feature** is a single measurable property or characteristic in a dataset. Because machine learning algorithms require numerical input, raw data must be engineered into formats that preserve the richness of the original data while being mathematically consumable. We employ different techniques to engineer features based on the type of data we have.
 
-When engineering numerical features, we often use *normalization* and *standardization*. Training methods often perform better when features are on a similar scale, so we use normalization to scale values to a range between 0 and 1. Standardization, on the other hand, transforms features relative to a statistical measure called the standard deviation. Doing so helps to reduce the impact of outliers. Another helpful technique is *binning*, where we group a wide, continuous scale of numbers into distinct numerical buckets to simplify the model's computation. For example, instead of listing exact customer ages between 18 and 95, we can group them into simplified bins like 18-27 and 28-37. These bins can then be represented as categorical features, which can be further engineered into numerical formats.
+| Engineering Technique | Data Type | Description |
+| --- | --- | --- |
+| Normalization | Numerical | Scaling values to a range between 0 and 1 to improve model performance. |
+| Standardization | Numerical | Transforming features relative to the standard deviation to reduce the impact of outliers. |
+| Binning | Numerical | Grouping continuous values into discrete buckets to simplify the model's computation. |
+| One-hot encoding | Categorical | Converting categories into a binary format where each category is represented by a separate binary column. |
+| Tokenization | Text | Breaking text down into units of meaning, such as words or phrases, which can then be embedded as numerical vectors. |
 
-_Alt. A bar chart demonstrating binning, where individual ages spread continuously from 18 to 95 are consolidated into five distinct, color-coded age range buckets._
-*Fig. Transforming continuous data into simplified groups using binning.*
+When engineering numerical features, we often use normalization and standardization. Training methods often perform better when features are on a similar scale, so we use *normalization* to scale values to a range between 0 and 1. *Standardization*, on the other hand, transforms features relative to a statistical measure called the standard deviation. Doing so helps to reduce the impact of outliers.
 
-Categorical and other text features also require engineering to be usable by machine learning algorithms. For categorical data, we often use *one-hot encoding* to convert categories into a binary format. One-hot encoding converts categorical data—like the colors Red, Green, or Blue—into separate binary columns. In these new columns, a "1" indicates the presence of the category and a "0" indicates its absence. For natural language text, we use tokenization. This technique breaks text down into chunked units of meaning, such as words or phrases, which can then be embedded as numerical vectors.
+Another helpful technique is *binning*, where we group a wide, continuous scale of numbers into distinct numerical buckets to simplify the model's computation. For example, if our data contains exact customer ages, this could lead to a very large number of unique values that the model would have to learn from. By grouping ages into bins, such as young adults (18-27), adults (28-37), mid-life (38-47), mature (48-57), and senior (58+), we can reduce the number of unique values, and reduce the impact of outliers (folks in the 90+ range). This can make it easier for the model to learn patterns. 
+
+Categorical and other text features also require engineering to be usable by machine learning algorithms. For categorical data, we often use *one-hot encoding* to convert categories into a binary format. One-hot encoding converts categorical data—like the colors Red, Green, or Blue—into separate binary columns. In these new columns, a "1" indicates the presence of the category and a "0" indicates its absence. The name "one-hot" comes from the fact that only one category can be "hot" (1) for each data point, while the others are "cold" (0). This allows the model to process categorical data without assuming any inherent order or relationship between the categories.
+
+For natural language text, we use *tokenization*. This technique breaks text down into chunked units of meaning, such as words or phrases, which can then be embedded as numerical vectors.
 
 ### !callout-info
 
