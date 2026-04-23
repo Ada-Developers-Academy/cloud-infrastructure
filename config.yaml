@@ -245,7 +245,7 @@ Standards:
         Path: /analytics/problem-set-analytics.md
   - 
     Title: Machine Learning and Intelligent Systems
-    UID: a8b52ed3-d99f-4b2b-8a49-40f7727f59a7
+    UID: 961d3718-5847-449c-8383-912d94e02565
     Description: "Introduction to Machine Learning Problems and Solutions; The Machine Learning Project Lifecycle; Generative AI vs. Traditional Machine Learning; Cloud ML Services; Responsible AI, Automation Risks, and Limitations; Problem Set: Machine Learning and Intelligent Systems"
     SuccessCriteria:
       - success criteria
