@@ -104,7 +104,7 @@ The principle of least privilege is harder to maintain when access spans multipl
 
 In the observability lesson, we covered how distributed systems require teams to correlate signals across multiple services to diagnose a problem. Hybrid and multi-cloud environments extend that problem: signals are now scattered across environments that may have entirely separate monitoring tools, log storage systems, and tracing infrastructure.
 
-Imagine this: a user submits an order through the cloud-hosted web application. The order validation service, also in the cloud, looks fine. But the order reaches the on-premises fulfillment system and fails silently. No alert fires. The cloud monitoring dashboard shows a healthy API. The on-premises monitoring system, which uses entirely different tooling, shows an error that nobody on the cloud operations team can see without logging into a separate console.
+Imagine this: a user submits an order through a cloud-hosted web application. The order validation service, also in the cloud, looks fine. But the order reaches the on-premises fulfillment system and fails silently. No alert fires. The cloud monitoring dashboard shows a healthy API. The on-premises monitoring system, which uses entirely different tooling, shows an error that nobody on the cloud operations team can see without logging into a separate console.
 
 This is the observability gap that multi-environment architectures create. A request that crosses the network boundary may cross a monitoring boundary at the same time. Unless we invest in cross-environment observability practices like unified log aggregation, distributed tracing that spans both environments, and alerting that correlates signals regardless of where they originate, we'll have blind spots at exactly the points where complex failures are most likely to appear.
 
@@ -120,19 +120,130 @@ In multi-cloud environments, cloud costs are distributed across multiple provide
 
 Without cost visibility, teams find out about budget problems after they've already happened. An architecture that looked efficient at design time may have hidden costs that only surface at billing time. Just like with observability, organizations operating across multiple providers often need dedicated tooling to aggregate cost data into a single view.
 
+### Increased failure surface area
 
+Every integration point between environments is a potential failure point. 
+- Within a single cloud environment, a service that depends on another service in the same region travels across the provider's internal network. It's fast, reliable, and subject to the provider's uptime guarantees. 
+- When that dependency crosses the network boundary between environments, it becomes subject to additional latency, packet loss, and failure modes that don't exist within a single environment, like VPN gateway restarts or dedicated connection interruptions.
 
+Consider the ordering system example from the "Observability Complexity" section above. When the network connection between the cloud-hosted web application and the on-premises billing system is interrupted, requests don't fail cleanly, they time out. The web application's retry logic kicks in, generating more requests that also time out. The on-premises billing system, when the connection recovers, sees a backlog of duplicate requests. What began as a network blip cascades into a data consistency problem.
 
+This is how the blast radius of failures expands in hybrid architectures. A failure in one environment can propagate into another in ways that aren't obvious from looking at either environment in isolation. Services that communicate across the boundary need explicit failure handling: defined timeouts, circuit breakers to prevent hammering slow or broken dependencies with requests, fallback behaviors, and clear documentation of what happens when the cross-environment dependency is unavailable.
 
+Multi-cloud environments have similar exposure. A service in one provider that depends on a service in another has a cross-provider network path, and a service outage on one side may not be visible to monitoring on the other.
 
-Increased failure surface area
+Planning for failure means understanding not just the failure modes within each environment, but the failure modes at the boundary between them. Understanding the failure surface means understanding:
+- every place where traffic crosses an environment boundary
+- what happens to dependent services when that crossing fails
+- whether the monitoring on both sides of the boundary can detect a failure at the boundary itself
+
+These require teams to reason about the system as a whole, not just the slice of it they own.
 
 ## Summary
 
+Hybrid and multi-cloud architectures are less about choosing a single approach and more about understanding what is driving the design. A hybrid environment may be a temporary state during a migration, or it may be the permanent, intended design. The distinction matters because it changes how we plan. 
+
+When the hybrid state is transitional, we build cross-environment tooling knowing it will eventually be retired. When it is long-term, those same tools become permanent infrastructure that needs sustained investment. Regulatory constraints, specialized hardware that has no cloud equivalent, and the economics of predictable workloads are all legitimate reasons an organization might remain in a hybrid configuration indefinitely. Treating a long-term hybrid architecture like a migration in progress leads to under-investment in the permanent tooling it actually needs: federated identity, cross-environment monitoring, and cost governance built to last rather than to be dismantled.
+
+Multi-cloud environments introduce a parallel layer of complexity. Rather than bridging on-premises and cloud, we are coordinating across providers who each have their own IAM model, networking primitives, deployment tooling, and monitoring systems. Organizations end up here for reasons ranging from deliberate strategies, like matching workloads to each provider's strengths or avoiding dependence on a single vendor, to organizational history, such as an acquisition that brought a different cloud relationship along. In either case, the operational challenges compound. 
+
+Identity systems that don't automatically trust each other require federation to prevent fragmented access and stale credentials. Monitoring tools that speak different languages across providers create blind spots exactly where failures are most likely to cross boundaries. Cost visibility, already a discipline problem in a single environment, becomes harder when spend is spread across providers with different billing models. The core principle across all these topics is: complexity at the boundaries between environments requires deliberate, sustained, investment and attention; it doesn't manage itself.
 
 ## Check for Understanding
-What is a primary challenge of hybrid systems?
-What increases as environments become more distributed?
 
-Written Reflection Discussion question in class:
-Describe what new operational risks could appear when a company operates in both on-prem and cloud environments?
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: bK7mR2xQ9nT4pL6wJ3sY8dA1vC5eF0
+* title: Hybrid and Multi-Cloud Environments
+##### !question
+
+A retail company runs its inventory management system on-premises due to strict internal data governance policies, while its customer-facing storefront runs in the cloud. The team has been told this setup is permanent, not a stepping stone toward full cloud adoption.
+
+What does this distinction most directly affect?
+
+##### !end-question
+##### !options
+
+* Whether the company needs to pay for cloud services
+* Whether the cross-environment tooling should be treated as long-term or temporary
+* Whether the on-premises system needs to be rewritten before it can talk to the cloud
+* Whether the company is eligible for enterprise cloud discount programs
+
+##### !end-options
+##### !answer
+
+* Whether the cross-environment tooling should be treated as long-term or temporary
+
+##### !end-answer
+##### !explanation
+
+When a hybrid environment is intentional and long-term rather than a migration in progress, the tooling that bridges the two environments (identity federation, cross-environment monitoring, cost governance) must be built and maintained as permanent infrastructure. Treating it as temporary leads to under-investment in systems the organization will rely on indefinitely.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: Fh2vM7tL0kB4wR9xC6pN3sJ8eQ1dU5
+* title: Hybrid and Multi-Cloud Environments
+##### !question
+
+An e-commerce platform hosts its web application in the cloud, which connects to an on-premises payment processing system. When the network link between the two environments goes down briefly, the web app's retry logic floods the payment system with duplicate requests. When the connection recovers, the payment system processes them all, resulting in duplicate charges.
+
+What does this scenario illustrate about failures in hybrid architectures?
+
+##### !end-question
+##### !options
+
+* Network outages in hybrid environments are always caused by misconfigured VPN tunnels
+* Failures at the boundary between environments can cascade and impact both sides 
+* The payment system should have been migrated to the cloud to avoid this issue
+* Retry logic should never be used in cloud-connected applications
+
+##### !end-options
+##### !answer
+
+* Failures at the boundary between environments can cascade and impact both sides 
+
+##### !end-answer
+##### !explanation
+
+In hybrid architectures, what begins as a localized network blip can cascade into larger problems, in this case, a data consistency issue with real business consequences. Services communicating across environment boundaries need explicit failure handling: defined timeouts, circuit breakers, and fallback behaviors. 
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: Dj6aW1yH3nF8tP5kR0mE2vC9bX4qG7
+* title: Hybrid and Multi-Cloud Environments
+##### !question
+
+A growing financial services firm recently acquired a smaller company that used a different cloud provider. Post-acquisition, engineers from both organizations need access to shared services. Without any integration between the two identity systems, what is the most likely operational result?
+
+##### !end-question
+##### !options
+
+* Engineers automatically gain access to resources in both environments through single sign-on
+* Engineers end up with separate accounts in each system, making consistent access auditing and deprovisioning difficult
+* The acquired company's cloud environment must be shut down immediately
+* The firm loses compliance status until both environments are merged into one
+
+##### !end-options
+##### !answer
+
+* Engineers end up with separate accounts in each system, making consistent access auditing and deprovisioning difficult
+
+##### !end-answer
+##### !explanation
+
+Without identity federation connecting the two systems, engineers require separate accounts and separate credentials for each environment. This compounds access management complexity: when someone leaves the organization, both accounts must be deprovisioned. If one is missed, a stale credential remains active.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
