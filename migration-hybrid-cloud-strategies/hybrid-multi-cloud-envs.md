@@ -77,14 +77,33 @@ The advantages of a multi-cloud strategy come with corresponding complexity and 
 
 - **Reduced negotiating leverage.** Concentrating spend with a single provider often unlocks enterprise discount agreements and committed use pricing. Splitting spend across multiple providers may reduce access to those arrangements.
 
-
-
-
-
-
-
 ## Operational & Governance Implications
-Identity and access challenges
+
+The combination of hybrid environments and multi-cloud adoption creates governance challenges that don't exist in simpler architectures. The following challenges apply in both contexts and tend to compound when they appear together.
+
+### Identity and access challenges
+
+In a single cloud environment, access management is handled by one IAM system. When we add an on-premises environment or a second cloud provider, we add identity systems that don't automatically trust each other.
+
+Consider a scenario: an engineer needs to deploy code to a service that runs in the cloud, but that service depends on a database that runs on-premises. To do their job, they need credentials that work in both places. If the organization has not set up identity federation between its on-premises directory and its cloud IAM, that engineer might end up with two separate accounts, two separate login flows, and two separate sets of permissions that don't mirror each other. When they leave the organization, both accounts need to be deprovisioned. If only one is, a stale credential remains active in the other environment.
+
+This is how access management complexity compounds. Multiply that by hundreds of engineers and dozens of services, and maintaining a consistent and auditable access model becomes a significant operational challenge.
+
+**Identity federation**—connecting separate identity systems so that a principal authenticated in one is trusted by another—is the primary mechanism organizations use to manage this. A federated setup benefits both team members and the organization: 
+- Accessing resources is unified: Engineers can log in once with their corporate credentials and access resources in both environments without maintaining separate accounts. 
+- Deprovisioning is centralized: removing the account in one place removes access everywhere.
+- Auditing is unified: a single access log spans both environments.
+
+When federation is absent or partially implemented, the gap becomes a security liability and an operational burden.
+
+In multi-cloud environments, this extends further. Each provider may have a different IAM model with different permission granularity and different policy syntax. Organizations operating across multiple providers typically need either a centralized identity provider that all platforms federate with, or they accept the operational cost of managing separate access models in each provider and reconciling them manually.
+
+The principle of least privilege is harder to maintain when access spans multiple systems. Auditing who has access to what is harder when logs are in separate places that don't aggregate automatically.
+
+
+
+
+
 Observability complexity
 Cost visibility
 Increased failure surface area
