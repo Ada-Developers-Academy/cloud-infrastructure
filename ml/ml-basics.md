@@ -86,7 +86,7 @@ When our goal is to predict an outcome based on historical examples, we typicall
 
 - **Regression:** This involves forecasting continuous numerical values. We use regression when the answer is a number, such as predicting the future sale price of a home based on its location and square footage, or forecasting the specific volume of product demand for the upcoming quarter.
 
-_Alt. Two scatterplots side-by-side: one showing points separated by a diagonal line into two distinct categories labeled Classification, and another showing a continuous trend line drawn through a series of points labeled Regression._
+![Two scatter plots side-by-side: one labeled Classification that shows groups of points separated by a diagonal line into two distinct categories with an icon of a dog on one group and an icon of a cat on the other which depicts "Predicting discrete labels or categories". The other labeled Regression that shows a continuous trend line drawn through a series of points representing a function fit to the data points with an icon representing house prices illustrating "Forecasting continuous numerical values".](./assets/ml-classification-regression.png)  
 *Fig. Visualizing the difference between classification (predicting categories) and regression (predicting continuous numbers).*
 
 ### Finding Patterns: Clustering, Anomaly Detection
