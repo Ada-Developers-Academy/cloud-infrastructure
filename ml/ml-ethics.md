@@ -30,10 +30,8 @@ We encourage you to review the full UNESCO Recommendation, but here are some key
 
 - **Sustainability:** We must assess the environmental impact of compute-heavy training processes, aligning our technological goals with broader, evolving sustainable development objectives.
 
-```
-_Alt. Three interconnected pillars supporting a glowing AI brain. The pillars are labeled Fairness, Transparency, and Sustainability._
+![Three interconnected pillars supporting a glowing AI brain. The pillars are labeled Fairness, Transparency, and Sustainability.](./assets/ml-ethics.png)
 *Fig. The core ethical pillars required for responsible AI deployment.*
-```
 
 ## Integrating Human-in-the-Loop (HITL) for Ethical Oversight
 
@@ -61,10 +59,8 @@ Modern data pipelines use advanced techniques to balance training sets responsib
 
 For example, if we have a dataset of 1000 records where 900 belong to the majority class and only 100 belong to the minority class, we can use SMOTE to generate synthetic data points for the minority class until we have a more balanced dataset of 900 majority and 900 minority records. This allows the model to learn from both classes effectively without discarding valuable data from the majority class, which is a common issue with undersampling techniques.
 
-```
-_Alt. A diagram showing a small cluster of blue dots (minority class) and a large cluster of orange dots (majority class). An arrow points to a new graph where SMOTE has generated synthetic blue dots to equal the number of orange dots._
-*Fig. SMOTE synthesizes new data points to balance underrepresented classes safely without discarding valuable data.*
-```
+![A diagram showing a small cluster of blue dots (minority class) and a large cluster of orange dots (majority class). An arrow points to a new graph where SMOTE has generated synthetic light blue dots to bring the total number of blue dots (original and light) is about the same number as the orange dots.](./assets/ml-smote.png)  
+*Fig. SMOTE synthesizes new data points to balance underrepresented classes safely without discarding valuable data. The properties of new blue dots are interpolated from the original records, adding weight to the class without skewing the statistics.*
 
 ## Navigating Limitations, Uncertainty, and Automation Risks
 
