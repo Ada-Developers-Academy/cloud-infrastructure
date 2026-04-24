@@ -16,7 +16,7 @@
 | **Rule-based Systems** | AI systems that operate based on explicitly programmed rules rather than learning from data. | Deterministic systems | Our legacy system is a rule-based system that requires manual updates to its decision logic whenever business rules change. |
 | **Expert Systems** | A type of rule-based system that can perform simple inference based on a predefined set of rules and knowledge, synthesizing conclusions or determining requirements. | Knowledge-based systems, inference engines | The medical diagnosis tool is an expert system that uses a set of predefined rules to suggest possible conditions based on symptoms. |
 | **Classification** | Predicting discrete labels or categories. | Categorization, labeling | Our fraud detection system relies on classification to flag transactions as either legitimate or suspicious. |
-| **Regression** | Forecasting continuous numerical values based on past inputs and their resulting outputs. | Forecasting, numerical prediction | We use regression models to predict future housing prices based on square footage and location. |
+| **Regression** | Forecasting continuous numerical values based on past inputs and their resulting outputs. | Forecasting, numerical prediction | The coffee shop uses a regression model to forecast their daily sales based on past data and current weather conditions, which helps them manage inventory and staffing. |
 | **Clustering** | Finding inherent structures and grouping similar unlabeled examples. | Grouping, segmentation | The marketing team used clustering to identify unique segments within our user base. |
 
 ## Artificial Intelligence and Machine Learning
@@ -58,7 +58,7 @@ While every machine learning system must undergo a training process to learn fro
 
 In **supervised learning**, the model is trained on a labeled dataset, where each data point is associated with a known output. The model learns to map inputs to outputs based on this training data. For example, a supervised learning model could be trained on a dataset of emails labeled as "spam" or "not spam" to learn how to classify new emails. This is the learning model used in the fraud detection example mentioned earlier, where the model learns to classify transactions as "fraudulent" or "legitimate" based on historical data with known labels.
 
-In addition to the classification tasks mentioned above, supervised learning can also be used for regression tasks, where the output is a continuous value rather than a discrete label. For example, a supervised learning model could be trained on historical housing data to predict future sale prices based on features like square footage and location.
+In addition to the classification tasks mentioned above, supervised learning can also be used for regression tasks, where the output is a continuous value rather than a discrete label. For example, a supervised learning model could be trained on historical delivery times for a logistics company to predict the delivery time for new shipments based on features such as distance, package size, and traffic conditions.
 
 ### Unsupervised Learning
 
@@ -109,7 +109,7 @@ Some machine learning applications blend both prediction and pattern recognition
 
 Modern organizations generate massive amounts of complex data, but raw data alone does not provide business value. By transitioning from classical programming to **Machine Learning**, we can **train** algorithms to act as automated **inference** engines that recognize complex patterns at incredible scale. Methods like **supervised learning**, **unsupervised learning**, and **reinforcement learning** allow us to extract insights from data in different ways, depending on the problem we are trying to solve. 
 
-Whether we are using machine learning for **classification** to detect fraud, **regression** to predict housing prices, or **clustering** to segment our users, machine learning provides the mathematical foundation to predict future outcomes. Ultimately, our aim is to integrate machine learning approaches into applications to both improve the user experience and drive business growth.
+Whether we are using machine learning for **classification** to detect fraud, **regression** to predict sales, or **clustering** to segment our users, machine learning provides the mathematical foundation to predict future outcomes. Ultimately, our aim is to integrate machine learning approaches into applications to both improve the user experience and drive business growth.
 
 ## Check for Understanding
 
