@@ -16,7 +16,7 @@
 | **Rule-based Systems** | AI systems that operate based on explicitly programmed rules rather than learning from data. | Deterministic systems | Our legacy system is a rule-based system that requires manual updates to its decision logic whenever business rules change. |
 | **Expert Systems** | A type of rule-based system that can perform simple inference based on a predefined set of rules and knowledge, synthesizing conclusions or determining requirements. | Knowledge-based systems, inference engines | The medical diagnosis tool is an expert system that uses a set of predefined rules to suggest possible conditions based on symptoms. |
 | **Classification** | Predicting discrete labels or categories. | Categorization, labeling | Our fraud detection system relies on classification to flag transactions as either legitimate or suspicious. |
-| **Regression** | Forecasting continuous numerical values. | Forecasting, numerical prediction | We use regression models to predict future housing prices based on square footage and location. |
+| **Regression** | Forecasting continuous numerical values based on past inputs and their resulting outputs. | Forecasting, numerical prediction | We use regression models to predict future housing prices based on square footage and location. |
 | **Clustering** | Finding inherent structures and grouping similar unlabeled examples. | Grouping, segmentation | The marketing team used clustering to identify unique segments within our user base. |
 
 ## Artificial Intelligence and Machine Learning
@@ -62,7 +62,8 @@ In addition to the classification tasks mentioned above, supervised learning can
 
 ### Unsupervised Learning
 
-In **unsupervised learning**, the model is trained on an unlabeled dataset, where the goal is to find hidden patterns or structures in the data. For example, an unsupervised learning model could be used to cluster customers into different segments based on their purchasing behavior without any predefined labels. In this case, the model cannot ascribe specific meanings to the clusters it creates, but it can still identify groups of similar customers based on the patterns in their behavior. Human experts can then analyze these clusters to determine what they represent. In some cases, this clustering itself is a useful output, while in other cases, we might use the clusters as features in a supervised learning model to make predictions about new data points.
+In **unsupervised learning**, the model is trained on an unlabeled dataset, where the goal is to find hidden patterns or structures in the data. For example, an unsupervised learning model could be used to cluster customers into different segments based on their purchasing behavior without any predefined labels. In this case, the model cannot ascribe specific meanings to the clusters it creates, but it can still identify groups of similar customers based on the patterns in their behavior. Human experts can then analyze these clusters to determine what they represent. 
+- In some cases, this clustering itself is a useful output, while in other cases, the clustering data might be a transitional step. Once we have clusterings, those can be used as features in a supervised learning model to make predictions about new data points.
 
 In addition to clustering, unsupervised learning can also be used for anomaly detection, where the model identifies data points that deviate significantly from the normal patterns in the data. For example, an unsupervised learning model could be used to detect unusual sensor readings in industrial equipment that might indicate a potential failure.
 
@@ -76,7 +77,7 @@ Not all machine learning models fit neatly into one of these categories, and the
 
 ## Core Categories of Machine Learning Solutions
 
-At its core, machine learning is about finding patterns in data and making predictions. Some applications of machine learning are focused on predicting specific outcomes, while others are more focused on discovering inherent structures in the data. Others can even blending these two facets of machine learning.
+At its core, machine learning is about finding patterns in data and making predictions. Some applications of machine learning are focused on predicting specific outcomes, while others are more focused on discovering inherent structures in the data, and further products blend these two facets of machine learning.
 
 ### Predicting Outcomes: Classification, Regression
 
@@ -95,7 +96,7 @@ When we need to find inherent patterns or prioritize information, we look toward
 
 - **Clustering:** This involves finding inherent structures and grouping similar unlabeled examples. A common real-world application is customer marketing segmentation, where the system groups users with similar behaviors without being explicitly told what the groups represent beforehand.
 
-- **Anomaly Detection:** This involves finding extreme outliers or novel behaviors that deviate significantly from normal patterns. This is crucial for identifying highly unusual sensor data in industrial equipment or detecting novel forms of fraudulent behavior that haven't been seen before. One way to think about anomaly detection is that it is a form of clustering where we are specifically looking for data points that do not fit well into any cluster, indicating that they are anomalous.
+- **Anomaly Detection:** This involves finding extreme outliers or novel behaviors that deviate significantly from normal patterns. This is crucial for tasks like identifying highly unusual or suspicious website traffic or detecting novel forms of fraudulent behavior that haven't been seen before. One way to think about anomaly detection is that it is a form of clustering where we are specifically looking for data points that do not fit well into any cluster, indicating that they are anomalous.
 
 ### Blending Prediction and Pattern Recognition
 
@@ -105,7 +106,9 @@ Some machine learning applications blend both prediction and pattern recognition
 
 ## Summary
 
-Modern organizations generate massive amounts of complex data, but raw data alone does not provide business value. By transitioning from classical programming to **Machine Learning**, we can **train** algorithms to act as automated **inference** engines that recognize complex patterns at incredible scale. Methods like **supervised learning**, **unsupervised learning**, and **reinforcement learning** allow us to extract insights from data in different ways, depending on the problem we are trying to solve. Whether we are using machine learning for **classification** to detect fraud, **regression** to predict housing prices, or **clustering** to segment our users, machine learning provides the mathematical foundation to predict future outcomes. Ultimately, our aim is to integrate machine learning approaches into applications to both improve the user experience and drive business growth.
+Modern organizations generate massive amounts of complex data, but raw data alone does not provide business value. By transitioning from classical programming to **Machine Learning**, we can **train** algorithms to act as automated **inference** engines that recognize complex patterns at incredible scale. Methods like **supervised learning**, **unsupervised learning**, and **reinforcement learning** allow us to extract insights from data in different ways, depending on the problem we are trying to solve. 
+
+Whether we are using machine learning for **classification** to detect fraud, **regression** to predict housing prices, or **clustering** to segment our users, machine learning provides the mathematical foundation to predict future outcomes. Ultimately, our aim is to integrate machine learning approaches into applications to both improve the user experience and drive business growth.
 
 ## Check for Understanding
 
@@ -185,7 +188,7 @@ Classification models are used to predict discrete labels or categories. In this
 
 <br>
 
-Predicting the future price of a stock is a regression problem because it involves forecasting a continuous numerical value, while grouping users into undefined marketing segments is a clustering problem because it involves finding inherent structures in the data without predefined labels. Clustering is a form of unsupervised learning, which is different from classification, which is a form of supervised learning.
+Predicting the future price of a stock is a regression problem because it involves forecasting a continuous numerical value, while grouping users into undefined marketing segments is a clustering problem because it involves finding inherent structures in the data without predefined labels.
 
 ##### !end-explanation
 
