@@ -28,7 +28,7 @@ Everything we've worked with in the cloud has a physical equivalent here: the in
 When we've looked at IaaS, we've already seen the contrast: a cloud provider takes responsibility for the physical layers and hands us a virtual machine. In an on-premises environment, our organization is the cloud provider. Teams buy the hardware, rack it, configure it, patch it, and eventually replace it when it ages out.
 
 ![A stacked diagram showing the differences in operational responsibility between on-premises and Cloud infrastructures](assets/onprem_vs_cloud_responsibility_stack.svg)
-*Fig. The differences in operational responsibility between on-premises and Cloud infrastructures*
+*Fig. The differences in operational responsibility between on-premises and Cloud infrastructures ([Full Size Image](assets/onprem_vs_cloud_responsibility_stack.svg))*
 
 The diagram above shows how operational responsibility is distributed across the two models. Notice that the line where our team's responsibility begins is lower in the cloud than on-premises. 
 - When we've updated an OS, configured a security group, or designed a database schema, we have been operating in the layers our team still owns in both models. 
