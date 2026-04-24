@@ -18,12 +18,12 @@
 
 ## Hybrid Environments
 
-In a hybrid environment, on-premises systems and cloud systems coexist and typically communicate across the boundary we covered in the hybrid networking lesson: VPN tunnels, dedicated connections, or managed transit gateways. 
+In a hybrid environment, on-premises systems and cloud systems coexist and typically communicate across the boundary we covered in the [hybrid networking lesson](../networking/hybrid-networking.md): VPN tunnels, dedicated connections, or managed transit gateways. 
 - From a user perspective, the application may feel like a single system. 
 - Behind the scenes, a single user action might touch services in multiple locations. 
   - A request might originate in the cloud, hit a service that runs on-premises, query a database that is also on-premises, and return a response assembled in the cloud!
 
-When we covered cloud migration strategies in the previous lesson, we looked at how most migrations are incremental. Organizations rarely move everything at once; they move workload by workload, team by team. The period between "everything is on-premises" and "everything is in the cloud" is a hybrid environment, and it's a state most organizations spend significant time in. However, some organizations end up in a hybrid environment permanently, and by choice. 
+When we covered [cloud migration strategies](./cloud-migration-strategies.md) in the previous lesson, we looked at how most migrations are incremental. Organizations rarely move everything at once; they move workload by workload, team by team. The period between "everything is on-premises" and "everything is in the cloud" is a hybrid environment, and it's a state most organizations spend significant time in. However, some organizations end up in a hybrid environment permanently, and by choice. 
 
 ### Transitional vs. Long-Term Hybrid Environments
 
@@ -33,7 +33,7 @@ The most important question to ask about any hybrid environment is: is this temp
 
 In transitional environments, governance decisions can be made with an expiration date in mind. We invest in cross-environment monitoring and access management knowing those investments will be simplified once the remaining workloads migrate.
 
-**Long-term hybrid environments** are intentional. The on-premises component is not a workload waiting to be migrated, it's a permanent part of the architecture. Some of the most common reasons organizations maintain long-term hybrid environments are:
+**Long-term hybrid environments** are intentional. The on-premises component is not a workload waiting to be migrated, _it's a permanent part of the architecture_. Some of the most common reasons organizations maintain long-term hybrid environments are:
 - **Regulatory requirements.** Certain industries are governed by rules that specify where data must be stored and who must have physical access to it. Healthcare organizations, government agencies, and some financial services firms may be required to keep specific data on hardware they directly control—regardless of how capable cloud storage has become.
 - **Specialized hardware.** Manufacturing control systems, scientific computing clusters, and certain types of real-time processing run on hardware that has no direct cloud equivalent. Moving those workloads is not a configuration exercise—it may be technically infeasible.
 - **Economics.** For workloads with consistent, predictable demand and long expected lifespans, owning the hardware may genuinely be cheaper than paying cloud usage costs indefinitely.
@@ -49,7 +49,7 @@ The distinction between temporary and long-term matters operationally. In a long
 
 A **multi-cloud environment** is one in which an organization runs workloads across two or more separate cloud providers simultaneously within the same organization. Each provider hosts a different set of services or workloads, and the organization manages the relationships with multiple vendors.
 
-Multi-cloud is distinct from hybrid environments, though both involve complexity that a single-cloud or fully on-premises setup does not. Where hybrid means mixing on-premises and cloud infrastructure, multi-cloud means mixing providers within the cloud. Many large organizations are doing both at the same time!
+Multi-cloud is distinct from hybrid environments, though both involve complexity that a single-cloud or fully on-premises setup does not. Where hybrid means mixing on-premises and cloud infrastructure, multi-cloud means _mixing providers within the cloud_. Many large organizations are doing both at the same time!
 
 ### Why Organizations Adopt Multi-Cloud
 
@@ -61,7 +61,7 @@ Multi-cloud adoption usually traces back to a combination of strategic intent an
 
 - **Regulatory distribution.** Some organizations operate in regions or industries where no single provider can meet all regulatory requirements. A financial services firm might need to satisfy data residency requirements across multiple countries, and different providers may be the approved choice in different jurisdictions. 
 
-- **Resilience.** A provider-level outage, while rare, affects every workload running on that provider. Organizations that can tolerate no single failure point across their entire infrastructure sometimes distribute critical workloads across providers so that a failure in one doesn't bring down everything.
+- **Resilience.** A provider-level outage, while rare, affects every workload running on that provider. Organizations that cannot tolerate a single failure point across their entire infrastructure sometimes distribute critical workloads across providers so that a provider failure doesn't bring everything down.
 
 - **Acquisition and merger history.** Multi-cloud environments can be an artifact of organizational history rather than a planned architecture. For example, a team might choose a particular cloud vendor, then their organization acquires a company who was using a different cloud vendor. The new org brings its systems and cloud infrastructure along, and the overall system now has multiple cloud relationships to manage.
 
@@ -89,7 +89,7 @@ Consider a scenario: an engineer needs to deploy code to a service that runs in 
 
 This is how access management complexity compounds. Multiply that by hundreds of engineers and dozens of services, and maintaining a consistent and auditable access model becomes a significant operational challenge.
 
-**Identity federation**—connecting separate identity systems so that a principal authenticated in one is trusted by another—is the primary mechanism organizations use to manage this. A federated setup benefits both team members and the organization: 
+**Identity federation**, as we previously discussed in [Introduction to Identity and Access Management](../identity-access-management/intro-identity-access-management.md), connects separate identity systems so that a principal authenticated in one is trusted by another—is the primary mechanism organizations use to manage this. A federated setup benefits both team members and the organization: 
 - Accessing resources is unified: Engineers can log in once with their corporate credentials and access resources in both environments without maintaining separate accounts. 
 - Deprovisioning is centralized: removing the account in one place removes access everywhere.
 - Auditing is unified: a single access log spans both environments.
@@ -102,7 +102,7 @@ The principle of least privilege is harder to maintain when access spans multipl
 
 ### Observability Complexity
 
-In the observability lesson, we covered how distributed systems require teams to correlate signals across multiple services to diagnose a problem. Hybrid and multi-cloud environments extend that problem: signals are now scattered across environments that may have entirely separate monitoring tools, log storage systems, and tracing infrastructure.
+In the [observability lesson](../observability-reliability-ops/intro-to-observability.md), we covered how distributed systems require teams to correlate signals across multiple services to diagnose a problem. Hybrid and multi-cloud environments extend that problem: signals are now scattered across environments that may have entirely separate monitoring tools, log storage systems, and tracing infrastructure.
 
 Imagine this: a user submits an order through a cloud-hosted web application. The order validation service, also in the cloud, looks fine. But the order reaches the on-premises fulfillment system and fails silently. No alert fires. The cloud monitoring dashboard shows a healthy API. The on-premises monitoring system, which uses entirely different tooling, shows an error that nobody on the cloud operations team can see without logging into a separate console.
 
@@ -141,11 +141,11 @@ These require teams to reason about the system as a whole, not just the slice of
 
 ## Summary
 
-Hybrid and multi-cloud architectures are less about choosing a single approach and more about understanding what is driving the design. A hybrid environment may be a temporary state during a migration, or it may be the permanent, intended design. The distinction matters because it changes how we plan. 
+Hybrid and multi-cloud architectures are less about choosing a single approach and more about understanding what is driving the design. A **hybrid environment** may be a temporary state during a migration, or it may be the permanent, intended design. The distinction matters because it changes how we plan. 
 
 When the hybrid state is transitional, we build cross-environment tooling knowing it will eventually be retired. When it is long-term, those same tools become permanent infrastructure that needs sustained investment. Regulatory constraints, specialized hardware that has no cloud equivalent, and the economics of predictable workloads are all legitimate reasons an organization might remain in a hybrid configuration indefinitely. Treating a long-term hybrid architecture like a migration in progress leads to under-investment in the permanent tooling it actually needs: federated identity, cross-environment monitoring, and cost governance built to last rather than to be dismantled.
 
-Multi-cloud environments introduce a parallel layer of complexity. Rather than bridging on-premises and cloud, we are coordinating across providers who each have their own IAM model, networking primitives, deployment tooling, and monitoring systems. Organizations end up here for reasons ranging from deliberate strategies, like matching workloads to each provider's strengths or avoiding dependence on a single vendor, to organizational history, such as an acquisition that brought a different cloud relationship along. In either case, the operational challenges compound. 
+**Multi-cloud environments** introduce a parallel layer of complexity. Rather than bridging on-premises and cloud, we are coordinating across providers who each have their own IAM model, networking primitives, deployment tooling, and monitoring systems. Organizations end up here for reasons ranging from deliberate strategies, like matching workloads to each provider's strengths or avoiding dependence on a single vendor, to organizational history, such as an acquisition that brought a different cloud relationship along. In either case, the operational challenges compound. 
 
 Identity systems that don't automatically trust each other require federation to prevent fragmented access and stale credentials. Monitoring tools that speak different languages across providers create blind spots exactly where failures are most likely to cross boundaries. Cost visibility, already a discipline problem in a single environment, becomes harder when spend is spread across providers with different billing models. The core principle across all these topics is: complexity at the boundaries between environments requires deliberate, sustained, investment and attention; it doesn't manage itself.
 

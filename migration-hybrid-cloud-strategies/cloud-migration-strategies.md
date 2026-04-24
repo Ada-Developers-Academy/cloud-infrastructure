@@ -23,7 +23,17 @@
 When an organization decides to move to the cloud, a common instinct is to treat migration as a single event: pick up everything on-premises and set it down in the cloud. That rarely works in practice. Organizations have dozens or hundreds of applications, each with different technical complexity, business value, and readiness for the cloud. 
 - Some systems are worth investing in and modernizing, while others might be barely used and should be turned off. Other services may need to move quickly for business reasons, with improvements deferred to later.
 
-The **7 Rs** are a framework for thinking through these complexities. Rather than treating every application the same, we assess each workload individually and assign it a migration strategy. The 7 Rs give us a shared vocabulary for those decisions and a way to communicate them clearly across technical and business teams.
+The **7 Rs** are a framework for thinking through these complexities. Rather than treating every application the same, we assess each workload individually and assign it a migration strategy. The 7 Rs give us a shared vocabulary for those decisions and a way to communicate them clearly across technical and business teams. 
+
+The 7 Rs are: 
+- Retire
+- Retain
+- Rehost
+- Replatform
+- Refactor / Re-Architect
+- Repurchase
+- Relocate
+
 
 ### Lift-and-Shift vs. Re-Architecture
 
@@ -54,7 +64,7 @@ Neither approach is universally correct, the right choice depends on the workloa
 | **Long-term cloud costs** | Higher (not cloud-optimized) | Lower (optimized for cloud) |
 | **Risk** | Lower | Higher |
 | **Cloud-native benefits** | Low to None | Full |
-| **Best when** | Speed or compliance pressure; applications that will be replaced soon | High-value, long-lived systems where cloud benefits justify the investment |
+| **Best for** | Speed or compliance pressure; applications that will be replaced soon | High-value, long-lived systems where cloud benefits justify the investment |
 
 ### 1. Retire
 
@@ -124,7 +134,7 @@ In our example comanpy FieldOps Inc., their customer portal uses a relational da
 
 ### 5. Refactor / Re-Architect
 
-We saw earlier in the lesson that refactoring in this context means redesigning the application to take full advantage of cloud-native capabilities. Where rehosting and replatforming treat the cloud as a better place to run the same application, refactoring treats the cloud as an opportunity to build a better application.
+We saw earlier in the lesson that refactoring in this context means redesigning the application to take full advantage of cloud-native capabilities. Where rehosting and replatforming _treat the cloud as a better place to run the same application_, refactoring _treats the cloud as an opportunity to build a better application_.
 
 This might mean:
 - decomposing a monolith into microservices that can be scaled independently
@@ -184,7 +194,8 @@ The goal is to make a deliberate decision for each workload rather than applying
 
 ## Cloud Governance
 
-Moving workloads to the cloud introduces something that on-premises environments rarely surfaced as an explicit concern: the ease of creating new infrastructure. In an on-premises environment, provisioning a new server requires physical hardware, a procurement process, and coordination with an operations team. The friction is natural. In the cloud, a developer with the right credentials can spin up a virtual machine, create a database, or open a network port in minutes, without anyone else knowing.
+As we previously discussed in the [Core Principles of Governance & Cost
+](../governance-and-cost/principles-of-governance-and-cost.md), moving workloads to the cloud introduces something that on-premises environments rarely surfaced as an explicit concern: the ease of creating new infrastructure. In an on-premises environment, provisioning a new server requires physical hardware, a procurement process, and coordination with an operations team. The friction is natural. In the cloud, a developer with the right credentials can spin up a virtual machine, create a database, or open a network port in minutes, without anyone else knowing.
 
 That speed is one of the cloud's greatest benefits. It's also one of its most significant risks if it isn't managed deliberately. **Cloud governance** is the set of policies, controls, and processes that define how cloud resources are allowed to be created, configured, and operated within an organization.
 
@@ -242,18 +253,18 @@ This is why hybrid migrations require governance to be planned proactively rathe
 
 ## Summary
 
-Every application in a migration portfolio has a different risk profile, business value, and readiness for the cloud, which is why the 7 Rs exist as a decision framework rather than a single prescribed path. 
+Every application in a migration portfolio has a different risk profile, business value, and readiness for the cloud, which is why the **7 Rs** exist as a decision framework rather than a single prescribed path. 
 - some workloads are candidates to be switched off entirely
 - others need to move quickly with no changes
 - critical or long lived system are often worth the time and investment to be re-architected to enable cloud-native benefits
 
 The decision for each workload sits on a spectrum between speed and optimization: moving fast keeps costs low and risk contained, while investing in cloud-native redesign pays off in lower long-term operating costs and greater scalability. A well-constructed migration plan assigns each workload a deliberate strategy based on its specific characteristics, rather than treating the entire portfolio the same way.
 
-Once workloads land in the cloud, governance becomes the mechanism that keeps the environment coherent as it grows. The same speed that makes the cloud attractive also makes it easy for environments to sprawl in ways that are expensive to untangle later. 
+Once workloads land in the cloud, **governance** becomes the mechanism that keeps the environment coherent as it grows. The same speed that makes the cloud attractive also makes it easy for environments to sprawl in ways that are expensive to untangle later. 
 - Automated policy controls prevent misconfigured resources from being created in the first place, rather than relying on engineers to catch problems manually. 
 - Budget alerts and tagging requirements ensure spending stays attributable and predictable. 
 
-The shared responsibility model means our teams retain ownership of how cloud resources are configured and secured, even as the provider takes on the physical infrastructure layer. Governance is how we make that ownership concrete across every team working in the environment.
+The **shared responsibility model** means our teams retain ownership of how cloud resources are configured and secured, even as the provider takes on the physical infrastructure layer. **Governance** is how we make that ownership concrete across every team working in the environment.
 
 ## Check for Understanding
 

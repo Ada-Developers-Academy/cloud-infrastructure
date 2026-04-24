@@ -48,7 +48,7 @@ Cloud resources are an ongoing operational expense, billed by usage. This shift 
 
 ## What Is Cloud Migration?
 
-Cloud migration is the process of moving an organization's existing applications, data, and infrastructure from an on-premises environment into a cloud environment. It can also refer to moving between cloud providers, though the on-premises-to-cloud transition is the focus here.
+**Cloud migration** is the process of moving an organization's existing applications, data, and infrastructure from an on-premises environment into a cloud environment. It can also refer to moving between cloud providers, though the on-premises-to-cloud transition is the focus here.
 
 The word "moving" requires careful interpretation in this context. 
 - Some applications can be picked up and placed in a cloud environment with minimal changes. 
@@ -87,7 +87,7 @@ Cloud providers offer managed services that abstract away infrastructure our tea
 Hardware has a finite supported lifespan. When a vendor stops releasing security patches for a server OS or a storage appliance, an organization faces a choice:
 - replace the hardware (another large capital investment) 
 - run outdated and potentially vulnerable systems
-- migrate to the cloud and exit the hardware refresh cycle entirely. 
+- migrate to the cloud and exit the hardware refresh cycle entirely
 
 End-of-life events are a fairly common occurrence that can influence teams taking on or accelerating migration timelines.
 
