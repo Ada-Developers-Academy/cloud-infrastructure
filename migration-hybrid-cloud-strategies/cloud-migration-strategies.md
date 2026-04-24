@@ -34,7 +34,6 @@ The 7 Rs are:
 - Repurchase
 - Relocate
 
-
 ### Lift-and-Shift vs. Re-Architecture
 
 Before walking through each R, it helps to understand the two ends of the spectrum that most migration decisions fall on: lift-and-shift and re-architecture.
@@ -190,7 +189,18 @@ Migration strategies aren't mutually exclusive. A real migration plan will use s
 - Is this a high-value, long-lived system where cloud-native investment pays off? If yes, **Refactor**.
 - Does a better commercial product exist for this function? If yes, **Repurchase**.
 
-The goal is to make a deliberate decision for each workload rather than applying the same strategy across the board. Lift-and-shifting everything into the cloud and we pay cloud prices for on-premises thinking. Refactor everything and we run out of time and budget before we move anything. A thoughtful mix gets workloads moved efficiently while investing engineering effort where it delivers the most long-term value.
+For FieldOps Inc. a summary of their migration plan for the covered services looks like:
+| R | Scenario | Outcome | 
+| --------- | --------- | -------- |
+| **Retire** | A self-hosted legacy employee scheduling tool has not been used for 11 months | The workload is retired, no migration is necessary. |
+| **Retain** | A real-time telemetry processing service runs on physical infrastructure that the cloud can't replicate yet | The workload is retained and a migration readiness review is scheduled for the following year.|
+| **Rehost** | A ten-year-old Java contract management application needs to move before the data center lease expires, but a redesign isn't in the budget. | The application moves to a cloud virtual machine as-is, with optimization logged as future work. |
+| **Replatform** | A customer portal's manually managed on-premises database has caused two unplanned outages in the past year due to high maintenance overhead. | The application moves to a cloud VM and the database is migrated to a managed cloud database service with only minor configuration changes. |
+| **Refactor** | The core dispatch and routing service runs as a monolith that can't scale fast enough to handle ten times the normal volume during peak events. | The service is decomposed into independently deployable microservices, with the most compute-intensive component moved to auto-scaling serverless compute. |
+| **Repurchase** | The sales team's self-hosted CRM runs on aging hardware and its original customizations have all been worked around using other tools. | Customer data is migrated to a commercial hosted CRM and the on-premises server is decommissioned. |
+| **Relocate** | The infrastructure team runs VMs on a hypervisor platform that their cloud provider also supports, making direct image transfer possible. | VM images are exported and imported directly into the cloud environment. |
+
+The goal when creating a migration plan is to make a deliberate decision for each workload rather than applying the same strategy across the board. Lift-and-shifting everything into the cloud and we pay cloud prices for on-premises thinking. Refactor everything and we run out of time and budget before we move anything. A thoughtful mix gets workloads moved efficiently while investing engineering effort where it delivers the most long-term value.
 
 ## Cloud Governance
 
