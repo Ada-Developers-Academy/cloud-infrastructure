@@ -63,7 +63,8 @@ In addition to the classification tasks mentioned above, supervised learning can
 ### Unsupervised Learning
 
 In **unsupervised learning**, the model is trained on an unlabeled dataset, where the goal is to find hidden patterns or structures in the data. For example, an unsupervised learning model could be used to cluster customers into different segments based on their purchasing behavior without any predefined labels. In this case, the model cannot ascribe specific meanings to the clusters it creates, but it can still identify groups of similar customers based on the patterns in their behavior. Human experts can then analyze these clusters to determine what they represent. 
-- In some cases, this clustering itself is a useful output, while in other cases, the clustering data might be a transitional step. Once we have clusterings, those can be used as features in a supervised learning model to make predictions about new data points.
+
+> In some cases, this clustering itself is a useful output, while in other cases, the clustering data might be a transitional step. Once we have clusterings, those can be used as features in a supervised learning model to make predictions about new data points.
 
 In addition to clustering, unsupervised learning can also be used for anomaly detection, where the model identifies data points that deviate significantly from the normal patterns in the data. For example, an unsupervised learning model could be used to detect unusual sensor readings in industrial equipment that might indicate a potential failure.
 
