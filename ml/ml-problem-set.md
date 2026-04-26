@@ -150,7 +150,7 @@ To help staff quickly understand patient histories, our platform uses a Large La
 
 a| By dynamically searching a medical dictionary during every request.
 b| By relying entirely on prompt engineering to define every medical term.
-c| By breaking text down into tokens and analyzing their numerical vector embeddings, which place related concepts close together mathematically.
+c| By breaking text down into tokens and analyzing their numerical vector embeddings.
 d| By using forward diffusion to filter the text.
 
 ##### !end-options

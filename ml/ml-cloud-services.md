@@ -49,7 +49,11 @@ We must also consider cost and infrastructure. Custom models require substantial
 
 When our business requirements dictate that we must build a custom model, configuring the underlying servers and updating the software libraries manually can introduce security vulnerabilities and operational delays. By adopting a managed Platform-as-a-Service (PaaS) solution, we centralize our data processing in a secure environment and ensure our infrastructure scales safely and automatically.
 
-Cloud providers offer fully integrated machine learning platforms that manage the heavy lifting of the machine learning lifecycle. These platforms provide integrated development environments (IDEs) and orchestration tools that allow software engineers and data scientists to build, train, tune, and deploy custom models at a massive scale. More bespoke model approaches that AI engineers and data scientists investigating can be built using hosted Jupyter notebooks, which provide a familiar environment for data science work built around Python and popular machine learning libraries. These platforms also provide tools for data labeling, feature engineering, tuning various model parameters, and model monitoring, all while relieving organizations of the need to manage the underlying cloud infrastructure.
+Cloud providers offer fully integrated machine learning platforms that manage the heavy lifting of the machine learning lifecycle. These platforms provide integrated development environments (IDEs) and orchestration tools that allow software engineers and data scientists to build, train, tune, and deploy custom models at a massive scale.
+
+AI engineers and data scientists also need ways to research and investigate more bespoke models and their behaviors. Platforms can provide hosted Jupyter notebooks—a common interactive Python-based environment for data analysis—tuned for machine learning tasks, providing a familiar environment for data science professionals.
+
+These platforms also provide tools for data labeling, feature engineering, tuning various model parameters, and model monitoring, all while relieving organizations of the need to manage the underlying cloud infrastructure.
 
 ## Tunable Foundation Models
 
@@ -73,10 +77,9 @@ These off-the-shelf AI services are highly scalable, ready-to-use models that ar
 
 ## Summary
 
-Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints. 
-- We can choose to integrate rapid, cost-effective **Machine Learning as a Service (MLaaS)** tools, or we can use dedicated **ML platforms** to manage the infrastructure needed for highly specialized custom models. 
-- To leverage the power of modern generative AI while minimizing the need for custom development, we can utilize **tunable foundation models** that allow us to securely customize pre-trained models with our own data. 
-- Finally, for standardized tasks like object recognition, language translation, chatbot interfaces, and many more, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. 
+Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints.
+
+We can choose to integrate rapid, cost-effective **Machine Learning as a Service (MLaaS)** tools, or we can use dedicated **ML platforms** to manage the infrastructure needed for highly specialized custom models. To leverage the power of modern generative AI while minimizing the need for custom development, we can utilize **tunable foundation models** that allow us to securely customize pre-trained models with our own data. Finally, for standardized tasks like object recognition, language translation, chatbot interfaces, and many more, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. 
 
 There's a service level for every use case, and understanding the tradeoffs between these options is essential for making informed decisions about what services make the most sense for our applications.
 

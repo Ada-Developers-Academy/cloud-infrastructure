@@ -68,10 +68,7 @@ Of these three optimization techniques, prompt engineering is the fastest and lo
 
 At the heart of this technology are **foundation models** and **large language models**, which use self-supervised learning to process internet-scale data into mathematical tokens and vectors. These architectures have expanded well beyond text, utilizing **diffusion processes** for image generation and **multimodal models** to connect visual, audio, and text inputs simultaneously. 
 
-Because training these massive models is highly resource-intensive, we securely and efficiently tailor AI to our specific applications by leveraging optimization techniques like:
-- **prompt engineering**
-- **retrieval-augmented generation (RAG)**
-- **fine-tuning** 
+Because training these massive models is highly resource-intensive, we securely and efficiently tailor AI to our specific applications by leveraging optimization techniques like: **prompt engineering**, **retrieval-augmented generation (RAG)**, and **fine-tuning**.
 
 ## Check for Understanding
 
@@ -189,7 +186,7 @@ c|
 
 ##### !explanation
 
-Multimodal models are designed to process and generate multiple modes of data simultaneously, such as text, images, audio, and video. They learn how different modalities are connected and can influence each other, allowing them to perform complex tasks that involve understanding and generating across different types of data. For example, a multimodal model could analyze an uploaded photograph of a broken machine part alongside a text-based question and then generate both a text description of the repair and a new graphic illustrating the solution.
+Multimodal models are designed to process and generate multiple modes of data simultaneously, such as text, images, audio, and video. They learn how different modalities are connected and can influence each other, allowing them to perform complex tasks that involve understanding and generating across different types of data. For example, a multimodal model could analyze an uploaded photograph of the contents of your refrigerator with a question about what you can make for dinner and then recognizes the ingredients available and generates a recipe with an image of the completed dish.
 
 ##### !end-explanation
 

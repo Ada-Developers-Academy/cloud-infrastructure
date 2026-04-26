@@ -69,7 +69,7 @@ Even in data that is otherwise "good", we often need to perform cleaning and pre
 
 When handling missing or duplicate data, we must decide whether to drop incomplete records or *impute* them, which means filling in missing values using statistical methods.
 
-**Outliers** are data points that differ significantly from other observations. They can be caused by errors in data collection or they may represent legitimate but rare events. Erroneous outliers caused by system bugs should be dropped, while legitimate outliers are kept but may require further processing to prevent them from overly skewing the training results. For example, if a temperature sensor records a momentary glitch reading of 500 degrees, we would drop it, but a legitimately high heatwave temperature would be kept and adjusted numerically using techniques like *standardization* or *binning* to prevent it from dominating the model's learning process.
+**Outliers** are data points that differ significantly from other observations. They can be caused by errors in data collection or they may represent legitimate but rare events. Erroneous outliers caused by system bugs should be dropped, while legitimate outliers are kept but may require further processing to prevent them from overly skewing the training results. For example, if a temperature sensor records a momentary glitch reading of 500 degrees, we would drop it, but a legitimately high heatwave temperature would be kept and adjusted numerically using techniques like *standardization* or *binning*, which we'll look at shortly, to prevent it from dominating the model's learning process.
 
 ## From Raw Data to Trainable Features
 
@@ -126,13 +126,7 @@ Conversely, model inference is the production phase where the trained model eval
 
 ## Summary
 
-The machine learning lifecycle consists of six key phases: 
-1. **Formulating the Problem**
-2. **Data Preparation**
-3. **Model Training**
-4. **Model Testing**
-5.  **Deployment**
-6.  **Monitoring and Maintenance**
+The machine learning lifecycle consists of six key phases: **Formulating the Problem**, **Data Preparation**, **Model Training**, **Model Testing**, **Deployment**, and **Monitoring and Maintenance**.
 
 Each phase is crucial for building effective machine learning models that can solve real-world problems. High-quality data is essential for training accurate models, and **feature** engineering transforms raw data into formats that algorithms can process. 
 

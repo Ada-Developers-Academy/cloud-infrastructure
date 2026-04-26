@@ -132,7 +132,7 @@ The physical storage of server hardware is unrelated to the "black box" problem 
 
 ##### !question
 
-If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, which of the listed techniques should we use to synthesize new, nuanced data points for that minority class?
+If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, what technique can be used to synthesize new, nuanced data points for that minority class?
 
 ##### !end-question
 
