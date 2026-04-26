@@ -27,7 +27,7 @@ Up to this point, we have focused on the core concepts and techniques of machine
 
 Cloud providers offer a wide range of managed services that allow us to leverage machine learning without needing to manage the underlying infrastructure or develop complex algorithms ourselves. By understanding the tradeoffs between building custom models and using **Machine Learning as a Service (MLaaS)**, we can make informed architectural decisions that align with our business needs, technical capabilities, and resource constraints.
 
-**Machine Learning as a Service (MLaaS)** provides pre-built models and algorithms that can be rapidly integrated with our projects without requiring a deep background in advanced statistics or data science. This approach is ideal for standard tasks where speed and convenience are prioritized. In contrast, training custom models provide complete ownership and the flexibility to tailor architectures to highly specific datasets and specialized business logic. Somewhere between these two extremes, we can also leverage tunable foundation models and generative AI assistants to build custom applications without the need to train a model from scratch.
+**Machine Learning as a Service (MLaaS)** provides pre-built models and algorithms that can be rapidly integrated with our projects without requiring a deep background in advanced statistics or data science. This approach is ideal for standard tasks where speed and convenience are prioritized. In contrast, training custom models provides complete ownership and the flexibility to tailor architectures to highly specific datasets and specialized business logic. Somewhere between these two extremes, we can also leverage tunable foundation models and generative AI assistants to build custom applications without the need to train a model from scratch.
 
 If we are building an application to translate user reviews into different languages, an MLaaS API is highly efficient. Pre-built machine learning translation services are widely available. However, if we are building a proprietary algorithmic trading system based on unique financial indicators, a custom model is strictly necessary.
 
@@ -73,7 +73,12 @@ These off-the-shelf AI services are highly scalable, ready-to-use models that ar
 
 ## Summary
 
-Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints. We can choose to integrate rapid, cost-effective **Machine Learning as a Service (MLaaS)** tools, or we can use dedicated **ML platforms** to manage the infrastructure needed for highly specialized custom models. To leverage the power of modern generative AI while minimizing the need for custom development, we can utilize **tunable foundation models** that allow us to securely customize pre-trained models with our own data. Finally, for standardized tasks like object recognition, language translation, chatbot interfaces, and many more, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. There's a service level for every use case, and understanding the tradeoffs between these options is essential for making informed decisions about what services make the most sense for our applications.
+Building intelligent cloud applications requires us to carefully evaluate our business needs and operational constraints. 
+- We can choose to integrate rapid, cost-effective **Machine Learning as a Service (MLaaS)** tools, or we can use dedicated **ML platforms** to manage the infrastructure needed for highly specialized custom models. 
+- To leverage the power of modern generative AI while minimizing the need for custom development, we can utilize **tunable foundation models** that allow us to securely customize pre-trained models with our own data. 
+- Finally, for standardized tasks like object recognition, language translation, chatbot interfaces, and many more, we can utilize off-the-shelf AI services, which provide scalable intelligence through simple API calls. 
+
+There's a service level for every use case, and understanding the tradeoffs between these options is essential for making informed decisions about what services make the most sense for our applications.
 
 ## Check for Understanding
 

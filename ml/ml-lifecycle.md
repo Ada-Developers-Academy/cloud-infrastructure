@@ -126,7 +126,17 @@ Conversely, model inference is the production phase where the trained model eval
 
 ## Summary
 
-The machine learning lifecycle consists of five key phases: **Formulating the Problem**, **Data Preparation**, **Model Training**, **Model Testing**, and **Deployment**. Each phase is crucial for building effective machine learning models that can solve real-world problems. High-quality data is essential for training accurate models, and **feature** engineering transforms raw data into formats that algorithms can process. Understanding the distinction between **training** and **inference** helps us optimize our cloud infrastructure to support both phases efficiently. By following this structured lifecycle, we can create machine learning applications that drive business growth and provide valuable insights from data.
+The machine learning lifecycle consists of six key phases: 
+1. **Formulating the Problem**
+2. **Data Preparation**
+3. **Model Training**
+4. **Model Testing**
+5.  **Deployment**
+6.  **Monitoring and Maintenance**
+
+Each phase is crucial for building effective machine learning models that can solve real-world problems. High-quality data is essential for training accurate models, and **feature** engineering transforms raw data into formats that algorithms can process. 
+
+Understanding the distinction between **training** and **inference** helps us optimize our cloud infrastructure to support both phases efficiently. By following this structured lifecycle, we can create machine learning applications that drive business growth and provide valuable insights from data.
 
 ## Check for Understanding
 
@@ -203,7 +213,7 @@ The 5 R's of good data are: Relevant, Representative, Rich, Reliable, and Respon
 
 <br>
 
-The missing qualities of good data are Relevant, which means the data should be directly related to the problem we are trying to solve, and Rich, which means the data should contain enough features and information to allow the model to learn meaningful patterns.
+The missing qualities of good data are **Relevant**, which means the data should be directly related to the problem we are trying to solve, and **Rich**, which means the data should contain enough features and information to allow the model to learn meaningful patterns.
 
 <br>
 

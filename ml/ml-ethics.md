@@ -72,7 +72,9 @@ Finally, as agent-based automated systems become more common, we must build syst
 
 ## Summary
 
-Designing intelligent systems requires a steadfast commitment to ethical principles, ensuring that our applications promote fairness, transparency, and sustainability while actively resisting historical biases. By integrating **Human-in-the-Loop (HITL)** practices, we provide necessary moral oversight, and optimize our algorithms through active learning and **Reinforcement Learning from Human Feedback (RLHF)**, carefully balancing the need for human judgment with scalability. Because biased input data leads to discriminatory automated decisions, we utilize sophisticated techniques like **SMOTE** to address class imbalances and ensure our training data is representative. By understanding the inherent uncertainties of predictive models, balancing the "black box" tradeoff between *accuracy* and *explainability*, and defending against **data drift**, we can build robust, trustworthy cloud architectures that serve all users safely.
+Designing intelligent systems requires a steadfast commitment to ethical principles, ensuring that our applications promote fairness, transparency, and sustainability while actively resisting historical biases. By integrating **Human-in-the-Loop (HITL)** practices, we provide necessary moral oversight, and optimize our algorithms through active learning and **Reinforcement Learning from Human Feedback (RLHF)**, carefully balancing the need for human judgment with scalability. 
+
+Because biased input data leads to discriminatory automated decisions, we utilize sophisticated techniques like **SMOTE** to address class imbalances and ensure our training data is representative. By understanding the inherent uncertainties of predictive models, balancing the "black box" tradeoff between *accuracy* and *explainability*, and defending against **data drift**, we can build robust, trustworthy cloud architectures that serve all users safely.
 
 ## Check for Understanding
 
@@ -130,7 +132,7 @@ The physical storage of server hardware is unrelated to the "black box" problem 
 
 ##### !question
 
-If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, which technique should we use to synthesize new, nuanced data points for that minority class?
+If we discover our dataset has a severe class imbalance because one demographic is drastically underrepresented, which of the listed techniques should we use to synthesize new, nuanced data points for that minority class?
 
 ##### !end-question
 
