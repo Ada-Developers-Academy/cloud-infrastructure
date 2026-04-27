@@ -58,7 +58,7 @@ While every machine learning system must undergo a training process to learn fro
 
 In **supervised learning**, the model is trained on a labeled dataset, where each data point is associated with a known output. The model learns to map inputs to outputs based on this training data. For example, a supervised learning model could be trained on a dataset of emails labeled as "spam" or "not spam" to learn how to classify new emails. This is the learning model used in the fraud detection example mentioned earlier, where the model learns to classify transactions as "fraudulent" or "legitimate" based on historical data with known labels.
 
-In addition to the classification tasks mentioned above, supervised learning can also be used for regression tasks, where the output is a continuous value rather than a discrete label. For example, a supervised learning model could be trained on historical delivery times for a logistics company to predict the delivery time for new shipments based on features such as distance, package size, and traffic conditions.
+In addition to the classification tasks mentioned above, supervised learning can also be used for regression tasks, where the output is a continuous value rather than a discrete label. For example, a supervised learning model could be trained on historical delivery times for a logistics company to predict the delivery time for new shipments based on *features* such as distance, package size, and traffic conditions.
 
 ### Unsupervised Learning
 
