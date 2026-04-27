@@ -215,7 +215,7 @@ Standards:
   - 
     Title: Analytics and Data Processing
     UID: a8b52ed3-d99f-4b2b-8a49-40f7727f59a7
-    Description: "Introduction to Cloud-Based Data Analytics and Big Data"
+    Description: "Introduction to Cloud-Based Data Analytics and Big Data; Data Storage Architectures for Cloud Analytics; Data Ingestion and Processing Paradigms; Data Discovery, Search, and Querying; Visualization, Business Intelligence, and AI in Cloud Analytics; Problem Set: Analytics and Data Processing"
     SuccessCriteria:
       - success criteria
     ContentFiles:
@@ -243,6 +243,37 @@ Standards:
         Type: Lesson
         UID: b6a83a46-87c6-427a-8d12-f1ca4bc2a7c5
         Path: /analytics/problem-set-analytics.md
+  - 
+    Title: Machine Learning and Intelligent Systems
+    UID: 961d3718-5847-449c-8383-912d94e02565
+    Description: "Introduction to Machine Learning Problems and Solutions; The Machine Learning Project Lifecycle; Generative AI vs. Traditional Machine Learning; Cloud ML Services; Responsible AI, Automation Risks, and Limitations; Problem Set: Machine Learning and Intelligent Systems"
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      - 
+        Type: Lesson
+        UID: 6a3e1b7c-f6b4-4750-80f6-90b9b5893332
+        Path: /ml/ml-basics.md
+      - 
+        Type: Lesson
+        UID: 6b7fb6df-03e1-4bb3-a7d3-1e65bc66f245
+        Path: /ml/ml-lifecycle.md
+      - 
+        Type: Lesson
+        UID: 87534419-dd39-4172-ae24-4315ed2740f5
+        Path: /ml/ml-gen-ai.md
+      - 
+        Type: Lesson
+        UID: fdb9df50-e38f-480b-a945-2a80fe24d047
+        Path: /ml/ml-cloud-services.md
+      - 
+        Type: Lesson
+        UID: 1b0947de-e386-4343-a9f9-0c030378d7d1
+        Path: /ml/ml-ethics.md
+      - 
+        Type: Lesson
+        UID: 1e499d24-09e3-4d9f-9de0-edf3a3cdde24
+        Path: /ml/ml-problem-set.md
   -
     Title: Observability, Reliability & Operations
     Description: "Introduction to Observability, Introduction to Reliability, AI for Operations, Problem Set"
