@@ -320,3 +320,26 @@ Standards:
         Type: Lesson
         UID: 7aa5dfed-cb17-452b-942d-68137e44620e
         Path: /governance-and-cost/problem-set.md
+  -
+    Title: Cloud Migration Strategies
+    Description: "Introduction to Cloud Migration, Cloud Migration Strategies, Hybrid and Multi-Cloud Environments, Problem Set"
+    UID: 2e4d59d9-f565-41be-a7c6-edb8d16e8c90
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson        
+        UID: c68556e1-1ca5-4d7a-a82b-4b67b7b8a589
+        Path: /migration-hybrid-cloud-strategies/intro-to-cloud-migration.md
+      -
+        Type: Lesson
+        UID: 8d0ecc56-a5c2-4c13-b643-3ebede0d6468
+        Path: /migration-hybrid-cloud-strategies/cloud-migration-strategies.md
+      -
+        Type: Lesson
+        UID: ccbd7b690-afa0-4a3e-9c8e-8961208615b8
+        Path: /migration-hybrid-cloud-strategies/hybrid-multi-cloud-envs.md
+      -
+        Type: Lesson
+        UID: 16790941-e86b-4f89-81fe-b409dd78bedf
+        Path: /migration-hybrid-cloud-strategies/problem-set-migration.md
