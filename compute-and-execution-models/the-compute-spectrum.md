@@ -118,7 +118,7 @@ The following table illustrates where these boundaries typically fall across the
 
 ### Tradeoffs Between Compute Models: Control versus Operational Burden
 
-The choice of a compute model dictates where a developer will spend their time. This is often visualized as a spectrum: on one end is maximum control and on the other is maximum abstraction. When a team chooses a compute model that enables them to to control much of the computing resources available, they gain the ability to customize the environment to exact specifications. However, this control comes with a higher operational burden, which means that the developer might be spending time on tasks that do not directly add value to the end user.
+The choice of a compute model dictates where a developer will spend their time. This is often visualized as a spectrum: on one end is maximum control and on the other is maximum abstraction. When a team chooses a compute model that enables them to control much of the computing resources available, they gain the ability to customize the environment to exact specifications. However, this control comes with a higher operational burden, which means that the developer might be spending time on tasks that do not directly add value to the end user.
 
 Conversely, when a team chooses a compute model with higher levels of abstraction, they trade away low-level control in exchange for speed and simplicity. The cloud provider handles the "heavy lifting" which allows developers to focus entirely on the application code. 
 
