@@ -129,7 +129,7 @@ In the diagram above, address a) `10.0.0.1` is part of the network defined by `1
 
 ## Routing and Gateways for Public and Private Subnets
 
-Now that we have an idea about how to define our network and organize it into subnets, we need to understand how data moves within that network and how it reaches the outside world. If we we're building our own physical data center, we would have switches and routers to direct traffic between different parts of the network. In the cloud, we have virtualized versions of these components that perform the same functions.
+Now that we have an idea about how to define our network and organize it into subnets, we need to understand how data moves within that network and how it reaches the outside world. If we're building our own physical data center, we would have switches and routers to direct traffic between different parts of the network. In the cloud, we have virtualized versions of these components that perform the same functions.
 
 In order for data to move within the VPC, we need to define **Route Tables**. A route table contains a set of rules, called routes, that determine where network traffic from your subnet or gateway is directed. They virtualize the function of a switch in that it provides connections within a subnet, as well as the function of a router in that it provides connections between different subnets and even to the outside world.
 
