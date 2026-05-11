@@ -42,8 +42,6 @@ Accountability follows from ownership. When a resource has an identified owner, 
 
 Access control is one of the most important components of a governance framework. Least-privilege access, the principle that any user or system should have only the minimum permissions required to perform its function, is a governance control as much as it is a security control. Restricting what engineers can provision, which environments they can access, and what actions they can take on production resources directly limits the blast radius of misconfiguration, credential compromise, or human error. 
 
-IAM policies, roles, and permission boundaries are the technical mechanisms through which access governance is enforced in the cloud. A well-designed governance framework defines the access model at an organizational level, and IAM configuration is how that model is implemented. The two are distinct in scope but tightly coupled in practice.
-
 IAM policies, roles, and permission boundaries are the technical mechanisms through which access governance is enforced in the cloud. A well-designed governance framework defines the access model at an organizational level, and IAM configuration is how that model is implemented in practice. Governance operates at the organizational level by establishing access requirements and policies; IAM operates at the technical level by translating those requirements into permissions, roles, and boundaries that the cloud environment can enforce.
 
 ### !end-callout
