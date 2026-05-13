@@ -35,7 +35,7 @@ Cloud platforms address these challenges by offering different compute execution
 
 Infrastructure as a Service (IaaS) is a form of cloud computing that delivers IT infrastructure like compute, storage, and network resources over the internet. Paying for IaaS enables businesses to avoid or move away from the complexities that come along with managing on-premises systems.
 
-There are three categories of infrastructure services that cloud providers make available to their customers: compute, storage, and networking. We will briefly review each category in this section, but later Learn lessons will go dive deeper into each individual topic.
+There are three categories of infrastructure services that cloud providers make available to their customers: compute, storage, and networking. We will briefly review each category in this section, but later Learn lessons will dive deeper into each individual topic.
 
 #### Compute
 
