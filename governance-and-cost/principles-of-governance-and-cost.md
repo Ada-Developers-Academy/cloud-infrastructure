@@ -94,7 +94,7 @@ A tagging strategy is an organization's defined approach to applying tags: which
 | `team` | The team responsible for the resource | `payments`|
 | `environment` | The deployment environment | `production`, `staging`, `development`|
 | `project` | The project or initiative the resource supports | `checkout-redesign`|
-| `team` | The organizational unit responsible for the cost | `engineering`|
+| `organization` | The organizational unit responsible for the cost | `engineering`|
 
 This set of tags makes it possible to answer questions such as: which team owns this storage volume, how much did the checkout redesign project spend on cloud infrastructure last month, and which resources in the production environment belong to the payments team.
 
