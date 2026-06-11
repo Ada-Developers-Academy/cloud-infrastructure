@@ -51,7 +51,7 @@ ELT is particularly well-suited for handling large volumes of semi-structured or
 
 Cloud providers offer a variety of managed services to help us transform our incoming data for our analytics needs. These services can handle complex, distributed processing of petabyte-scale datasets. They allow us to focus on writing our data transformation logic while providing options about how much operational management we want to take on.
 
-To manage large-scale data transformation workloads, transformation services typically take the form of managed cluster environments designed to host distributed data processing frameworks, such as Apache Hadoop and Apache Spark. There ability to split workload across multiple nodes allows them to efficiently process massive datasets that would be impractical to handle on a single server.
+To manage large-scale data transformation workloads, transformation services typically take the form of managed cluster environments designed to host distributed data processing frameworks, such as Apache Hadoop and Apache Spark. Their ability to split a workload across multiple nodes allows them to efficiently process massive datasets that would be impractical to handle on a single server.
 
 Many of these services are also available in a serverless format, allowing us to run big data processing jobs without needing to manage the underlying cluster infrastructure. This means we can focus on writing our data transformation logic while the cloud provider handles provisioning, scaling, and maintaining the cluster.
 
